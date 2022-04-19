@@ -99,7 +99,7 @@ DATABASES = {
         # 'NAME': 'DB',
         'USER': 'admin',
         'PASSWORD': 'aivle202101',
-        'HOST': 'photomarble.ctkqwnymbxqi.ap-northeast-2.rds.amazonaws.com',
+        'HOST': '###',
         'PORT': 3306
         }
 }
