@@ -1,10 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from allauth.account.views import PasswordChangeView
 from main.models import User
 from . import forms
 from django.contrib import auth
-from django.contrib import messages
+from django.shortcuts import render,get_object_or_404
 
 
 # Create your views here.
@@ -35,10 +35,11 @@ def login(request):
         # 정보 가져와서 
         email = request.POST['email']
         password = request.POST['password']
-
+        print(email,password)
+        print("###############")
         # 로그인
         user = auth.authenticate(request, email=email, password=password)
-
+        print(user)
 
         # 성공
         if user is not None:
@@ -48,10 +49,15 @@ def login(request):
             return render(request, '../templates/main/main.html')
         # 실패
         else:
-            messages.warning(request, "로그인에 실패했습니다.")
             return render(request, '../templates/main/login.html',{'message' : '로그인에 실패했습니다.','form':forms.LoginForm})
-          
-            # return render(request, '../templates/main/login.html',{'form':forms.LoginForm})
+            #return render(request, 'member/error.html',  {'error': 'username or password is incorrect.'}))
     else:
         context = {'form':forms.LoginForm}
         return render(request, '../templates/main/login.html', context)
+
+
+def delete(request):
+    # user = request.session()
+    user =get_object_or_404(User, pk=request.session['id'])
+    user.delete()
+    return redirect('http://127.0.0.1:8000/') # 탈퇴가 완료 됐습니다 문구 후 로그인창으로 돌아오게 - 일단은 임시방편
