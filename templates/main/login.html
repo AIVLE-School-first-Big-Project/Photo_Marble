@@ -26,12 +26,19 @@
 
 
 {% get_providers as socialaccount_providers %}
-<p>{{message}}</p>  
+
 <div class="row justify-content-center h-100">
   <div class="col align-self-center text-center card text-black" style="max-width: 25rem;">
     <div class="card-body"> 
     <h3 class="card-title">Sign in</h1>
+      
+      {% if messages %}
+      {% for message in messages %}
+       {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
 
+      {% endfor %}
+
+  {% endif %}
 
 {% if socialaccount_providers %}
 
@@ -54,3 +61,7 @@
 </div>
 </div>
 {% endblock %}
+
+<script>
+  alert('{{ message }}');
+</script>
