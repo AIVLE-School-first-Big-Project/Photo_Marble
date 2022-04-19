@@ -5,7 +5,7 @@ from main.models import User
 from . import forms
 from django.contrib import auth
 from django.shortcuts import render,get_object_or_404
-
+from django.contrib import messages
 
 # Create your views here.
 
@@ -60,4 +60,5 @@ def delete(request):
     # user = request.session()
     user =get_object_or_404(User, pk=request.session['id'])
     user.delete()
-    return redirect('http://127.0.0.1:8000/') # 탈퇴가 완료 됐습니다 문구 후 로그인창으로 돌아오게 - 일단은 임시방편
+    messages.success(request, '탈퇴가 완료됐습니다.')
+    return redirect("http://127.0.0.1:8000/")
