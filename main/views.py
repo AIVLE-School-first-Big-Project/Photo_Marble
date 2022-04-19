@@ -4,7 +4,7 @@ from allauth.account.views import PasswordChangeView
 from main.models import User
 from . import forms
 from django.contrib import auth
-
+from django.contrib import messages
 
 
 # Create your views here.
@@ -35,11 +35,10 @@ def login(request):
         # 정보 가져와서 
         email = request.POST['email']
         password = request.POST['password']
-        print(email,password)
-        print("###############")
+
         # 로그인
         user = auth.authenticate(request, email=email, password=password)
-        print(user)
+
 
         # 성공
         if user is not None:
@@ -49,8 +48,10 @@ def login(request):
             return render(request, '../templates/main/main.html')
         # 실패
         else:
+            messages.warning(request, "로그인에 실패했습니다.")
             return render(request, '../templates/main/login.html',{'message' : '로그인에 실패했습니다.','form':forms.LoginForm})
-            #return render(request, 'member/error.html',  {'error': 'username or password is incorrect.'}))
+          
+            # return render(request, '../templates/main/login.html',{'form':forms.LoginForm})
     else:
         context = {'form':forms.LoginForm}
         return render(request, '../templates/main/login.html', context)
