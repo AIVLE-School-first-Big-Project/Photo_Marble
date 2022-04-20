@@ -1,0 +1,53 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+{% extends "account/base.html" %}
+{% block content %}
+
+
+{% if flag == False %}
+<div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">순위권 안에 들지 못했어요!</h5>
+    <p class="card-text">{{my_rank.username}}</p>
+    <p class="card-text">{{my_rank.progress}}%</p>
+  </div>
+</div>
+{% endif%}
+
+
+  {% if rank %}
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Point</th>
+    
+      </tr>
+    </thead>
+    <tbody>
+
+
+    {% for record in rank%}
+    {% if record.isUser %}
+    <tr>
+      <th class="table-warning" scope="row">{{ forloop.counter }}</th>
+      <td class="table-warning" >{{record.username}}</td>
+      <td class="table-warning" >{{record.progress}}%</td> 
+    </tr>
+    {% else %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td>{{record.username}}</td>
+      <td>{{record.progress}}%</td> 
+    </tr>
+  
+    {% endif %}
+    {% endfor %}
+
+</tbody>
+</table>
+
+  {% endif %}
+{% endblock %}

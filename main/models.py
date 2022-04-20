@@ -14,8 +14,8 @@ class User(AbstractUser):
 class Landmark(models.Model):
     lanmark_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
-    x = models.IntegerField()
-    y = models.IntegerField()
+    x = models.FloatField()
+    y = models.FloatField()
     area = models.CharField(max_length=50)
 
     class Meta:
@@ -81,3 +81,13 @@ class Like(models.Model):
         # managed = False
         db_table = 'Like'
 
+
+
+class Locations(models.Model):
+    location_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=50)
+
+
+    class Meta:
+        # managed = False
+        db_table = 'Locations'
