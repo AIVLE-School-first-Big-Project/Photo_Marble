@@ -39,7 +39,7 @@ class Collection(models.Model):
 class Gallery(models.Model):
     gallery_id = models.AutoField(primary_key=True)
     category_id = models.IntegerField()
-    photo_url = models.CharField(max_length=100)
+    photo_url = models.CharField(max_length=200)
     updated_at = models.DateField()
     user = models.ForeignKey('User', models.DO_NOTHING, db_column='user_id')
     class Meta:
