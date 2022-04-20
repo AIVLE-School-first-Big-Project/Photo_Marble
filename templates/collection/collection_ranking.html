@@ -4,6 +4,17 @@
 {% block content %}
 
 
+{% if flag == False %}
+<div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">순위권 안에 들지 못했어요!</h5>
+    <p class="card-text">{{my_rank.username}}</p>
+    <p class="card-text">{{my_rank.progress}}%</p>
+  </div>
+</div>
+{% endif%}
+
+
   {% if rank %}
 
   <table class="table">
@@ -17,6 +28,28 @@
     </thead>
     <tbody>
 
+<<<<<<< HEAD
+
+    {% for record in rank%}
+    {% if record.isUser %}
+    <tr>
+      <th class="table-warning" scope="row">{{ forloop.counter }}</th>
+      <td class="table-warning" >{{record.username}}</td>
+      <td class="table-warning" >{{record.progress}}%</td> 
+    </tr>
+    {% else %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td>{{record.username}}</td>
+      <td>{{record.progress}}%</td> 
+    </tr>
+  
+    {% endif %}
+    {% endfor %}
+
+</tbody>
+</table>
+=======
       
     {% for record in rank %}
 
@@ -34,6 +67,7 @@
 
 
 
+>>>>>>> ec936c3ede52cf440bfec9a24f28050ce3d98988
 
   {% endif %}
 {% endblock %}
