@@ -1,0 +1,13 @@
+
+{% extends "account/base.html" %}
+{% block content %}
+
+
+  {% if rank %}
+  {% for record in rank %}
+    {% comment %} <p> {{record}} </p> {% endcomment %}
+    <p> username: {{record.username}}  progress: {{record.progress}}</p>
+  
+  {% endfor %}
+  {% endif %}
+{% endblock %}
