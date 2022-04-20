@@ -33,9 +33,11 @@
 <p align="center">
 <img src="https://user-images.githubusercontent.com/43026485/164238808-97dfc50a-6526-4a46-93e4-51173e539a49.png"  width="600" >
 </p><br>
+
 ------------------
+
 ### 6. :mag_right: 서비스 플로우
 <p align="center">
-<img src=" https://user-images.githubusercontent.com/43026485/164259000-93a520c0-2458-4feb-a77d-3d6d198cd5b5.png"  width="600" >
+<img src="https://user-images.githubusercontent.com/43026485/164259000-93a520c0-2458-4feb-a77d-3d6d198cd5b5.png"  width="600" >
 </p><br>
 
