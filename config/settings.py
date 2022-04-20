@@ -157,8 +157,11 @@ EMAIL_USE_TLS =True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'main','static')
-
+#STATIC_ROOT = os.path.join(BASE_DIR, 'main','static')
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'main', 'static'),
+    os.path.join(BASE_DIR, 'collection', 'static'),
+) 
 
 # 이걸 추가해야 django네 메세지 나오게 함
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
