@@ -140,26 +140,11 @@
 }
 
 </style>
+{% extends "base.html" %}
+{% block content %}
 
 <body>
-
-<!-- 상단 내비게이션 바 -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom" style="width: 100%;height: 50px;position: fixed;" >
-  <div class="container">
-    <img style="height: 30px; object-fit: contain"
-         src="https://www.instagram.com/static/images/web/mobile_nav_type_logo-2x.png/1b47f9d0e595.png">
-    <input class="form-control" style="width: 200px" type="search" placeholder="Search" aria-label="Search">
-    <div>
-      <span class="material-icons">home</span>
-      <span class="material-icons">send</span>
-      <span class="material-icons-outlined">add_box</span>
-      <span class="material-icons-outlined">explore</span>
-      <span class="material-icons-outlined">favorite_border</span>
-    </div>
-  </div>
-</nav>
-
-<!-- 바디 영역 -->
+  
 {% if datas %}
   {% for data in datas%}
     <div class="main_body">
@@ -195,7 +180,7 @@
     </div>
   </div>
 </div>
-
+{% endblock %}
 
 
 <!-- Optional JavaScript; choose one of the two! -->

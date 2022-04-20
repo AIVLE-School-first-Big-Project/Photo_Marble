@@ -47,7 +47,7 @@ def login(request):
             auth.login(request, user)
             request.session['id'] = user.id
             print( request.session['id'])
-            return render(request, '../templates/main/main.html')
+            return redirect('http://127.0.0.1:8000/main')
         # 실패
         else:
             messages.warning(request, "로그인을 실패했습니다.")
