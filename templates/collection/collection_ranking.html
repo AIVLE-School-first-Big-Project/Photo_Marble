@@ -28,6 +28,7 @@
     </thead>
     <tbody>
 
+<<<<<<< HEAD
 
     {% for record in rank%}
     {% if record.isUser %}
@@ -48,6 +49,25 @@
 
 </tbody>
 </table>
+=======
+      
+    {% for record in rank %}
+
+    <tr>
+      <th scope="row">1</th>
+      <td>{{record.username}}</td>
+      <td>{{record.progress}}</td>
+    </tr>
+    {% endfor %}
+
+    </tbody>
+  </table>
+
+
+
+
+
+>>>>>>> ec936c3ede52cf440bfec9a24f28050ce3d98988
 
   {% endif %}
 {% endblock %}
