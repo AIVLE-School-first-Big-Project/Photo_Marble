@@ -1,6 +1,6 @@
 # Photo-Marble
 
-- ### :computer: 서비스 소개☝
+- ### :computer: 서비스 소개
 > 소개문구 <br>
 
 - ### :raising_hand_man: 조원 소개 :raising_hand_woman:
