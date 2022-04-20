@@ -17,19 +17,35 @@ def collection_mypage(request):
 
 def collection_ranking(request):
     total = len(Landmark.objects.all())
-    rank = Collection.objects.values('user_id').annotate(dcount=Count('user_id'))
+    rank = list(Collection.objects.values('user_id').annotate(dcount=Count('user_id')))
+    rank = sorted(rank, key=lambda x:x['dcount'], reverse=True)
     user_rank = []
-    for i in rank:
-        tmp = [list(i.values())[0], list(i.values())[1]]
-        tmp_user = User.objects.get(id=list(i.values())[0]).username
-        tmp_dict = {}
-        tmp_dict['username'] = tmp_user
-        tmp_dict['progress'] = int((tmp[1]/total)*100)
-        user_rank.append(tmp_dict)
+    flag = False
+    for idx, i in enumerate(rank):
+        if idx < 2: # 몇등까지 보여줄지
+            tmp = [list(i.values())[0], list(i.values())[1]]
+            tmp_user = User.objects.get(id=tmp[0]).username
+            tmp_dict = {}
+            tmp_dict['username'] = tmp_user
+            tmp_dict['progress'] = int((tmp[1]/total)*100)
+            if(tmp[0]==request.session['id']):
+                tmp_dict['isUser'] = True
+                flag = True
+            else:
+                tmp_dict['isUser'] = False
 
-    user_rank=sorted(user_rank, key=lambda x:x['progress'], reverse=True)
+            user_rank.append(tmp_dict)
+       
+        else:
+            break
+    if flag == False:
+        my_rank = {'username':User.objects.get(id=request.session['id']).username,
+                        'progress':int((len(Collection.objects.filter(user_id=request.session['id']))/total)*100),
+                        'isUser':True}
+    else:
+        my_rank = False
 
-    return render(request, '../templates/collection/collection_ranking.html',{'rank':user_rank})
+    return render(request, '../templates/collection/collection_ranking.html',{'rank':user_rank,'my_rank':my_rank, 'flag':flag})
 
 
 # def collection_ranking(request):
