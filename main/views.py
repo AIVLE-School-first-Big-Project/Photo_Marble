@@ -55,3 +55,6 @@ def login(request):
     else:
         context = {'form':forms.LoginForm}
         return render(request, '../templates/main/login.html', context)
+
+def main(request):#경주
+    return render(request,'../templates/main/main.html')
