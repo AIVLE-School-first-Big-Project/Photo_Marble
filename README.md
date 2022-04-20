@@ -30,5 +30,6 @@
 ### 4. :game_die: 포토마불 사용가이드
 ------------------
 ### 5. :hammer_and_wrench: 아키텍처 
-
+<p align="center">
 <img src="https://user-images.githubusercontent.com/43026485/164238808-97dfc50a-6526-4a46-93e4-51173e539a49.png"  width="600" >
+ </
