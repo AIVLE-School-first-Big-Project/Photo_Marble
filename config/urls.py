@@ -23,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #main
     path('', include('main.urls')),
-    path('', include('collection.urls')),
+    path('collection/', include('collection.urls')),
     #allauth
     path("email-confirmation-done/",
         TemplateView.as_view(template_name="main/email-confirmation-done.html"),

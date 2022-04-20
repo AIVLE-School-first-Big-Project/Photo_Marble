@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse
-from main.models import User, Collection, Landmark
+from main.models import User, Collection, Landmark, Locations
 
 from django.db.models import Count
 
@@ -8,12 +8,26 @@ from django.db.models import Count
 
 
 def collection_mypage(request):
-
-    visited_landmark = Collection.objects.filter(user_id= request.session['id'])
+    # progress bar
+    ui = request.session['id']
+    visited_landmark = Collection.objects.filter(user_id= ui)
     collection_cnt = len(visited_landmark)
     total = len(Landmark.objects.all())
     progress = int((collection_cnt/total)*100)
-    return render(request, '../templates/collection/collection_mypage.html', context={'progress' : progress })
+
+    # map
+    area_id=[]
+    for i in visited_landmark:
+        l_d=i.landmark_id
+        land=Landmark.objects.get(lanmark_id= l_d)
+        area_name=land.area
+        land=Locations.objects.get(name= area_name)
+        area_id.append('s'+str(land.location_id))
+    print(area_id)
+
+    return render(request, '../templates/collection/collection_mypage.html', context={'progress' : progress,
+                                                                                        'area_id' : area_id,
+     })
 
 def collection_ranking(request):
     total = len(Landmark.objects.all())
@@ -32,6 +46,8 @@ def collection_ranking(request):
     return render(request, '../templates/collection/collection_ranking.html',{'rank':user_rank})
 
 
+def maps(request):
+    return render(request, "../templates/collection/collection_mypage.html")
 # def collection_ranking(request):
 #     total = len(Landmark.objects.all())
 #     rank = Collection.objects.values('user_id').annotate(dcount=Count('user_id'))
