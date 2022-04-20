@@ -27,7 +27,8 @@ def mypage(request):
     return render(request, '../templates/main/mypage.html', context={
         'user' : user_db
     })
-
+def main(request):#경주
+    return render(request,'../templates/main/main.html')
 
 def login(request):
     # 포스트 
@@ -56,6 +57,8 @@ def login(request):
         context = {'form':forms.LoginForm}
         return render(request, '../templates/main/login.html', context)
 
+def main(request):#경주
+    return render(request,'../templates/main/main.html')
 
 def delete(request):
     # user = request.session()
