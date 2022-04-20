@@ -49,6 +49,7 @@ def login(request):
             return render(request, '../templates/main/main.html')
         # 실패
         else:
+            messages.warning(request, "로그인을 실패했습니다.")
             return render(request, '../templates/main/login.html',{'message' : '로그인에 실패했습니다.','form':forms.LoginForm})
             #return render(request, 'member/error.html',  {'error': 'username or password is incorrect.'}))
     else:
