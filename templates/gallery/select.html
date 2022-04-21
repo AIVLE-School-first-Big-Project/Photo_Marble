@@ -30,7 +30,7 @@
                 
                 <div class="box" id="b" data-item-id="611591d28b3917669f76f8eb" data-controller="ProductListImageLoader" data-controllers-bound="ProductListImageLoader" style="transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1); transition-duration: 0.8s; transition-delay: 0.136364s;">
                         <div class="grid-image-wrapper"> 
-                            <a href= "http://127.0.0.1:8000/detail/{{ data.gallery_id }}"  aria-label="Genuine Gemini" class="grid-item-link">
+                            <a href= "{% url 'detail2' data.gallery_id %}"  aria-label="Genuine Gemini" class="grid-item-link">
                             <img src= "{{ data.photo_url }}" width=300 height=300>
                             </a>
                         </div>
