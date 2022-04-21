@@ -1,40 +1,35 @@
-<!DOCUMENT html>
-{% extends "base.html" %}
-{% block content %}
-
-
-  <body style="text-align: center;">
-      <div class="container">
-        <div class="jumbotron">
-          <h1 class="display-4">Photo Marble->이미지 로고로 대체</h1>
-            <p>welcome to landmark</p>
-          </div>
+{% load static %}
+<html>
+  <head>
+    <title>포토마불</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  </head>
+<html>
+  <body style="background-color:rgb(239,248,)">
+    <div class="hamburger">
+        <input type="checkbox">
+        <div class="hamburgerlines">
+            <span class="lines line1">
+            </span>
+            <span class="lines line2">
+            </span>
+            <span class="lines line3">
+            </span>
+        </div>
+        <ul class="menu-items">
           <br>
-          
-    <div class="container">
-      <div class="row">
-        
-          <div class="card card-1">
-            <h3>Ionic Native</h3>
-            <p>Tabs, buttons, inputs, lists, cards, and more! A comprehensive library
-              of mobile UI components, ready to go.</p>          
-    </div>  
-    
-      <div class="card card-2">
-        <h3>UI Components</h3>
-        <p>Tabs, buttons, inputs, lists, cards, and more! A comprehensive library
-          of mobile UI components, ready to go.</p>      
+          <a href= "http://127.0.0.1:8000/main"><li>Home</li></a>
+          <a href= "#"><li>Photo Guide</li></a>
+          <a href= "http://127.0.0.1:8000/select"><li>Gallery</li></a>
+          <a href= "http://127.0.0.1:8000/collection"><li>Collection</li></a>
+          <a href= "http://127.0.0.1:8000/mypage"><li>My Page</li></a>
+        </ul>
     </div>
-   
-      <div class="card card-3">
-        <h3>Theming</h3>
-        <p>Tabs, buttons, inputs, lists, cards, and more! A comprehensive library
-          of mobile UI components, ready to go.</p>     
-    </div>
-  </div>
-</div>
-{% endblock %}
-</body>
+    {% block content %}
+    {% endblock %}
+  </body>
+</html>
 
 
 <style>
