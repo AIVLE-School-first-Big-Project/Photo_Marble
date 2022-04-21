@@ -6,5 +6,5 @@ urlpatterns = [
     path('mypage/', views.mypage, name='mypage'),
     path('', views.main, name='main'),#경주
     # path('signup/', views.SignupView, name="account_signup"),
-    path('signup2/', views.CustomSignupView.as_view(), name="custom_signup"),
+    path('signup/', views.CustomSignupView.as_view(), name="custom_signup"),
 ]
