@@ -1,3 +1,4 @@
+from re import A
 from django.shortcuts import render
 from django.urls import reverse
 from main.models import User, Collection, Landmark, Locations
@@ -23,11 +24,43 @@ def collection_mypage(request):
         area_name=land.area
         land=Locations.objects.get(name= area_name)
         area_id.append('s'+str(land.location_id))
-    print(area_id)
+
+    area_list = []
+    for i in range(1,26):
+        dict_key = 's'+str(i)
+        if dict_key in area_id:
+            area_list.append('area_true')
+        else:
+            area_list.append('area_false')
+
 
     return render(request, '../templates/collection/collection_mypage.html', context={'progress' : progress,
-                                                                                        'area_id' : area_id,
-     })
+                                                                                        's1':area_list[0],
+                                                                                        's2':area_list[1],
+                                                                                        's3':area_list[2],
+                                                                                        's4':area_list[3],
+                                                                                        's5':area_list[4],
+                                                                                        's6':area_list[5],
+                                                                                        's7':area_list[6],
+                                                                                        's8':area_list[7],
+                                                                                        's9':area_list[8],
+                                                                                        's10':area_list[9],
+                                                                                        's11':area_list[10],
+                                                                                        's12':area_list[11],
+                                                                                        's13':area_list[12],
+                                                                                        's14':area_list[13],
+                                                                                        's15':area_list[14],
+                                                                                        's16':area_list[15],
+                                                                                        's17':area_list[16], 
+                                                                                        's18':area_list[17], 
+                                                                                        's19':area_list[18], 
+                                                                                        's20':area_list[19], 
+                                                                                        's21':area_list[20], 
+                                                                                        's22':area_list[21], 
+                                                                                        's23':area_list[22], 
+                                                                                        's24':area_list[23], 
+                                                                                        's25':area_list[24]})
+
 
 def collection_ranking(request):
     total = len(Landmark.objects.all())
