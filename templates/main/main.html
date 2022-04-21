@@ -1,223 +1,32 @@
-<!DOCUMENT html>
 {% extends "base.html" %}
 {% block content %}
 
-
-  <body style="text-align: center;">
-      <div class="container">
-        <div class="jumbotron">
-          <h1 class="display-4">Photo Marble->이미지 로고로 대체</h1>
-            <p>welcome to landmark</p>
-          </div>
-          <br>
-          
-    <div class="container">
-      <div class="row">
-        <a href= "#">
+<html>
+  <body>
+    <br>
+    <br>
+    <br><br>
+    
+    <div class="container">        
           <div class="card card-1">
-            <h3>Photo Guide</h3>
+            <h3>Ionic Native</h3>
             <p>Tabs, buttons, inputs, lists, cards, and more! A comprehensive library
               of mobile UI components, ready to go.</p>          
-          </div>  
-        </a>
-      
-      <a href= "http://127.0.0.1:8000/select">
+    </div>      
       <div class="card card-2">
-        <h3>Gallery</h3>
+        <h3>UI Components</h3>
         <p>Tabs, buttons, inputs, lists, cards, and more! A comprehensive library
           of mobile UI components, ready to go.</p>      
-    </div>
-    </a>
-    <a href= "http://127.0.0.1:8000/collection">
+    </div>   
       <div class="card card-3">
-        <h3>Collection</h3>
+        <h3>Theming</h3>
         <p>Tabs, buttons, inputs, lists, cards, and more! A comprehensive library
           of mobile UI components, ready to go.</p>     
     </div>
-    </a>
   </div>
 </div>
+
+
 </body>
+
 {% endblock %}
-
-<style>
-  
-
-  a {
-    text-decoration: none;
-    color: black;
-  }
-
-  a:link {
-    text-decoration: none;
-    color: black;
-  }
-
-  a:visited {
-      text-decoration: none;
-  }
-
-  a:hover {
-      text-decoration: none;
-  }
-
-  a:active {
-      text-decoration: none;
-  }
-
-  body{
-    font-family: 'Nunito', sans-serif;
-    padding: 50px;
-  }
-  .card{    
-      border-radius: 4px;
-      background: #fff;
-      margin: 10px;
-      box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
-        transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
-    padding: 14px 80px 18px 36px;
-    cursor: pointer;
-  }
-  
-  .card:hover{
-       transform: scale(1.05);
-    box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
-  }
-  
-  .card h3{
-    font-weight: 600;
-  }
-  
-  .card img{
-    position: absolute;
-    top: 20px;
-    right: 15px;
-    max-height: 120px;
-  }
-  
-  .card-1{    
-    background-image: url(https://ionicframework.com/img/getting-started/ionic-native-card.png);
-      background-repeat: no-repeat;
-      background-position: right;
-      background-size: 80px;
-  }
-  
-  .card-2{
-     background-image: url(https://ionicframework.com/img/getting-started/components-card.png);
-        background-repeat: no-repeat;
-      background-position: right;
-      background-size: 80px;
-  }
-  
-  .card-3{
-     background-image: url(https://ionicframework.com/img/getting-started/theming-card.png);
-        background-repeat: no-repeat;
-      background-position: right;
-      background-size: 80px;
-  }
- 
-  
-  @media(max-width: 990px){
-    .card{
-      margin: 100px;
-    }
-  } 
-  *{
-    box-sizing: border-box;
-}
-
-
-li{
-    list-style: none;
-}
-
-.hamburger input[type="checkbox"]{
-    width: 20px;
-    height: 32px;
-    position: absolute;
-    top: 5px;
-    left: 6px;
-    display: block;
-    z-index: 3;
-    opacity: 0;
-    cursor: pointer;
-}
-
-.hamburgerlines{
-    width: 40px;
-    height: 32px;
-    position: absolute;
-    top: 8px;
-    left: 7px;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.hamburgerlines .lines{
-    display: block;
-    height: 4px;
-    width: 100%;
-    background: #232323;
-    border-radius: 10px;
-}
-
-.hamburger{
-    position: relative;
-}
-
-.menu-items{
-    padding-top: 30px;
-    transform: translate(-110%);
-    transition: transform 0.5s ease-in-out;
-    padding-left: 15px;
-    background: #0000;
-    margin-top: -10px;
-    color: #232323;
-    padding-bottom: 1rem;
-    max-width: 200px;
-    width: 20%;
-    height: 5;
-    
-}
-
-.menu-items li{
-    margin-bottom: 2rem;
-    font-size: 1.4rem;
-}
-
-.hamburger input[type="checkbox"]:checked ~ .menu-items{
-    display: block;
-    transform: translate(0%);
-    background: #FFFFFF;
-    
-}
-
-.hamburger input[type="checkbox"]:checked ~ .hamburgerlines .lines{
-    background: #232323;
-}
-
-.hamburgerlines .line1{
-   transform-origin: 0% 0%;
-   transition: transform 0.3s ease-in-out;    
-}
-
-.hamburgerlines .line3{ 
-   transform-origin: 0% 100%;
-   transition: transform 0.3s ease-in-out;  
-}
-
-.hamburger input[type="checkbox"]:checked ~ .hamburgerlines .line1{
-    transform: rotate(45deg);
-}
-
-.hamburger input[type="checkbox"]:checked ~ .hamburgerlines .line2{
-    display: none;
-}
-
-
-.hamburger input[type="checkbox"]:checked ~ .hamburgerlines .line3{
-    transform: rotate(-45deg);
-}
-</style>
