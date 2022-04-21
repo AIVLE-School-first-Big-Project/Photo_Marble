@@ -103,3 +103,19 @@ svg path:hover {
     transition:0.6s;
     cursor:pointer;
 }
+
+.area_true{
+
+    fill: #f7365d;
+    stroke-linejoin:round;
+    stroke: #171616;
+    stroke-width: 2;
+
+}
+
+.area_false{
+    fill: #ffffff;
+    stroke-linejoin:round;
+    stroke: #171616;
+    stroke-width: 2;
+}
