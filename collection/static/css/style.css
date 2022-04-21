@@ -94,7 +94,7 @@
 }
 .TEXT {
     fill: #1e1c1c;
-    font-size: 16px;
+    font-size: 10px;
     text-anchor: middle;
     alignment-baseline: middle;
 }
@@ -118,4 +118,15 @@ svg path:hover {
     stroke-linejoin:round;
     stroke: #171616;
     stroke-width: 2;
+}
+
+.marker{
+    height:30px;
+    width: 30px;
+
+}
+
+.empty{
+    height:0px;
+    width: 0px;
 }
