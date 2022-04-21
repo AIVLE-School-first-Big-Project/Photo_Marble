@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from allauth.account.views import PasswordChangeView
+from allauth.account.views import PasswordChangeView,SignupView
 from main.models import User
 from . import forms
 from django.contrib import auth
@@ -58,6 +58,7 @@ def login(request):
         return render(request, '../templates/main/login.html', context)
 
 def main(request):#경주
+    print(request.user.is_authenticated)
     return render(request,'../templates/main/main.html')
 
 def delete(request):
@@ -66,3 +67,9 @@ def delete(request):
     user.delete()
     messages.success(request, '탈퇴가 완료됐습니다.')
     return redirect("http://127.0.0.1:8000/")
+
+class CustomSignupView(SignupView):
+
+    def form_valid(self, form):
+        self.user = form.save(self.request)
+        return redirect("http://127.0.0.1:8000/login")
