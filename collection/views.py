@@ -26,14 +26,20 @@ def collection_mypage(request):
         area_id.append('s'+str(land.location_id))
 
     area_list = []
+    marker_list =[]
     for i in range(1,26):
         dict_key = 's'+str(i)
         if dict_key in area_id:
             area_list.append('area_true')
+            marker_list.append('marker')
         else:
             area_list.append('area_false')
-
-
+            marker_list.append('empty')
+    print(marker_list)
+    # svg 태그 안에서 foor loop가 불가능해 우선은 하드코딩 (25개 개별로 전달) 추후에 수정 예정 ....
+    
+    x_cal = 5
+    y_cal = 5
     return render(request, '../templates/collection/collection_mypage.html', context={'progress' : progress,
                                                                                         's1':area_list[0],
                                                                                         's2':area_list[1],
@@ -59,7 +65,37 @@ def collection_mypage(request):
                                                                                         's22':area_list[21], 
                                                                                         's23':area_list[22], 
                                                                                         's24':area_list[23], 
-                                                                                        's25':area_list[24]})
+                                                                                        's25':area_list[24],
+
+                                                                                        'm1':marker_list[0],
+                                                                                        'm2':marker_list[1],
+                                                                                        'm3':marker_list[2],
+                                                                                        'm4':marker_list[3],
+                                                                                        'm5':marker_list[4],
+                                                                                        'm6':marker_list[5],
+                                                                                        'm7':marker_list[6],
+                                                                                        'm8':marker_list[7],
+                                                                                        'm9':marker_list[8],
+                                                                                        'm10':marker_list[9],
+                                                                                        'm11':marker_list[10],
+                                                                                        'm12':marker_list[11],
+                                                                                        'm13':marker_list[12],
+                                                                                        'm14':marker_list[13],
+                                                                                        'm15':marker_list[14],
+                                                                                        'm16':marker_list[15],
+                                                                                        'm17':marker_list[16],
+                                                                                        'm18':marker_list[17],
+                                                                                        'm19':marker_list[18],
+                                                                                        'm20':marker_list[19],
+                                                                                        'm21':marker_list[20],
+                                                                                        'm22':marker_list[21],
+                                                                                        'm23':marker_list[22],
+                                                                                        'm24':marker_list[23],
+                                                                                        'm25':marker_list[24],
+                                                                                        'x_cal' : x_cal,
+                                                                                        'y_cal' : y_cal}
+                                                                                        )
+
 
 
 def collection_ranking(request):
