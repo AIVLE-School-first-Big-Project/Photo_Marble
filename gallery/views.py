@@ -2,8 +2,8 @@ from asyncio.windows_events import NULL
 from django.shortcuts import render, redirect, get_object_or_404
 from main.models import Gallery, Like, Comment
 from rest_framework.views import APIView
-from .forms import CommentForm
-from django import timezone
+# from .forms import CommentForm
+# from django import timezone
 
 def select(request):
     c_id = request.POST.get('category')
