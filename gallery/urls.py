@@ -7,4 +7,5 @@ from . import views
 urlpatterns = [
     path('', views.select, name="select"),
     path('detail/<int:id>/', views.detail, name="detail2"),
+
 ]
