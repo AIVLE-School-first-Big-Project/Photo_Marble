@@ -2,6 +2,8 @@ from asyncio.windows_events import NULL
 from django.shortcuts import render, redirect, get_object_or_404
 from main.models import Gallery, Like, Comment
 from rest_framework.views import APIView
+from .forms import CommentForm
+from django import timezone
 
 def select(request):
     c_id = request.POST.get('category')
@@ -18,11 +20,23 @@ def select(request):
     return render(request, "../templates/gallery/select.html" , context= content)
 
 def detail(request, id):
-    print(id)
+    user_id = request.session['id']
+    
+        # 댓글달기
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        form.user_id = user_id
+        form.save()
+    
     galleries = Gallery.objects.filter(gallery_id = id)
     likes = Like.objects.filter(gallery_id = id)
-    print(likes)
     #liked_cnt = len(likes)
     content = {"datas" : galleries, "likes": likes}
-    
     return render(request, '../templates/gallery/detail.html', context = content)
+    
+    
+    
+    
+
+
+    
