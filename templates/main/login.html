@@ -30,7 +30,7 @@
   {% if socialaccount_providers %}
 
   {% else %}
-  <p> 계정이 없다면 <a href="{% url 'custom_signup' %}">회원가입</a> 을 진행하세요</p>
+  <p> 계정이 없다면 <a class="user_a_tag" href="{% url 'custom_signup' %}">회원가입</a> 을 진행하세요</p>
   {% endif %}
 
   <form class="login" method="POST" action="{% url 'account_login' %}">

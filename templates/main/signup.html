@@ -24,8 +24,8 @@
     <div class="card-body"> 
     <h3 class="card-title">Sign up</h1>
 {% comment %} <h1>{% trans "Sign Up" %}</h1> {% endcomment %}
-<p>???</p>
-    <p>이미 계정이 있으신가요? 바로 <a href="{% url 'login' %}">로그인</a>하세요</p>
+
+    <p>이미 계정이 있으신가요? 바로 <a class="user_a_tag" href="{% url 'login' %}">로그인</a>하세요</p>
     {% comment %} <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}"> {% endcomment %}
       <form class="signup" id="signup_form" method="POST" action="{% url 'custom_signup' %}">
       {% csrf_token %}
