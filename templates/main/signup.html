@@ -15,13 +15,8 @@
 </script>
 </head>
 
-{% extends "base.html" %}
 
 {% load i18n %}
-
-{% block head_title %}{% trans "Signup" %}{% endblock %}
-
-{% block content %}
 {% load bootstrap4 %}
 
 <div class="row justify-content-center h-100">
@@ -29,19 +24,13 @@
     <div class="card-body"> 
     <h3 class="card-title">Sign up</h1>
 {% comment %} <h1>{% trans "Sign Up" %}</h1> {% endcomment %}
-
-    <p>이미 계정이 있으신가요? 바로 <a href="{{ login_url }}">로그인</a>하세요</p>
+<p>???</p>
+    <p>이미 계정이 있으신가요? 바로 <a href="{% url 'login' %}">로그인</a>하세요</p>
     {% comment %} <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}"> {% endcomment %}
-      <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+      <form class="signup" id="signup_form" method="POST" action="{% url 'custom_signup' %}">
       {% csrf_token %}
       {% bootstrap_form form %} 
-      {% comment %} {% for field in form %}
-      {% bootstrap_field field %}
-      {% endfor %}  {% endcomment %}
-      {% comment %} <div class="form-group">
-      {{ form.as_p }}
-      </div>   {% endcomment %}
-     
+
       {% if redirect_field_value %}
       <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
       {% endif %}
@@ -51,5 +40,5 @@
 </div>
 </div>
 </div>
-{% endblock %}
+
 

@@ -14,37 +14,23 @@
   integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
 </script>
 </head>
-{% extends "account/base.html" %}
+
 
 {% load i18n %}
 {% load account socialaccount %}
-
-{% block head_title %}{% trans "Sign In" %}{% endblock %}
-
-{% block content %}
 {% load bootstrap4 %}
 
 
-{% get_providers as socialaccount_providers %}
 
 <div class="row justify-content-center h-100">
   <div class="col align-self-center text-center card text-black" style="max-width: 25rem;">
     <div class="card-body"> 
     <h3 class="card-title">Sign in</h1>
-      
-      {% if messages %}
-      {% for message in messages %}
-       {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
 
-      {% endfor %}
-
-  {% endif %}
-
-{% if socialaccount_providers %}
-
+  {% if socialaccount_providers %}
 
   {% else %}
-  <p> 계정이 없다면 <a href="/signup">회원가입</a> 을 진행하세요</p>
+  <p> 계정이 없다면 <a href="{% url 'custom_signup' %}">회원가입</a> 을 진행하세요</p>
   {% endif %}
 
   <form class="login" method="POST" action="{% url 'account_login' %}">
@@ -60,8 +46,4 @@
 </div>
 </div>
 </div>
-{% endblock %}
 
-<script>
-  alert('{{ message }}');
-</script>
