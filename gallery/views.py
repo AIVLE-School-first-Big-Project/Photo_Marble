@@ -22,12 +22,7 @@ def select(request):
 def detail(request, id):
     user_id = request.session['id']
     
-        # 댓글달기
-    if request.method == 'POST':
-        form = CommentForm(request.POST)
-        form.user_id = user_id
-        form.save()
-    
+
     galleries = Gallery.objects.filter(gallery_id = id)
     likes = Like.objects.filter(gallery_id = id)
     #liked_cnt = len(likes)
