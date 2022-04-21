@@ -79,3 +79,9 @@ class CustomSignupView(SignupView):
         print(self.user)
         return render("http://127.0.0.1:8000/login")
         # return redirect('login/')
+
+def gallery(request):#경주
+    return render(request,'../templates/main/gallery.html')
+
+def base():
+    return render(request, '../templates/main/login.html', {'login':true/false})
