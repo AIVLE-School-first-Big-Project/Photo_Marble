@@ -7,6 +7,7 @@ from django.contrib import auth
 from django.shortcuts import render,get_object_or_404
 from django.contrib import messages
 
+
 # Create your views here.
 
 def index(request):
@@ -47,7 +48,7 @@ def login(request):
             auth.login(request, user)
             request.session['id'] = user.id
             print( request.session['id'])
-            return redirect('http://127.0.0.1:8000/main')
+            return redirect('http://127.0.0.1:8000/')
         # 실패
         else:
             messages.warning(request, "로그인을 실패했습니다.")
@@ -69,7 +70,12 @@ def delete(request):
     return redirect("http://127.0.0.1:8000/")
 
 class CustomSignupView(SignupView):
-
+    template_name = "main/signup.html" 
     def form_valid(self, form):
+        print(self)
+        print("###########")
+        print(form)
         self.user = form.save(self.request)
-        return redirect("http://127.0.0.1:8000/login")
+        print(self.user)
+        return render("http://127.0.0.1:8000/login")
+        # return redirect('login/')

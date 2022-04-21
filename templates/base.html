@@ -24,6 +24,7 @@
           <a href= "http://127.0.0.1:8000/select"><li>Gallery</li></a>
           <a href= "http://127.0.0.1:8000/collection"><li>Collection</li></a>
           <a href= "http://127.0.0.1:8000/mypage"><li>My Page</li></a>
+          <a href="{% url 'account_logout' %}"><li>로그 아웃</li></a>
         </ul>
     </div>
     {% block content %}
@@ -35,27 +36,6 @@
 <style>
   
 
-  a {
-    text-decoration: none;
-    color: black;
-  }
-
-  a:link {
-    text-decoration: none;
-    color: black;
-  }
-
-  a:visited {
-      text-decoration: none;
-  }
-
-  a:hover {
-      text-decoration: none;
-  }
-
-  a:active {
-      text-decoration: none;
-  }
 
   body{
     font-family: 'Nunito', sans-serif;

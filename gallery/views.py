@@ -6,7 +6,7 @@ from rest_framework.views import APIView
 def select(request):
     c_id = request.POST.get('category')
     galleries = Gallery.objects.all()
-    print(list(galleries)[0])
+
 
     if request.method == 'POST':
         if c_id is None or c_id == '0':
