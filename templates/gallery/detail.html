@@ -1,3 +1,4 @@
+{% extends "base.html" %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,9 +15,65 @@
     href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
     rel="stylesheet">
 
-  <title>맞8조 갤러리 상세페이지</title>
 </head>
 
+{% block content %}
+
+<body>
+  
+{% if datas %}
+  {% for data in datas%}
+    <div class="main_body">
+      <div class="left_body">
+        <div class="border feed_box">
+          <div class="feed_name">
+            <div class="profile_box">
+              <img class="profile_img" src="https://scontent-ssn1-1.xx.fbcdn.net/v/t1.6435-9/s1080x2048/165180104_277246477102900_6106347261862438192_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=730e14&_nc_ohc=1sN4d8i7rn8AX-7aKYN&_nc_ht=scontent-ssn1-1.xx&oh=5049b7cd176848e330b0f5ea95f28172&oe=615A08D1">
+            </div>
+            <span class="feed_name_txt"> {{ data.userId }} </span>
+          </div>
+       
+          <img class="feed_img" src="{{ data.photo_url }}">
+          <div class="feed_icon">
+            <div>
+              <button type="button">favorite_border</button>
+              <button type="button">mode_comment</button>
+            </div>
+          </div>
+          
+          <div class="feed_like">
+            {% if likes %}
+            <span class="feed_name_txt">좋아요 {{ len_likes }}개 </span>
+            {% endif %}
+          </div>
+
+          <!-- 게시글 -->
+          <div class="feed_content">
+            <p class="feed_txt"> <b> {{ data.userId }} </b> </p>
+          </div>
+          <div class="feed_reply">
+
+            <!-- 다른 사용자의 댓글 기능 -->
+            {% if comments %}
+              {% for comment in comments%}
+                <span class="feed_txt"> <b> {{ comment.user.nickname }} </b> {{ comment.content }}</span>
+              {% endfor %}
+            {% endif %}
+
+          {% endfor %}
+        {% endif %}
+
+        <!-- 댓글 작성 -->
+        <form method="POST">
+          {% csrf_token %}
+          <input name="comment_textbox" type="text" value="">
+          <input class="btn btn-primary" type="submit" value="등록">
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div> 
 <style>
 .main_body {
     display: flex;
@@ -140,64 +197,6 @@
 }
 
 </style>
-{% block content %}
-
-<body>
-  
-{% if datas %}
-  {% for data in datas%}
-    <div class="main_body">
-      <div class="left_body">
-        <div class="border feed_box">
-          <div class="feed_name">
-            <div class="profile_box">
-              <img class="profile_img" src="https://scontent-ssn1-1.xx.fbcdn.net/v/t1.6435-9/s1080x2048/165180104_277246477102900_6106347261862438192_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=730e14&_nc_ohc=1sN4d8i7rn8AX-7aKYN&_nc_ht=scontent-ssn1-1.xx&oh=5049b7cd176848e330b0f5ea95f28172&oe=615A08D1">
-            </div>
-            <span class="feed_name_txt"> {{ data.userId }} </span>
-          </div>
-       
-          <img class="feed_img" src="{{ data.photo_url }}">
-          <div class="feed_icon">
-            <div>
-              <button type="button">favorite_border</button>
-              <button type="button">mode_comment</button>
-            </div>
-          </div>
-          
-          <div class="feed_like">
-            {% if likes %}
-            <span class="feed_name_txt">좋아요 {{ len_likes }}개 </span>
-            {% endif %}
-          </div>
-
-          <!-- 게시글 -->
-          <div class="feed_content">
-            <p class="feed_txt"> <b> {{ data.userId }} </b> </p>
-          </div>
-          <div class="feed_reply">
-
-            <!-- 다른 사용자의 댓글 기능 -->
-            {% if comments %}
-              {% for comment in comments%}
-                <span class="feed_txt"> <b> {{ comment.user.nickname }} </b> {{ comment.content }}</span>
-              {% endfor %}
-            {% endif %}
-
-          {% endfor %}
-        {% endif %}
-
-        <!-- 댓글 작성 -->
-        <form method="POST">
-          {% csrf_token %}
-          <input name="comment_textbox" type="text" value="">
-          <input class="btn btn-primary" type="submit" value="등록">
-        </form>
-
-      </div>
-    </div>
-  </div>
-</div> {% endcomment %}
-
 
 {% endblock %}
 
@@ -217,3 +216,126 @@
 
 </body>
 </html>
+<style>
+  .main_body {
+      display: flex;
+      justify-content: center;
+      padding-top: 50px;
+      background-color: #FAFAFA;
+  }
+  
+  .feed_box {
+      background-color: white;
+      width: 480px;
+      margin: 10px;
+      min-height: auto;
+      padding-bottom: 10px;
+  }
+  
+  .feed_img{
+      width: 100%;
+      object-fit: contain;
+  }
+  
+  .feed_content{
+      padding: 0px 10px;
+  }
+  
+  .feed_like{
+      padding: 0px 10px;
+  }
+  
+  .feed_reply{
+      padding: 0px 10px;
+      display: flex;
+      flex-direction: column;
+  }
+  
+  
+  .feed_txt{
+      font-size: 14px;
+  }
+  
+  
+  
+  .feed_icon{
+      padding: 5px 5px 0px 5px;
+      display: flex;
+      justify-content: space-between;
+  }span{
+       padding-right: 5px;
+  }
+  
+  .feed_name{
+      padding: 10px;
+      display: flex;
+      align-items: center;
+  }
+  
+  .feed_name_txt{
+      font-size: 14px;
+      padding: 0px 10px;
+      font-weight: bold;
+  }
+  
+  .profile_box {
+      width: 40px;
+      height: 40px;
+      border-radius: 70%;
+      overflow: hidden;
+  }
+  .profile_img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+  }
+  
+  .name_content{
+      display: flex;
+      flex-direction: column;
+  }
+  
+  .name_content_txt{
+      font-size: 12px;
+      padding: 0px 10px;
+      font-weight: bold;
+      color: lightgray;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 190px;
+  }
+  
+  .big_profile_box {
+      width: 60px;
+      height: 60px;
+      border-radius: 70%;
+      overflow: hidden;
+  }
+  
+  .link_txt{
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+  }
+  
+  .recommend_box {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px;
+      font-size: 14px;
+      font-weight: bold;
+      align-items: center;
+  }
+  
+  .comment_box{
+      margin: 40px 0 0 5px;
+      font-size: 12px;
+      font-weight: bold;
+      color: lightgray;
+      display: flex;
+      flex-direction: column;
+  }
+  
+  </style>
