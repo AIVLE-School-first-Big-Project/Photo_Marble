@@ -6,6 +6,7 @@ from . import forms
 from django.contrib import auth
 from django.shortcuts import render,get_object_or_404
 from django.contrib import messages
+from allauth.account.views import PasswordChangeView,SignupView,LogoutView
 
 
 # Create your views here.
@@ -77,11 +78,17 @@ class CustomSignupView(SignupView):
         print(form)
         self.user = form.save(self.request)
         print(self.user)
-        return redirect("http://127.0.0.1:8000/login")
+        return render("http://127.0.0.1:8000/login")
         # return redirect('login/')
 
 def gallery(request):#경주
-    return render(request,'../templates/main/gallery.html')
+    return render(request,'../templates/main/gallery.html')    
 
 def base():
     return render(request, '../templates/main/login.html', {'login':true/false})
+
+class CustomSLogoutView(LogoutView):
+    template_name = "main/logout.html"
+
+def get_redirect_url(self):
+    return redirect("http://127.0.0.1:8000/login")

@@ -135,7 +135,8 @@ STATIC_URL = os.path.join(BASE_DIR,'static')
 
 AUTH_USER_MODEL ='main.User'
 ACCOUNT_SIGNUP_REDIRECT_URL = 'index'
-LOGIN_REDIRECT_URL ='index'
+LOGIN_REDIRECT_URL ='/'
+
 
 ACCOUNT_AUTHENTICATION_METHOD = 'email' #로그인시 유저네임이 아니라 이메일로 만들기
 ACCOUNT_EMAIL_REQUIRED = True #회원가입시 필수 이메일을 필수항목으로 만들기
