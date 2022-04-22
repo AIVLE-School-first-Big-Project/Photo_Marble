@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+  <body>
+    <br>   <br> 
+    <header>
+    <h1 id= "servicename" style="text-shadow:1.5px 2px 2px #000;">포토마블</h1>
+    </header>
+    {% if user.is_authenticated %}
+
+    <div class="container">        
+      <a href= "#" style="text-decoration:none">
+          <div class="card card-1">
+            <h3>Photo Guide</h3>
+            <p>Tabs, buttons, inputs, lists, cards, and more! A comprehensive library
+              of mobile UI components, ready to go.</p>          
+          </div>  
+      </a>
+      
+      <a href= "{% url 'gallery' %}" style="text-decoration:none">
+      <div class="card card-2">
+        <h3>Gallery</h3>
+        <p>Tabs, buttons, inputs, lists, cards, and more! A comprehensive library
+          of mobile UI components, ready to go.</p>      
+      </div>
+      </a>
+    <a href= "{% url 'collection' %}" style="text-decoration:none">> 
+      <div class="card card-3">
+        <h3>Collection</h3>
+        <p>Tabs, buttons, inputs, lists, cards, and more! A comprehensive library
+          of mobile UI components, ready to go.</p>     
+      </div>
+  </a>
+  </div>
+</div>
+
+{% else %}
+<div class="container">        
+  <a onclick="not_login();" >
+      <div class="card card-1">
+        <h3>Photo Guide</h3>
+        <p>Tabs, buttons, inputs, lists, cards, and more! A comprehensive library
+          of mobile UI components, ready to go.</p>          
+      </div>  
+  </a>
+  
+  <a onclick="not_login();" >
+  <div class="card card-2">
+    <h3>Gallery</h3>
+    <p>Tabs, buttons, inputs, lists, cards, and more! A comprehensive library
+      of mobile UI components, ready to go.</p>      
+  </div>
+  </a>
+{% comment %} <a href= "{% url 'collection' %}" style="text-decoration:none">{% endcomment %}
+  <a onclick="not_login();" > 
+  <div class="card card-3">
+    <h3>Collection</h3>
+    <p>Tabs, buttons, inputs, lists, cards, and more! A comprehensive library
+      of mobile UI components, ready to go.</p>     
+  </div>
+</a>
+</div>
+</div>
+{% endif %}
+
+
+<script>
+  function not_login(){
+    alert("로그인 후 사용하실 수 있습니다.");
+  }
+</script>
+
+
+<style>
+  @font-face {
+    font-family: 'KOHIBaeumOTF';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/KOHIBaeumOTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+  header {
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 500px;
+    padding: 1rem;
+    color: white;
+    background-image: url('https://user-images.githubusercontent.com/43026485/164596135-3355c9a5-031f-4f41-bc9f-8408cceeea19.png');
+    background-repeat: no-repeat;
+    background-size : cover;
+    background-color:#F0FFFF;
+    justify-content: space-between;
+}
+
+  #servicename{
+    font-family: 'KOHIBaeumOTF';
+    text-align:center;
+    margin-top: 140px;
+
+    line-height: 120px;
+    font-size: 80px;
+    color : white;
+}
+</style>
+</body>
+
+{% endblock %}

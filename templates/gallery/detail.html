@@ -156,6 +156,7 @@
             </div>
             <span class="feed_name_txt"> {{ data.userId }} </span>
           </div>
+       
           <img class="feed_img" src="{{ data.photo_url }}">
           <div class="feed_icon">
             <div>
@@ -163,21 +164,20 @@
               <button type="button">mode_comment</button>
             </div>
           </div>
+          
           <div class="feed_like">
             {% if likes %}
             <span class="feed_name_txt"> 좋아요 {{ likes.like_id }}개 </span>
             {% endif %}
           </div>
-          <div class="feed_content">
-            <p class="feed_txt"> <b> {{ data.userId }} </b> 맞8조 화이팅!!</p>
-          </div>
+         
           <div class="feed_reply">
             <span class="feed_txt"> <b> mychew </b> 제주도 가고 싶어요 ㅠㅠ</span>
             <span class="feed_txt"> <b> cho </b> 제주도  ㄱ ㄱ </span>
           {% endfor %}
         {% endif %}
       </div>
-
+      {% comment %}  
       
       <!-- 04.21 성재랑 보기-->
       <form method="post" action="{% url 'detail' gallery.id %}"> 
@@ -189,7 +189,9 @@
 
     </div>
   </div>
-</div>
+</div> {% endcomment %}
+
+
 {% endblock %}
 
 
