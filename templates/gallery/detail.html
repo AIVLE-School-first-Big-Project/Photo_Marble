@@ -140,7 +140,6 @@
 }
 
 </style>
-{% extends "base.html" %}
 {% block content %}
 
 <body>
@@ -179,12 +178,7 @@
       </div>
 
       
-      <!-- 04.21 성재랑 보기-->
-      <form method="post" action="{% url 'detail' gallery.id %}"> 
-        {% csrf_token %}
-        <textarea name=""></textarea>
-        <input type="submit" value="게시">
-      </form>
+   
 
 
     </div>
