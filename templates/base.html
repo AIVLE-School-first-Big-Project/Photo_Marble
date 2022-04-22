@@ -25,9 +25,9 @@
         </li>    
     <a href= "http://127.0.0.1:8000/main"><li>Home</li></a>
     <a href= "#"><li>Photo Guide</li></a>
-    <a href= "http://127.0.0.1:8000/select"><li>Gallery</li></a>
-    <a href= "http://127.0.0.1:8000/collection"><li>Collection</li></a>
-    <a href= "http://127.0.0.1:8000/mypage"><li>My Page</li></a>
+    <a href= "{% url 'select'%}"><li>Gallery</li></a>
+    <a href= "{% url 'collection'%}"><li>Collection</li></a>
+    <a href= "{% url 'mypage'%}"><li>My Page</li></a>
   </ul>
 </div>
 {% block content %}

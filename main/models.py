@@ -42,7 +42,7 @@ class Gallery(models.Model):
     photo_url = models.CharField(max_length=200)
     updated_at = models.DateField()
     user = models.ForeignKey('User', models.DO_NOTHING, db_column='user_id')
-    landmark = models.ForeignKey('Landmark', models.DO_NOTHING, db_column='landmark_id')
+    landmark = models.ForeignKey('Landmark', models.DO_NOTHING, db_column='landmark_id', default='')
     class Meta:
         db_table = 'Gallery'
 
