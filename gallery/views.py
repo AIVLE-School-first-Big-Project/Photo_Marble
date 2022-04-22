@@ -5,7 +5,7 @@ from rest_framework.views import APIView
 # from .forms import CommentForm
 # from django import timezone
 
-def select(request):
+def gallery(request):
     l_id = request.POST.get('landmark')
     c_id = request.POST.get('category')
     galleries = Gallery.objects.all()

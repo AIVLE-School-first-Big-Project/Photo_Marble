@@ -29,8 +29,6 @@ def mypage(request):
     return render(request, '../templates/main/mypage.html', context={
         'user' : user_db
     })
-def main(request):#경주
-    return render(request,'../templates/main/main.html')
 
 def login(request):
     # 포스트 
@@ -60,8 +58,12 @@ def login(request):
         return render(request, '../templates/main/login.html', context)
 
 def main(request):#경주
-    print(request.user.is_authenticated)
-    return render(request,'../templates/main/main.html')
+    if request.user.is_authenticated == True:
+        print(request.user.is_authenticated )
+        return render(request, '../templates/main/main.html', {'login':"t"})
+    else:
+        print(request.user.is_authenticated )
+        return render(request, '../templates/main/main.html', {'login':"f"})
 
 def delete(request):
     # user = request.session()
@@ -81,11 +83,7 @@ class CustomSignupView(SignupView):
         return render("http://127.0.0.1:8000/login")
         # return redirect('login/')
 
-def gallery(request):#경주
-    return render(request,'../templates/main/gallery.html')    
 
-def base():
-    return render(request, '../templates/main/login.html', {'login':true/false})
 
 class CustomSLogoutView(LogoutView):
     template_name = "main/logout.html"
