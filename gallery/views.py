@@ -26,13 +26,15 @@ def gallery(request):
     return render(request, "../templates/gallery/gallery.html" , context= content)
 
 def detail(request, id):
-    user_id = request.session['id']
+    # user_id = request.session['id']
     
-
     galleries = Gallery.objects.filter(gallery_id = id)
+
     likes = Like.objects.filter(gallery_id = id)
+
     #liked_cnt = len(likes)
     content = {"datas" : galleries, "likes": likes}
+    print(content)
     return render(request, '../templates/gallery/detail.html', context = content)
     
     

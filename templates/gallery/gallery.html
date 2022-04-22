@@ -61,6 +61,7 @@
     {% if datas %}  
         {% for data in datas%}
             <div class="gallery-item">
+            
                 <a href= "{% url 'detail' data.gallery_id %}"  aria-label="Genuine Gemini" class="grid-item-link">
                 <img class="gallery-image" src="{{ data.photo_url }}">
                 </a>
