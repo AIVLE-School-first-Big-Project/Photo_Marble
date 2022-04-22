@@ -7,6 +7,8 @@
     <br>
     <br><br>
     
+    {% if user.is_authenticated %}
+
     <div class="container">        
       <a href= "#" style="text-decoration:none">
           <div class="card card-1">
@@ -16,25 +18,58 @@
           </div>  
       </a>
       
-      <a href= "{% url 'select' %}" style="text-decoration:none">
+      <a href= "{% url 'gallery' %}" style="text-decoration:none">
       <div class="card card-2">
         <h3>Gallery</h3>
         <p>Tabs, buttons, inputs, lists, cards, and more! A comprehensive library
           of mobile UI components, ready to go.</p>      
       </div>
       </a>
-    <a href= "{% url 'collection' %}" style="text-decoration:none">
+    <a href= "{% url 'collection' %}" style="text-decoration:none">> 
       <div class="card card-3">
         <h3>Collection</h3>
         <p>Tabs, buttons, inputs, lists, cards, and more! A comprehensive library
           of mobile UI components, ready to go.</p>     
-    </div>
+      </div>
   </a>
   </div>
-
 </div>
 
+{% else %}
+<div class="container">        
+  <a onclick="not_login();" >
+      <div class="card card-1">
+        <h3>Photo Guide</h3>
+        <p>Tabs, buttons, inputs, lists, cards, and more! A comprehensive library
+          of mobile UI components, ready to go.</p>          
+      </div>  
+  </a>
+  
+  <a onclick="not_login();" >
+  <div class="card card-2">
+    <h3>Gallery</h3>
+    <p>Tabs, buttons, inputs, lists, cards, and more! A comprehensive library
+      of mobile UI components, ready to go.</p>      
+  </div>
+  </a>
+{% comment %} <a href= "{% url 'collection' %}" style="text-decoration:none">{% endcomment %}
+  <a onclick="not_login();" > 
+  <div class="card card-3">
+    <h3>Collection</h3>
+    <p>Tabs, buttons, inputs, lists, cards, and more! A comprehensive library
+      of mobile UI components, ready to go.</p>     
+  </div>
+</a>
+</div>
+</div>
+{% endif %}
 
+
+<script>
+  function not_login(){
+    alert("로그인 후 사용하실 수 있습니다.");
+  }
+</script>
 </body>
 
 {% endblock %}
