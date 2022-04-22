@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+    <br>
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Banner -->
+					<section id="banner" class="major">
+						<div class="inner">
+							<header class="major">
+								<h1>Hi, my name is Forty</h1>
+							</header>
+							<div class="content">
+								<p>A responsive site template designed by HTML5 UP<br />
+								and released under the Creative Commons.</p>
+								<ul class="actions">
+									<li><a href="#one" class="button next scrolly">Get Started</a></li>
+								</ul>
+							</div>
+						</div>
+					</section>
+				{% if user.is_authenticated %}
+				<!-- Main -->
+					<div id="main">
+
+						<!-- One -->
+							<section id="one" class="tiles">
+								<article>
+									<span class="image">
+										<img src="images/pic01.jpg" alt="" />
+									</span>
+									<header class="major">
+										<h3><a href="#" class="link">Photo Guide</a></h3>
+										<p>Ipsum dolor sit amet</p>
+									</header>
+								</article>
+								<article>
+									<span class="image">
+										<img src="images/pic02.jpg" alt="" />
+									</span>
+									<header class="major">
+										<h3><a href="{% url 'gallery' %}" class="link">Gallery</a></h3>
+										<p>feugiat amet tempus</p>
+									</header>
+								</article>
+								<article>
+									<span class="image">
+										<img src="images/pic03.jpg" alt="" />
+									</span>
+									<header class="major">
+										<h3><a href="{% url 'collection' %}" class="link">Collection</a></h3>
+										<p>Lorem etiam nullam</p>
+									</header>
+								</article>
+								<article>
+									<span class="image">
+										<img src="images/pic04.jpg" alt="" />
+									</span>
+									<header class="major">
+										<h3><a href="{% url 'mypage' %}" class="link">Ranking</a></h3>
+										<p>Nisl sed aliquam</p>
+									</header>
+								</article>
+							
+				{% else %}
+				<section id="one" class="tiles">
+					<article>
+						<span class="image">
+							<img src="images/pic01.jpg" alt="" />
+						</span>
+						<header class="major">
+							<h3><a onclick="not_login();" class="link">Photo Guide</a></h3>
+							<p>Ipsum dolor sit amet</p>
+						</header>
+					</article>
+					<article>
+						<span class="image">
+							<img src="images/pic02.jpg" alt="" />
+						</span>
+						<header class="major">
+							<h3><a onclick="not_login();" class="link">Gallery</a></h3>
+							<p>feugiat amet tempus</p>
+						</header>
+					</article>
+					<article>
+						<span class="image">
+							<img src="images/pic03.jpg" alt="" />
+						</span>
+						<header class="major">
+							<h3><a onclick="not_login();" class="link">Collection</a></h3>
+							<p>Lorem etiam nullam</p>
+						</header>
+					</article>
+					<article>
+						<span class="image">
+							<img src="images/pic04.jpg" alt="" />
+						</span>
+						<header class="major">
+							<h3><a href="{% url 'mypage' %}" class="link">Ranking</a></h3>
+							<p>Nisl sed aliquam</p>
+						</header>
+					</article>
+					{% endif %}
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script>
+				function not_login(){
+				  alert("로그인 후 사용하실 수 있습니다.");
+				}
+			  </script>
+
+{% endblock %}
+</body>
+</html>
