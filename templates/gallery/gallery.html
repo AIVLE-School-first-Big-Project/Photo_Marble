@@ -1,4 +1,5 @@
 <!DOCUMENT html>
+
 <html>
     <head>
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,900" rel="stylesheet">
@@ -15,11 +16,11 @@
   <div id="sidebarMenu">
     <ul class="sidebarMenuInner">
       <li>Jelena Jovanovic <span>Web Developer</span></li>
-      <a href= "http://127.0.0.1:8000/main"><li>Home</li></a>
+      <a href= "{% url 'index'%}"><li>Home</li></a>
       <a href= "#"><li>Photo Guide</li></a>
-      <a href= "http://127.0.0.1:8000/select"><li>Gallery</li></a>
-      <a href= "http://127.0.0.1:8000/collection"><li>Collection</li></a>
-      <a href= "http://127.0.0.1:8000/mypage"><li>My Page</li></a>
+      <a href= "{% url 'select'%}"><li>Gallery</li></a>
+      <a href= "{% url 'collection'%}"><li>Collection</li></a>
+      <a href= "{% url 'mypage'%}"><li>My Page</li></a>
     </ul>
   </div>
  <br>   
@@ -32,34 +33,40 @@
 <br>
 <br>
 <br>
+    <div id = select style="margin:auto;text-align:center;">
+        <form method="post" action="{% url 'select' %}">
+            <select name="landmark" id="landmark">
+                <option value=0>전체</option>
+                <option value=1>석조전</option>
+                <option value=2>독립문</option>
+                <option value=3>명동성당</option>
+                <option value=4>남산타워</option>
+            </select>
+            
+            <select name="category" id="category" style="display:inline-block;">
+                <option value=0>전체</option>
+                <option value=1>인물</option>
+                <option value=2>풍경</option>
+                <option value=3>음식</option>
+            </select>
+            <input type="submit">
+            {% csrf_token %}
+        </form>
+    </div>   
+
 <br>
 <br>
 <br>
    <div class="gallery">
-      <div class="gallery-item">
-         <img class="gallery-image" src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=500&h=500&fit=crop" alt="person writing in a notebook beside by an iPad, laptop, printed photos, spectacles, and a cup of coffee on a saucer">
-      </div>
-
-      <div class="gallery-item">
-         <img class="gallery-image" src="https://images.unsplash.com/photo-1515260268569-9271009adfdb?w=500&h=500&fit=crop" alt="sunset behind San Francisco city skyline">
-      </div>
-
-      <div class="gallery-item">
-         <img class="gallery-image" src="https://images.unsplash.com/photo-1506045412240-22980140a405?w=500&h=500&fit=crop" alt="people holding umbrellas on a busy street at night lit by street lights and illuminated signs in Tokyo, Japan">
-      </div>
-
-      <div class="gallery-item">
-         <img class="gallery-image" src="https://images.unsplash.com/photo-1514041181368-bca62cceffcd?w=500&h=500&fit=crop" alt="car interior from central back seat position showing driver and blurred view through windscreen of a busy road at night">
-      </div>
-
-      <div class="gallery-item">
-         <img class="gallery-image" src="https://images.unsplash.com/photo-1445810694374-0a94739e4a03?w=500&h=500&fit=crop" alt="back view of woman wearing a backpack and beanie waiting to cross the road on a busy street at night in New York City, USA">
-      </div>
-
-      <div class="gallery-item">
-         <img class="gallery-image" src="https://images.unsplash.com/photo-1486334803289-1623f249dd1e?w=500&h=500&fit=crop" alt="man wearing a black jacket, white shirt, blue jeans, and brown boots, playing a white electric guitar while sitting on an amp">
-      </div>
-
+    {% if datas %}  
+        {% for data in datas%}
+            <div class="gallery-item">
+                <a href= "{% url 'detail' data.gallery_id %}"  aria-label="Genuine Gemini" class="grid-item-link">
+                <img class="gallery-image" src="{{ data.photo_url }}">
+                </a>
+            </div>
+        {% endfor %}
+    {% endif %}
    </div>
 
 </div>
