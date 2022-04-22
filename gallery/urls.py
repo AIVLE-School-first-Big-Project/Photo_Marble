@@ -5,7 +5,7 @@ from . import views
 # app_name = 'gallery'
 
 urlpatterns = [
-    path('', views.gallery, name="select"),
+    path('', views.gallery, name="gallery"),
     path('detail/<int:id>/', views.detail, name="detail"),
 
 ]
