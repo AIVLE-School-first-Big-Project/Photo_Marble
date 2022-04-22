@@ -131,11 +131,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_URL = os.path.join(BASE_DIR,'static')
+# STATIC_URL = os.path.join(BASE_DIR,'static')
 
 AUTH_USER_MODEL ='main.User'
 ACCOUNT_SIGNUP_REDIRECT_URL = 'index'
-LOGIN_REDIRECT_URL ='index'
+LOGIN_REDIRECT_URL ='/'
+
 
 ACCOUNT_AUTHENTICATION_METHOD = 'email' #로그인시 유저네임이 아니라 이메일로 만들기
 ACCOUNT_EMAIL_REQUIRED = True #회원가입시 필수 이메일을 필수항목으로 만들기
@@ -157,7 +158,9 @@ EMAIL_USE_TLS =True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 STATIC_URL = '/static/'
-#STATIC_ROOT = os.path.join(BASE_DIR, 'main','static')
+
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 STATICFILES_DIRS = (
     # os.path.join(BASE_DIR, 'main', 'static'),
     os.path.join(BASE_DIR, 'static'),

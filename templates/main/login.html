@@ -30,7 +30,7 @@
   {% if socialaccount_providers %}
 
   {% else %}
-  <p> 계정이 없다면 <a class="user_a_tag" href="{% url 'custom_signup' %}">회원가입</a> 을 진행하세요</p>
+  <p> 계정이 없다면 <a href="{% url 'custom_signup' %}">회원가입</a> 을 진행하세요</p>
   {% endif %}
 
   <form class="login" method="POST" action="{% url 'account_login' %}">
@@ -40,7 +40,7 @@
     {% if redirect_field_value %}
     <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
     {% endif %}
-    <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+
     <button class="btn btn-primary" type="submit">{% trans "Sign In" %}</button>
   </form>
 </div>

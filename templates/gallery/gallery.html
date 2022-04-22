@@ -16,9 +16,9 @@
   <div id="sidebarMenu">
     <ul class="sidebarMenuInner">
       <li>Jelena Jovanovic <span>Web Developer</span></li>
-      <a href= "{% url 'index'%}"><li>Home</li></a>
+      <a href= "{% url 'main'%}"><li>Home</li></a>
       <a href= "#"><li>Photo Guide</li></a>
-      <a href= "{% url 'select'%}"><li>Gallery</li></a>
+      <a href= "{% url 'gallery'%}"><li>Gallery</li></a>
       <a href= "{% url 'collection'%}"><li>Collection</li></a>
       <a href= "{% url 'mypage'%}"><li>My Page</li></a>
     </ul>
@@ -34,7 +34,7 @@
 <br>
 <br>
     <div id = select style="margin:auto;text-align:center;">
-        <form method="post" action="{% url 'select' %}">
+        <form method="post" action="{% url 'gallery' %}">
             <select name="landmark" id="landmark">
                 <option value=0>전체</option>
                 <option value=1>석조전</option>
@@ -61,6 +61,7 @@
     {% if datas %}  
         {% for data in datas%}
             <div class="gallery-item">
+            
                 <a href= "{% url 'detail' data.gallery_id %}"  aria-label="Genuine Gemini" class="grid-item-link">
                 <img class="gallery-image" src="{{ data.photo_url }}">
                 </a>

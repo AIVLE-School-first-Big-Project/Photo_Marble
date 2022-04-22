@@ -155,6 +155,7 @@
             </div>
             <span class="feed_name_txt"> {{ data.userId }} </span>
           </div>
+       
           <img class="feed_img" src="{{ data.photo_url }}">
           <div class="feed_icon">
             <div>
@@ -162,7 +163,7 @@
               <button type="button">mode_comment</button>
             </div>
           </div>
-          <!-- 좋아요 개수 -->
+          
           <div class="feed_like">
             {% if likes %}
             <span class="feed_name_txt">좋아요 {{ len_likes }}개 </span>
@@ -185,7 +186,6 @@
           {% endfor %}
         {% endif %}
 
-
         <!-- 댓글 작성 -->
         <form method="POST">
           {% csrf_token %}
@@ -196,7 +196,9 @@
       </div>
     </div>
   </div>
-</div>
+</div> {% endcomment %}
+
+
 {% endblock %}
 
 

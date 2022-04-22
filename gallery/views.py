@@ -27,9 +27,16 @@ def gallery(request):
     return render(request, "../templates/gallery/gallery.html" , context= content)
 
 def detail(request, id):
+<<<<<<< HEAD
     user_id = request.session['id']
+=======
+    # user_id = request.session['id']
+    
+>>>>>>> 085912b5b485a728201bd68efa822f1a669e6f1e
     galleries = Gallery.objects.filter(gallery_id = id)
+
     likes = Like.objects.filter(gallery_id = id)
+<<<<<<< HEAD
     
     if request.method == 'POST':
         comment = Comment()
@@ -50,6 +57,13 @@ def detail(request, id):
 
 
 
+=======
+
+    #liked_cnt = len(likes)
+    content = {"datas" : galleries, "likes": likes}
+    print(content)
+    return render(request, '../templates/gallery/detail.html', context = content)
+>>>>>>> 085912b5b485a728201bd68efa822f1a669e6f1e
     
     
     
