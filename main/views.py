@@ -80,7 +80,7 @@ class CustomSignupView(SignupView):
         print(form)
         self.user = form.save(self.request)
         print(self.user)
-        return render("http://127.0.0.1:8000/login")
+        return redirect("http://127.0.0.1:8000/login")
         # return redirect('login/')
 
 
