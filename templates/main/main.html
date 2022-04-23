@@ -1,109 +1,93 @@
 {% extends "base.html" %}
 {% block content %}
-
-
-  <body>
-    <br>   <br> 
-    <header>
-    <h1 id= "servicename" style="text-shadow:1.5px 2px 2px #000;">포토마블</h1>
-    </header>
-    {% if user.is_authenticated %}
-
-    <div class="container">        
-      <a href= "#" style="text-decoration:none">
-          <div class="card card-1">
-            <h3>Photo Guide</h3>
-            <p>Tabs, buttons, inputs, lists, cards, and more! A comprehensive library
-              of mobile UI components, ready to go.</p>          
-          </div>  
-      </a>
-      
-      <a href= "{% url 'gallery' %}" style="text-decoration:none">
-      <div class="card card-2">
-        <h3>Gallery</h3>
-        <p>Tabs, buttons, inputs, lists, cards, and more! A comprehensive library
-          of mobile UI components, ready to go.</p>      
-      </div>
-      </a>
-    <a href= "{% url 'collection' %}" style="text-decoration:none">> 
-      <div class="card card-3">
-        <h3>Collection</h3>
-        <p>Tabs, buttons, inputs, lists, cards, and more! A comprehensive library
-          of mobile UI components, ready to go.</p>     
-      </div>
-  </a>
-  </div>
-</div>
-
-{% else %}
-<div class="container">        
-  <a onclick="not_login();" >
-      <div class="card card-1">
-        <h3>Photo Guide</h3>
-        <p>Tabs, buttons, inputs, lists, cards, and more! A comprehensive library
-          of mobile UI components, ready to go.</p>          
-      </div>  
-  </a>
+{% load static %}
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="포토마불, ​What do our users say?, ​Hosting for every website, Meet Our Best Team, Premium Plans, $0, $29, $59, $139, Nam ultrices ultrices nec tortor pulvinar esteras loremips est orem., Follow us, Contact us">
+    <meta name="description" content="">
+    <meta name="page_type" content="np-template-header-footer-from-plugin">
   
-  <a onclick="not_login();" >
-  <div class="card card-2">
-    <h3>Gallery</h3>
-    <p>Tabs, buttons, inputs, lists, cards, and more! A comprehensive library
-      of mobile UI components, ready to go.</p>      
-  </div>
-  </a>
-{% comment %} <a href= "{% url 'collection' %}" style="text-decoration:none">{% endcomment %}
-  <a onclick="not_login();" > 
-  <div class="card card-3">
-    <h3>Collection</h3>
-    <p>Tabs, buttons, inputs, lists, cards, and more! A comprehensive library
-      of mobile UI components, ready to go.</p>     
-  </div>
-</a>
-</div>
-</div>
-{% endif %}
+    <link rel="stylesheet" href="{% static 'main/assets/css/nicepage.css' %}" media="screen"/>
+    <link rel="stylesheet" href="{% static 'main/assets/css/Home.css' %}" media="screen"/>
+    <script class="u-script" type="text/javascript" src="{% static 'main/assets/js/jquery.js' %}" defer=""></script>
+    <script class="u-script" type="text/javascript" src="{% static 'main/assets/js/nicepage.js' %}" defer=""></script>
+    <meta name="generator" content="Nicepage 4.9.5, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    
+    
+    
+    
+    
+    
+    
+    {% comment %} <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "",
+		"logo": "images/default-logo.png"
+}</script> {% endcomment %}
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="Home">
+    <meta property="og:type" content="website">
+  </head>
 
-
-<script>
-  function not_login(){
-    alert("로그인 후 사용하실 수 있습니다.");
-  }
-</script>
-
-
-<style>
-  @font-face {
-    font-family: 'KOHIBaeumOTF';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/KOHIBaeumOTF.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-  header {
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 500px;
-    padding: 1rem;
-    color: white;
-    background-image: url('https://user-images.githubusercontent.com/43026485/164641187-5171c653-b9fd-4c82-8cd4-1950847a0457.png');
-    background-repeat: no-repeat;
-    background-size : cover;
-    background-color:#F0FFFF;
-    justify-content: space-between;
-}
-
-  #servicename{
-    font-family: 'KOHIBaeumOTF';
-    text-align:center;
-    margin-top: 140px;
-
-    line-height: 120px;
-    font-size: 80px;
-    color : white;
-}
-</style>
-</body>
-
+  <body class="u-body u-xl-mode">
+    <section class="u-align-center u-clearfix u-white u-section-1" id="carousel_871a">
+      <div class="u-expanded-width u-gradient u-shape u-shape-rectangle u-shape-1"></div>
+      <h1 class="u-text u-text-default u-text-palette-2-base u-text-1">포토마불</h1>
+      <div class="u-list u-list-1">
+        <div class="u-repeater u-repeater-1">
+          <a href="#" class="link">
+          <div class="u-align-center u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white u-list-item-1">
+            <div class="u-container-layout u-similar-container u-container-layout-1">
+              <img class="u-image u-image-default u-preserve-proportions u-image-1" alt="" data-image-width="512" data-image-height="512" src="{% static 'main/images/camera6.png' %}">
+              <h3 class="u-text u-text-default u-text-grey-70 u-text-2">POTHO GUIDE</h3>
+              <p class="u-text u-text-body-color u-text-3">포토 가이드 설명</p>
+            </div>
+          </div>
+          </a>
+          <a href="{% url 'gallery' %}" class="link">
+          <div class="u-align-center u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white u-list-item-2">
+            <div class="u-container-layout u-similar-container u-container-layout-2">
+              <img class="u-image u-image-default u-preserve-proportions u-image-2" alt="" data-image-width="512" data-image-height="512" src="{% static 'main/images/photo-gallery.png' %}">
+              <h3 class="u-text u-text-default u-text-grey-70 u-text-4">GALLERY</h3>
+              <p class="u-text u-text-body-color u-text-5">갤러리 설명</p>
+            </div>
+          </div>
+          </a>
+          <a href="{% url 'collection' %}" class="link">
+          <div class="u-align-center u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white u-list-item-3">
+            <div class="u-container-layout u-similar-container u-container-layout-3">
+              <img class="u-image u-image-default u-preserve-proportions u-image-3" alt="" data-image-width="512" data-image-height="512" src="{% static 'main/images/diary.png' %}">
+              <h3 class="u-text u-text-default u-text-grey-70 u-text-6">COLLECTION</h3>
+              <p class="u-text u-text-body-color u-text-7">콜렉션 설명</p>
+            </div>
+          </div>
+          </a>
+          <a href="{% url 'ranking' %}" class="link">
+          <div class="u-align-center u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white u-list-item-4">
+            <div class="u-container-layout u-similar-container u-container-layout-4">
+              <img class="u-image u-image-default u-preserve-proportions u-image-4" alt="" data-image-width="512" data-image-height="512" src="{% static 'main/images/ranking.png' %}">
+              <h3 class="u-text u-text-default u-text-grey-70 u-text-8">RANKING</h3>
+              <p class="u-text u-text-body-color u-text-9">랭킹 설명</p>
+            </div>
+          </div>
+        </div>
+        </a>
+      </div>
+    </section>
+    
+    
+    <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-05fd"><div class="u-clearfix u-sheet u-sheet-1">
+        <p class="u-small-text u-text u-text-variant u-text-1">
+          <span style="font-size: 1rem;">KT AIVLE SCHOOL AI 수도권 4반</span>
+          <br>
+        </p>
+      </div></footer>
+    </section>
+  </body>
+</html>
 {% endblock %}
