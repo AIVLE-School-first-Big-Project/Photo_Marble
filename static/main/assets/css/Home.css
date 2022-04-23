@@ -1,4 +1,7 @@
- .u-section-1 {
+body{
+  padding-top: 75px;
+}
+.u-section-1 {
   background-image: none;
   min-height: 884px;
 }
