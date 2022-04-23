@@ -12,25 +12,36 @@
 <body>
 
   {% block content %}
-  <img src="https://user-images.githubusercontent.com/67406924/164465452-8addda29-4c30-44ff-b39e-d943dbbb5d5a.jpg" height = 250 
-    style="display: block; margin:100 auto";>
+  
+  
+    <div class="user_contents">
+      
+      <div class  = profile_pic>
+        
+        <img src="https://user-images.githubusercontent.com/67406924/164465452-8addda29-4c30-44ff-b39e-d943dbbb5d5a.jpg" width = 250 height =250>
+      </div>
 
-  <div class  = main_middle>
-    <a> 이메일 : </a> 
-    <label class="text_box">{{ user.email }}</label>
-    <br><br>
+      <div class ="profile_infor">
+        <a class="ex5">
+         이름 </a>
+        <label class="form-control"> {{ user.nickname }}</label>
 
-    <a>  닉네임 : </a> 
-    <label class="text_box"> {{ user.nickname }}</label>
-    <br><br>
+        <a> 이메일  </a> 
+        <label class="form-control">{{ user.email }}</label>
 
-    <div class = main_button>
-      <a href = "{% url 'account_change_password' %}" type="button" class="btn btn-outline-dark">정보 수정</a>
+        <a> 나이 </a> 
+        <label class="form-control">12</label>
+        <br><br>
+
+        <div class = main_button>
+          <a href = "{% url 'account_change_password' %}" type="button" class="btn btn-outline-dark">정보 수정</a>
+          <a href = "delete" type="button" class="btn btn-outline-dark" > 회원 탈퇴</a>
+        </div>
+      </div>
+      </div>
     
- 
-      <a href = "delete" type="button" class="btn btn-outline-dark" > 회원 탈퇴</a>
     </div>
-  </div>
+  
   {% endblock %} 
 
 
