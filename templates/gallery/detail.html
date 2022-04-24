@@ -61,13 +61,11 @@
             {% if comments %}
               {% for comment in comments%}
                 <span class="feed_txt"> <b> {{ comment.user.nickname }} </b> {{ comment.content }}</span>
-
                     {% if comment.created_string == False %}
                         <span class="timestamp">{{ comment.updated_at|date:'m월 d일' }}</span>
                     {% else %}
                         <span class="timestamp">{{ comment.created_string }}</span>
                     {% endif %}
-
                 {% comment %} <span class="timestamp"> {{ comment.updated_at }} </span> {% endcomment %}
               {% endfor %}
             {% endif %}
@@ -78,7 +76,7 @@
         <!-- 댓글 작성 -->
         <form method="POST">
           {% csrf_token %}
-          <input  name="comment_textbox" type="text" style="width:85%;" placeholder="댓글 달기">
+          <input name="comment_textbox" type="text" style="width:85%;" placeholder="댓글 달기">
           <input class="btn-primary" type="submit" style="width:auto;" value="등록">
         </form>
 

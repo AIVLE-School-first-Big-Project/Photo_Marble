@@ -1,4 +1,5 @@
 from asyncio.windows_events import NULL
+from tokenize import blank_re
 from django.shortcuts import render, redirect, get_object_or_404
 from gallery.forms import CommentForm
 from main.models import Gallery, Like, Comment, User
@@ -36,6 +37,10 @@ def detail(request, id):
     if request.method == 'POST':
         comment = Comment()
         comment.content = request.POST.get('comment_textbox')
+        if comment.content == '':
+            comments = Comment.objects.filter(gallery_id=id)
+            content = {"datas" : galleries, "len_likes": len(likes), "likes": likes, "comments":comments}
+            return render(request, '../templates/gallery/detail.html', context=content)
         comment.user = User(id = user_id)
         comment.gallery = Gallery(gallery_id = id)
         comment.updated_at = timezone.now()
