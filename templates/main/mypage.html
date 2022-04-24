@@ -24,7 +24,7 @@
           <div class="u-container-layout u-container-layout-1"></div>
         </div>
         <div class="u-clearfix u-layout-wrap u-layout-wrap-1">
-          <div class="u-gutter-0 u-layout">
+          <div style="box-shadow: 5px 5px 5px #bababa;" class="u-gutter-0 u-layout">
             <div class="u-layout-row">
               <div class="u-size-30">
                 <div class="u-layout-col">
@@ -77,7 +77,7 @@
                   <div class="cell-temp-clone u-align-left u-container-style u-layout-cell u-size-9 u-white u-layout-cell-8">
                     <div class="u-container-layout u-container-layout-9">
                       <a href="{% url 'account_change_password' %}" class="u-border-none u-btn u-btn-round u-button-style u-gradient u-none u-radius-5 u-text-body-alt-color u-btn-2">수정하기</a>
-                      <a href="delete" class="u-border-none u-btn u-btn-round u-button-style u-gradient u-none u-radius-5 u-text-body-alt-color u-btn-3">탈퇴하기</a>
+                      <a href="{% url 'delete_account' %}" class="u-border-none u-btn u-btn-round u-button-style u-gradient u-none u-radius-5 u-text-body-alt-color u-btn-3">탈퇴하기</a>
                     </div>
                   </div>
                 </div>

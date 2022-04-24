@@ -7,7 +7,7 @@ from django.contrib import auth
 from django.shortcuts import render,get_object_or_404
 from django.contrib import messages
 from allauth.account.views import PasswordChangeView,SignupView,LogoutView
-
+from django.contrib.auth.hashers import check_password
 
 # Create your views here.
 
@@ -65,13 +65,26 @@ def main(request):#경주
         print(request.user.is_authenticated )
         return render(request, '../templates/main/main.html', {'login':"f"})
 
-def delete(request):
-    # user = request.session()
-    user =get_object_or_404(User, pk=request.session['id'])
-    user.delete()
-    messages.success(request, '탈퇴가 완료됐습니다.')
-    return redirect("http://127.0.0.1:8000/")
 
+def delete_account(request):
+    # user = request.session()
+    return render(request, '../templates/main/delete_account.html')
+
+def delete(request):
+    if request.method == 'POST':
+        user =get_object_or_404(User, pk=request.session['id'])
+    # user = request.session()
+        if check_password(request.POST['password'],user.password):
+            user.delete()
+            result = True
+        else:
+            result = False
+
+    return render(request, '../templates/main/delete_result.html',{'result':result})
+
+def delete_result(request):
+
+    return render(request, '../templates/main/delete_result.html')
 class CustomSignupView(SignupView):
     template_name = "main/signup.html" 
     def form_valid(self, form):
