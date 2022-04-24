@@ -84,7 +84,10 @@ def delete(request):
 
     return render(request, '../templates/main/delete_result.html',{'result':result})
 
+
 def delete_result(request):
+
+
     return render(request, '../templates/main/delete_result.html')
 class CustomSignupView(SignupView):
     template_name = "main/signup.html" 
