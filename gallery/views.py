@@ -4,13 +4,14 @@ from gallery.forms import CommentForm
 from main.models import Gallery, Like, Comment, User
 from rest_framework.views import APIView
 # from .forms import CommentForm
-from django.utils import *
+from django.utils import timezone
+from datetime import datetime
 
 def gallery(request):
     l_id = request.POST.get('landmark')
     c_id = request.POST.get('category')
     galleries = Gallery.objects.all()
-    print(list(galleries)[0])
+    # print(list(galleries)[0])
 
     if request.method == 'POST':
         if (l_id is None and c_id is None)  or (l_id == '0' and c_id == '0'):
