@@ -32,7 +32,7 @@
     <li>   
     {% if user.is_authenticated %}
     <a href="{% url 'custom_logout' %}">{{ user.username }}<span id = 'logout_btn'>로그아웃</span></a>
-      <a href= "http://127.0.0.1:8000/main"><li>Home</li></a>
+      <a href= "{% url 'main'%}"><li>Home</li></a>
       <a href= "#"><li>Photo Guide</li></a>
       <a href= "{% url 'gallery'%}"><li>Gallery</li></a>
       <a href= "{% url 'collection'%}"><li>Collection</li></a>
@@ -161,17 +161,19 @@
         font-weight: bold;
         letter-spacing: 1.25px;
     }
+    
     #sidebarMenu {
         height: 100%;
-        position: fixed;
+        position: absolute;
         left: 0;
         width: 250px;
-        
+        height: 600px;
         transform: translateX(-250px);
         transition: transform 250ms ease-in-out;
         background-color: #FFFFFF;
         z-index:30;
     }
+
     .sidebarMenuInner{
         margin:0;
         padding:0;

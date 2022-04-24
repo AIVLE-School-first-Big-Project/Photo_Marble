@@ -44,6 +44,10 @@
           <div class="feed_like">
             {% if likes %}
             <span class="feed_name_txt">좋아요 {{ len_likes }}개 </span>
+            
+            {% else %}
+            <span class="feed_name_txt">좋아요 0개</span>
+
             {% endif %}
           </div>
 
@@ -57,6 +61,14 @@
             {% if comments %}
               {% for comment in comments%}
                 <span class="feed_txt"> <b> {{ comment.user.nickname }} </b> {{ comment.content }}</span>
+
+                    {% if comment.created_string == False %}
+                        <span class="timestamp">{{ comment.updated_at|date:'m월 d일' }}</span>
+                    {% else %}
+                        <span class="timestamp">{{ comment.created_string }}</span>
+                    {% endif %}
+
+                {% comment %} <span class="timestamp"> {{ comment.updated_at }} </span> {% endcomment %}
               {% endfor %}
             {% endif %}
 
@@ -66,14 +78,15 @@
         <!-- 댓글 작성 -->
         <form method="POST">
           {% csrf_token %}
-          <input name="comment_textbox" type="text" value="">
-          <input class="btn btn-primary" type="submit" value="등록">
+          <input  name="comment_textbox" type="text" style="width:85%;" placeholder="댓글 달기">
+          <input class="btn-primary" type="submit" style="width:auto;" value="등록">
         </form>
 
       </div>
     </div>
   </div>
 </div> 
+
 <style>
 .main_body {
     display: flex;
@@ -111,9 +124,14 @@
 
 
 .feed_txt{
-    font-size: 14px;
+    font-size: 16px;
 }
 
+.timestamp{
+    font-size: 10px;
+    color: grey;
+    margin-bottom: 5px;
+}
 
 
 .feed_icon{
@@ -328,6 +346,7 @@
       font-weight: bold;
       align-items: center;
   }
+
   
   .comment_box{
       margin: 40px 0 0 5px;
