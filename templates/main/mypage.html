@@ -38,7 +38,7 @@
                   </div>
                   <div class="cell-temp-clone u-align-left u-container-style u-layout-cell u-size-30 u-white u-layout-cell-2">
                     <div class="u-container-layout u-container-layout-3">
-                      <img class="u-image u-image-default u-preserve-proportions u-image-1" src="{% static 'main/images/blank-profile-picture-973460_1280.png' %}" alt="" data-image-width="1280" data-image-height="1280">
+                      <img class="u-image u-image-default u-preserve-proportions u-image-1" src="{{user.profile_photo}}" alt="" data-image-width="1280" data-image-height="1280">
                       <a href="https://nicepage.cloud" class="u-border-2 u-border-hover-palette-2-base u-border-palette-2-base u-btn u-btn-round u-button-style u-radius-50 u-white u-btn-1"><span class="u-file-icon u-icon u-text-palette-2-base u-icon-1"><img src="{% static 'main/images/9.png' %}" alt=""></span>
                       </a>
                     </div>
@@ -53,7 +53,7 @@
                   <div class="u-container-style u-layout-cell u-size-9 u-white u-layout-cell-4">
                     <div class="u-container-layout u-container-layout-5">
                       <p class="u-text u-text-palette-2-base u-text-2">이름</p>
-                      <p class="u-text u-text-3">{{user.username}}&nbsp;</p>
+                      <p class="u-text u-text-3">{{user.nickname}}&nbsp;</p>
                     </div>
                   </div>
                   <div class="u-container-style u-layout-cell u-size-10 u-white u-layout-cell-5">
@@ -62,18 +62,18 @@
                       <p class="u-text u-text-5">{{user.email}}&nbsp;</p>
                     </div>
                   </div>
-                  <div class="cell-temp-clone u-container-style u-layout-cell u-size-10 u-white u-layout-cell-6">
+                  {% comment %} <div class="cell-temp-clone u-container-style u-layout-cell u-size-10 u-white u-layout-cell-6">
                     <div class="u-container-layout u-container-layout-7">
                       <p class="u-text  u-text-palette-2-base u-text-6">나이</p>
                       <p class="u-text u-text-7">27&nbsp;</p>
                     </div>
-                  </div>
-                  <div class="u-align-left u-container-style u-layout-cell u-size-10 u-white u-layout-cell-7">
+                  </div> {% endcomment %}
+                  {% comment %} <div class="u-align-left u-container-style u-layout-cell u-size-10 u-white u-layout-cell-7">
                     <div class="u-container-layout u-container-layout-8">
                       <p style="margin: 0 auto 0 0px;" class="u-text  u-text-palette-2-base u-text-8">자기소개</p>
                       <p class="u-text u-text-9">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
                     </div>
-                  </div>
+                  </div> {% endcomment %}
                   <div class="cell-temp-clone u-align-left u-container-style u-layout-cell u-size-9 u-white u-layout-cell-8">
                     <div class="u-container-layout u-container-layout-9">
                       <a href="{% url 'account_change_password' %}" class="u-border-none u-btn u-btn-round u-button-style u-gradient u-none u-radius-5 u-text-body-alt-color u-btn-2">수정하기</a>

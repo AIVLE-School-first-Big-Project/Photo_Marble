@@ -22,33 +22,44 @@
   <body class="u-body u-xl-mode">
     <section class="u-align-left u-clearfix u-white u-section-1" id="carousel_c559">
       <div class="u-align-center u-container-style u-expanded-width u-gradient u-group u-shape-rectangle u-group-1">
-        <div class="u-container-layout u-container-layout-1">
-          <img class="u-border-3 u-border-white u-image u-image-circle u-preserve-proportions u-image-1" src="{% static 'collection/images/blank-profile.png' %}" alt="" data-image-width="1280" data-image-height="1280">
-          <img class="u-border-3 u-border-white u-image u-image-circle u-preserve-proportions u-image-2" src="{% static 'collection/images/blank-profile.png' %}" alt="" data-image-width="1280" data-image-height="1280">
-          <p class="u-large-text u-text u-text-variant u-text-white u-text-1">username </p>
-          <img class="u-border-3 u-border-white u-image u-image-circle u-preserve-proportions u-image-3" src="{% static 'collection/images/blank-profile.png' %}" alt="" data-image-width="1280" data-image-height="1280">
-          <p class="u-large-text u-text u-text-body-alt-color u-text-variant u-text-2"><span class="u-file-icon u-icon"><img src="{% static 'collection/images/1828884.png' %}" alt=""></span> &nbsp;50 
-          </p>
-          <div class="u-container-style u-custom-color-1 u-group u-shape-round u-top-left-radius-7 u-top-right-radius-7 u-group-2">
-            <div class="u-container-layout u-valign-middle u-container-layout-2"><span class="u-file-icon u-icon u-icon-2"><img src="{% static 'collection/images/2583344.png' %}" alt=""></span>
+
+          <div class = 'screen1'>
+            <div id="screen1-1">
+              <div class='profile_box'>
+                <img class="profile" src="{% static 'collection/images/blank-profile.png' %}" >
+              </div>
+              <div>
+                <p class="userinfo"> {{ first.username }} <br> <img style = "width: 15px; height: 15px;" src="{% static 'collection/images/1828884.png' %}" >{{ first.cnt }} </p>
+              </div>
             </div>
+            <div style="border-radius: 10px 10px 0px 0px;border-collapse: collapse;border-style: hidden;" id="screen1-2"><img class="medal" src="{% static 'collection/images/2583344.png' %}"></div>
+        
           </div>
-          <p class="u-large-text u-text u-text-body-alt-color u-text-variant u-text-3">username </p>
-          <p class="u-large-text u-text u-text-body-alt-color u-text-variant u-text-4"><span class="u-file-icon u-icon"><img src="{% static 'collection/images/1828884.png' %}" alt=""></span> &nbsp;35 
-          </p>
-          <p class="u-large-text u-text u-text-body-alt-color u-text-variant u-text-5">username </p>
-          <div class="u-container-style u-custom-color-2 u-group u-shape-round u-top-left-radius-7 u-top-right-radius-7 u-group-3">
-            <div class="u-container-layout u-valign-top u-container-layout-3"><span class="u-file-icon u-icon u-icon-4"><img src="{% static 'collection/images/2583319.png' %}" alt=""></span>
+          <div class='screen2'>
+            <div id="screen2-1">
+              <div class='profile_box'>
+                <img class="profile" src="{% static 'collection/images/blank-profile.png' %}" >
+              </div>
+              <div>
+                <p class="userinfo"> {{ second.username }} <br><img style = "width: 15px; height: 15px;" src="{% static 'collection/images/1828884.png' %}" > {{ second.cnt }} </p>
+              </div>
             </div>
+            <div style="border-radius: 10px 10px 0px 0px;border-collapse: collapse;border-style: hidden;"id="screen2-2"><img class="medal" src="{% static 'collection/images/2583319.png' %}"></div>
           </div>
-          <p class="u-large-text u-text u-text-body-alt-color u-text-variant u-text-6"><span class="u-file-icon u-icon"><img src="{% static 'collection/images/1828884.png' %}" alt=""></span>&nbsp;<span style="font-weight: 700;">26 </span>
-          </p>
-          <div class="u-container-style u-custom-color-3 u-group u-shape-round u-top-left-radius-7 u-top-right-radius-7 u-group-4">
-            <div class="u-container-layout"><span class="u-file-icon u-icon u-icon-6"><img src="{% static 'collection/images/2583434.png' %}" alt=""></span>
+          <div class="screen3">
+            <div id="screen3-1">
+              <div class='profile_box'>
+                <img class="profile" src="{% static 'collection/images/blank-profile.png' %}" >
+              </div>
+              <div>
+                <p class="userinfo"> {{ third.username }} <br><img style = "width: 15px; height: 15px;" src="{% static 'collection/images/1828884.png' %}" > {{ third.cnt }} </p>
+              </div>
             </div>
-          </div>
+            <div style="border-radius: 10px 10px 0px 0px;border-collapse: collapse;border-style: hidden;" id="screen3-2"><img class="medal" src="{% static 'collection/images/2583434.png' %}"></div>
+          </div> 
         </div>
-      </div>
+
+      
       <div class="u-align-center u-table u-table-responsive u-table-1">
         <table class="u-table-entity">
           <colgroup>
@@ -57,50 +68,26 @@
             <col width="60%">
             <col width="27%">
           </colgroup>
-          <tbody class="u-table-alt-palette-1-light-3 u-table-body">
+          <tbody style="border-radius: 10px;border-collapse: collapse;border-style: hidden; box-shadow: 2px 2px 8px rgba(0,0,0,0.4);" class="u-table-alt-palette-1-light-3 u-table-body">
+          {% for user in top4_7 %}
+
+          {% if user.color == 0 %}
+
             <tr style="height: 65px;">
-              <td class="u-table-cell">4</td>
-              <td class="u-table-cell"><span class="u-file-icon u-icon u-icon-7"><img src="images/blank-profile-picture-973460_1280-16.png" alt=""></span>&nbsp; 
-              </td>
-              <td class="u-table-cell">Description</td>
-              <td class="u-table-cell">Description</td>
+              <td class="u-table-cell"> {{user.rank}} </td>
+              <td class="u-table-cell"><img class="profile" src="{{ user.profile_photo }}" ></td>
+              <td class="u-table-cell">{{user.username}}</td>
+              <td class="u-table-cell">{{user.cnt}}</td>
             </tr>
+          {% else %}
             <tr style="height: 65px;">
-              <td class="u-palette-2-light-3 u-table-cell u-table-cell-5">5</td>
-              <td class="u-palette-2-light-3 u-table-cell u-table-cell-6">Description</td>
-              <td class="u-palette-2-light-3 u-table-cell u-table-cell-7">Description</td>
-              <td class="u-palette-2-light-3 u-table-cell u-table-cell-8">Description</td>
+              <td class="u-palette-2-light-3 u-table-cell u-table-cell-5">{{user.rank}}</td>
+              <td class="u-palette-2-light-3 u-table-cell u-table-cell-6"><img class="profile" src="{{ user.profile_photo }}" ></td>
+              <td class="u-palette-2-light-3 u-table-cell u-table-cell-7">{{user.username}}</td>
+              <td class="u-palette-2-light-3 u-table-cell u-table-cell-8">{{user.cnt}}</td>
             </tr>
-            <tr style="height: 65px;">
-              <td class="u-table-cell">6</td>
-              <td class="u-table-cell">Description</td>
-              <td class="u-table-cell">Description</td>
-              <td class="u-table-cell">Description</td>
-            </tr>
-            <tr style="height: 65px;">
-              <td class="u-palette-2-light-3 u-table-cell u-table-cell-13">7</td>
-              <td class="u-palette-2-light-3 u-table-cell u-table-cell-14">Description</td>
-              <td class="u-palette-2-light-3 u-table-cell u-table-cell-15">Description</td>
-              <td class="u-palette-2-light-3 u-table-cell u-table-cell-16">Description</td>
-            </tr>
-            <tr style="height: 65px;">
-              <td class="u-table-cell">8</td>
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-            </tr>
-            <tr style="height: 65px;">
-              <td class="u-palette-2-light-3 u-table-cell u-table-cell-21">9</td>
-              <td class="u-palette-2-light-3 u-table-cell u-table-cell-22"></td>
-              <td class="u-palette-2-light-3 u-table-cell u-table-cell-23"></td>
-              <td class="u-palette-2-light-3 u-table-cell u-table-cell-24"></td>
-            </tr>
-            <tr style="height: 65px;">
-              <td class="u-table-cell">10</td>
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-              <td class="u-table-cell"></td>
-            </tr>
+          {% endif %}
+          {% endfor %}
           </tbody>
         </table>
       </div>
@@ -128,3 +115,4 @@
   </body>
   {% endblock %} 
 </html>
+
