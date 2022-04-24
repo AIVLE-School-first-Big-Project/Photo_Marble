@@ -5,13 +5,6 @@
 <!DOCTYPE html>
 <html style="font-size: 16px;">
   
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="utf-8">
-    <meta name="keywords" content="Web Design Services, ​Hosting solution with benefits., ​What do our users say?, ​Hosting for every website, Meet Our Best Team, Premium Plans, $0, $29, $59, $139, Nam ultrices ultrices nec tortor pulvinar esteras loremips est orem., Follow us, Contact us">
-    <meta name="description" content="">
-    <meta name="page_type" content="np-template-header-footer-from-plugin">
-    <title>mypage</title>
     <link rel="stylesheet" href="{% static 'main/assets/css/nicepage.css' %}" media="screen">
 <link rel="stylesheet" href="{% static 'main/assets/css/mypage.css' %}" media="screen">
     <script class="u-script" type="text/javascript" src="{% static 'main/assets/js/jquery.js' %}" defer=""></script>
@@ -19,60 +12,84 @@
     <meta name="generator" content="Nicepage 4.9.5, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
     
-    
-    {% comment %} <script type="application/ld+json">{
-		"@context": "http://schema.org",
-		"@type": "Organization",
-		"name": ""
-}</script> {% endcomment %}
+  
     <meta name="theme-color" content="#478ac9">
     <meta property="og:title" content="mypage">
     <meta property="og:type" content="website">
  
   
-  <body class="u-body u-xl-mode">
-    <section class="u-clearfix u-white u-section-1" id="carousel_c559">
-      <div class="u-absolute-hcenter u-expanded u-gradient u-shape u-shape-rectangle u-shape-1"></div>
-      <div class="u-clearfix u-gutter-40 u-layout-wrap u-layout-wrap-1">
-        <div class="u-gutter-0 u-layout">
-          <div class="u-layout-row">
-            <div class="u-align-left u-container-style u-layout-cell u-shape-rectangle u-size-60 u-white u-layout-cell-1">
-              <div class="u-container-layout u-container-layout-1">
-                <h1 class="u-text u-text-default u-text-palette-2-base u-text-1">
-                  <span style="font-weight: 700;">Profile</span>
-                  <span style="font-weight: 700;"></span>
-                </h1>
-                <h6 class="u-text u-text-default u-text-palette-2-base u-text-2">
-                  <span style="font-weight: 700;">이름 </span>
-                </h6>
-                <p class="u-text u-text-3">{{user.nickname}}</p>
-
-                <img class="u-image u-image-default u-preserve-proportions u-image-1" src="{% static 'main/images/blank-profile-picture-973460_1280.png' %}" alt="" data-image-width="1280" data-image-height="1280">
-                <a href="https://nicepage.cloud" class="u-border-2 u-border-hover-palette-2-base u-border-palette-2-base u-btn u-btn-round u-button-style u-radius-50 u-white u-btn-1"><span class="u-file-icon u-icon u-text-palette-2-base u-icon-1"><img src="{% static 'main/images/9.png' %}" alt=""></span>
-                </a>
-                <h6 class="u-text u-text-default u-text-palette-2-base u-text-4"><b>이메일</b>
-                </h6>
-                <p class="u-text u-text-5">{{user.email}}</p>
-                <h6 class="u-text u-text-default u-text-palette-2-base u-text-6"><b>나이</b>
-                </h6>
-                {% comment %} <p class="u-text u-text-7">{{user.age}}<br> {% endcomment %}
-                <p class="u-text u-text-7">26<br>
-                </p>
-
-                <h6 class="u-text u-text-palette-2-base u-text-8"><b>자기소개</b>
-                </h6>
-                {% comment %} <p class="u-text u-text-9">{{user.introduce}}</p> {% endcomment %}
-                <p class="u-text u-text-9">안녕하세요 어쩌구 쩌ㅉ꺼정람너ㅣㅇ럼ㄴㄻㄴㄻㅇㄶㅇㄴㅀㄴㅇㄹㅈㅀㅂㅈㄷㅎㄴㅇㅍㅁㄻㄴㄹㄴㅁㄹ</p>
-                <a href = "{% url 'account_change_password' %}" class="u-border-none u-btn u-btn-round u-button-style u-gradient u-none u-radius-5 u-text-body-alt-color u-btn-2">수정하기</a>
-                <a href = "delete" class="u-border-none u-btn u-btn-round u-button-style u-gradient u-none u-radius-5 u-text-body-alt-color u-btn-3">탈퇴하기</a>
+    <body class="u-body u-xl-mode">
+      <section class="u-clearfix u-white u-section-1" id="sec-81db">
+        <div class="u-absolute-hcenter u-container-style u-expanded u-gradient u-group u-shape-rectangle u-group-1">
+          <div class="u-container-layout u-container-layout-1"></div>
+        </div>
+        <div class="u-clearfix u-layout-wrap u-layout-wrap-1">
+          <div class="u-gutter-0 u-layout">
+            <div class="u-layout-row">
+              <div class="u-size-30">
+                <div class="u-layout-col">
+                  <div class="u-container-style u-layout-cell u-size-30 u-white u-layout-cell-1">
+                    <div class="u-container-layout u-container-layout-2">
+                      <h1 class="u-text u-text-default u-text-palette-2-base u-text-1">
+                        <span style="font-weight: 700;">Profile</span>
+                        <span style="font-weight: 700;"></span>
+                      </h1>
+                    </div>
+                  </div>
+                  <div class="cell-temp-clone u-align-left u-container-style u-layout-cell u-size-30 u-white u-layout-cell-2">
+                    <div class="u-container-layout u-container-layout-3">
+                      <img class="u-image u-image-default u-preserve-proportions u-image-1" src="{% static 'main/images/blank-profile-picture-973460_1280.png' %}" alt="" data-image-width="1280" data-image-height="1280">
+                      <a href="https://nicepage.cloud" class="u-border-2 u-border-hover-palette-2-base u-border-palette-2-base u-btn u-btn-round u-button-style u-radius-50 u-white u-btn-1"><span class="u-file-icon u-icon u-text-palette-2-base u-icon-1"><img src="{% static 'main/images/9.png' %}" alt=""></span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="u-size-30">
+                <div class="u-layout-col">
+                  <div class="u-container-style u-layout-cell u-size-12 u-white u-layout-cell-3">
+                    <div class="u-container-layout u-container-layout-4"></div>
+                  </div>
+                  <div class="u-container-style u-layout-cell u-size-9 u-white u-layout-cell-4">
+                    <div class="u-container-layout u-container-layout-5">
+                      <p class="u-text u-text-palette-2-base u-text-2">이름</p>
+                      <p class="u-text u-text-3">{{user.username}}&nbsp;</p>
+                    </div>
+                  </div>
+                  <div class="u-container-style u-layout-cell u-size-10 u-white u-layout-cell-5">
+                    <div class="u-container-layout u-container-layout-6">
+                      <p class="u-text  u-text-palette-2-base u-text-4">이메일</p>
+                      <p class="u-text u-text-5">{{user.email}}&nbsp;</p>
+                    </div>
+                  </div>
+                  <div class="cell-temp-clone u-container-style u-layout-cell u-size-10 u-white u-layout-cell-6">
+                    <div class="u-container-layout u-container-layout-7">
+                      <p class="u-text  u-text-palette-2-base u-text-6">나이</p>
+                      <p class="u-text u-text-7">27&nbsp;</p>
+                    </div>
+                  </div>
+                  <div class="u-align-left u-container-style u-layout-cell u-size-10 u-white u-layout-cell-7">
+                    <div class="u-container-layout u-container-layout-8">
+                      <p style="margin: 0 auto 0 0px;" class="u-text  u-text-palette-2-base u-text-8">자기소개</p>
+                      <p class="u-text u-text-9">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+                    </div>
+                  </div>
+                  <div class="cell-temp-clone u-align-left u-container-style u-layout-cell u-size-9 u-white u-layout-cell-8">
+                    <div class="u-container-layout u-container-layout-9">
+                      <a href="{% url 'account_change_password' %}" class="u-border-none u-btn u-btn-round u-button-style u-gradient u-none u-radius-5 u-text-body-alt-color u-btn-2">수정하기</a>
+                      <a href="delete" class="u-border-none u-btn u-btn-round u-button-style u-gradient u-none u-radius-5 u-text-body-alt-color u-btn-3">탈퇴하기</a>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+      
+      
     
-  </body>
+
   
     <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-05fd"><div class="u-clearfix u-sheet u-sheet-1">
         <p class="u-small-text u-text u-text-variant u-text-1">
@@ -81,6 +98,15 @@
         </p>
       </div></footer>
 
-
+    </body>
   {% endblock %} 
+
 </html>
+
+<style>
+  .box1 {
+    float:left; width:200px; height:100px; background-color:#234234;}
+   .box2 {
+    display:inline-block; width:200px; height:100px; background-color:#666666; margin-left:10px;}  
+  
+   </style>

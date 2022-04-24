@@ -88,5 +88,8 @@ class CustomSignupView(SignupView):
 class CustomSLogoutView(LogoutView):
     template_name = "main/logout.html"
 
+class CustomSPasswordChangeView(PasswordChangeView):
+    template_name = "main/password_change.html"
+
 def get_redirect_url(self):
     return redirect("http://127.0.0.1:8000/login")
