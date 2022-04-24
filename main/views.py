@@ -26,6 +26,8 @@ def mypage(request):
 
     user_db = User.objects.get(id= request.session['id'])
     print(user_db)
+    profile_photo = user_db.profile_photo
+    print(profile_photo)
     return render(request, '../templates/main/mypage.html', context={
         'user' : user_db
     })
@@ -83,7 +85,6 @@ def delete(request):
     return render(request, '../templates/main/delete_result.html',{'result':result})
 
 def delete_result(request):
-
     return render(request, '../templates/main/delete_result.html')
 class CustomSignupView(SignupView):
     template_name = "main/signup.html" 
