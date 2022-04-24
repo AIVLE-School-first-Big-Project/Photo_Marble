@@ -1,4 +1,5 @@
 from asyncio.windows_events import NULL
+from distutils.command.upload import upload
 from django.shortcuts import render, redirect, get_object_or_404
 from gallery.forms import CommentForm
 from main.models import Gallery, Like, Comment, User
@@ -29,8 +30,10 @@ def gallery(request):
 
 def detail(request, id):
     user_id = request.session['id']
-    galleries = Gallery.objects.filter(gallery_id = id)
-
+    galleries = Gallery.objects.get(gallery_id = id)
+    upload_user = galleries.user_id
+    profile_photo=User.objects.get(id=upload_user).profile_photo
+    uploader= User.objects.get(id=upload_user).nickname
     likes = Like.objects.filter(gallery_id = id)
     
     if request.method == 'POST':
@@ -47,7 +50,7 @@ def detail(request, id):
     # for i in comments:
     #     print(i.user_id)
 
-    content = {"datas" : galleries, "len_likes": len(likes), "likes": likes, "comments":comments}
+    content = {"uploader":{'profile_photo':profile_photo,"username":uploader},"data" : galleries, "len_likes": len(likes), "likes": likes, "comments":comments}
     return render(request, '../templates/gallery/detail.html', context=content)
 
 

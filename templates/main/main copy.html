@@ -4,17 +4,12 @@
 
 
   <body class="u-body u-xl-mode">
-    
     <section class="u-align-center u-clearfix u-white u-section-1" id="carousel_871a">
       <div class="u-expanded-width u-gradient u-shape u-shape-rectangle u-shape-1"></div>
       <h1 class="u-text u-text-default u-text-palette-2-base u-text-1">포토마불</h1>
       <div class="u-list u-list-1">
         <div class="u-repeater u-repeater-1">
-          {% if user.is_authenticated %}
           <a href="#" class="link">
-          {% else %}
-          <a onclick="not_login();" >
-          {% endif %}
           <div class="u-align-center u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white u-list-item-1">
             <div class="u-container-layout u-similar-container u-container-layout-1">
               <img class="u-image u-image-default u-preserve-proportions u-image-1" alt="" data-image-width="512" data-image-height="512" src="{% static 'main/images/camera6.png' %}">
@@ -23,11 +18,7 @@
             </div>
           </div>
           </a>
-          {% if user.is_authenticated %}
           <a href="{% url 'gallery' %}" class="link">
-            {% else %}
-          <a onclick="not_login();" >
-          {% endif %}
           <div class="u-align-center u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white u-list-item-2">
             <div class="u-container-layout u-similar-container u-container-layout-2">
               <img class="u-image u-image-default u-preserve-proportions u-image-2" alt="" data-image-width="512" data-image-height="512" src="{% static 'main/images/photo-gallery.png' %}">
@@ -36,11 +27,7 @@
             </div>
           </div>
           </a>
-          {% if user.is_authenticated %}
           <a href="{% url 'collection' %}" class="link">
-            {% else %}
-          <a onclick="not_login();" >
-          {% endif %}
           <div class="u-align-center u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white u-list-item-3">
             <div class="u-container-layout u-similar-container u-container-layout-3">
               <img class="u-image u-image-default u-preserve-proportions u-image-3" alt="" data-image-width="512" data-image-height="512" src="{% static 'main/images/diary.png' %}">
@@ -49,11 +36,7 @@
             </div>
           </div>
           </a>
-          {% if user.is_authenticated %}
           <a href="{% url 'ranking' %}" class="link">
-            {% else %}
-          <a onclick="not_login();" >
-          {% endif %}
           <div class="u-align-center u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white u-list-item-4">
             <div class="u-container-layout u-similar-container u-container-layout-4">
               <img class="u-image u-image-default u-preserve-proportions u-image-4" alt="" data-image-width="512" data-image-height="512" src="{% static 'main/images/ranking.png' %}">
@@ -74,13 +57,6 @@
         </p>
       </div></footer>
     </section>
-
-    <script>
-      function not_login(){
-        alert("로그인 후 사용하실 수 있습니다.");
-      }
-    </script>
   </body>
 </html>
 {% endblock %}
-
