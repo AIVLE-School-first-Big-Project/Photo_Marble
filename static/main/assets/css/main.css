@@ -6,6 +6,12 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
+@font-face {
+    font-family: 'Cafe24Ssurround';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
@@ -181,6 +187,7 @@ input, select, textarea {
 	}
 
 	h1, h2, h3, h4, h5, h6 {
+		
 		color: #ffffff;
 		font-weight: 600;
 		line-height: 1.65;
@@ -193,6 +200,7 @@ input, select, textarea {
 		}
 
 	h1 {
+		
 		font-size: 2.5em;
 	}
 
@@ -201,6 +209,7 @@ input, select, textarea {
 	}
 
 	h3 {
+		font-family: 'Cafe24Ssurround' !important;
 		font-size: 1.35em;
 	}
 

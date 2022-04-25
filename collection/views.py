@@ -48,6 +48,7 @@ def collection_mypage(request):
         print(data_list[0])
         test_dict['s{}'.format(i+1)]= data_list[i]
     
+    test_dict['progress'] = progress
     print(test_dict)
     # test={'progress' : progress,
     #         's1': data_list[0],

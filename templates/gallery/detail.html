@@ -1,8 +1,6 @@
 
 {% extends "base.html" %}
-
 {% load static %}
-{% block content %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -31,10 +29,10 @@
         <div class="border feed_box">
           <div class="feed_name">
             <div class="profile_box">
-              <img class="profile_img" src="{{ uploader.profile_photo }}">
+              <img class="profile_img" src="{{ profile_photo }}">
             </div>
-            <p>&nbsp;&nbsp; {{uploader.username}} </p>
-            <span class="feed_name_txt"> {{ data.userId }} </span>
+            {% comment %} <p>&nbsp;&nbsp; {{uploader}} </p> {% endcomment %}
+            <span class="feed_name_txt"> {{ uploader }} </span>
           </div>
           
           
@@ -51,6 +49,7 @@
           </div>
           <div class="feed_icon">
             <div>
+              
               <button style="background-color:white;border: none;" id="chat_btn" type="button"><img style="weight:30px;height:30px;" src="/../../static/gallery/images/heart_1.png"></button> 
               {% comment %} <button style="background-color:white;border: none;" id="chat_btn" type="button"><img style="weight:25px;height:25px;" src="/../../static/gallery/images/chat.png"></button> {% endcomment %}
             </div>
@@ -68,9 +67,9 @@
             {% if comments %}
               {% for comment in comments%}
                 {% if comment.user.id == my_id %}
-                  <div>
-                    <span class="feed_txt"> <b> {{ comment.user.nickname}} </b> {{ comment.content }} <b> </span> 
-                      <a href="{% url 'comment_delete' data.gallery_id comment.comment_id %}"> <img class="delete" src="{%static 'img/delete.png' %}" width=20px height=20px;> </a>
+                    <div>
+                        <span class="feed_txt"> <b> {{ comment.user.nickname}} </b> {{ comment.content }} <b> </span> 
+                        <a href="{% url 'comment_delete' data.gallery_id comment.comment_id %}"> <img class="delete" src="{% static 'gallery/images/delete.png' %}" width=20px height=20px;> </a>
                         {% if comment.created_string == False %}
                           <span class="timestamp">{{ comment.updated_at|date:'m월 d일' }}</span>
                         {% else %}
@@ -87,8 +86,13 @@
                       {% endif %}
                   </div> 
                 {% endif%}
-              {% endfor %}
+            {% endfor %}
             {% endif %}
+
+ 
+
+      
+
 
         <!-- 댓글 작성 -->
         <form method="POST">
@@ -104,6 +108,7 @@
 
 </body>
 </html>
+
 
 
 
