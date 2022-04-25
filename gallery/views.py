@@ -5,6 +5,7 @@ from rest_framework.views import APIView
 
 def select(request):
     c_id = request.POST.get('category')
+    print(c_id)
     galleries = Gallery.objects.all()
 
 

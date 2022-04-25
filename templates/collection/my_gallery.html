@@ -3,12 +3,12 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <div class = title>
     <h2 class="nested-category-title nested-category-title-padding animation-segment-parent-hidden">
-        gallery
+        my_galleries
     </h2>
 
 </div>
 
-<div class = select style="margin:auto;text-align:center;">
+{% comment %} <div class = select style="margin:auto;text-align:center;">
     <form class = choice method="post" action="http://127.0.0.1:8000/select/" style="display:inline-block;">
         <select name="landmark" id="landmark">
             <option value=0>전체</option>
@@ -27,7 +27,7 @@
         <input type="submit">
         {% csrf_token %}
     </form>
-</div>   
+</div>    {% endcomment %}
 {% comment %} 갤러리 {% endcomment %}
 
 
