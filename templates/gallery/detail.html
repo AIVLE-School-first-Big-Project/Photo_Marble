@@ -64,6 +64,7 @@
 
             <!-- 다른 사용자의 댓글 기능 -->
             {% if comments %}
+<<<<<<< HEAD
               {% for comment in comments%}
                 <span class="feed_txt"> <b> {{ comment.user.nickname }} </b> {{ comment.content }}</span>
 
@@ -72,6 +73,31 @@
                     {% else %}
                         <span class="timestamp">{{ comment.created_string }}</span>
                     {% endif %}
+=======
+            {% for comment in comments%}
+                {% if comment.user.id == my_id %}
+                    <div>
+                        <span class="feed_txt"> <b> {{ comment.user.nickname}} </b> {{ comment.content }} <b> </span> 
+                        <a href="{% url 'comment_delete' data.gallery_id comment.comment_id %}"> <img class="delete" src="{%static 'gallery/images/delete.png' %}" width=20px height=20px;> </a>
+                        {% if comment.created_string == False %}
+                            <span class="timestamp">{{ comment.updated_at|date:'m월 d일' }}</span>
+                        {% else %}
+                            <span class="timestamp">{{ comment.created_string }}</span>
+                        {% endif %}
+                    </div>    
+                {% else %}
+                    <div>
+                        <span class="feed_txt"> <b> {{ comment.user.nickname}} </b> {{ comment.content }}</span>
+                        {% if comment.created_string == False %}
+                            <span class="timestamp">{{ comment.updated_at|date:'m월 d일' }}</span>
+                        {% else %}
+                            <span class="timestamp">{{ comment.created_string }}</span>
+                        {% endif %}
+                    </div> 
+                {% endif%}
+            {% endfor %}
+            {% endif %}
+>>>>>>> 64ddd656393fef7778d9ca6aeacd841a111b0faa
 
                 {% comment %} <span class="timestamp"> {{ comment.updated_at }} </span> {% endcomment %}
               {% endfor %}
