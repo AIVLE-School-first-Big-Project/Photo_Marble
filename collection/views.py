@@ -20,7 +20,7 @@ def collection_mypage(request):
     area_id=[]
     for i in visited_landmark:
         l_d=i.landmark_id
-        land=Landmark.objects.get(lanmark_id= l_d)
+        land=Landmark.objects.get(landmark_id= l_d)
         area_name=land.area
         land=Locations.objects.get(name= area_name)
         area_id.append('s'+str(land.location_id))
@@ -93,7 +93,7 @@ def my_gallery(request):
     loc=Locations.objects.get(location_id = loc_id)
     loc_name=loc.name
     land=Landmark.objects.get(area = loc_name)
-    land_id=land.lanmark_id
+    land_id=land.landmark_id
     print(land_id)
     my_galleries = Gallery.objects.filter(user=ui, landmark_id=land_id)
     content = {"datas" : my_galleries}
