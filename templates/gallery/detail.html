@@ -47,10 +47,16 @@
 
             {% endif %} {% endcomment %}
           </div>
+        
           <div class="feed_icon">
             <div>
-              <span id="like_count">{{data.like.count}}</span> 
-              <button id="{{data.gallery_id}}" onclick="post_like(this.id)"> 
+              {% comment %} <span id="like_count">{{len_likes}}</span>  {% endcomment %}
+              {% if data.like_count %}
+              <span id="like_count">{{data.like_count}}</span>명이 좋아합니다.
+              {% else %}
+              <span id="like_count">{{len_likes}}</span>명이 좋아합니다.
+              {% endif %}
+              <button style="background-color:white; border:none;" id="{{data.gallery_id}}" onclick="post_like(this.id)"> 
                 {% if request.user in data.like_users.all %}
                 <!-- 로그인 한 유저가 좋아요를 누른 유저일때  -->
                 <img id="heart" style="weight:30px;height:30px;" src="/../../static/gallery/images/heart_2.png">
@@ -62,6 +68,7 @@
 
           <script src="https://code.jquery.com/jquery-3.5.1.js"integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
           <script type="text/javascript">
+ 
             function post_like(id) {
               $.ajax({
                   url: "{%url 'likes'%}", // data를 전송할 url 입니다.
