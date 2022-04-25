@@ -2,7 +2,6 @@ from asyncio.windows_events import NULL
 from tokenize import blank_re
 from distutils.command.upload import upload
 from django.shortcuts import render, redirect, get_object_or_404
-
 from main.models import Gallery, Like, Comment, User, Landmark
 from rest_framework.views import APIView
 from django.utils import timezone
@@ -72,7 +71,7 @@ def comment_delete(request, g_id, c_id):
     comment = get_object_or_404(Comment, pk=c_id)
     comment.delete()
 
-    return redirect('detail2',id=g_id)
+    return redirect('detail2', id=g_id)
 
     
     

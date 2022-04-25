@@ -1,3 +1,4 @@
+
 {% extends "base.html" %}
 {% load static %}
 <!doctype html>
@@ -6,6 +7,8 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="{% static 'gallery/assets/css/detail_style.css' %}"/>
 
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -18,11 +21,8 @@
 
 </head>
 
-{% block content %}
-
 <body>
   
-
 
     <div class="main_body">
       <div class="left_body">
@@ -40,10 +40,10 @@
 
           <div class="feed_like">
             {% if likes %}
-            <span class="feed_name_txt">좋아요 {{ len_likes }}개 </span>
+              <span class="feed_name_txt">좋아요 {{ len_likes }}개 </span>
             
             {% else %}
-            <span class="feed_name_txt">좋아요 0개</span>
+              <span class="feed_name_txt">좋아요 0개</span>
 
             {% endif %}
           </div>
@@ -54,7 +54,7 @@
               {% comment %} <button style="background-color:white;border: none;" id="chat_btn" type="button"><img style="weight:25px;height:25px;" src="/../../static/gallery/images/chat.png"></button> {% endcomment %}
             </div>
           </div>
-          
+
           
 
           <!-- 게시글 -->
@@ -65,26 +65,26 @@
 
             <!-- 다른 사용자의 댓글 기능 -->
             {% if comments %}
-            {% for comment in comments%}
+              {% for comment in comments%}
                 {% if comment.user.id == my_id %}
                     <div>
                         <span class="feed_txt"> <b> {{ comment.user.nickname}} </b> {{ comment.content }} <b> </span> 
                         <a href="{% url 'comment_delete' data.gallery_id comment.comment_id %}"> <img class="delete" src="{% static 'gallery/images/delete.png' %}" width=20px height=20px;> </a>
                         {% if comment.created_string == False %}
-                            <span class="timestamp">{{ comment.updated_at|date:'m월 d일' }}</span>
+                          <span class="timestamp">{{ comment.updated_at|date:'m월 d일' }}</span>
                         {% else %}
-                            <span class="timestamp">{{ comment.created_string }}</span>
+                          <span class="timestamp">{{ comment.created_string }}</span>
                         {% endif %}
-                    </div>    
+                  </div>    
                 {% else %}
-                    <div>
-                        <span class="feed_txt"> <b> {{ comment.user.nickname}} </b> {{ comment.content }}</span>
-                        {% if comment.created_string == False %}
-                            <span class="timestamp">{{ comment.updated_at|date:'m월 d일' }}</span>
-                        {% else %}
-                            <span class="timestamp">{{ comment.created_string }}</span>
-                        {% endif %}
-                    </div> 
+                  <div>
+                    <span class="feed_txt"> <b> {{ comment.user.nickname}} </b> {{ comment.content }}</span>
+                      {% if comment.created_string == False %}
+                        <span class="timestamp">{{ comment.updated_at|date:'m월 d일' }}</span>
+                      {% else %}
+                          <span class="timestamp">{{ comment.created_string }}</span>
+                      {% endif %}
+                  </div> 
                 {% endif%}
             {% endfor %}
             {% endif %}
@@ -104,146 +104,12 @@
       </div>
     </div>
   </div>
-</div> 
+</div>
 
-<style>
-
-#btn1{
-  background-image: linear-gradient(to right, #77aad9, #e68387);
-  border-style: none;
-  color: white;
-  height:34px;
-}
-
-.main_body {
-    display: flex;
-    justify-content: center;
-    padding-top: 50px;
-    background-color: #FAFAFA;
-}
-
-.feed_box {
-    background-color: white;
-    width: 480px;
-    margin: 10px;
-    min-height: auto;
-    padding-bottom: 10px;
-}
-
-.feed_img{
-    width: 100%;
-    object-fit: contain;
-}
-
-.feed_content{
-    padding: 0px 10px;
-}
-
-.feed_like{
-    padding: 0px 10px;
-}
-
-.feed_reply{
-    padding: 0px 10px;
-    display: flex;
-    flex-direction: column;
-}
+</body>
+</html>
 
 
-.feed_txt{
-    font-size: 16px;
-}
-
-.timestamp{
-    font-size: 10px;
-    color: grey;
-    margin-bottom: 5px;
-}
-
-
-.feed_icon{
-    padding: 5px 5px 0px 5px;
-    display: flex;
-    justify-content: space-between;
-}span{
-     padding-right: 5px;
-}
-
-.feed_name{
-    padding: 10px;
-    display: flex;
-    align-items: center;
-}
-
-.feed_name_txt{
-    font-size: 14px;
-    padding: 0px 10px;
-    font-weight: bold;
-}
-
-.profile_box {
-    width: 40px;
-    height: 40px;
-    border-radius: 70%;
-    overflow: hidden;
-}
-.profile_img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.name_content{
-    display: flex;
-    flex-direction: column;
-}
-
-.name_content_txt{
-    font-size: 12px;
-    padding: 0px 10px;
-    font-weight: bold;
-    color: lightgray;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    width: 190px;
-}
-
-.big_profile_box {
-    width: 60px;
-    height: 60px;
-    border-radius: 70%;
-    overflow: hidden;
-}
-
-.link_txt{
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-    text-decoration: none;
-}
-
-.recommend_box {
-    display: flex;
-    justify-content: space-between;
-    padding: 5px;
-    font-size: 14px;
-    font-weight: bold;
-    align-items: center;
-}
-
-.comment_box{
-    margin: 40px 0 0 5px;
-    font-size: 12px;
-    font-weight: bold;
-    color: lightgray;
-    display: flex;
-    flex-direction: column;
-}
-
-</style>
-
-{% endblock %}
 
 
 <!-- Optional JavaScript; choose one of the two! -->
@@ -251,137 +117,19 @@
 <!-- Option 1: Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous">
+      
+        {% comment %} function zoomIn(x) {
+          x.style.transform = "scale(1.2)"; //1.2배 확대
+          x.style.zIndex = 1;
+          x.style.transition = "all 0.2s";// 속도
+        }
+      
+        function zoomOut(x) {
+          x.target.style.transform = "scale(1)";
+          x.target.style.zIndex = 0;
+          x.target.style.transition = "all 0.2s";
+        } {% endcomment %}
+</script>
+{% endblock %}
 
-<!-- Option 2: Separate Popper and Bootstrap JS -->
-<!--
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
--->
-
-</body>
-</html>
-<style>
-  .main_body {
-      display: flex;
-      justify-content: center;
-      padding-top: 50px;
-      background-color: #FAFAFA;
-  }
-  
-  .feed_box {
-      background-color: white;
-      width: 480px;
-      margin: 10px;
-      min-height: auto;
-      padding-bottom: 10px;
-  }
-  
-  .feed_img{
-      width: 100%;
-      object-fit: contain;
-  }
-  
-  .feed_content{
-      padding: 0px 10px;
-  }
-  
-  .feed_like{
-      padding: 0px 10px;
-  }
-  
-  .feed_reply{
-      padding: 0px 10px;
-      display: flex;
-      flex-direction: column;
-  }
-  
-  
-  .feed_txt{
-      font-size: 14px;
-  }
-  
-  
-  
-  .feed_icon{
-      padding: 5px 5px 0px 5px;
-      display: flex;
-      justify-content: space-between;
-  }span{
-       padding-right: 5px;
-  }
-  
-  .feed_name{
-      padding: 10px;
-      display: flex;
-      align-items: center;
-  }
-  
-  .feed_name_txt{
-      font-size: 14px;
-      padding: 0px 10px;
-      font-weight: bold;
-  }
-  
-  .profile_box {
-      width: 40px;
-      height: 40px;
-      border-radius: 70%;
-      overflow: hidden;
-  }
-  .profile_img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-  }
-  
-  .name_content{
-      display: flex;
-      flex-direction: column;
-  }
-  
-  .name_content_txt{
-      font-size: 12px;
-      padding: 0px 10px;
-      font-weight: bold;
-      color: lightgray;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      width: 190px;
-  }
-  
-  .big_profile_box {
-      width: 60px;
-      height: 60px;
-      border-radius: 70%;
-      overflow: hidden;
-  }
-  
-  .link_txt{
-      font-size: 14px;
-      font-weight: bold;
-      cursor: pointer;
-      text-decoration: none;
-  }
-  
-  .recommend_box {
-      display: flex;
-      justify-content: space-between;
-      padding: 5px;
-      font-size: 14px;
-      font-weight: bold;
-      align-items: center;
-  }
-
-  
-  .comment_box{
-      margin: 40px 0 0 5px;
-      font-size: 12px;
-      font-weight: bold;
-      color: lightgray;
-      display: flex;
-      flex-direction: column;
-  }
-  
-  </style>
