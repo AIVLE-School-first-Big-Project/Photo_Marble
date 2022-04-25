@@ -12,6 +12,7 @@ from datetime import datetime
 def gallery(request):
     l_id = request.POST.get('landmark')
     c_id = request.POST.get('category')
+    print(c_id)
     galleries = Gallery.objects.all()
     # print(list(galleries)[0])
 
