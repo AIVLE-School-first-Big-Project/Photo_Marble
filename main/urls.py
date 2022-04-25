@@ -13,5 +13,6 @@ urlpatterns = [
     path('password/change/', views.CustomSPasswordChangeView.as_view(), name="custom_pc"),  
     path('delete_account/', views.delete_account, name="delete_account"),   
     path('delete/', views.delete, name="delete"),   
-    path('delete_result/', views.delete_result, name="delete_result"),   
+    path('delete_result/', views.delete_result, name="delete_result"),  
+    path('mypage/profile_upload', views.profile_upload, name="profile_upload"),
 ]

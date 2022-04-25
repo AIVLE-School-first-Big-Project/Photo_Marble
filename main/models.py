@@ -1,13 +1,15 @@
 from datetime import datetime, timedelta
+from email.policy import default
 from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from main.validators import validate_no_special_characters
-
-
+from main.utils import upload_image
+from django.conf import settings
 class User(AbstractUser):
     nickname = models.CharField(max_length=15, unique=True, null=True, validators=[validate_no_special_characters])
-    profile_photo = models.CharField(max_length=300)
+    profile_s3_url = models.CharField(max_length=400,default="https://photomarble.s3.ap-northeast-2.amazonaws.com/blank-profile.png")
+    profile_photo = models.ImageField(upload_to=upload_image,default="../static/main/images/balnk-profile.png")
     def __str__(self):
         return self.email
 
@@ -28,8 +30,8 @@ class Collection(models.Model):
     is_visited = models.BooleanField()
     date = models.DateTimeField()
     updated_at = models.DateTimeField()
-    user = models.ForeignKey('User', models.DO_NOTHING, db_column='user_id')
-    landmark = models.ForeignKey('Landmark', models.DO_NOTHING, db_column='landmark_id')
+    user = models.ForeignKey('User', db_column='user_id', on_delete=models.CASCADE)
+    landmark = models.ForeignKey('Landmark', db_column='landmark_id', on_delete=models.CASCADE)
 
     class Meta:
         # managed = False
@@ -39,10 +41,12 @@ class Collection(models.Model):
 class Gallery(models.Model):
     gallery_id = models.AutoField(primary_key=True)
     category_id = models.IntegerField()
-    photo_url = models.CharField(max_length=200)
+    photo_url = models.ImageField(upload_to=upload_image)
+    s3_url = models.CharField(max_length=400)
     updated_at = models.DateTimeField(auto_now=True)
-    user = models.ForeignKey('User', models.DO_NOTHING, db_column='user_id')
-    landmark = models.ForeignKey('Landmark', models.DO_NOTHING, db_column='landmark_id', default='')
+    user = models.ForeignKey('User',db_column='user_id', on_delete=models.CASCADE)
+    landmark = models.ForeignKey('Landmark',  db_column='landmark_id', default='', on_delete=models.CASCADE)
+    like_users = models.ManyToManyField(User, related_name='like_articles')
     class Meta:
         db_table = 'Gallery'
 
@@ -51,7 +55,7 @@ class Photoguide(models.Model):
     photoguide_id = models.AutoField(primary_key=True)
     photo_url = models.CharField(max_length=100)
     vector = models.TextField()
-    landmark = models.ForeignKey('Landmark', models.DO_NOTHING, db_column='landmark_id')
+    landmark = models.ForeignKey('Landmark', db_column='landmark_id', on_delete=models.CASCADE)
 
     class Meta:
         # managed = False
@@ -105,16 +109,16 @@ class Comment(models.Model):
     comment_id = models.AutoField(primary_key=True)
     content = models.TextField()
     updated_at = models.DateTimeField()
-    user = models.ForeignKey('User', models.DO_NOTHING, db_column='user_id')
-    gallery = models.ForeignKey('Gallery', models.DO_NOTHING, db_column='gallery_id')
+    user = models.ForeignKey('User', db_column='user_id', on_delete=models.CASCADE)
+    gallery = models.ForeignKey('Gallery', db_column='gallery_id', on_delete=models.CASCADE)
     class Meta:
         # managed = False
         db_table = 'Comment'
 
 class Like(models.Model):
     like_id = models.AutoField(primary_key=True)
-    user = models.ForeignKey('User', models.DO_NOTHING, db_column='user_id')
-    gallery = models.ForeignKey('Gallery', models.DO_NOTHING, db_column='gallery_id')
+    user = models.ForeignKey('User', db_column='user_id', on_delete=models.CASCADE)
+    gallery = models.ForeignKey('Gallery', db_column='gallery_id', on_delete=models.CASCADE)
     class Meta:
         # managed = False
         db_table = 'Like'
