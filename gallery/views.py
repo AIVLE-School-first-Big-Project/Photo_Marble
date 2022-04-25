@@ -17,7 +17,6 @@ def gallery(request):
     if request.method == 'POST':
         if (l_id is None and c_id is None)  or (l_id == '0' and c_id == '0'):
             galleries = Gallery.objects.all()
-
         elif l_id == '0' and c_id is not None:
             galleries = Gallery.objects.filter(category_id=c_id)
         elif l_id is not None and c_id == '0':
