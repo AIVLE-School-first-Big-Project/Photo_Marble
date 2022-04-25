@@ -18,16 +18,7 @@ def gallery(request):
     landmarks = Landmark.objects.all()
     
     if request.method == 'POST':
-        # 업로드 된 파일 저장
-        # upload_file = request.FILES.get('file')
-
-        # name = upload_file.name
-
-        # with open(name, 'wb') as file:
-        #     for chunk in upload_file.chunks():
-        #         file.write(chunk)
-
-        # 사진 필터링
+    
         if (l_id is None and c_id is None)  or (l_id == '0' and c_id == '0'):
             galleries = Gallery.objects.all()
         elif l_id == '0' and c_id is not None:
@@ -39,6 +30,10 @@ def gallery(request):
     content = {"datas" : galleries, "landmarks" : landmarks}
 
     return render(request, "../templates/gallery/gallery.html" , context= content)
+
+def upload(request):
+    pass
+
 
 def detail(request, id):
     user_id = request.session['id']
