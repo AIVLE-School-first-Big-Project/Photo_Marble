@@ -1,0 +1,60 @@
+
+.OUTLINE {
+    fill:#f3f1ed;
+    stroke-linejoin:round;
+    stroke: #171616;
+    stroke-width: 2;
+}
+
+.LINE {
+    stroke-linejoin:round;
+    stroke: #ffffff;
+    stroke-width: 1;
+    fill: none;
+}
+.POINT {
+    stroke: #ffffff;
+    stroke-width: 1;
+    fill: #ffffff;
+}
+.TEXT {
+    fill: #1e1c1c;
+    font-size: 10px;
+    text-anchor: middle;
+    alignment-baseline: middle;
+}
+svg path:hover {
+    fill: #4cecaa;
+    transition:0.6s;
+    cursor:pointer;
+    animation: flash; /* referring directly to the animation's @keyframe declaration */
+    animation-duration: .2s; /* don't forget to set a duration! */
+}
+
+.area_true{
+
+    fill: #eaf77b;
+    stroke-linejoin:round;
+    stroke: #171616;
+    stroke-width: 2;
+
+}
+
+.area_false{
+    fill: #73b363;
+    stroke-linejoin:round;
+    stroke: #171616;
+    stroke-width: 2;
+}
+
+.marker{
+    height:30px;
+    width: 30px;
+
+}
+
+.empty{
+    height:0px;
+    width: 0px;
+}
+
