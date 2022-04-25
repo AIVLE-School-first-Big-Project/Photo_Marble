@@ -5,7 +5,7 @@
 <html>
     <head>
       
-        <link rel="stylesheet" href="{% static 'gallery/assets/css/gallery_style.css' %}"/>
+        <link rel="stylesheet" href="{% static 'css/gallery_style.css' %}"/>
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,900" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -22,30 +22,17 @@
     </head>
 
 <body style="text-align: center;">
-  <h1 class="display-4"> Gallery</h1><br><br><br>
-  <div id = select style="margin:auto;text-align:center;">
-    <form method="post" action="{% url 'gallery' %}">
-      <select name="landmark" id="landmark">
-              <option value=0>전체</option>
-              <option value=1>석조전</option>
-              <option value=2>독립문</option>
-              <option value=3>명동성당</option>
-              <option value=4>남산타워</option>
-      </select>
-          
-      <select name="category" id="category" style="display:inline-block;">
-              <option value=0>전체</option>
-              <option value=1>인물</option>
-              <option value=2>풍경</option>
-              <option value=3>음식</option>
-      </select>
-          <input type="submit">
-          {% csrf_token %}
-    </form>
-  </div><br><br><br>
+<style>
+  @font-face {
+    font-family: 'Cafe24Ssurround';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+</style>
   <div class="container">      
     <br><br><br>
-    <h1 class="display-4" style="font-family: 'Cafe24Ssurround'; color:#db545a"> 갤러리 </h1><br>
+    <h1 class="display-4" style="font-family: 'Cafe24Ssurround';color:#db545a;text-align : center;"> 갤러리 </h1><br>
     <div id = select style="margin:auto;text-align:center;">
       <form method="post" action="{% url 'gallery' %}">
         {% csrf_token %}
