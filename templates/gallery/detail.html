@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 <!doctype html>
+{% load static %}
 <html lang="en">
 <head>
   <!-- Required meta tags -->
@@ -63,19 +64,32 @@
 
             <!-- 다른 사용자의 댓글 기능 -->
             {% if comments %}
-              {% for comment in comments%}
-                <span class="feed_txt"> <b> {{ comment.user.nickname }} </b> {{ comment.content }}</span>
-                    {% if comment.created_string == False %}
-                        <span class="timestamp">{{ comment.updated_at|date:'m월 d일' }}</span>
-                    {% else %}
-                        <span class="timestamp">{{ comment.created_string }}</span>
-                    {% endif %}
-                {% comment %} <span class="timestamp"> {{ comment.updated_at }} </span> {% endcomment %}
-              {% endfor %}
+            {% for comment in comments%}
+                {% if comment.user.id == my_id %}
+                    <div>
+                        <span class="feed_txt"> <b> {{ comment.user.nickname}} </b> {{ comment.content }} <b> </span> 
+                        <a href="{% url 'comment_delete' data.gallery_id comment.comment_id %}"> <img class="delete" src="{%static 'img/delete.png' %}" width=20px height=20px;> </a>
+                        {% if comment.created_string == False %}
+                            <span class="timestamp">{{ comment.updated_at|date:'m월 d일' }}</span>
+                        {% else %}
+                            <span class="timestamp">{{ comment.created_string }}</span>
+                        {% endif %}
+                    </div>    
+                {% else %}
+                    <div>
+                        <span class="feed_txt"> <b> {{ comment.user.nickname}} </b> {{ comment.content }}</span>
+                        {% if comment.created_string == False %}
+                            <span class="timestamp">{{ comment.updated_at|date:'m월 d일' }}</span>
+                        {% else %}
+                            <span class="timestamp">{{ comment.created_string }}</span>
+                        {% endif %}
+                    </div> 
+                {% endif%}
+            {% endfor %}
             {% endif %}
 
-      
-        {% endif %}
+            {% endfor %}
+            {% endif %}
 
         <!-- 댓글 작성 -->
         <form method="POST">
@@ -224,17 +238,51 @@
     flex-direction: column;
 }
 
+.like_btn{
+  width: 5px;
+  height: 5px;
+}
+
+#btn_group button{ 
+  border: 1px solid white; 
+  background-color: rgba(0,0,0,0); 
+  /* color: skyblue;  */
+  /* padding: 5px; */
+}
+
+
 </style>
-
 {% endblock %}
-
 
 <!-- Optional JavaScript; choose one of the two! -->
 
 <!-- Option 1: Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous">
+      
+        {% comment %} function zoomIn(x) {
+          x.style.transform = "scale(1.2)"; //1.2배 확대
+          x.style.zIndex = 1;
+          x.style.transition = "all 0.2s";// 속도
+        }
+      
+        function zoomOut(x) {
+          x.target.style.transform = "scale(1)";
+          x.target.style.zIndex = 0;
+          x.target.style.transition = "all 0.2s";
+        } {% endcomment %}
+      </script>
+
+<style>
+  .delete {
+    object-fit: cover;
+    transition: transform 400ms ease-out;
+  }
+  .delete:hover {
+    transform: scale(1.2);
+  }
+</style>
 
 <!-- Option 2: Separate Popper and Bootstrap JS -->
 <!--
