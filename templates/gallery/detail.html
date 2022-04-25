@@ -65,13 +65,11 @@
             {% if comments %}
               {% for comment in comments%}
                 <span class="feed_txt"> <b> {{ comment.user.nickname }} </b> {{ comment.content }}</span>
-
                     {% if comment.created_string == False %}
                         <span class="timestamp">{{ comment.updated_at|date:'m월 d일' }}</span>
                     {% else %}
                         <span class="timestamp">{{ comment.created_string }}</span>
                     {% endif %}
-
                 {% comment %} <span class="timestamp"> {{ comment.updated_at }} </span> {% endcomment %}
               {% endfor %}
             {% endif %}

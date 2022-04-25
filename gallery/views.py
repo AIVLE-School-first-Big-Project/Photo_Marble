@@ -1,4 +1,5 @@
 from asyncio.windows_events import NULL
+from tokenize import blank_re
 from distutils.command.upload import upload
 from django.shortcuts import render, redirect, get_object_or_404
 from gallery.forms import CommentForm
@@ -17,7 +18,6 @@ def gallery(request):
     if request.method == 'POST':
         if (l_id is None and c_id is None)  or (l_id == '0' and c_id == '0'):
             galleries = Gallery.objects.all()
-
         elif l_id == '0' and c_id is not None:
             galleries = Gallery.objects.filter(category_id=c_id)
         elif l_id is not None and c_id == '0':
@@ -39,6 +39,10 @@ def detail(request, id):
     if request.method == 'POST':
         comment = Comment()
         comment.content = request.POST.get('comment_textbox')
+        if comment.content == '':
+            comments = Comment.objects.filter(gallery_id=id)
+            content = {"datas" : galleries, "len_likes": len(likes), "likes": likes, "comments":comments}
+            return render(request, '../templates/gallery/detail.html', context=content)
         comment.user = User(id = user_id)
         comment.gallery = Gallery(gallery_id = id)
         comment.updated_at = timezone.now()
