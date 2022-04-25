@@ -1,5 +1,5 @@
-
 {% extends "base.html" %}
+{% block content %}
 {% load static %}
 <!doctype html>
 <html lang="en">
@@ -68,7 +68,7 @@
               {% for comment in comments%}
                 {% if comment.user.id == my_id %}
                     <div>
-                        <span class="feed_txt"> <b> {{ comment.user.nickname}} </b> {{ comment.content }} <b> </span> 
+                        <span class="feed_txt"> <b> {{ comment.user.nickname}} </b> {{ comment.content }} <b> </span> <b><b>
                         <a href="{% url 'comment_delete' data.gallery_id comment.comment_id %}"> <img class="delete" src="{% static 'gallery/images/delete.png' %}" width=20px height=20px;> </a>
                         {% if comment.created_string == False %}
                           <span class="timestamp">{{ comment.updated_at|date:'m월 d일' }}</span>
