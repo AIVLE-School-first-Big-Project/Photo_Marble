@@ -7,7 +7,7 @@ from main.validators import validate_no_special_characters
 
 class User(AbstractUser):
     nickname = models.CharField(max_length=15, unique=True, null=True, validators=[validate_no_special_characters])
-
+    profile_photo = models.CharField(max_length=300)
     def __str__(self):
         return self.email
 

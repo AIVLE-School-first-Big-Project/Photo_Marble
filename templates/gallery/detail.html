@@ -21,26 +21,22 @@
 
 <body>
   
-{% if datas %}
-  {% for data in datas%}
+{% if data %}
+
     <div class="main_body">
       <div class="left_body">
         <div class="border feed_box">
           <div class="feed_name">
             <div class="profile_box">
-              <img class="profile_img" src="https://scontent-ssn1-1.xx.fbcdn.net/v/t1.6435-9/s1080x2048/165180104_277246477102900_6106347261862438192_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=730e14&_nc_ohc=1sN4d8i7rn8AX-7aKYN&_nc_ht=scontent-ssn1-1.xx&oh=5049b7cd176848e330b0f5ea95f28172&oe=615A08D1">
+              <img class="profile_img" src="{{ uploader.profile_photo }}">
             </div>
+            <p>&nbsp;&nbsp; {{uploader.username}} </p>
             <span class="feed_name_txt"> {{ data.userId }} </span>
           </div>
-       
-          <img class="feed_img" src="{{ data.photo_url }}">
-          <div class="feed_icon">
-            <div>
-              <button type="button">favorite_border</button>
-              <button type="button">mode_comment</button>
-            </div>
-          </div>
           
+          
+          <img class="feed_img" src="{{ data.photo_url }}">
+
           <div class="feed_like">
             {% if likes %}
             <span class="feed_name_txt">좋아요 {{ len_likes }}개 </span>
@@ -50,6 +46,14 @@
 
             {% endif %}
           </div>
+          <div class="feed_icon">
+            <div>
+              <button style="background-color:white;border: none;" id="chat_btn" type="button"><img style="weight:30px;height:30px;" src="/../../static/gallery/images/heart_1.png"></button> 
+              {% comment %} <button style="background-color:white;border: none;" id="chat_btn" type="button"><img style="weight:25px;height:25px;" src="/../../static/gallery/images/chat.png"></button> {% endcomment %}
+            </div>
+          </div>
+          
+          
 
           <!-- 게시글 -->
           <div class="feed_content">
@@ -70,14 +74,14 @@
               {% endfor %}
             {% endif %}
 
-          {% endfor %}
+      
         {% endif %}
 
         <!-- 댓글 작성 -->
         <form method="POST">
           {% csrf_token %}
           <input name="comment_textbox" type="text" style="width:85%;" placeholder="댓글 달기">
-          <input class="btn-primary" type="submit" style="width:auto;" value="등록">
+          <input id = 'btn1' class="btn" type="submit" style="width:auto;" value="등록">
         </form>
 
       </div>
@@ -86,6 +90,14 @@
 </div> 
 
 <style>
+
+#btn1{
+  background-image: linear-gradient(to right, #77aad9, #e68387);
+  border-style: none;
+  color: white;
+  height:34px;
+}
+
 .main_body {
     display: flex;
     justify-content: center;
