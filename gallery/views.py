@@ -44,9 +44,11 @@ def gallery(request):
 def detail(request, id):
     user_id = request.session['id']
     galleries = Gallery.objects.get(gallery_id = id)
+    print(galleries)
     upload_user = galleries.user_id
     profile_photo=User.objects.get(id=upload_user).profile_photo
     uploader= User.objects.get(id=upload_user).nickname
+    print(uploader)
     likes = Like.objects.filter(gallery_id = id)
     
     if request.method == 'POST':
@@ -54,7 +56,7 @@ def detail(request, id):
         comment.content = request.POST.get('comment_textbox')
         if comment.content == '':
             comments = Comment.objects.filter(gallery_id=id)
-            content = {"datas" : galleries, "len_likes": len(likes), "likes": likes, "comments":comments}
+            content = {"data" : galleries, "len_likes": len(likes), "likes": likes, "comments":comments,"uploader":uploader,"profile_photo":profile_photo,}
             return render(request, '../templates/gallery/detail.html', context=content)
         comment.user = User(id = user_id)
         comment.gallery = Gallery(gallery_id = id)
@@ -63,7 +65,7 @@ def detail(request, id):
 
     comments = Comment.objects.filter(gallery_id=id)
         
-    content = {"datas" : galleries, "len_likes": len(likes), "likes": likes, "comments":comments, "my_id": user_id}
+    content = {"data" : galleries, "len_likes": len(likes), "likes": likes,"uploader":uploader,"profile_photo":profile_photo,"comments":comments, "my_id": user_id}
     return render(request, '../templates/gallery/detail.html', context=content)
 
 def comment_delete(request, g_id, c_id):
