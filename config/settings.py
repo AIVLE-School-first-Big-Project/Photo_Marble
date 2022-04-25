@@ -11,16 +11,25 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-import os
+import os, json
+import secrets
+# from django.core.exceptions import ImproperConfigured
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+secret_file = os.path.join(BASE_DIR,'secrets.json')
 
+with open(secret_file) as f:
+    secrets = json.loads(f.read())
+
+def get_secret(setting, secrets=secrets):
+    return secrets[setting]
+    
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-j!g8-*^1n*d@@o7li7-n3@h1+fx&7dycm6seya4nf2zn+wdv1q'
+SECRET_KEY = get_secret("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -98,8 +107,8 @@ DATABASES = {
         'NAME': 'Photo_Marble',
         # 'NAME': 'DB',
         'USER': 'admin',
-        'PASSWORD': 'aivle202101',
-        'HOST': 'photomarble.ctkqwnymbxqi.ap-northeast-2.rds.amazonaws.com',
+        'PASSWORD': get_secret("PASSWORD"),
+        'HOST': get_secret("DATABASE"),
         'PORT': 3306
         }
 }
