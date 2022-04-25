@@ -6,7 +6,8 @@ from . import forms
 from django.contrib import auth
 from django.shortcuts import render,get_object_or_404
 from django.contrib import messages
-
+from allauth.account.views import PasswordChangeView,SignupView,LogoutView
+from django.contrib.auth.hashers import check_password
 
 # Create your views here.
 
@@ -25,11 +26,11 @@ def mypage(request):
 
     user_db = User.objects.get(id= request.session['id'])
     print(user_db)
+    profile_photo = user_db.profile_photo
+    print(profile_photo)
     return render(request, '../templates/main/mypage.html', context={
         'user' : user_db
     })
-def main(request):#경주
-    return render(request,'../templates/main/main.html')
 
 def login(request):
     # 포스트 
@@ -59,16 +60,35 @@ def login(request):
         return render(request, '../templates/main/login.html', context)
 
 def main(request):#경주
-    print(request.user.is_authenticated)
-    return render(request,'../templates/main/main.html')
+    if request.user.is_authenticated == True:
+        print(request.user.is_authenticated )
+        return render(request, '../templates/main/main.html', {'login':"t"})
+    else:
+        print(request.user.is_authenticated )
+        return render(request, '../templates/main/main.html', {'login':"f"})
+
+
+def delete_account(request):
+    # user = request.session()
+    return render(request, '../templates/main/delete_account.html')
 
 def delete(request):
+    if request.method == 'POST':
+        user =get_object_or_404(User, pk=request.session['id'])
     # user = request.session()
-    user =get_object_or_404(User, pk=request.session['id'])
-    user.delete()
-    messages.success(request, '탈퇴가 완료됐습니다.')
-    return redirect("http://127.0.0.1:8000/")
+        if check_password(request.POST['password'],user.password):
+            user.delete()
+            result = True
+        else:
+            result = False
 
+    return render(request, '../templates/main/delete_result.html',{'result':result})
+
+
+def delete_result(request):
+
+
+    return render(request, '../templates/main/delete_result.html')
 class CustomSignupView(SignupView):
     template_name = "main/signup.html" 
     def form_valid(self, form):
@@ -77,11 +97,16 @@ class CustomSignupView(SignupView):
         print(form)
         self.user = form.save(self.request)
         print(self.user)
-        return render("http://127.0.0.1:8000/login")
+        return redirect("http://127.0.0.1:8000/login")
         # return redirect('login/')
 
-def gallery(request):#경주
-    return render(request,'../templates/main/gallery.html')
 
-def base():
-    return render(request, '../templates/main/login.html', {'login':true/false})
+
+class CustomSLogoutView(LogoutView):
+    template_name = "main/logout.html"
+
+class CustomSPasswordChangeView(PasswordChangeView):
+    template_name = "main/password_change.html"
+
+def get_redirect_url(self):
+    return redirect("http://127.0.0.1:8000/login")

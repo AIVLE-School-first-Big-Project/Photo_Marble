@@ -1,73 +1,4 @@
-<!DOCUMENT html>
-<html>
-    <head>
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,900" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    </head>
-
-    <div class="header"></div>
-  <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
-  <label for="openSidebarMenu" class="sidebarIconToggle">
-    <div class="spinner diagonal part-1"></div>
-    <div class="spinner horizontal"></div>
-    <div class="spinner diagonal part-2"></div>
-  </label>
-  <div id="sidebarMenu">
-    <ul class="sidebarMenuInner">
-      <li>Jelena Jovanovic <span>Web Developer</span></li>
-      <a href= "http://127.0.0.1:8000/main"><li>Home</li></a>
-      <a href= "#"><li>Photo Guide</li></a>
-      <a href= "http://127.0.0.1:8000/select"><li>Gallery</li></a>
-      <a href= "http://127.0.0.1:8000/collection"><li>Collection</li></a>
-      <a href= "http://127.0.0.1:8000/mypage"><li>My Page</li></a>
-    </ul>
-  </div>
- <br>   
- <br>
- <br>  
-<body style="text-align: center;">
-    <div class="container">      
-        <h1 class="display-4"> Gallery</h1>
-      </body>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-   <div class="gallery">
-      <div class="gallery-item">
-         <img class="gallery-image" src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=500&h=500&fit=crop" alt="person writing in a notebook beside by an iPad, laptop, printed photos, spectacles, and a cup of coffee on a saucer">
-      </div>
-
-      <div class="gallery-item">
-         <img class="gallery-image" src="https://images.unsplash.com/photo-1515260268569-9271009adfdb?w=500&h=500&fit=crop" alt="sunset behind San Francisco city skyline">
-      </div>
-
-      <div class="gallery-item">
-         <img class="gallery-image" src="https://images.unsplash.com/photo-1506045412240-22980140a405?w=500&h=500&fit=crop" alt="people holding umbrellas on a busy street at night lit by street lights and illuminated signs in Tokyo, Japan">
-      </div>
-
-      <div class="gallery-item">
-         <img class="gallery-image" src="https://images.unsplash.com/photo-1514041181368-bca62cceffcd?w=500&h=500&fit=crop" alt="car interior from central back seat position showing driver and blurred view through windscreen of a busy road at night">
-      </div>
-
-      <div class="gallery-item">
-         <img class="gallery-image" src="https://images.unsplash.com/photo-1445810694374-0a94739e4a03?w=500&h=500&fit=crop" alt="back view of woman wearing a backpack and beanie waiting to cross the road on a busy street at night in New York City, USA">
-      </div>
-
-      <div class="gallery-item">
-         <img class="gallery-image" src="https://images.unsplash.com/photo-1486334803289-1623f249dd1e?w=500&h=500&fit=crop" alt="man wearing a black jacket, white shirt, blue jeans, and brown boots, playing a white electric guitar while sitting on an amp">
-      </div>
-
-   </div>
-
-</div>
-</head>
-
-<Style>
 @import url(https://fonts.googleapis.com/css?family=Montserrat:500);
-
 
 *::before,
 *::after {
@@ -293,4 +224,9 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
     transform: rotate(-135deg);
     margin-top: -9px;
 }
-</style>
+
+
+/* =========================================== */
+
+
+

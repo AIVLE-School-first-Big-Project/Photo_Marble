@@ -100,39 +100,8 @@ def my_gallery(request):
     return render(request, "../templates/collection/my_gallery.html" , context= content)
 
 
-def collection_ranking(request):
-    total = len(Landmark.objects.all())
-    rank = list(Collection.objects.values('user_id').annotate(dcount=Count('user_id')))
-    rank = sorted(rank, key=lambda x:x['dcount'], reverse=True)
-    user_rank = []
-    flag = False
-    for idx, i in enumerate(rank):
-        if idx < 2: # 몇등까지 보여줄지
-            tmp = [list(i.values())[0], list(i.values())[1]]
-            tmp_user = User.objects.get(id=tmp[0]).username
-            tmp_dict = {}
-            tmp_dict['username'] = tmp_user
-            tmp_dict['progress'] = int((tmp[1]/total)*100)
-            if(tmp[0]==request.session['id']):
-                tmp_dict['isUser'] = True
-                flag = True
-            else:
-                tmp_dict['isUser'] = False
-
-            user_rank.append(tmp_dict)
-       
-        else:
-            break
-    if flag == False:
-        my_rank = {'username':User.objects.get(id=request.session['id']).username,
-                        'progress':int((len(Collection.objects.filter(user_id=request.session['id']))/total)*100),
-                        'isUser':True}
-    else:
-        my_rank = False
-
-    return render(request, '../templates/collection/collection_ranking.html',{'rank':user_rank,'my_rank':my_rank, 'flag':flag})
-
-
+def maps(request):
+    return render(request, "../templates/collection/collection_mypage.html")
 
 # def collection_ranking(request):
 #     total = len(Landmark.objects.all())
@@ -147,3 +116,24 @@ def collection_ranking(request):
 
 #     return render(request, '../templates/collection/collection_ranking.html',{'rank':user_rank})
 
+def collection_ranking(request):
+    
+    rank = list(Collection.objects.values('user_id').annotate(dcount=Count('user_id')))
+    rank = sorted(rank, key=lambda x:x['dcount'], reverse=True)
+    rank_list = []
+    if len(rank)<10:
+        idx=len(rank)
+    else:
+        idx = 10
+    for i in range(idx):
+        user = User.objects.get(id=(rank[i]['user_id']))
+       # user = User.objects.get(id=)
+        tmp_dict={}
+        tmp_dict['username'] = user.nickname
+        tmp_dict['cnt'] = rank[i]['dcount']
+        tmp_dict['profile_photo'] = user.profile_photo
+        tmp_dict['rank'] = (i+1)
+        tmp_dict['color'] = (i+1) %2 
+        rank_list.append(tmp_dict)
+    return render(request, '../templates/collection/collection_ranking.html',
+                    {'first':rank_list[0], 'second':rank_list[1],'third':rank_list[2],'top4_7':rank_list[3:]})

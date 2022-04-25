@@ -24,8 +24,8 @@
     <div class="card-body"> 
     <h3 class="card-title">Sign up</h1>
 {% comment %} <h1>{% trans "Sign Up" %}</h1> {% endcomment %}
-<p>???</p>
-    <p>이미 계정이 있으신가요? 바로 <a href="{% url 'login' %}">로그인</a>하세요</p>
+
+    <p>이미 계정이 있으신가요? 바로 <a class="user_a_tag" style="color : #db545a;" href="{% url 'login' %}">로그인</a>하세요</p>
     {% comment %} <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}"> {% endcomment %}
       <form class="signup" id="signup_form" method="POST" action="{% url 'custom_signup' %}">
       {% csrf_token %}
@@ -34,7 +34,7 @@
       {% if redirect_field_value %}
       <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
       {% endif %}
-      <button type="submit" class="btn btn-primary">{% trans "Sign Up" %} &raquo;</button>
+      <button type="submit" id = 'btn1' class="btn">{% trans "Sign Up" %} &raquo;</button>
     </form>
 
 </div>
@@ -42,3 +42,10 @@
 </div>
 
 
+<style>
+  #btn1{
+    background-image: linear-gradient(to right, #77aad9, #e68387);
+    border-style: none;
+    color: white;
+  }
+</style>
