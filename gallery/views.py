@@ -2,7 +2,7 @@ from asyncio.windows_events import NULL
 from tokenize import blank_re
 from distutils.command.upload import upload
 from django.shortcuts import render, redirect, get_object_or_404
-from gallery.forms import CommentForm
+
 from main.models import Gallery, Like, Comment, User, Landmark
 from rest_framework.views import APIView
 from django.utils import timezone
