@@ -36,7 +36,9 @@
       <a href= "#"><li>Photo Guide</li></a>
       <a href= "{% url 'gallery'%}"><li>Gallery</li></a>
       <a href= "{% url 'collection'%}"><li>Collection</li></a>
+      <a href= "{% url 'ranking'%}"><li>Ranking</li></a>
       <a href= "{% url 'mypage'%}"><li>My Page</li></a>
+     
   
     {% else %}
     <a href= "{% url 'login' %}" style="text-decoration:none"><li>Log in</li></a>
@@ -54,7 +56,12 @@
 
 
 <style>    
-   
+  @font-face {
+    font-family: 'Cafe24Ssurround';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
     #logout_btn{
       color:#db545a
     }
