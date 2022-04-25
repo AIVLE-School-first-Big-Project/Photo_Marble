@@ -12,7 +12,7 @@ class User(AbstractUser):
         return self.email
 
 class Landmark(models.Model):
-    lanmark_id = models.AutoField(primary_key=True)
+    landmark_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
     x = models.FloatField()
     y = models.FloatField()

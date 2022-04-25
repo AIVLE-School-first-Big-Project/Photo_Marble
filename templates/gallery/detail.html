@@ -1,4 +1,5 @@
 <!doctype html>
+{% load static %}
 <html lang="en">
 <head>
   <!-- Required meta tags -->
@@ -139,13 +140,25 @@
     flex-direction: column;
 }
 
+.like_btn{
+  width: 5px;
+  height: 5px;
+}
+
+#btn_group button{ 
+  border: 1px solid white; 
+  background-color: rgba(0,0,0,0); 
+  /* color: skyblue;  */
+  /* padding: 5px; */
+}
+
+
 </style>
-{% extends "base.html" %}
 {% block content %}
 
 <body>
   
-{% if datas %}
+  {% if datas %}
   {% for data in datas%}
     <div class="main_body">
       <div class="left_body">
@@ -163,42 +176,81 @@
               <button type="button">mode_comment</button>
             </div>
           </div>
+          <!-- 좋아요 개수 -->
           <div class="feed_like">
             {% if likes %}
-            <span class="feed_name_txt"> 좋아요 {{ likes.like_id }}개 </span>
+            <span class="feed_name_txt">좋아요 {{ len_likes }}개 </span>
             {% endif %}
           </div>
+
+          <!-- 게시글 -->
           <div class="feed_content">
-            <p class="feed_txt"> <b> {{ data.userId }} </b> 맞8조 화이팅!!</p>
+            <p class="feed_txt"> <b> {{ data.userId }} </b> </p>
           </div>
           <div class="feed_reply">
-            <span class="feed_txt"> <b> mychew </b> 제주도 가고 싶어요 ㅠㅠ</span>
-            <span class="feed_txt"> <b> cho </b> 제주도  ㄱ ㄱ </span>
+
+            <!-- 다른 사용자의 댓글 기능 -->
+            {% if comments %}
+              {% for comment in comments%}
+                  {% if comment.user.id == my_id %}
+                    <div>
+                      <span class="feed_txt"> <b> {{ comment.user.nickname}} </b> {{ comment.content }} <b> </span> 
+                        <a href="{% url 'comment_delete' data.gallery_id comment.comment_id %}"> <img class="delete" src="{%static 'img/delete.png' %}" width=20px height=20px;> </a>
+                    </div>    
+                  {% else %}
+                    <div>
+                      <span class="feed_txt"> <b> {{ comment.user.nickname}} </b> {{ comment.content }}</span>
+                    </div> 
+                  {% endif%}
+              {% endfor %}
+            {% endif %}
+
           {% endfor %}
         {% endif %}
+
+
+        <!-- 댓글 작성 -->
+        <form method="POST">
+          {% csrf_token %}
+          <input name="comment_textbox" type="text" value="">
+          <input class="btn btn-primary" type="submit" value="등록">
+        </form>
+
       </div>
-
-      
-      <!-- 04.21 성재랑 보기-->
-      <form method="post" action="{% url 'detail' gallery.id %}"> 
-        {% csrf_token %}
-        <textarea name=""></textarea>
-        <input type="submit" value="게시">
-      </form>
-
-
     </div>
   </div>
 </div>
 {% endblock %}
-
 
 <!-- Optional JavaScript; choose one of the two! -->
 
 <!-- Option 1: Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous">
+      
+        {% comment %} function zoomIn(x) {
+          x.style.transform = "scale(1.2)"; //1.2배 확대
+          x.style.zIndex = 1;
+          x.style.transition = "all 0.2s";// 속도
+        }
+      
+        function zoomOut(x) {
+          x.target.style.transform = "scale(1)";
+          x.target.style.zIndex = 0;
+          x.target.style.transition = "all 0.2s";
+        } {% endcomment %}
+      </script>
+
+<style>
+  .delete {
+    object-fit: cover;
+    transition: transform 400ms ease-out;
+  }
+  .delete:hover {
+    transform: scale(1.2);
+  }
+</style>
 
 <!-- Option 2: Separate Popper and Bootstrap JS -->
 <!--
