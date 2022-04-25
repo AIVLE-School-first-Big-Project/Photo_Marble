@@ -40,28 +40,29 @@
       <a href= "{% url 'mypage'%}"><li>My Page</li></a>
      
   
-    {% else %}
-    <a href= "{% url 'login' %}" style="text-decoration:none"><li>Log in</li></a>
-    <a href= "{% url 'custom_signup' %}" style="text-decoration:none"><li>Sign up</li></a>
-    {% endif %}
-        </li>    
-
-  </ul>
-</span> 
-
-</nav>
-</header>
-{% block content %}
-{% endblock %}
-
-
-<style>    
-  @font-face {
-    font-family: 'Cafe24Ssurround';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
+      {% else %}
+      <a style="font-family: 'yg-jalnan';" href= "{% url 'login' %}" style="text-decoration:none"><li>Log in</li></a>
+      <a style="font-family: 'yg-jalnan'; href= "{% url 'custom_signup' %}" style="text-decoration:none"><li>Sign up</li></a>
+      {% endif %}
+          </li>    
+  
+    </ul>
+  </span> 
+  
+  </nav>
+  </header>
+  {% block content %}
+  {% endblock %}
+  
+  
+ 
+  <style>    
+    @font-face{
+      font-family: 'yg-jalnan';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+  }
     #logout_btn{
       color:#db545a
     }
@@ -188,27 +189,30 @@
         border-top: 1px solid rgba(255, 255, 255, 0.10);
     }
     .sidebarMenuInner li{
-        list-style: none;
-        color: #db545a;
-        text-transform: uppercase;
-        font-weight: bold;
-        padding: 20px;
-        cursor: pointer;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.10);
-        font-size: 23px;        
-    }
-    .sidebarMenuInner li span{
-        display: block;
-        font-size: 14px;
-        color: rgba(255, 255, 255, 0.50);
-    }
-    .sidebarMenuInner li a{
-        color: #db545a;
-        text-transform: uppercase;
-        font-weight: bold;
-        cursor: pointer;
-        text-decoration: none;
-    }
+      list-style: none;
+      color: #db545a;
+      text-transform: uppercase;
+      font-weight: bold;
+      padding: 20px;
+      cursor: pointer;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+      font-size: 23px;   
+      font-family: 'yg-jalnan';"     
+  }
+  .sidebarMenuInner li span{
+      display: block;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.50);
+      font-family: 'yg-jalnan';"   
+  }
+  .sidebarMenuInner li a{
+      color: #db545a;
+      text-transform: uppercase;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      font-family: 'yg-jalnan';
+  } 
     input[type="checkbox"]:checked ~ #sidebarMenu {
         transform: translateX(0);
     }
