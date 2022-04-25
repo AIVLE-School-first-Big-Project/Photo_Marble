@@ -45,64 +45,27 @@ def collection_mypage(request):
     # a_list=json.dumps(area_list)
     test_dict={}
     for i in range(0, 25):
-        print(data_list[0])
         test_dict['s{}'.format(i+1)]= data_list[i]
     
     test_dict['progress'] = progress
-    print(test_dict)
-    # test={'progress' : progress,
-    #         's1': data_list[0],
-    #         's2': data_list[1],
-    #         's3': data_list[2],
-    #         's4': data_list[3],
-    #         's5': data_list[4],
-    #         's6': data_list[5],
-    #         's7': data_list[6],
-    #         's8': data_list[7],
-    #         's9': data_list[8],
-    #         's10':data_list[9],
-    #         's11':data_list[10],
-    #         's12':data_list[11],
-    #         's13':data_list[12],
-    #         's14':data_list[13],
-    #         's15':data_list[14],
-    #         's16':data_list[15],
-    #         's17':data_list[16], 
-    #         's18':data_list[17], 
-    #         's19':data_list[18], 
-    #         's20':data_list[19], 
-    #         's21':data_list[20], 
-    #         's22':data_list[21], 
-    #         's23':data_list[22], 
-    #         's24':data_list[23], 
-    #         's25':data_list[24]
-
-    #         # 'area':area_list,
-    #         # 'marker':marker_list
-    #         }
-    # print(test)
+    
     return render(request, '../templates/collection/collection_mypage.html', context=test_dict)
 
-
+from django.db.models import Q
 from django.views.decorators.csrf import csrf_exempt
 @csrf_exempt
-def my_gallery(request):
+def my_gallery(request,loc_id):
     ui = request.session['id']
-    print(ui)
-    loc_id = request.POST.get('loc_id')
-    print(loc_id)
     loc=Locations.objects.get(location_id = loc_id)
     loc_name=loc.name
-    land=Landmark.objects.get(area = loc_name)
-    land_id=land.landmark_id
-    print(land_id)
-    my_galleries = Gallery.objects.filter(user=ui, landmark_id=land_id)
+    lands_area=Landmark.objects.filter(area = loc_name)
+    land_list=[]
+    for land in lands_area:
+        land_list.append(land.landmark_id)
+    my_galleries = Gallery.objects.filter(user=ui, landmark_id__in=land_list)
     content = {"datas" : my_galleries}
     return render(request, "../templates/collection/my_gallery.html" , context= content)
 
-
-def maps(request):
-    return render(request, "../templates/collection/collection_mypage.html")
 
 # def collection_ranking(request):
 #     total = len(Landmark.objects.all())

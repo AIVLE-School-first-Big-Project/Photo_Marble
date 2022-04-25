@@ -136,118 +136,12 @@
     function post_page(loc_id){
         var f = document.createElement('form');
         f.setAttribute('method', 'post');
-        f.setAttribute('action', 'http://127.0.0.1:8000/collection/mygallery/');
+        f.setAttribute('action', 'http://127.0.0.1:8000/collection/mygallery/'.concat(loc_id).concat('/'));
         document.head.appendChild(f);
-
-        var obj = document.createElement('input');
-        obj.setAttribute('type', 'hidden');
-        obj.setAttribute('name', 'loc_id');
-        obj.setAttribute('value', loc_id);
-        f.appendChild(obj);
         f.submit();
 }
 </script>
 
-{% comment %} <form name="Jongnogu" action="http://127.0.0.1:8000/collection/mygallery/" method="POST">
-    {% csrf_token %}
-    <input type="hidden" name="loc_id" value="1"/>
-</form>
-<form name="Junggu" action="http://127.0.0.1:8000/collection/mygallery/" method="POST">
-    {% csrf_token %}
-    <input type="hidden" name="loc_id" value="2"/>
-</form>
-<form name="Yongsangu" action="http://127.0.0.1:8000/collection/mygallery/" method="POST">
-    {% csrf_token %}
-    <input type="hidden" name="loc_id" value="3"/>
-</form>
-<form name="Seongdonggu" action="http://127.0.0.1:8000/collection/mygallery/" method="POST">
-    {% csrf_token %}
-    <input type="hidden" name="loc_id" value="4"/>
-</form>
-<form name="Gwangjingu" action="http://127.0.0.1:8000/collection/mygallery/" method="POST">
-    {% csrf_token %}
-    <input type="hidden" name="loc_id" value="5"/>
-</form>
-<form name="Dongdaemungu" action="http://127.0.0.1:8000/collection/mygallery/" method="POST">
-    {% csrf_token %}
-    <input type="hidden" name="loc_id" value="6"/>
-</form>
-<form name="Jungnanggu" action="http://127.0.0.1:8000/collection/mygallery/" method="POST">
-    {% csrf_token %}
-    <input type="hidden" name="loc_id" value="7"/>
-</form>
-<form name="Seongbukgu" action="http://127.0.0.1:8000/collection/mygallery/" method="POST">
-    {% csrf_token %}
-    <input type="hidden" name="loc_id" value="8"/>
-</form>
-<form name="Gangbukgu" action="http://127.0.0.1:8000/collection/mygallery/" method="POST">
-    {% csrf_token %}
-    <input type="hidden" name="loc_id" value="9"/>
-</form>
-<form name="Dobonggu" action="http://127.0.0.1:8000/collection/mygallery/" method="POST">
-    {% csrf_token %}
-    <input type="hidden" name="loc_id" value="10"/>
-</form>
-<form name="Nowongu" action="http://127.0.0.1:8000/collection/mygallery/" method="POST">
-    {% csrf_token %}
-    <input type="hidden" name="loc_id" value="11"/>
-</form>
-<form name="Eunpyeonggu" action="http://127.0.0.1:8000/collection/mygallery/" method="POST">
-    {% csrf_token %}
-    <input type="hidden" name="loc_id" value="12"/>
-</form>
-<form name="Seodaemungu" action="http://127.0.0.1:8000/collection/mygallery/" method="POST">
-    {% csrf_token %}
-    <input type="hidden" name="loc_id" value="13"/>
-</form>
-<form name="Mapogu" action="http://127.0.0.1:8000/collection/mygallery/" method="POST">
-    {% csrf_token %}
-    <input type="hidden" name="loc_id" value="14"/>
-</form>
-<form name="Yangcheongu" action="http://127.0.0.1:8000/collection/mygallery/" method="POST">
-    {% csrf_token %}
-    <input type="hidden" name="loc_id" value="15"/>
-</form>
-<form name="Gangseogu" action="http://127.0.0.1:8000/collection/mygallery/" method="POST">
-    {% csrf_token %}
-    <input type="hidden" name="loc_id" value="16"/>
-</form>
-<form name="Gurogu" action="http://127.0.0.1:8000/collection/mygallery/" method="POST">
-    {% csrf_token %}
-    <input type="hidden" name="loc_id" value="17"/>
-</form>
-<form name="Geumcheongu" action="http://127.0.0.1:8000/collection/mygallery/" method="POST">
-    {% csrf_token %}
-    <input type="hidden" name="loc_id" value="18"/>
-</form>
-<form name="Yeongdeungpogu" action="http://127.0.0.1:8000/collection/mygallery/" method="POST">
-    {% csrf_token %}
-    <input type="hidden" name="loc_id" value="19"/>
-</form>
-<form name="Dongjakgu" action="http://127.0.0.1:8000/collection/mygallery/" method="POST">
-    {% csrf_token %}
-    <input type="hidden" name="loc_id" value="20"/>
-</form>
-<form name="Gwanakgu" action="http://127.0.0.1:8000/collection/mygallery/" method="POST">
-    {% csrf_token %}
-    <input type="hidden" name="loc_id" value="21"/>
-</form>
-<form name="Seochogu" action="http://127.0.0.1:8000/collection/mygallery/" method="POST">
-    {% csrf_token %}
-    <input type="hidden" name="loc_id" value="22"/>
-</form>
-<form name="Gangnamgu" action="http://127.0.0.1:8000/collection/mygallery/" method="POST">
-    {% csrf_token %}
-    <input type="hidden" name="loc_id" value="23"/>
-</form>
-<form name="Songpagu" action="http://127.0.0.1:8000/collection/mygallery/" method="POST">
-    {% csrf_token %}
-    <input type="hidden" name="loc_id" value="24"/>
-</form>
-<form name="Gangdonggu" action="http://127.0.0.1:8000/collection/mygallery/" method="POST">
-    {% csrf_token %}
-    <input type="hidden" name="loc_id" value="25"/>
-</form> {% endcomment %}
 {% endblock %}
 
 
