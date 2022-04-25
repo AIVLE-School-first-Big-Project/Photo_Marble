@@ -2,7 +2,6 @@ from asyncio.windows_events import NULL
 from tokenize import blank_re
 from distutils.command.upload import upload
 from django.shortcuts import render, redirect, get_object_or_404
-from gallery.forms import CommentForm
 from main.models import Gallery, Like, Comment, User, Landmark
 from rest_framework.views import APIView
 from django.utils import timezone
@@ -54,7 +53,7 @@ def detail(request, id):
         comment.content = request.POST.get('comment_textbox')
         if comment.content == '':
             comments = Comment.objects.filter(gallery_id=id)
-            content = {"datas" : galleries, "len_likes": len(likes), "likes": likes, "comments":comments}
+            content = {"data" : galleries, "len_likes": len(likes), "likes": likes, "comments":comments}
             return render(request, '../templates/gallery/detail.html', context=content)
         comment.user = User(id = user_id)
         comment.gallery = Gallery(gallery_id = id)
@@ -70,7 +69,7 @@ def comment_delete(request, g_id, c_id):
     comment = get_object_or_404(Comment, pk=c_id)
     comment.delete()
 
-    return redirect('detail2',id=g_id)
+    return redirect('detail2', id=g_id)
 
     
     
