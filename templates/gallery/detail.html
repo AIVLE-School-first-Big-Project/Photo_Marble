@@ -41,7 +41,7 @@
                   color: white;">삭제</button >
               {% endif %}
             </div>
-            
+
             
             <img class="feed_img" src="{{ data.s3_url }}">
   
@@ -99,12 +99,14 @@
                 <!-- style="font-family: 'yg-jalnan';" -->
                 {% if data.like_count %}
                 <span style="font-family: 'yg-jalnan';" id="like_count">{{data.like_count}}</span>명이 좋아합니다.
+
                 {% else %}
                 <span style="font-family: 'yg-jalnan';" id="like_count">{{len_likes}}</span>명이 좋아합니다.
                 {% endif %}
               </div>
               </div>
             </div>
+
   
             
   
@@ -130,11 +132,13 @@
                   {% else %}
                     <div>
                       <span class="feed_txt"> <b> {{ comment.user.nickname}} </b> {{ comment.content }}</span>
+
                         {% if comment.created_string == False %}
                           <span class="timestamp">{{ comment.updated_at|date:'m월 d일' }}</span>
                         {% else %}
                             <span class="timestamp">{{ comment.created_string }}</span>
                         {% endif %}
+
                     </div> 
                   {% endif%}
               {% endfor %}
@@ -148,6 +152,7 @@
           </form>
   
         </div>
+
       </div>
     </div>
   </div>
