@@ -80,7 +80,11 @@ def comment_delete(request, g_id, c_id):
 
     return redirect('detail2', id=g_id)
 
-    
+def gallery_delete(request, g_id):
+    gallery = get_object_or_404(Gallery, pk=g_id)
+    gallery.delete()
+
+    return redirect('gallery')
 
 def likes(request):
     if request.is_ajax(): 
