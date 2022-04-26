@@ -7,11 +7,36 @@ from main.models import Gallery, Like, Comment, User, Landmark
 from django.utils.timezone import now
 from rest_framework.views import APIView
 from django.utils import timezone
-# from .forms import CommentForm
 from django.utils import timezone
 from datetime import datetime
 from django.http import HttpResponse,JsonResponse
 import json
+
+from rest_framework import generics
+from rest_framework.pagination import PageNumberPagination
+from django.core.paginator import *
+
+# Pagnation
+def gallery_list(request):
+    gallery_list = Gallery.objects.all()
+    paginator = Paginator(gallery_list, 4)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    if page_number:
+        if int(page_number) <= paginator.num_pages:
+            obj_list = paginator.get_page(page_number)
+            obj_list = obj_list.object_list.values()
+            return JsonResponse(list(obj_list), status=200, safe=False)
+    context = {'page_obj':page_obj, 'datas':gallery_list}
+    return render(request, "../templates/gallery/gallery.html" , context)
+
+# Pagination
+
+# P2
+
+# P2
+
+
 def gallery(request):
     l_id = request.POST.get('landmark')
     c_id = request.POST.get('category')
