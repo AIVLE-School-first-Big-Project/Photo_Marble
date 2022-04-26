@@ -31,39 +31,15 @@
             <div class="profile_box">
               <img class="profile_img" src="{{ profile_photo }}">
             </div>
+            {% comment %} <p>&nbsp;&nbsp; {{uploader}} </p> {% endcomment %}
             <span class="feed_name_txt"> {{ uploader }} </span>
           </div>
           
           
           <img class="feed_img" src="{{ data.s3_url }}">
 
-          {% comment %} <div class="feed_like">
-            {% if likes %}
-              <span class="feed_name_txt">좋아요 {{ len_likes }}개 </span>
-            
-            {% else %}
-              <span class="feed_name_txt">좋아요 0개</span>
-
-            {% endif %} {% endcomment %}
-          </div>
-        
           <div class="feed_icon">
             <div>
-              {% comment %} <span id="like_count">{{len_likes}}</span>  {% endcomment %}
-              {% if data.like_count %}
-              <span id="like_count">{{data.like_count}}</span>명이 좋아합니다.
-              {% else %}
-              <span id="like_count">{{len_likes}}</span>명이 좋아합니다.
-              {% endif %}
-              <button style="background-color:white; border:none;" id="{{data.gallery_id}}" onclick="post_like(this.id)"> 
-                {% if request.user in data.like_users.all %}
-                <!-- 로그인 한 유저가 좋아요를 누른 유저일때  -->
-                <img id="heart" style="weight:30px;height:30px;" src="/../../static/gallery/images/heart_2.png">
-                {%else%}
-                <!-- 로그인 한 유저가 좋아요를 누른 유저가 아닐 때  -->
-                <img id="heart" style="weight:30px;height:30px;" src="/../../static/gallery/images/heart_1.png">
-                {%endif%}
-              </button>
 
           <script src="https://code.jquery.com/jquery-3.5.1.js"integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
           <script type="text/javascript">
@@ -94,15 +70,25 @@
               })
           }
       </script>
-              {% comment %} <form method="post" action="{% url 'likes' data.gallery_id %}">
-                {% csrf_token %}
-                {% if flag %}
-                <button type="submit" style="background-color:white;border: none;" id="chat_btn" type="button"><img style="weight:30px;height:30px;" src="/../../static/gallery/images/heart_1.png"></button> 
-                {% else %}
-                <button type="submit" style="background-color:white;border: none;" id="chat_btn" type="button"><img style="weight:30px;height:30px;" src="/../../static/gallery/images/heart_2.png"></button>
-                {% endif %}
-              </form>
-              {% endcomment %}
+            <div>
+              <button style="background-color:white; border:none;" id="{{data.gallery_id}}" onclick="post_like(this.id)"> 
+                {% if request.user in data.like_users.all %}
+                <!-- 로그인 한 유저가 좋아요를 누른 유저일때  -->
+                <img id="heart" style="weight:25px;height:25px;" src="/../../static/gallery/images/heart_2.png">
+                {%else%}
+                <!-- 로그인 한 유저가 좋아요를 누른 유저가 아닐 때  -->
+                <img id="heart" style="weight:25px;height:25px;" src="/../../static/gallery/images/heart_1.png">
+                {%endif%}
+              </button>
+            </div>
+            <div style = "margin: 7px;">
+              <!-- style="font-family: 'yg-jalnan';" -->
+              {% if data.like_count %}
+              <span style="font-family: 'yg-jalnan';" id="like_count">{{data.like_count}}</span>명이 좋아합니다.
+              {% else %}
+              <span style="font-family: 'yg-jalnan';" id="like_count">{{len_likes}}</span>명이 좋아합니다.
+              {% endif %}
+            </div>
             </div>
           </div>
 
@@ -118,9 +104,9 @@
             {% if comments %}
               {% for comment in comments%}
                 {% if comment.user.id == my_id %}
-                    <div class = "comment_line">
-                        <span class="feed_txt"> <b> {{ comment.user.nickname}} </b> </span> <span class="comment_content"> {{ comment.content }} <b> </span>
-                        <a href="{% url 'comment_delete' data.gallery_id comment.comment_id %}"> <img class="delete" src="{% static 'gallery/images/delete.png' %}" width=15px height=15px;> </a>
+                    <div>
+                        <span class="feed_txt"> <b> {{ comment.user.nickname}} </b> {{ comment.content }} <b> </span> <b><b>
+                        <a href="{% url 'comment_delete' data.gallery_id comment.comment_id %}"> <img class="delete" src="{% static 'gallery/images/delete.png' %}" width=20px height=20px;> </a>
                         {% if comment.created_string == False %}
                           <span class="timestamp">{{ comment.updated_at|date:'m월 d일' }}</span>
                         {% else %}
@@ -129,7 +115,7 @@
                   </div>    
                 {% else %}
                   <div>
-                    <span class="feed_txt"> <b> {{ comment.user.nickname}} </b> </span> <span class="comment_content">{{ comment.content }}</span>
+                    <span class="feed_txt"> <b> {{ comment.user.nickname}} </b> {{ comment.content }}</span>
                       {% if comment.created_string == False %}
                         <span class="timestamp">{{ comment.updated_at|date:'m월 d일' }}</span>
                       {% else %}
@@ -140,14 +126,11 @@
             {% endfor %}
             {% endif %}
 
-
         <!-- 댓글 작성 -->
         <form method="POST">
           {% csrf_token %}
-        <div class="comment_textbox">
-          <input class="comment_textbox" name="comment_textbox" type="text" style="width:85%;" placeholder="댓글 달기">
-          <input id = 'btn1' class="btn" type="submit" style="width:auto;" value="등록">
-        </div>
+          <input name="comment_textbox" type="text" style="width:85%;" placeholder="댓글 달기">
+          <input id = 'btn1' class="btn" type="submit" style="width:auto font-family:'yg-jalnan';" value="등록">
         </form>
 
       </div>
@@ -182,3 +165,18 @@
 </script>
 {% endblock %}
 
+<style>  
+@font-face {
+  font-family: 'Cafe24Ssurround';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  margin: 5px;
+}
+@font-face{
+font-family: 'yg-jalnan';
+src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+font-weight: normal;
+font-style: normal;
+}
+</style>
