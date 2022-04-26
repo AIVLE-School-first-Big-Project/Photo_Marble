@@ -21,7 +21,7 @@ def gallery(request):
     landmarks = Landmark.objects.all()
     
     if request.method == 'POST':
-    
+        # 사진 필터링
         if (l_id is None and c_id is None)  or (l_id == '0' and c_id == '0'):
             galleries = Gallery.objects.all()
         elif l_id == '0' and c_id is not None:
