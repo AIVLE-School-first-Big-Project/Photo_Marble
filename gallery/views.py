@@ -1,5 +1,3 @@
-<views.py>
-
 from asyncio.windows_events import NULL
 from tokenize import blank_re
 from distutils.command.upload import upload
