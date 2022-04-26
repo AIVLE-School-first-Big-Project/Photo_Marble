@@ -22,8 +22,6 @@
 </head>
 
 <body>
-  
-
     <div class="main_body">
       <div class="left_body">
         <div class="border feed_box">
@@ -31,8 +29,12 @@
             <div class="profile_box">
               <img class="profile_img" src="{{ profile_photo }}">
             </div>
-            {% comment %} <p>&nbsp;&nbsp; {{uploader}} </p> {% endcomment %}
-            <span class="feed_name_txt"> {{ uploader }} </span>
+              <span class="feed_name_txt"> {{ uploader }} </span>
+              {% if data.user.user_id == my_id %}
+                <button onclick="button_event()"  style="background-image: linear-gradient(to right, #77aad9, #e68387);
+                border-style: none; height : 40; margin : -4 0 0 0 ;
+                color: white;">삭제</button >
+              {% endif %}
           </div>
           
           
@@ -68,27 +70,24 @@
                      
                   }
               })
-          }
-      </script>
-            <div>
-              <button style="background-color:white; border:none;" id="{{data.gallery_id}}" onclick="post_like(this.id)"> 
-                {% if request.user in data.like_users.all %}
-                <!-- 로그인 한 유저가 좋아요를 누른 유저일때  -->
-                <img id="heart" style="weight:25px;height:25px;" src="/../../static/gallery/images/heart_2.png">
-                {%else%}
-                <!-- 로그인 한 유저가 좋아요를 누른 유저가 아닐 때  -->
-                <img id="heart" style="weight:25px;height:25px;" src="/../../static/gallery/images/heart_1.png">
-                {%endif%}
-              </button>
-            </div>
-            <div style = "margin: 7px;">
-              <!-- style="font-family: 'yg-jalnan';" -->
-              {% if data.like_count %}
-              <span style="font-family: 'yg-jalnan';" id="like_count">{{data.like_count}}</span>명이 좋아합니다.
-              {% else %}
-              <span style="font-family: 'yg-jalnan';" id="like_count">{{len_likes}}</span>명이 좋아합니다.
-              {% endif %}
-            </div>
+            }
+            function button_event(){
+              if (confirm("정말 삭제하시겠습니까??") == true){    //확인
+                location.href="{% url 'gallery_delete' data.gallery_id %}";
+              }else{   //취소
+                  return;
+              }
+            }
+          </script>
+              {% comment %} <form method="post" action="{% url 'likes' data.gallery_id %}">
+                {% csrf_token %}
+                {% if flag %}
+                <button type="submit" style="background-color:white;border: none;" id="chat_btn" type="button"><img style="weight:30px;height:30px;" src="/../../static/gallery/images/heart_1.png"></button> 
+                {% else %}
+                <button type="submit" style="background-color:white;border: none;" id="chat_btn" type="button"><img style="weight:30px;height:30px;" src="/../../static/gallery/images/heart_2.png"></button>
+                {% endif %}
+              </form>
+              {% endcomment %}
             </div>
           </div>
 
@@ -150,18 +149,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
         crossorigin="anonymous">
-      
-        {% comment %} function zoomIn(x) {
-          x.style.transform = "scale(1.2)"; //1.2배 확대
-          x.style.zIndex = 1;
-          x.style.transition = "all 0.2s";// 속도
-        }
-      
-        function zoomOut(x) {
-          x.target.style.transform = "scale(1)";
-          x.target.style.zIndex = 0;
-          x.target.style.transition = "all 0.2s";
-        } {% endcomment %}
 </script>
 {% endblock %}
 
