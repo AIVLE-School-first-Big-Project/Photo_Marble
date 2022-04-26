@@ -78,17 +78,16 @@
 <br>
 <br>
    <div class="gallery">
-    {% if datas %}  
-        {% for data in datas%}
-            <div class="gallery-item">
-                <a href= "{% url 'detail2' data.gallery_id %}"  aria-label="Genuine Gemini" class="grid-item-link">
-                <img class="gallery-image" src="{{ data.s3_url }}">
-                </a>
-            </div>
-        {% endfor %}
-    {% endif %}
-   </div>
-
+      {% if datas %}  
+          {% for data in datas%}
+              <div class="gallery-item">
+                  <a href= "{% url 'detail2' data.gallery_id %}"  aria-label="Genuine Gemini" class="grid-item-link">
+                  <img class="gallery-image" src="{{ data.s3_url }}">
+                  </a>
+              </div>
+          {% endfor %}
+      {% endif %}
+   </div> 
 </div>
 </section>
 
@@ -257,19 +256,30 @@ body {
 }
 
 .gallery {
-   display: flex;
+   display: grid;
+   grid-template-columns: repeat(4, 1fr);
    flex-wrap: wrap;
    /* Compensate for excess margin on outer gallery flex items */
-   margin: -1rem -1rem;
+   margin: 1rem 1rem;
+   width: 320px;
+   height: 320px;
+   object-fit: cover;
 }
 
 .gallery-item {
-   /* Minimum width of 24rem and grow to fit available space */
+   /* Minimum width of 24rem and grow to fit available space
    flex: 1 0 24rem;
-   /* Margin value should be half of grid-gap value as margins on flex items don't collapse */
+   Margin value should be half of grid-gap value as margins on flex items don't collapse
    margin: 1rem;
    box-shadow: 0.3rem 0.4rem 0.4rem rgba(0, 0, 0, 0.4);
-   overflow: hidden;
+   overflow: hidden; */
+   width: 320px;
+   height: 320px;
+   object-fit: cover;
+   flex: 1 0 24rem;
+   margin: 1rem;
+   
+   box-shadow: 0.3rem 0.4rem 0.4rem rgba(0, 0, 0, 0.4);
 }
 
 .gallery-image {
