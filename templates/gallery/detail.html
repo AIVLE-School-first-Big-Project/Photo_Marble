@@ -31,12 +31,10 @@
             <div class="profile_box">
               <img class="profile_img" src="{{ profile_photo }}">
             </div>
-            {% comment %} <p>&nbsp;&nbsp; {{uploader}} </p> {% endcomment %}
             <span class="feed_name_txt"> {{ uploader }} </span>
           </div>
           
-          
-          <img class="feed_img" src="{{ data.photo_url }}">
+            <img class="feed_img" src="{{ data.photo_url }}">
 
           <div class="feed_like">
             {% if likes %}
@@ -51,7 +49,6 @@
             <div>
               
               <button style="background-color:white;border: none;" id="chat_btn" type="button"><img style="weight:30px;height:30px;" src="/../../static/gallery/images/heart_1.png"></button> 
-              {% comment %} <button style="background-color:white;border: none;" id="chat_btn" type="button"><img style="weight:25px;height:25px;" src="/../../static/gallery/images/chat.png"></button> {% endcomment %}
             </div>
           </div>
 
@@ -67,9 +64,9 @@
             {% if comments %}
               {% for comment in comments%}
                 {% if comment.user.id == my_id %}
-                    <div>
-                        <span class="feed_txt"> <b> {{ comment.user.nickname}} </b> {{ comment.content }} <b> </span> <b><b>
-                        <a href="{% url 'comment_delete' data.gallery_id comment.comment_id %}"> <img class="delete" src="{% static 'gallery/images/delete.png' %}" width=20px height=20px;> </a>
+                    <div class = "comment_line">
+                        <span class="feed_txt"> <b> {{ comment.user.nickname}} </b> </span> <span class="comment_content"> {{ comment.content }} <b> </span>
+                        <a href="{% url 'comment_delete' data.gallery_id comment.comment_id %}"> <img class="delete" src="{% static 'gallery/images/delete.png' %}" width=15px height=15px;> </a>
                         {% if comment.created_string == False %}
                           <span class="timestamp">{{ comment.updated_at|date:'m월 d일' }}</span>
                         {% else %}
@@ -78,7 +75,7 @@
                   </div>    
                 {% else %}
                   <div>
-                    <span class="feed_txt"> <b> {{ comment.user.nickname}} </b> {{ comment.content }}</span>
+                    <span class="feed_txt"> <b> {{ comment.user.nickname}} </b> </span> <span class="comment_content">{{ comment.content }}</span>
                       {% if comment.created_string == False %}
                         <span class="timestamp">{{ comment.updated_at|date:'m월 d일' }}</span>
                       {% else %}
@@ -89,16 +86,14 @@
             {% endfor %}
             {% endif %}
 
- 
-
-      
-
 
         <!-- 댓글 작성 -->
         <form method="POST">
           {% csrf_token %}
-          <input name="comment_textbox" type="text" style="width:85%;" placeholder="댓글 달기">
+        <div class="comment_textbox">
+          <input class="comment_textbox" name="comment_textbox" type="text" style="width:85%;" placeholder="댓글 달기">
           <input id = 'btn1' class="btn" type="submit" style="width:auto;" value="등록">
+        </div>
         </form>
 
       </div>

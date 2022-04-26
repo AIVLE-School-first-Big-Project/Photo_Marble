@@ -3,11 +3,9 @@ from tokenize import blank_re
 from distutils.command.upload import upload
 from django.shortcuts import render, redirect, get_object_or_404
 from main.models import Gallery, Like, Comment, User, Landmark
-from rest_framework.views import APIView
-from django.utils import timezone
-# from .forms import CommentForm
 from django.utils import timezone
 from datetime import datetime
+
 
 def gallery(request):
     l_id = request.POST.get('landmark')
@@ -18,15 +16,6 @@ def gallery(request):
     landmarks = Landmark.objects.all()
     
     if request.method == 'POST':
-        # 업로드 된 파일 저장
-        # upload_file = request.FILES.get('file')
-
-        # name = upload_file.name
-
-        # with open(name, 'wb') as file:
-        #     for chunk in upload_file.chunks():
-        #         file.write(chunk)
-
         # 사진 필터링
         if (l_id is None and c_id is None)  or (l_id == '0' and c_id == '0'):
             galleries = Gallery.objects.all()
@@ -73,10 +62,3 @@ def comment_delete(request, g_id, c_id):
 
     return redirect('detail2', id=g_id)
 
-    
-    
-    
-    
-
-
-    

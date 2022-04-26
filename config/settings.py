@@ -55,6 +55,8 @@ INSTALLED_APPS = [
     'gallery',
     'photoguide',
     'collection',
+    'storages',
+    'rest_framework',
 ]
 
 AUTHENTICATION_BACKENDS = [
@@ -177,3 +179,19 @@ STATICFILES_DIRS = (
 
 # 이걸 추가해야 django네 메세지 나오게 함
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
+# s3 연결
+AWS_ACCESS_KEY_ID = 'AKIAXSSAAWPNVXMDH24I' # .csv 파일에 있는 내용을 입력 Access key ID
+AWS_SECRET_ACCESS_KEY = 'zEPgvS2qKQQFLmZXz5XJz3xBQ2cTM6WDrJLf8pos' # .csv 파일에 있는 내용을 입력 Secret access key
+AWS_REGION = 'ap-northeast-2'
+
+AWS_S3_SECURE_URLS = False
+AWS_QUERYSTRING_AUTH = False
+
+AWS_STORAGE_BUCKET_NAME = 'photomarble-bucket' # 설정한 버킷 이름
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (AWS_STORAGE_BUCKET_NAME,AWS_REGION)
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'path/to/store/my/files/')

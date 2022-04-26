@@ -20,6 +20,11 @@
     padding-bottom: 10px;
 }
 
+.comment_textbox{
+    vertical-align: middle;
+}
+
+
 .feed_img{
     width: 100%;
     object-fit: contain;
@@ -30,6 +35,7 @@
 }
 
 .feed_like{
+    word-break:break-all;
     padding: 0px 10px;
 }
 
@@ -44,6 +50,9 @@
     font-size: 16px;
 }
 
+.comment_content{
+    font-weight: 300;
+}
 .timestamp{
     font-size: 10px;
     color: grey;
@@ -129,6 +138,7 @@
     color: lightgray;
     display: flex;
     flex-direction: column;
+    align-self: center;
 }
 
 .like_btn{
@@ -142,12 +152,24 @@
   /* color: skyblue;  */
   /* padding: 5px; */
 }
+.comment_line{
+    vertical-align: middle;
+}
+
+.comment_line:hover{
+    background-color: rgba(170, 170, 170, 0.629);
+}
 
 .delete {
-      object-fit: cover;
-      transition: transform 400ms ease-out;
+    float: right;
+    object-fit: cover;
+    transition: transform 400ms ease-out;
 }
 
 .delete:hover {
       transform: scale(1.2);
+} 
+
+.comment_textbox {
+    font-weight: 300;
 }

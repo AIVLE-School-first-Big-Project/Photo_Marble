@@ -48,8 +48,14 @@
                 <option value=2>풍경</option>
                 <option value=3>음식</option>
         </select>
-          <input type="submit">
+        <input type="submit">
       </form>
+      <form enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        <input type="file" name="file">
+        <input type="submit" value="전송">
+      </form>
+
     </div>
 <br>
 <br>
