@@ -1,5 +1,5 @@
-
 {% extends "base.html" %}
+{% block content %}
 {% load static %}
 {% block content %}
 <!doctype html>
@@ -32,27 +32,78 @@
             <div class="profile_box">
               <img class="profile_img" src="{{ profile_photo }}">
             </div>
-            {% comment %} <p>&nbsp;&nbsp; {{uploader}} </p> {% endcomment %}
             <span class="feed_name_txt"> {{ uploader }} </span>
           </div>
           
           
-          <img class="feed_img" src="{{ data.photo_url }}">
+          <img class="feed_img" src="{{ data.s3_url }}">
 
-          <div class="feed_like">
+          {% comment %} <div class="feed_like">
             {% if likes %}
               <span class="feed_name_txt">좋아요 {{ len_likes }}개 </span>
             
             {% else %}
               <span class="feed_name_txt">좋아요 0개</span>
 
-            {% endif %}
+            {% endif %} {% endcomment %}
           </div>
+        
           <div class="feed_icon">
             <div>
-              
-              <button style="background-color:white;border: none;" id="chat_btn" type="button"><img style="weight:30px;height:30px;" src="/../../static/gallery/images/heart_1.png"></button> 
-              {% comment %} <button style="background-color:white;border: none;" id="chat_btn" type="button"><img style="weight:25px;height:25px;" src="/../../static/gallery/images/chat.png"></button> {% endcomment %}
+              {% comment %} <span id="like_count">{{len_likes}}</span>  {% endcomment %}
+              {% if data.like_count %}
+              <span id="like_count">{{data.like_count}}</span>명이 좋아합니다.
+              {% else %}
+              <span id="like_count">{{len_likes}}</span>명이 좋아합니다.
+              {% endif %}
+              <button style="background-color:white; border:none;" id="{{data.gallery_id}}" onclick="post_like(this.id)"> 
+                {% if request.user in data.like_users.all %}
+                <!-- 로그인 한 유저가 좋아요를 누른 유저일때  -->
+                <img id="heart" style="weight:30px;height:30px;" src="/../../static/gallery/images/heart_2.png">
+                {%else%}
+                <!-- 로그인 한 유저가 좋아요를 누른 유저가 아닐 때  -->
+                <img id="heart" style="weight:30px;height:30px;" src="/../../static/gallery/images/heart_1.png">
+                {%endif%}
+              </button>
+
+          <script src="https://code.jquery.com/jquery-3.5.1.js"integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+          <script type="text/javascript">
+ 
+            function post_like(id) {
+              $.ajax({
+                  url: "{%url 'likes'%}", // data를 전송할 url 입니다.
+                  data: {
+                      'gallery_id': id
+                  }, // post_id 라는 name으로 id 값 전송
+                  dataType: "json",
+                  success: function (response) { // ajax 통신이 정상적으로 완료되었을 때
+                      $('#like_count').html(response.like_count) //id가 like_count의 내용을 전송받은 좋아요 수로 바꾼다
+                      $('#message').html(response.message) //id가 message의 내용을 전송받은 message로 바꾼다
+                      $('.toast').fadeIn(400).delay(100).fadeOut(400)
+                      console.log(response.message)
+                      if (response.message == "좋아요")
+                      //좋아요 눌렀을 때 
+                      {
+                          $('#heart').attr("src", "/../../static/gallery/images/heart_2.png")
+                      } else if (response.message == "좋아요 취소")
+                      //좋아요 상태에서 다시 눌렀을 때 
+                      {
+                          $('#heart').attr("src", "/../../static/gallery/images/heart_1.png")
+                      }
+                     
+                  }
+              })
+          }
+      </script>
+              {% comment %} <form method="post" action="{% url 'likes' data.gallery_id %}">
+                {% csrf_token %}
+                {% if flag %}
+                <button type="submit" style="background-color:white;border: none;" id="chat_btn" type="button"><img style="weight:30px;height:30px;" src="/../../static/gallery/images/heart_1.png"></button> 
+                {% else %}
+                <button type="submit" style="background-color:white;border: none;" id="chat_btn" type="button"><img style="weight:30px;height:30px;" src="/../../static/gallery/images/heart_2.png"></button>
+                {% endif %}
+              </form>
+              {% endcomment %}
             </div>
           </div>
 
@@ -68,9 +119,9 @@
             {% if comments %}
               {% for comment in comments%}
                 {% if comment.user.id == my_id %}
-                    <div>
-                        <span class="feed_txt"> <b> {{ comment.user.nickname}} </b> {{ comment.content }} <b> </span> 
-                        <a href="{% url 'comment_delete' data.gallery_id comment.comment_id %}"> <img class="delete" src="{% static 'gallery/images/delete.png' %}" width=20px height=20px;> </a>
+                    <div class = "comment_line">
+                        <span class="feed_txt"> <b> {{ comment.user.nickname}} </b> </span> <span class="comment_content"> {{ comment.content }} <b> </span>
+                        <a href="{% url 'comment_delete' data.gallery_id comment.comment_id %}"> <img class="delete" src="{% static 'gallery/images/delete.png' %}" width=15px height=15px;> </a>
                         {% if comment.created_string == False %}
                           <span class="timestamp">{{ comment.updated_at|date:'m월 d일' }}</span>
                         {% else %}
@@ -79,7 +130,7 @@
                   </div>    
                 {% else %}
                   <div>
-                    <span class="feed_txt"> <b> {{ comment.user.nickname}} </b> {{ comment.content }}</span>
+                    <span class="feed_txt"> <b> {{ comment.user.nickname}} </b> </span> <span class="comment_content">{{ comment.content }}</span>
                       {% if comment.created_string == False %}
                         <span class="timestamp">{{ comment.updated_at|date:'m월 d일' }}</span>
                       {% else %}
@@ -90,16 +141,14 @@
             {% endfor %}
             {% endif %}
 
- 
-
-      
-
 
         <!-- 댓글 작성 -->
         <form method="POST">
           {% csrf_token %}
-          <input name="comment_textbox" type="text" style="width:85%;" placeholder="댓글 달기">
+        <div class="comment_textbox">
+          <input class="comment_textbox" name="comment_textbox" type="text" style="width:85%;" placeholder="댓글 달기">
           <input id = 'btn1' class="btn" type="submit" style="width:auto;" value="등록">
+        </div>
         </form>
 
       </div>

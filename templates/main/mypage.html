@@ -38,9 +38,9 @@
                   </div>
                   <div class="cell-temp-clone u-align-left u-container-style u-layout-cell u-size-30 u-white u-layout-cell-2">
                     <div class="u-container-layout u-container-layout-3">
-                      <img class="u-image u-image-default u-preserve-proportions u-image-1" src="{{user.profile_photo}}" alt="" data-image-width="1280" data-image-height="1280">
-                      <a href="https://nicepage.cloud" class="u-border-2 u-border-hover-palette-2-base u-border-palette-2-base u-btn u-btn-round u-button-style u-radius-50 u-white u-btn-1"><span class="u-file-icon u-icon u-text-palette-2-base u-icon-1"><img src="{% static 'main/images/9.png' %}" alt=""></span>
-                      </a>
+                      <img style ="border-radius: 40%;" , class="u-image u-image-default u-preserve-proportions u-image-1" src="{{user.profile_s3_url}}" alt="" data-image-width="1280" data-image-height="1280">
+                      <button id="add_feed" class="u-border-2 u-border-hover-palette-2-base u-border-palette-2-base u-btn u-btn-round u-button-style u-radius-50 u-white u-btn-1"><span  class="u-file-icon u-icon u-text-palette-2-base u-icon-1"><img style="border-radius: 70%;border: 3px solid #db545a;weight:30px; height:30px;" src="{% static 'main/images/9.png' %}" alt=""></span></button>
+                     
                     </div>
                   </div>
                 </div>
@@ -99,14 +99,115 @@
       </div></footer>
 
     </body>
-  {% endblock %} 
+    <div id="modal_add_feed" class="modal_overlay">
+      <div class="modal_window">
+        <div class="modal_title">
+          <div class="modal_title_side"></div>
+          <div> 프로필 사진 수정하기 </div>
+          <div class="modal_title_side">
+              <span id="close_modal" class="material-icons-outlined">
+                  close
+              </span>
+          </div>
+      </div>
+    
+      <form method="post" action="profile_upload" enctype="multipart/form-data">
+      
+        {% csrf_token %}
+        <div class="modal_image_upload">
+    
+          <div class="item" id="filebox">
+            <br>
+            <input type="file" class="file" name="file"  accept="image/png, image/jpeg" required>
+            
+          </div>
+    
+    
+          <div class="item" >
+            <button style="background-image: linear-gradient(to right, #77aad9, #e68387);
+            border-style: none; height : 40; width:80; margin : -4 0 0 0 ;
+            color: white;" type="submit" id = 'btn1' class="btn"> 등록하기</button>
+          </div>
+        
+      </div>
+    </form>
+      </div>
+    </div>
 
-</html>
+    
 
+<script>
+  const modal = document.getElementById("modal_add_feed");
+    const buttonAddFeed = document.getElementById("add_feed");
+    buttonAddFeed.addEventListener("click", e => {
+        modal.style.display = "flex";
+        document.body.style.overflowY = "hidden";
+    });
+
+  
+  // 모달 닫기 코드
+  const buttonCloseModal = document.getElementById("close_modal");
+  buttonCloseModal.addEventListener("click", e => {
+      modal.style.display = "none";
+      document.body.style.overflowY = "visible";
+  });
+</script>
 <style>
   .box1 {
     float:left; width:200px; height:100px; background-color:#234234;}
    .box2 {
     display:inline-block; width:200px; height:100px; background-color:#666666; margin-left:10px;}  
   
+@import url(https://fonts.googleapis.com/css?family=Montserrat:500);
+.modal_overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(1.5px);
+  -webkit-backdrop-filter: blur(1.5px);
+}
+
+.modal_window {
+  background: white;
+  backdrop-filter: blur(13.5px);
+  -webkit-backdrop-filter: blur(13.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  width: 600px;
+  height: 200px;
+  position: relative;
+  padding: 10px;
+}
+
+.modal_title{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.modal_title_side{
+  flex: 0 0 40px;
+  text-align: center;
+}
+
+.modal_image_upload{
+
+  text-align: center;
+  transition: all .15s ease-in-out;
+  width:580px;
+  height: 200px;
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+}
+
    </style>
+  {% endblock %} 

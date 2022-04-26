@@ -11,16 +11,25 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-import os
+import os, json
+import secrets
+# from django.core.exceptions import ImproperConfigured
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+secret_file = os.path.join(BASE_DIR,'secrets.json')
 
+with open(secret_file) as f:
+    secrets = json.loads(f.read())
+
+def get_secret(setting, secrets=secrets):
+    return secrets[setting]
+    
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-j!g8-*^1n*d@@o7li7-n3@h1+fx&7dycm6seya4nf2zn+wdv1q'
+SECRET_KEY = get_secret("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -46,7 +55,26 @@ INSTALLED_APPS = [
     'gallery',
     'photoguide',
     'collection',
+    'storages',
+    'rest_framework',
 ]
+
+
+AWS_ACCESS_KEY_ID = 'Access key ID 입력' # .csv 파일에 있는 내용을 입력 Access key ID
+AWS_SECRET_ACCESS_KEY = 'Secret acess Key 입력' # .csv 파일에 있는 내용을 입력 Secret access key
+AWS_REGION = 'ap-northeast-2'
+
+###S3 Storages
+AWS_STORAGE_BUCKET_NAME = 'lee-teset-bucket' # 설정한 버킷 이름
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (AWS_STORAGE_BUCKET_NAME,AWS_REGION)
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'path/to/store/my/files/')
+
+
+
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
@@ -95,11 +123,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
         'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Photo_Marble',
+        'NAME': 's3',
         # 'NAME': 'DB',
         'USER': 'admin',
-        'PASSWORD': 'aivle202101',
-        'HOST': 'photomarble.ctkqwnymbxqi.ap-northeast-2.rds.amazonaws.com',
+        'PASSWORD': get_secret("PASSWORD"),
+        'HOST': get_secret("DATABASE"),
         'PORT': 3306
         }
 }
@@ -168,3 +196,19 @@ STATICFILES_DIRS = (
 
 # 이걸 추가해야 django네 메세지 나오게 함
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
+# s3 연결
+AWS_ACCESS_KEY_ID = 'AKIAXSSAAWPNVXMDH24I' # .csv 파일에 있는 내용을 입력 Access key ID
+AWS_SECRET_ACCESS_KEY = 'zEPgvS2qKQQFLmZXz5XJz3xBQ2cTM6WDrJLf8pos' # .csv 파일에 있는 내용을 입력 Secret access key
+AWS_REGION = 'ap-northeast-2'
+
+AWS_S3_SECURE_URLS = False
+AWS_QUERYSTRING_AUTH = False
+
+AWS_STORAGE_BUCKET_NAME = 'photomarble-bucket' # 설정한 버킷 이름
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (AWS_STORAGE_BUCKET_NAME,AWS_REGION)
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'path/to/store/my/files/')
