@@ -22,18 +22,24 @@ def gallery_list(request):
     paginator = Paginator(gallery_list, 4)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    if page_number:
-        if int(page_number) <= paginator.num_pages:
-            obj_list = paginator.get_page(page_number)
-            obj_list = obj_list.object_list.values()
-            return JsonResponse(list(obj_list), status=200, safe=False)
-    context = {'page_obj':page_obj, 'datas':gallery_list}
-    return render(request, "../templates/gallery/gallery.html" , context)
+    return render(request, "../templates/gallery/gallery_copy.html" , {'page_obj':page_obj})
 
 # Pagination
 
 # P2
-
+from django.core import serializers
+    # Load more
+def load_more(request):
+    offset = int(request.POST['offset'])
+    limit = 4
+    posts = Gallery.objects.all()[offset:offset + limit]
+    totalData = Gallery.objects.count()
+    data={}
+    posts_json = serializers.serialize('json', posts)
+    return JsonResponse(data={
+        'posts':posts_json,
+        'totalResult':totalData,
+    })
 # P2
 
 

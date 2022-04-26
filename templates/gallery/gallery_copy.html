@@ -19,89 +19,45 @@
     
 <body style="text-align: center;">
 
-    <section class="u-align-center u-clearfix u-white u-section-1" id="carousel_871a">
-      <div class="u-expanded-width u-gradient u-shape u-shape-rectangle u-shape-1">      
-        <br>
-    <h1 class="display-4" style="font-family: 'Cafe24Ssurround';color:#db545a;text-align : center;"> 갤러리 </h1><br>
-    <div id = select style="margin:auto;text-align:center;">
-      <form method="post" action="{% url 'gallery' %}">
-        {% csrf_token %}
-        <select class="form-select" name="landmark" id="landmark">
+    <section class="u-align-center u-clearfix u-white u-section-1 post-wrapper" id="carousel_871a">
+      <div class="u-expanded-width u-gradient u-shape u-shape-rectangle u-shape-1"><br>
+        <h1 class="display-4" style="font-family: 'Cafe24Ssurround';color:#db545a;text-align : center;"> 갤러리 </h1><br>
+        <div id = select style="margin:auto;text-align:center;">
+          <form method="post" action="{% url 'gallery' %}">
+            {% csrf_token %}
+              <select class="form-select" name="landmark" id="landmark">
                 <option value=0>전체</option>
                 {% for landmark in landmarks%}
                     <option value="{{landmark.landmark_id}}"> {{landmark.name}} </option>
                 {% endfor %}
-            </select>
+              </select>
             
-        <select class="form-select" name="category" id="category" style="display:inline-block;">
+              <select class="form-select" name="category" id="category" style="display:inline-block;">
                 <option value=0>전체</option>
                 <option value=1>인물</option>
                 <option value=2>풍경</option>
                 <option value=3>음식</option>
-        </select>
-            <button style="background-image: linear-gradient(to right, #77aad9, #e68387); border-style: none; height : 40; margin : -4 0 0 0 ; color: white;" type="submit" id = 'btn1' class="btn"> 검색</button>
-            {% csrf_token %}
-        </form>
-        <button id="add_feed" style="background-image: linear-gradient(to right, #77aad9, #e68387);
-        border-style: none; height : 40; margin : -4 0 0 0 ;
-        color: white;" class="btn"> 사진추가</button>
-    </div>   
+              </select>
+              <button style="background-image: linear-gradient(to right, #77aad9, #e68387); border-style: none; height : 40; margin : -4 0 0 0 ; color: white;" type="submit" id = 'btn1' class="btn"> 검색</button>
+                {% csrf_token %}
+            </form>
+            <button id="add_feed" style="background-image: linear-gradient(to right, #77aad9, #e68387);
+              border-style: none; height : 40; margin : -4 0 0 0 ;
+              color: white;" class="btn"> 사진추가</button>
+        </div><br><br><br>
 
-<br><br><br>
-
-{% comment %} <div class="gallery">
-  {% if datas %}  
-      {% for data in datas%}
-          <div class="gallery-item">
+        <div class="gallery">
+          {% for data in page_obj %}
+            <div class="gallery-item">
               <a href= "{% url 'detail2' data.gallery_id %}"  aria-label="Genuine Gemini" class="grid-item-link">
-              <img class="gallery-image" src="{{ data.s3_url }}">
+                <img class="gallery-image" src="{{ data.s3_url }}">{{data.s3_url}}
               </a>
-          </div>
-      {% endfor %}
-  {% endif %}
-</div> {% endcomment %}
-
-<!-- Pagination -->
-<div class="gallery" id="contentt">
-  <!--{% if page_obj %} -->
-      {% for data in page_obj %}
-          <div class="gallery-item">
-              <a href= "{% url 'detail2' data.gallery_id %}" aria-label="Genuine Gemini" class="grid-item-link">
-              <img class="gallery-image" src="{{ data.s3_url }}">
-              </a>
-          </div>
-      {% endfor %}
-  <!--{% endif %}-->
-  <button id="loadmoreBtn">Load More</button>
-</div>
-
-<script type="text/javascript">
-content = document.querySelector("#contentt");
-let page = 1
-
-window.onscroll = function() {
-    url = `/?page=${page}`
-    if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight) {
-        fetch(url).then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-        }).then(data => {
-            console.dir(data)
-            page += 1
-            content.innerHTML += data.map(
-                obj=>`<img class="gallery-image" src="${obj.s3_url}">`
-                ).join("\n")
-        }).catch(err => {
-
-        })
-    }
-}
-</script>
-
-<!-- Pagination -->
-
-
+            </div>
+          {% endfor %}
+        </div>
+        <button id="loadmoreBtn">Load More</button>
+      </div>
+    </section>
 
 <!-- Pagination -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -122,7 +78,23 @@ window.onscroll = function() {
           $("#loadmoreBtn").addClass('disabled').text('Loading...');
         },
         success:function(res){
-          console.log(res)
+          var _html='';
+          var json_data=$.parseJSON(res.posts);
+          $.each(json_data, function(index, data){
+            _html+='<div class="gallery-item">\
+                      <a href= "detail/'+data.fields.id+'/" aria-label="Genuine Gemini" class="grid-item-link">\
+                      <img class="gallery-image" src="'+data.fields.s3_url+'">\
+                      </a>\
+                    </div>';
+
+          });
+          $(".gallery").append(_html);
+          var _countTotal=$(".gallery-item").length;
+          if(_countTotal==res.totalResult){
+            $("#loadmoreBtn").remove();
+          }else{
+            $("#loadmoreBtn").removeClass('disabled').text('Load more');
+          }          
         }
       });
     });
@@ -131,8 +103,7 @@ window.onscroll = function() {
 <!-- Pagination -->
 
 
-</div>
-</section>
+
 
 </body>
 <div id="modal_add_feed" class="modal_overlay">
