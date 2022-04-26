@@ -4,96 +4,46 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'gallery/assets/css/detail_style.css' %}"/>
 
-  <link rel="stylesheet" href="{% static 'gallery/assets/css/detail_style.css' %}"/>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-
-  <!-- 요기에 구글 머티리얼 아이콘 -->
-  <link
-    href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
-    rel="stylesheet">
-
+    <!-- 요기에 구글 머티리얼 아이콘 -->
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
 </head>
 
 <body>
-  
-
     <div class="main_body">
-      <div class="left_body">
-        <div class="border feed_box">
-          <div class="feed_name">
-            <div class="profile_box">
-              <img class="profile_img" src="{{ profile_photo }}">
+        <div class="left_body">
+            <div class="border feed_box">
+                <div class="feed_name">
+                    <div class="profile_box">
+                        <img class="profile_img" src="{{ profile_photo }}">
+                    </div>
+                    <span class="feed_name_txt"> {{ uploader }} </span>
+                </div>
+                    <img class="feed_img" src="{{ data.s3_url }}">
             </div>
-            <span class="feed_name_txt"> {{ uploader }} </span>
-          </div>
-          
-          
-          <img class="feed_img" src="{{ data.s3_url }}">
-
-          {% comment %} <div class="feed_like">
-            {% if likes %}
-              <span class="feed_name_txt">좋아요 {{ len_likes }}개 </span>
-            
-            {% else %}
-              <span class="feed_name_txt">좋아요 0개</span>
-
-            {% endif %} {% endcomment %}
-          </div>
-        
-          <div class="feed_icon">
-            <div>
-              {% comment %} <span id="like_count">{{len_likes}}</span>  {% endcomment %}
-              {% if data.like_count %}
-              <span id="like_count">{{data.like_count}}</span>명이 좋아합니다.
-              {% else %}
-              <span id="like_count">{{len_likes}}</span>명이 좋아합니다.
-              {% endif %}
-              <button style="background-color:white; border:none;" id="{{data.gallery_id}}" onclick="post_like(this.id)"> 
-                {% if request.user in data.like_users.all %}
-                <!-- 로그인 한 유저가 좋아요를 누른 유저일때  -->
-                <img id="heart" style="weight:30px;height:30px;" src="/../../static/gallery/images/heart_2.png">
-                {%else%}
-                <!-- 로그인 한 유저가 좋아요를 누른 유저가 아닐 때  -->
-                <img id="heart" style="weight:30px;height:30px;" src="/../../static/gallery/images/heart_1.png">
-                {%endif%}
-              </button>
-
-          <script src="https://code.jquery.com/jquery-3.5.1.js"integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-          <script type="text/javascript">
- 
-            function post_like(id) {
-              $.ajax({
-                  url: "{%url 'likes'%}", // data를 전송할 url 입니다.
-                  data: {
-                      'gallery_id': id
-                  }, // post_id 라는 name으로 id 값 전송
-                  dataType: "json",
-                  success: function (response) { // ajax 통신이 정상적으로 완료되었을 때
-                      $('#like_count').html(response.like_count) //id가 like_count의 내용을 전송받은 좋아요 수로 바꾼다
-                      $('#message').html(response.message) //id가 message의 내용을 전송받은 message로 바꾼다
-                      $('.toast').fadeIn(400).delay(100).fadeOut(400)
-                      console.log(response.message)
-                      if (response.message == "좋아요")
-                      //좋아요 눌렀을 때 
-                      {
-                          $('#heart').attr("src", "/../../static/gallery/images/heart_2.png")
-                      } else if (response.message == "좋아요 취소")
-                      //좋아요 상태에서 다시 눌렀을 때 
-                      {
-                          $('#heart').attr("src", "/../../static/gallery/images/heart_1.png")
-                      }
-                     
-                  }
-              })
-          }
-      </script>
+            <div class="feed_icon">
+                <div>
+                    {% if data.like_count %}
+                        <span id="like_count">{{data.like_count}}</span>명이 좋아합니다.
+                    {% else %}
+                        <span id="like_count">{{len_likes}}</span>명이 좋아합니다.
+                    {% endif %}
+                    <button style="background-color:white; border:none;" id="{{data.gallery_id}}" onclick="post_like(this.id)"> 
+                        {% if request.user in data.like_users.all %}
+                            <!-- 로그인 한 유저가 좋아요를 누른 유저일때  -->
+                            <img id="heart" style="weight:30px;height:30px;" src="/../../static/gallery/images/heart_2.png">
+                        {%else%}
+                            <!-- 로그인 한 유저가 좋아요를 누른 유저가 아닐 때  -->
+                            <img id="heart" style="weight:30px;height:30px;" src="/../../static/gallery/images/heart_1.png">
+                        {%endif%}
+                    </button>
               {% comment %} <form method="post" action="{% url 'likes' data.gallery_id %}">
                 {% csrf_token %}
                 {% if flag %}
@@ -104,57 +54,74 @@
               </form>
               {% endcomment %}
             </div>
-          </div>
-
-          
-
-          <!-- 게시글 -->
-          <div class="feed_content">
-            <p class="feed_txt"> <b> {{ data.userId }} </b> </p>
-          </div>
-          <div class="feed_reply">
-
+        </div>
+        <!-- 게시글 -->
+        <div class="feed_content">
+            <p class="feed_txt"> <b> {{ data.userId }}</b></p>
+        </div>
+        <div class="feed_reply">
             <!-- 다른 사용자의 댓글 기능 -->
             {% if comments %}
-              {% for comment in comments%}
-                {% if comment.user.id == my_id %}
-                    <div class = "comment_line">
-                        <span class="feed_txt"> <b> {{ comment.user.nickname}} </b> </span> <span class="comment_content"> {{ comment.content }} <b> </span>
-                        <a href="{% url 'comment_delete' data.gallery_id comment.comment_id %}"> <img class="delete" src="{% static 'gallery/images/delete.png' %}" width=15px height=15px;> </a>
-                        {% if comment.created_string == False %}
-                          <span class="timestamp">{{ comment.updated_at|date:'m월 d일' }}</span>
-                        {% else %}
-                          <span class="timestamp">{{ comment.created_string }}</span>
-                        {% endif %}
-                  </div>    
-                {% else %}
-                  <div>
-                    <span class="feed_txt"> <b> {{ comment.user.nickname}} </b> </span> <span class="comment_content">{{ comment.content }}</span>
-                      {% if comment.created_string == False %}
-                        <span class="timestamp">{{ comment.updated_at|date:'m월 d일' }}</span>
-                      {% else %}
-                          <span class="timestamp">{{ comment.created_string }}</span>
-                      {% endif %}
-                  </div> 
-                {% endif%}
-            {% endfor %}
+                {% for comment in comments%}
+                    {% if comment.user.id == my_id %}
+                        <div class = "comment_line">
+                            <span class="feed_txt"> <b> {{ comment.user.nickname}} </b> </span>
+                            <span class="comment_content"> {{ comment.content }} <b> </span>
+                            <a href="{% url 'comment_delete' data.gallery_id comment.comment_id %}"> <img class="delete" src="{% static 'gallery/images/delete.png' %}" width=15px height=15px;></a>
+                            {% if comment.created_string == False %}
+                                <span class="timestamp">{{ comment.updated_at|date:'m월 d일' }}</span>
+                            {% else %}
+                                <span class="timestamp">{{ comment.created_string }}</span>
+                            {% endif %}
+                        </div>    
+                    {% else %}
+                        <div>
+                            <span class="feed_txt"> <b> {{ comment.user.nickname}} </b> </span> <span class="comment_content">{{ comment.content }}</span>
+                            {% if comment.created_string == False %}
+                                <span class="timestamp">{{ comment.updated_at|date:'m월 d일' }}</span>
+                            {% else %}
+                                <span class="timestamp">{{ comment.created_string }}</span>
+                            {% endif %}
+                        </div> 
+                      {% endif%}
+                {% endfor %}
             {% endif %}
-
-
         <!-- 댓글 작성 -->
         <form method="POST">
-          {% csrf_token %}
-        <div class="comment_textbox">
-          <input class="comment_textbox" name="comment_textbox" type="text" style="width:85%;" placeholder="댓글 달기">
-          <input id = 'btn1' class="btn" type="submit" style="width:auto;" value="등록">
-        </div>
+        {% csrf_token %}
+            <div class="comment_textbox">
+                <input class="comment_textbox" name="comment_textbox" type="text" style="width:85%;" placeholder="댓글 달기">
+                <input id = 'btn1' class="btn" type="submit" style="width:auto;" value="등록">
+            </div>
         </form>
-
-      </div>
+        </div>
     </div>
-  </div>
-</div>
-
+<script src="https://code.jquery.com/jquery-3.5.1.js"integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+  function post_like(id) {
+      $.ajax({
+          url: "{%url 'likes'%}", // data를 전송할 url 입니다.
+          data: {
+                  'gallery_id': id
+              }, // post_id 라는 name으로 id 값 전송
+          dataType: "json",
+              success: function (response) { // ajax 통신이 정상적으로 완료되었을 때
+                  $('#like_count').html(response.like_count) //id가 like_count의 내용을 전송받은 좋아요 수로 바꾼다
+                  $('#message').html(response.message) //id가 message의 내용을 전송받은 message로 바꾼다
+                  $('.toast').fadeIn(400).delay(100).fadeOut(400)
+                  console.log(response.message)
+                  if (response.message == "좋아요") //좋아요 눌렀을 때 
+                      {
+                          $('#heart').attr("src", "/../../static/gallery/images/heart_2.png")
+                      } else if (response.message == "좋아요 취소") //좋아요 상태에서 다시 눌렀을 때 
+                              {
+                                  $('#heart').attr("src", "/../../static/gallery/images/heart_1.png")
+                              }
+                
+                  }
+          })
+      }
+</script>
 </body>
 </html>
 

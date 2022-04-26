@@ -11,24 +11,22 @@ from django.utils import timezone
 from datetime import datetime
 from django.http import HttpResponse,JsonResponse
 import json
-
-from rest_framework import generics
-from rest_framework.pagination import PageNumberPagination
+from django.core import serializers
 from django.core.paginator import *
 
 # Pagnation
 def gallery_list(request):
-    gallery_list = Gallery.objects.all()
-    paginator = Paginator(gallery_list, 4)
+    galleries = Gallery.objects.all()
+    paginator = Paginator(galleries, 4)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    return render(request, "../templates/gallery/gallery_copy.html" , {'page_obj':page_obj})
+    context = {'page_obj':page_obj}
+    return render(request, "../templates/gallery/gallery_copy.html" , context)
+
+
 
 # Pagination
 
-# P2
-from django.core import serializers
-    # Load more
 def load_more(request):
     offset = int(request.POST['offset'])
     limit = 4
@@ -40,7 +38,6 @@ def load_more(request):
         'posts':posts_json,
         'totalResult':totalData,
     })
-# P2
 
 
 def gallery(request):
@@ -48,8 +45,12 @@ def gallery(request):
     c_id = request.POST.get('category')
     print(c_id)
     galleries = Gallery.objects.all()
-
     landmarks = Landmark.objects.all()
+
+    # Pagination
+    paginator = Paginator(galleries, 4)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     
     if request.method == 'POST':
         # 사진 필터링
@@ -62,7 +63,7 @@ def gallery(request):
         else:
             galleries = Gallery.objects.filter(landmark_id = l_id, category_id = c_id)
         
-    content = {"datas" : galleries, "landmarks" : landmarks}
+    content = {'page_obj':page_obj, "landmarks" : landmarks, }
 
     return render(request, "../templates/gallery/gallery.html" , context= content)
 
