@@ -1,3 +1,5 @@
+<views.py>
+
 from asyncio.windows_events import NULL
 from tokenize import blank_re
 from distutils.command.upload import upload
@@ -12,7 +14,6 @@ from django.utils import timezone
 from datetime import datetime
 from django.http import HttpResponse,JsonResponse
 import json
-
 def gallery(request):
     l_id = request.POST.get('landmark')
     c_id = request.POST.get('category')
@@ -81,11 +82,7 @@ def comment_delete(request, g_id, c_id):
 
     return redirect('detail2', id=g_id)
 
-def gallery_delete(request, g_id):
-    gallery = get_object_or_404(Gallery, pk=g_id)
-    gallery.delete()
-
-    return redirect('gallery')
+    
 
 def likes(request):
     if request.is_ajax(): 
@@ -103,6 +100,11 @@ def likes(request):
         context = {'like_count' : gallery.like_users.count(),"message":message}
         return HttpResponse(json.dumps(context), content_type='application/json')    
     
+def gallery_delete(request, g_id):
+    gallery = get_object_or_404(Gallery, pk=g_id)
+    gallery.delete()
+
+    return redirect('gallery')
     
 
 # def likes(request, id):
