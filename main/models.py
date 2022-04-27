@@ -8,8 +8,8 @@ from main.utils import upload_image
 from django.conf import settings
 class User(AbstractUser):
     nickname = models.CharField(max_length=15, unique=True, null=True, validators=[validate_no_special_characters])
-    profile_s3_url = models.CharField(max_length=400,default="https://photomarble.s3.ap-northeast-2.amazonaws.com/blank-profile.png")
-    profile_photo = models.ImageField(upload_to=upload_image,default="../static/main/images/balnk-profile.png")
+    profile_s3_url = models.CharField(max_length=400,default="https://photomarble.s3.ap-northeast-2.amazonaws.com/profile/blank-profile.png")
+    profile_photo = models.ImageField(upload_to='profile',default="../static/main/images/balnk-profile.png")
     def __str__(self):
         return self.email
 
@@ -41,7 +41,7 @@ class Collection(models.Model):
 class Gallery(models.Model):
     gallery_id = models.AutoField(primary_key=True)
     category_id = models.IntegerField()
-    photo_url = models.ImageField(upload_to=upload_image)
+    photo_url = models.ImageField(upload_to='gallery')
     s3_url = models.CharField(max_length=400)
     updated_at = models.DateTimeField(auto_now=True)
     user = models.ForeignKey('User',db_column='user_id', on_delete=models.CASCADE)
