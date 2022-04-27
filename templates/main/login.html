@@ -19,10 +19,11 @@
 {% load i18n %}
 {% load account socialaccount %}
 {% load bootstrap4 %}
-
+{% load static %}
 
 
 <div class="row justify-content-center h-100">
+  
   
   <div class="col align-self-center text-center card text-black" style="max-width: 25rem;">
     <div class="card-body"> 
@@ -43,7 +44,7 @@
     {% endif %}
 
     <button id = 'btn1' class="btn" type="submit">{% trans "Sign In" %}</button>
-    <a href="javascript:history.back()" class="btn" id = 'btn1' name="action" >취소하기</a>
+    
   </form>
 </div>
 </div>
@@ -54,14 +55,17 @@
     background-image: linear-gradient(to right, #77aad9, #e68387);
     border-style: none;
     color: white;
-  }
-  .form-control{
- 
-    
-    label{    
-      font-family: 'yg-jalnan';
+    font-family: 'yg-jalnan';
       src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
       font-weight: normal;
+      font-style: normal;
+    
+  }
+    
+  label{    
+    font-family: 'yg-jalnan';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+    font-weight: normal;
       font-style: normal;
     
   }

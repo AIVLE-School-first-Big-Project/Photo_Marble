@@ -13,7 +13,7 @@
       <div class="u-list u-list-1">
         <div class="u-repeater u-repeater-1">
           {% if user.is_authenticated %}
-          <a href="#" class="link">
+          <a href="{% url 'photoguide' %}" class="link">
           {% else %}
           <a onclick="not_login();" >
           {% endif %}
@@ -74,7 +74,7 @@
 
     <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-05fd"><div class="u-clearfix u-sheet u-sheet-1">
         <p class="u-small-text u-text u-text-variant u-text-1">
-          <span style="font-family: 'Cafe24Ssurround';font-size: 1.9rem; color : #db545a;">KT AIVLE SCHOOL AI 수도권 4반</span>
+          <span style="font-family: 'Cafe24Ssurround';font-size: 1.3rem; color : #db545a;">KT AIVLE SCHOOL AI 수도권 4반</span>
           <br>
         </p>
       </div></footer>

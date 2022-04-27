@@ -19,8 +19,7 @@ select {
     background-color: #FFFFFF;
     background-image: none;
     cursor: pointer;
-    border-radius: 7px;
-   
+    border-radius: 10px;   
     
   }
   /* Remove IE arrow */

@@ -12,7 +12,6 @@ from django.utils import timezone
 from datetime import datetime
 from django.http import HttpResponse,JsonResponse
 import json
-
 def gallery(request):
     l_id = request.POST.get('landmark')
     c_id = request.POST.get('category')
@@ -44,7 +43,7 @@ def upload(request):
         category = request.POST.get('category')
         landmark=request.POST.get('landmark')
         time = timezone.now()
-        s3_url = "https://photomarble.s3.ap-northeast-2.amazonaws.com/"+now().strftime('%Y%m%d')+"_" + str(img)
+        s3_url = "https://photomarble.s3.ap-northeast-2.amazonaws.com/gallery/"+ str(img)
         Gallery.objects.create(s3_url = s3_url, updated_at=time,category_id=category, landmark_id=landmark,user_id=user_id,photo_url=img)
     return redirect('http://127.0.0.1:8000/gallery/')
 
@@ -83,11 +82,7 @@ def comment_delete(request, g_id, c_id):
 
     return redirect('detail2', id=g_id)
 
-def gallery_delete(request, g_id):
-    gallery = get_object_or_404(Gallery, pk=g_id)
-    gallery.delete()
-
-    return redirect('gallery')
+    
 
 def likes(request):
     if request.is_ajax(): 
@@ -105,6 +100,11 @@ def likes(request):
         context = {'like_count' : gallery.like_users.count(),"message":message}
         return HttpResponse(json.dumps(context), content_type='application/json')    
     
+def gallery_delete(request, g_id):
+    gallery = get_object_or_404(Gallery, pk=g_id)
+    gallery.delete()
+
+    return redirect('gallery')
     
 
 # def likes(request, id):
