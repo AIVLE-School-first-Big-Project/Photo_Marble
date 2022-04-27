@@ -81,6 +81,9 @@
 }
 
 .gallery_delete{
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border:none;
     float: right;
     object-fit: cover;
     transition: transform 400ms ease-out;
