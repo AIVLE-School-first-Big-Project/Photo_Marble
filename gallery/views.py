@@ -21,7 +21,7 @@ def gallery(request):
     landmarks = Landmark.objects.all()
     
     if request.method == 'POST':
-        # 사진 필터링
+    
         if (l_id is None and c_id is None)  or (l_id == '0' and c_id == '0'):
             galleries = Gallery.objects.all()
         elif l_id == '0' and c_id is not None:
@@ -54,15 +54,15 @@ def detail(request, id):
     upload_user = galleries.user_id
     profile_photo=User.objects.get(id=upload_user).profile_s3_url
     uploader= User.objects.get(id=upload_user).nickname
-    likes = Like.objects.filter(gallery_id = id)
-
+    #likes = Gallery.like_users.filter(gallery_id = id)
+    print(galleries.like_users.count())
 
     if request.method == 'POST':
         comment = Comment()
         comment.content = request.POST.get('comment_textbox')
         if comment.content == '':
             comments = Comment.objects.filter(gallery_id=id)
-            content = {"data" : galleries, "len_likes": len(likes), "likes": likes, "comments":comments,"uploader":uploader,"profile_photo":profile_photo,}
+            content = {"data" : galleries, "len_likes": galleries.like_users.count(), "likes": likes, "comments":comments,"uploader":uploader,"profile_photo":profile_photo,}
             return render(request, '../templates/gallery/detail.html', context=content)
         comment.user = User(id = user_id)
         comment.gallery = Gallery(gallery_id = id)
@@ -71,7 +71,7 @@ def detail(request, id):
 
     comments = Comment.objects.filter(gallery_id=id)
         
-    content = {"data" : galleries, "len_likes": len(likes), "likes": likes,"uploader":uploader,"profile_photo":profile_photo,"comments":comments, "my_id": user_id}
+    content = {"data" : galleries, "len_likes": galleries.like_users.count(), "likes": likes,"uploader":uploader,"profile_photo":profile_photo,"comments":comments, "my_id": user_id}
     return render(request, '../templates/gallery/detail.html', context=content)
 
 def comment_delete(request, g_id, c_id):
@@ -98,6 +98,11 @@ def likes(request):
         context = {'like_count' : gallery.like_users.count(),"message":message}
         return HttpResponse(json.dumps(context), content_type='application/json')    
     
+def gallery_delete(request, g_id):
+    gallery = get_object_or_404(Gallery, pk=g_id)
+    gallery.delete()
+
+    return redirect('gallery')
     
 
 # def likes(request, id):

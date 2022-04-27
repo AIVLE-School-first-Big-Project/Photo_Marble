@@ -13,7 +13,7 @@
       <div class="u-list u-list-1">
         <div class="u-repeater u-repeater-1">
           {% if user.is_authenticated %}
-          <a href="#" class="link">
+          <a href="{% url 'photoguide' %}" class="link">
           {% else %}
           <a onclick="not_login();" >
           {% endif %}

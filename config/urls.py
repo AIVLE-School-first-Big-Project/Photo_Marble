@@ -16,7 +16,7 @@ urlpatterns = [
     # 갤러리
     path('gallery/', include('gallery.urls')),
 
-
+    path('photoguide/', include('photoguide.urls')),
 
 
     # allauth 
