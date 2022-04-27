@@ -69,6 +69,8 @@ def detail(request, id):
         comment.updated_at = timezone.now()
         comment.save()
 
+        return redirect('detail2',id=id)
+
     comments = Comment.objects.filter(gallery_id=id)
         
     content = {"data" : galleries, "len_likes": galleries.like_users.count(), "likes": likes,"uploader":uploader,"profile_photo":profile_photo,"comments":comments, "my_id": user_id}
