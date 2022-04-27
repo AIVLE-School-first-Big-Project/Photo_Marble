@@ -76,8 +76,8 @@ def upload(request):
         landmark=request.POST.get('landmark')
         time = timezone.now()
         s3_url = "https://photomarble.s3.ap-northeast-2.amazonaws.com/"+now().strftime('%Y%m%d')+"_" + str(img)
-        Gallery.objects.create(s3_url = s3_url, updated_at=time,category_id=category, landmark_id=landmark,user_id=user_id,photo_url=img)
-    return redirect('http://127.0.0.1:8000/gallery/')
+        aa = Gallery.objects.create(s3_url = s3_url, updated_at=time, category_id=category, landmark_id=landmark, user_id=user_id, photo_url=img)
+    return redirect('gallery')
 
 
 def detail(request, id):
@@ -87,7 +87,6 @@ def detail(request, id):
     profile_photo=User.objects.get(id=upload_user).profile_s3_url
     uploader= User.objects.get(id=upload_user).nickname
     likes = Like.objects.filter(gallery_id = id)
-
 
     if request.method == 'POST':
         comment = Comment()
