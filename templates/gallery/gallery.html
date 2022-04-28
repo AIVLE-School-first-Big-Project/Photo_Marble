@@ -115,9 +115,12 @@
         <label for="file">사진을 등록해주세요</label>
         
       </div>
+      <div class="item"  style="text-align:center;">
+        <img id="tempImage" style="width:300px;height:300px;" src="../../static/photoguide/images/photo-placeholder.png"></a>
+    </div>
       <div class="item" id="filebox">
      
-        <input type="file" class="file" name="file"  accept="image/png, image/jpeg" required>
+        <input type="file" class="file" name="file"  onchange="imageView(this)" accept="image/png, image/jpeg" required>
         
       </div>
 
@@ -166,6 +169,20 @@
       modal.style.display = "none";
       document.body.style.overflowY = "visible";
   });
+
+  function imageView(input) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+            
+                        reader.onload = function(e) {
+                            $('#tempImage').attr('src', e.target.result)
+                             .width(300)
+                             .height(300);
+                        }
+            
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
 </script>
 
 <style>
@@ -216,7 +233,7 @@ select {
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   width: 600px;
-  height: 410px;
+  height: 700px;
   position: relative;
   padding: 10px;
 }
@@ -241,7 +258,7 @@ select {
   width:580px;
   height: 350px;
   display: grid;
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-rows: repeat 1fr 5fr 1fr 1fr 1fr 1fr;
 }
 
 
