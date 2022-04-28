@@ -8,7 +8,7 @@ from django.shortcuts import render,get_object_or_404
 from django.contrib import messages
 from allauth.account.views import PasswordChangeView,SignupView,LogoutView
 from django.contrib.auth.hashers import check_password
-
+from django.utils.timezone import now
 # Create your views here.
 
 def index(request):
@@ -110,3 +110,14 @@ class CustomSPasswordChangeView(PasswordChangeView):
 
 def get_redirect_url(self):
     return redirect("http://127.0.0.1:8000/login")
+
+
+def profile_upload(request):
+    if request.method == 'POST':
+        user_id = request.session['id']
+        user = User.objects.get(id = user_id)
+        img = request.FILES['file']
+        user.profile_photo = img
+        user.profile_s3_url =  "https://photomarble.s3.ap-northeast-2.amazonaws.com/profile/"+ str(img)
+        user.save()
+    return redirect('http://127.0.0.1:8000/mypage/')

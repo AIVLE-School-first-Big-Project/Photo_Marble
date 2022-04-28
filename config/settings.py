@@ -55,7 +55,26 @@ INSTALLED_APPS = [
     'gallery',
     'photoguide',
     'collection',
+    'storages',
+    'rest_framework',
 ]
+
+
+# AWS_ACCESS_KEY_ID = 'Access key ID 입력' # .csv 파일에 있는 내용을 입력 Access key ID
+# AWS_SECRET_ACCESS_KEY = 'Secret acess Key 입력' # .csv 파일에 있는 내용을 입력 Secret access key
+# AWS_REGION = 'ap-northeast-2'
+
+# ###S3 Storages
+# AWS_STORAGE_BUCKET_NAME = 'lee-teset-bucket' # 설정한 버킷 이름
+# AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (AWS_STORAGE_BUCKET_NAME,AWS_REGION)
+# AWS_S3_OBJECT_PARAMETERS = {
+#     'CacheControl': 'max-age=86400',
+# }
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'path/to/store/my/files/')
+
+
+
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
@@ -104,7 +123,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
         'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Photo_Marble',
+        'NAME': 's3',
         # 'NAME': 'DB',
         'USER': 'admin',
         'PASSWORD': get_secret("PASSWORD"),
@@ -177,3 +196,19 @@ STATICFILES_DIRS = (
 
 # 이걸 추가해야 django네 메세지 나오게 함
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
+# s3 연결
+AWS_ACCESS_KEY_ID = get_secret("ACCESS_KEY") # .csv 파일에 있는 내용을 입력 Access key ID
+AWS_SECRET_ACCESS_KEY = get_secret("ACCESS_SECRET_KEY") # .csv 파일에 있는 내용을 입력 Secret access key
+AWS_REGION = 'ap-northeast-2'
+
+###S3 Storages
+AWS_STORAGE_BUCKET_NAME = 'photomarble' # 설정한 버킷 이름
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (AWS_STORAGE_BUCKET_NAME,AWS_REGION)
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

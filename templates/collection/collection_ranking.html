@@ -26,11 +26,14 @@
 
           <div class = 'screen1'>
             <div id="screen1-1">
+              {% if first %}
               <div class='profile_box'>
-                <img class="profile" src="{% static 'collection/images/blank-profile.png' %}" >
+                <img class="profile" src="{{ first.profile_photo }}" >
               </div>
               <div>
                 <p class="userinfo"> {{ first.username }} <br> <img style = "width: 15px; height: 15px;" src="{% static 'collection/images/1828884.png' %}" >{{ first.cnt }} </p>
+              {% else %}
+              {% endif %}
               </div>
             </div>
             <div style="border-radius: 10px 10px 0px 0px;border-collapse: collapse;border-style: hidden;" id="screen1-2"><img class="medal" src="{% static 'collection/images/2583344.png' %}"></div>
@@ -38,23 +41,27 @@
           </div>
           <div class='screen2'>
             <div id="screen2-1">
+              {% if second %}
               <div class='profile_box'>
-                <img class="profile" src="{% static 'collection/images/blank-profile.png' %}" >
+                <img class="profile" src="{{ second.profile_photo }}" >
               </div>
               <div>
                 <p class="userinfo"> {{ second.username }} <br><img style = "width: 15px; height: 15px;" src="{% static 'collection/images/1828884.png' %}" > {{ second.cnt }} </p>
               </div>
+              {% endif %}
             </div>
             <div style="border-radius: 10px 10px 0px 0px;border-collapse: collapse;border-style: hidden;"id="screen2-2"><img class="medal" src="{% static 'collection/images/2583319.png' %}"></div>
           </div>
           <div class="screen3">
             <div id="screen3-1">
+              {% if third %}
               <div class='profile_box'>
-                <img class="profile" src="{% static 'collection/images/blank-profile.png' %}" >
+                <img class="profile" src="{{ third.profile_photo }}" >
               </div>
               <div>
                 <p class="userinfo"> {{ third.username }} <br><img style = "width: 15px; height: 15px;" src="{% static 'collection/images/1828884.png' %}" > {{ third.cnt }} </p>
               </div>
+              {% endif %}
             </div>
             <div style="border-radius: 10px 10px 0px 0px;border-collapse: collapse;border-style: hidden;" id="screen3-2"><img class="medal" src="{% static 'collection/images/2583434.png' %}"></div>
           </div> 

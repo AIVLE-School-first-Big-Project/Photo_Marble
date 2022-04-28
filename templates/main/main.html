@@ -4,6 +4,7 @@
 
 
   <body class="u-body u-xl-mode">
+    <div class ="main_test">
     <section class="u-align-center u-clearfix u-white u-section-1" id="carousel_871a">
       <div class="u-expanded-width u-gradient u-shape u-shape-rectangle u-shape-1"></div>
       <h1 class="u-text u-text-default u-text-palette-2-base u-text-1"><img src ="{% static 'main/images/logo.png' %}"style="display: block; margin: -160; width:500px; height:500px;" ></h1>
@@ -11,7 +12,11 @@
       
       <div class="u-list u-list-1">
         <div class="u-repeater u-repeater-1">
-          <a href="#" class="link">
+          {% if user.is_authenticated %}
+          <a href="{% url 'photoguide' %}" class="link">
+          {% else %}
+          <a onclick="not_login();" >
+          {% endif %}
           <div class="u-align-center u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white u-list-item-1">
             <div class="u-container-layout u-similar-container u-container-layout-1">
               <img class="u-image u-image-default u-preserve-proportions u-image-1" alt="" data-image-width="800" data-image-height="800" src="{% static 'main/images/camera.png' %}">
@@ -20,7 +25,12 @@
             </div>
           </div>
           </a>
+          {% if user.is_authenticated %}
           <a href="{% url 'gallery' %}" class="link">
+          {% else %}
+          <a onclick="not_login();" >
+          {% endif %}
+        
           <div class="u-align-center u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white u-list-item-2">
             <div class="u-container-layout u-similar-container u-container-layout-2">
               <img class="u-image u-image-default u-preserve-proportions u-image-2" alt="" data-image-width="512" data-image-height="512" src="{% static 'main/images/gallery.png' %}">
@@ -29,7 +39,12 @@
             </div>
           </div>
           </a>
+          {% if user.is_authenticated %}
           <a href="{% url 'collection' %}" class="link">
+          {% else %}
+          <a onclick="not_login();" >
+          {% endif %}
+          
           <div class="u-align-center u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white u-list-item-3">
             <div class="u-container-layout u-similar-container u-container-layout-3">
               <img class="u-image u-image-default u-preserve-proportions u-image-3" alt="" data-image-width="512" data-image-height="512" src="{% static 'main/images/place.png' %}">
@@ -38,7 +53,12 @@
             </div>
           </div>
           </a>
+          {% if user.is_authenticated %}
           <a href="{% url 'ranking' %}" class="link">
+          {% else %}
+          <a onclick="not_login();" >
+          {% endif %}
+      
           <div class="u-align-center u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white u-list-item-4">
             <div class="u-container-layout u-similar-container u-container-layout-4">
               <img class="u-image u-image-default u-preserve-proportions u-image-4" alt="" data-image-width="512" data-image-height="512" src="{% static 'main/images/ranking2.png' %}">
@@ -50,32 +70,46 @@
         </a>
       </div>
     </section>
-    
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+  </div>
+
     <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-05fd"><div class="u-clearfix u-sheet u-sheet-1">
         <p class="u-small-text u-text u-text-variant u-text-1">
-          <span style="font-size: 1rem;">KT AIVLE SCHOOL AI 수도권 4반</span>
+          <span style="font-family: 'Cafe24Ssurround';font-size: 1.3rem; color : #db545a;">KT AIVLE SCHOOL AI 수도권 4반</span>
           <br>
         </p>
-      </div></footer]>
+      </div></footer>
     </section>
   </body>
 </html>
+
+<style>
+  .main_test{
+    min-height:1400px;
+  }
+  @font-face {
+    font-family: 'Cafe24Ssurround';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face{
+  font-family: 'yg-jalnan';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+</style>
+
+<script src="main/assets/js/jquery.min.js"></script>
+			<script src="main/assets/js/jquery.scrolly.min.js"></script>
+			<script src="main/assets/js/jquery.scrollex.min.js"></script>
+			<script src="main/assets/js/browser.min.js"></script>
+			<script src="main/assets/js/breakpoints.min.js"></script>
+			<script src="main/assets/js/util.js"></script>
+			<script src="main/assets/js/main.js"></script>
+			<script>
+				function not_login(){
+				  alert("로그인 후 사용하실 수 있습니다.");
+				}
+			  </script>
 {% endblock %}

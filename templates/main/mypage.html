@@ -38,9 +38,9 @@
                   </div>
                   <div class="cell-temp-clone u-align-left u-container-style u-layout-cell u-size-30 u-white u-layout-cell-2">
                     <div class="u-container-layout u-container-layout-3">
-                      <img class="u-image u-image-default u-preserve-proportions u-image-1" src="{{user.profile_photo}}" alt="" data-image-width="1280" data-image-height="1280">
-                      <a href="https://nicepage.cloud" class="u-border-2 u-border-hover-palette-2-base u-border-palette-2-base u-btn u-btn-round u-button-style u-radius-50 u-white u-btn-1"><span class="u-file-icon u-icon u-text-palette-2-base u-icon-1"><img src="{% static 'main/images/9.png' %}" alt=""></span>
-                      </a>
+                      <img style ="border-radius: 40%;" , class="u-image u-image-default u-preserve-proportions u-image-1" src="{{user.profile_s3_url}}" alt="" data-image-width="1280" data-image-height="1280">
+                      <button id="add_feed" class="u-border-2 u-border-hover-palette-2-base u-border-palette-2-base u-btn u-btn-round u-button-style u-radius-50 u-white u-btn-1"><span  class="u-file-icon u-icon u-text-palette-2-base u-icon-1"><img style="border-radius: 70%;border: 3px solid #db545a;weight:30px; height:30px;" src="{% static 'main/images/9.png' %}" alt=""></span></button>
+                     
                     </div>
                   </div>
                 </div>
@@ -85,28 +85,180 @@
             </div>
           </div>
         </div>
-      </section>
-      
-      
-    
+      </section>      
 
   
     <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-05fd"><div class="u-clearfix u-sheet u-sheet-1">
         <p class="u-small-text u-text u-text-variant u-text-1">
-          <span style="font-size: 1rem;">KT AIVLE SCHOOL AI 수도권 4반</span>
+          <span style="font-family: 'yg-jalnan';font-size: 1.3rem; color : #db545a;">KT AIVLE SCHOOL AI 수도권 4반</span>
           <br>
         </p>
       </div></footer>
 
     </body>
-  {% endblock %} 
+    <div id="modal_add_feed" class="modal_overlay">
+      <div class="modal_window">
+        <div class="modal_title">
+          <div class="modal_title_side"></div>
+          <div> 프로필 사진 수정하기 </div>
+          <div class="modal_title_side">
+              <span id="close_modal" class="material-icons-outlined">
+                  X
+              </span>
+          </div>
+      </div>
+    
+      <form method="post" action="profile_upload" enctype="multipart/form-data">
+      
+        {% comment %} {% csrf_token %}
+        <div class="modal_image_upload">           
+        <br> 
+        <input type="file" name="attachment[]"  multiple="multiple">  {% endcomment %}
+          <br>
+          <div class="item">
+          {% csrf_token %}
+          <div class="modal_image_upload" style="display: inline-block;">           
+          <br> 
+          <input type="file" name="file"  multiple="multiple"> 
+            <button style="background-image: linear-gradient(to right, #77aad9, #e68387);
+            border-style: none; margin : -4 0 0 0 ; display: inline-block;
+            color: white;" type="submit" id = 'btn1' class="btn"> 등록하기</button>
+          </div>
+        
+      </div>
+    </form>
+      </div>
+    </div>
 
-</html>
+    
 
-<style>
+<script>
+  const modal = document.getElementById("modal_add_feed");
+    const buttonAddFeed = document.getElementById("add_feed");
+    buttonAddFeed.addEventListener("click", e => {
+        modal.style.display = "flex";
+        document.body.style.overflowY = "hidden";
+    });
+
+  
+  // 모달 닫기 코드
+  const buttonCloseModal = document.getElementById("close_modal");
+  buttonCloseModal.addEventListener("click", e => {
+      modal.style.display = "none";
+      document.body.style.overflowY = "visible";
+  });
+</script>
+
+<style>  
   .box1 {
     float:left; width:200px; height:100px; background-color:#234234;}
    .box2 {
     display:inline-block; width:200px; height:100px; background-color:#666666; margin-left:10px;}  
   
+@import url(https://fonts.googleapis.com/css?family=Montserrat:500);
+.modal_overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(1.5px);
+  -webkit-backdrop-filter: blur(1.5px);
+}
+
+.modal_window {
+  background: white;
+  backdrop-filter: blur(13.5px);
+  -webkit-backdrop-filter: blur(13.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  width: 600px;
+  height: 200px;
+  position: relative;
+  padding: 10px;
+}
+
+.modal_title{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.modal_title_side{
+  flex: 0 0 40px;
+  text-align: center;
+}
+
+.modal_image_upload{
+
+  text-align: center;
+  transition: all .15s ease-in-out;
+  width:580px;
+  height: 200px;
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+}
+label[for="file-input"] {
+  display: block;
+  margin-bottom: 0.1em;
+  font-size: 1em;
+  color: #000;
+  opacity: .9;
+  font-weight: bold;
+}
+
+input[type="file"] {
+  cursor: pointer !Important;
+}
+input[type="file"]::-webkit-file-upload-button {
+  border: none;
+  padding: 5px 12px;
+  background-image: linear-gradient(to right, #77aad9, #e68387);
+  color: #fff;
+  font-size: 1em;
+  transition: all .4s;
+  cursor: pointer;
+  border-radius: 5px;
+  "background-image: linear-gradient(to right, #77aad9, #e68387);
+}
+input[type="file"]::-ms-browse {
+  border: none;
+  padding: 5px 12px;
+  background: #9e2baf;
+  color: #fff;
+  font-size: 1em;
+  transition: all .4s;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+span
+{
+  font-family: 'yg-jalnan';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+    font-weight: normal;
+      font-style: normal;    
+}
+p
+{
+  font-family: 'Cafe24Ssurround';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+a
+{
+  font-family: 'Cafe24Ssurround';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
    </style>
+  {% endblock %} 

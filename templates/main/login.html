@@ -19,10 +19,11 @@
 {% load i18n %}
 {% load account socialaccount %}
 {% load bootstrap4 %}
-
+{% load static %}
 
 
 <div class="row justify-content-center h-100">
+  
   
   <div class="col align-self-center text-center card text-black" style="max-width: 25rem;">
     <div class="card-body"> 
@@ -31,7 +32,7 @@
   {% if socialaccount_providers %}
 
   {% else %}
-  <p> 계정이 없다면 <a style="color : #db545a;" href="{% url 'custom_signup' %}">회원가입</a> 을 진행하세요</p>
+  <p style= "font-family: 'yg-jalnan';" > 계정이 없다면 <a style="color : #db545a;" href="{% url 'custom_signup' %}">회원가입</a> 을 진행하세요</p>
   {% endif %}
 
   <form class="login" method="POST" action="{% url 'account_login' %}">
@@ -43,6 +44,7 @@
     {% endif %}
 
     <button id = 'btn1' class="btn" type="submit">{% trans "Sign In" %}</button>
+    
   </form>
 </div>
 </div>
@@ -53,13 +55,18 @@
     background-image: linear-gradient(to right, #77aad9, #e68387);
     border-style: none;
     color: white;
-  }
-  .form-control{
- 
+    font-family: 'yg-jalnan';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
     
-  label{
-    color:#db545a;
   }
-
-
+    
+  label{    
+    font-family: 'yg-jalnan';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+    font-weight: normal;
+      font-style: normal;
+    
+  }
 </style>

@@ -10,6 +10,7 @@ from django.db.models import Count
 
 def collection_mypage(request):
     # progress bar
+    
     ui = request.session['id']
     visited_landmark = Collection.objects.filter(user_id= ui)
     collection_cnt = len(visited_landmark)
@@ -85,6 +86,7 @@ def collection_ranking(request):
     rank = list(Collection.objects.values('user_id').annotate(dcount=Count('user_id')))
     rank = sorted(rank, key=lambda x:x['dcount'], reverse=True)
     rank_list = []
+ 
     if len(rank)<10:
         idx=len(rank)
     else:
@@ -95,9 +97,15 @@ def collection_ranking(request):
         tmp_dict={}
         tmp_dict['username'] = user.nickname
         tmp_dict['cnt'] = rank[i]['dcount']
-        tmp_dict['profile_photo'] = user.profile_photo
+        tmp_dict['profile_photo'] = user.profile_s3_url
         tmp_dict['rank'] = (i+1)
         tmp_dict['color'] = (i+1) %2 
+
         rank_list.append(tmp_dict)
+    if len(rank_list)==1:
+        rank_list.append(None)
+        rank_list.append(None)
+    elif len(rank_list)==2:
+        rank_list.append(None)
     return render(request, '../templates/collection/collection_ranking.html',
                     {'first':rank_list[0], 'second':rank_list[1],'third':rank_list[2],'top4_7':rank_list[3:]})

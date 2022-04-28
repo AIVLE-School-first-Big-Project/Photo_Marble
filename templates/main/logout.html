@@ -21,13 +21,16 @@
 <div class="row justify-content-center h-100">
   <div class="col align-self-center text-center card text-black" style="max-width: 25rem;">
     <div class="card-body"> 
-      <h3 class="card-title" >log out</h1>
+      <p style= "font-family: 'yg-jalnan';" ><h3 class="card-title" >log out</h1>
       <form method="post" action="{% url 'account_logout' %}">
         {% csrf_token %}
         
-        <p>정말로 로그아웃 하시겠습니까?</p>
+        <p style= "font-family: 'yg-jalnan';" >정말로 로그아웃 하시겠습니까?</p>
         <button class="btn" id = 'btn1' name="action">로그아웃</button>
-        <button href="http://127.0.0.1:8000/mypage"  class="btn" id = 'btn1' name="action">취소하기</button>
+        <form>
+          <input type="button" value="돌아가기" class="btn" id = 'btn1' onclick="history.back()">
+         </form>
+     
       </form>
     </div>
   </div>
@@ -38,6 +41,11 @@
           background-image: linear-gradient(to right, #77aad9, #e68387);
           border-style: none;
           color: white;
+          font-family: 'Cafe24Ssurround';
+          src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+          font-weight: normal;
+          font-style: normal;
+          
         }
       </style>
 

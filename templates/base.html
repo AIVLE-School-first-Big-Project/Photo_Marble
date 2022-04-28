@@ -33,7 +33,7 @@
     {% if user.is_authenticated %}
     <a href="{% url 'custom_logout' %}">{{ user.username }}<span id = 'logout_btn'>로그아웃</span></a>
       <a href= "{% url 'main'%}"><li>Home</li></a>
-      <a href= "#"><li>Photo Guide</li></a>
+      <a href= "{% url 'photoguide' %}"><li>Photo Guide</li></a>
       <a href= "{% url 'gallery'%}"><li>Gallery</li></a>
       <a href= "{% url 'collection'%}"><li>Collection</li></a>
       <a href= "{% url 'ranking'%}"><li>Ranking</li></a>
@@ -42,7 +42,7 @@
   
       {% else %}
       <a style="font-family: 'yg-jalnan';" href= "{% url 'login' %}" style="text-decoration:none"><li>Log in</li></a>
-      <a style="font-family: 'yg-jalnan'; href= "{% url 'custom_signup' %}" style="text-decoration:none"><li>Sign up</li></a>
+      <a style="font-family: 'yg-jalnan';" href= "{% url 'custom_signup' %}" style="text-decoration:none"><li>Sign up</li></a>
       {% endif %}
           </li>    
   
@@ -51,6 +51,7 @@
   
   </nav>
   </header>
+  
   {% block content %}
   {% endblock %}
   

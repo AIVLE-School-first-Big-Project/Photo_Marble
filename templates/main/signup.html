@@ -35,6 +35,7 @@
       <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
       {% endif %}
       <button type="submit" id = 'btn1' class="btn">{% trans "Sign Up" %} &raquo;</button>
+      <a href="javascript:history.back()" class="btn" id = 'btn1' name="action" >취소하기</a>
     </form>
 
 </div>
@@ -47,5 +48,17 @@
     background-image: linear-gradient(to right, #77aad9, #e68387);
     border-style: none;
     color: white;
+    font-family: 'Cafe24Ssurround';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
   }
+      
+  label{    
+    font-family: 'Cafe24Ssurround';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  
+}
 </style>
