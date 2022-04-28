@@ -30,7 +30,7 @@ def gallery(request):
             galleries = Gallery.objects.filter(landmark_id=l_id)
         else:
             galleries = Gallery.objects.filter(landmark_id = l_id, category_id = c_id)
-        
+    
     content = {"datas" : galleries, "landmarks" : landmarks}
 
     return render(request, "../templates/gallery/gallery.html" , context= content)
@@ -72,7 +72,7 @@ def detail(request, id):
         return redirect('detail2',id=id)
 
     comments = Comment.objects.filter(gallery_id=id)
-        
+  
     content = {"data" : galleries, "len_likes": galleries.like_users.count(), "likes": likes,"uploader":uploader,"profile_photo":profile_photo,"comments":comments, "my_id": user_id}
     return render(request, '../templates/gallery/detail.html', context=content)
 
