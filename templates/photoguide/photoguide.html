@@ -39,18 +39,18 @@
         </div>
         
         <div class="u-clearfix u-layout-wrap u-layout-wrap-1">
-            <h1 class="display-4" style="font-family: 'Cafe24Ssurround';color:#db545a;text-align : center;"> 포토가이드 </h1>
-          <div style="box-shadow: 5px 5px 5px #bababa;" class="u-gutter-0 u-layout">
+            <h1 class="display-4" style="font-family: 'Cafe24Ssurround';color:#db545a;text-align: center;"> 포토가이드 </h1>
+          <div style="box-shadow: 5px 5px 5px #bababa;text-align: center;" class="u-gutter-0 u-layout">
     
-            <div style="height:600px" class="cell-temp-clone u-align-left u-container-style u-layout-cell u-size-9 u-white u-layout-cell-8">
+            <div style="height:600px;text-align: center;display: grid;" class="cell-temp-clone u-align-left u-container-style u-layout-cell u-size-9 u-white u-layout-cell-8">
                 <form method="post" action="photoguide_update" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <div class="item" id="label_input">
+                    <div style="" id="label_input">
                     <br>
                     <label for="file">사진을 등록해주세요</label>
                     
                     </div>
-                    <div style="width:420px; height:420px;">
+                    <div style="text-align:center;width:420px; height:420px;">
                         <img id="tempImage" src="../../static/photoguide/images/photo-placeholder.png"></a>
                     </div>
                     <div class="item" id="filebox">
