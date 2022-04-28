@@ -53,7 +53,7 @@ def gallery(request):
     page_obj = paginator.get_page(page_number)
     
     if request.method == 'POST':
-        # 사진 필터링
+    
         if (l_id is None and c_id is None)  or (l_id == '0' and c_id == '0'):
             galleries = Gallery.objects.all()
         elif l_id == '0' and c_id is not None:
@@ -75,8 +75,8 @@ def upload(request):
         category = request.POST.get('category')
         landmark=request.POST.get('landmark')
         time = timezone.now()
-        s3_url = "https://photomarble.s3.ap-northeast-2.amazonaws.com/"+now().strftime('%Y%m%d')+"_" + str(img)
-        aa = Gallery.objects.create(s3_url = s3_url, updated_at=time, category_id=category, landmark_id=landmark, user_id=user_id, photo_url=img)
+        s3_url = "https://photomarble.s3.ap-northeast-2.amazonaws.com/gallery/"+ str(img)
+        Gallery.objects.create(s3_url = s3_url, updated_at=time,category_id=category, landmark_id=landmark,user_id=user_id,photo_url=img)
     return redirect('gallery')
 
 
@@ -93,16 +93,18 @@ def detail(request, id):
         comment.content = request.POST.get('comment_textbox')
         if comment.content == '':
             comments = Comment.objects.filter(gallery_id=id)
-            content = {"data" : galleries, "len_likes": len(likes), "likes": likes, "comments":comments,"uploader":uploader,"profile_photo":profile_photo,}
+            content = {"data" : galleries, "len_likes": galleries.like_users.count(), "likes": likes, "comments":comments,"uploader":uploader,"profile_photo":profile_photo,}
             return render(request, '../templates/gallery/detail.html', context=content)
         comment.user = User(id = user_id)
         comment.gallery = Gallery(gallery_id = id)
         comment.updated_at = timezone.now()
         comment.save()
 
+        return redirect('detail2',id=id)
+
     comments = Comment.objects.filter(gallery_id=id)
         
-    content = {"data" : galleries, "len_likes": len(likes), "likes": likes,"uploader":uploader,"profile_photo":profile_photo,"comments":comments, "my_id": user_id}
+    content = {"data" : galleries, "len_likes": galleries.like_users.count(), "likes": likes,"uploader":uploader,"profile_photo":profile_photo,"comments":comments, "my_id": user_id}
     return render(request, '../templates/gallery/detail.html', context=content)
 
 def comment_delete(request, g_id, c_id):
@@ -129,6 +131,11 @@ def likes(request):
         context = {'like_count' : gallery.like_users.count(),"message":message}
         return HttpResponse(json.dumps(context), content_type='application/json')    
     
+def gallery_delete(request, g_id):
+    gallery = get_object_or_404(Gallery, pk=g_id)
+    gallery.delete()
+
+    return redirect('gallery')
     
 
 # def likes(request, id):

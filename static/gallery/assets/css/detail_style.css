@@ -80,6 +80,19 @@
     font-weight: bold;
 }
 
+.gallery_delete{
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border:none;
+    float: right;
+    object-fit: cover;
+    transition: transform 400ms ease-out;
+}
+
+.gallery_delete:hover{
+    transform: scale(1.2);
+}
+
 .profile_box {
     width: 40px;
     height: 40px;

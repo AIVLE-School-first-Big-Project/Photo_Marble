@@ -11,4 +11,5 @@ urlpatterns = [
 
     # Pagination
     path('load_more/', views.load_more, name="load_more"),
+    path('detail/gallery/delete/<int:g_id>',views.gallery_delete, name='gallery_delete'),
 ]

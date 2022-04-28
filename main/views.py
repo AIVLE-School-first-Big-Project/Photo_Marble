@@ -118,6 +118,6 @@ def profile_upload(request):
         user = User.objects.get(id = user_id)
         img = request.FILES['file']
         user.profile_photo = img
-        user.profile_s3_url =  "https://photomarble.s3.ap-northeast-2.amazonaws.com/"+now().strftime('%Y%m%d')+"_" + str(img)
+        user.profile_s3_url =  "https://photomarble.s3.ap-northeast-2.amazonaws.com/profile/"+ str(img)
         user.save()
     return redirect('http://127.0.0.1:8000/mypage/')
