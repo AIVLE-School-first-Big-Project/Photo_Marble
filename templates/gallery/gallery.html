@@ -43,7 +43,7 @@
                 {% for data in page_obj %}
                     <div class="gallery-item">
                         <a href= "{% url 'detail2' data.gallery_id %}"  aria-label="Genuine Gemini" class="grid-item-link">
-                            <img class="gallery-image" src="{{ data.s3_url }}">{{data.s3_url}}
+                            <img class="gallery-image" src="{{ data.s3_url }}">
                         </a>
                     </div>
                 {% endfor %}
@@ -73,9 +73,11 @@
         success:function(res){
           var _html='';
           var json_data=$.parseJSON(res.posts);
+          // console.log(json_data)
           $.each(json_data, function(index, data){
+            // console.log(data.fields)
             _html+='<div class="gallery-item">\
-                      <a href= "detail/'+data.fields.id+'/" aria-label="Genuine Gemini" class="grid-item-link">\
+                      <a href= "detail/'+data.pk+'/" aria-label="Genuine Gemini" class="grid-item-link">\
                       <img class="gallery-image" src="'+data.fields.s3_url+'">\
                       </a>\
                     </div>';
