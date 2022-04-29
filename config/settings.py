@@ -184,7 +184,7 @@ EMAIL_HOST_USER = 'syg3793@gmail.com'
 EMAIL_HOST_PASSWORD ='canu6858!@'
 EMAIL_USE_TLS =True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
+MAIN_URL = 'http://127.0.0.1:8000/'
 STATIC_URL = '/static/'
 
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')

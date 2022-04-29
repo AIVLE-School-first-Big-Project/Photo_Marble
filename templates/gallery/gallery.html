@@ -157,6 +157,20 @@
       modal.style.display = "none";
       document.body.style.overflowY = "visible";
   });
+
+  function imageView(input) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+            
+                        reader.onload = function(e) {
+                            $('#tempImage').attr('src', e.target.result)
+                             .width(300)
+                             .height(300);
+                        }
+            
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
 </script>
 
 
