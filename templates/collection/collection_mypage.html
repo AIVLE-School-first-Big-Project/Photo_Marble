@@ -1,10 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
-
 {% load static %}
 <html>
     <head>
-        <link rel="stylesheet" href="{% static 'css/map_style.css' %}"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
         <link rel="stylesheet" href="{% static 'collection/assets/css/map_style.css' %}"/>
         <link rel="stylesheet" href="{% static 'collection/assets/css/collection.css' %}"/>
@@ -13,9 +11,43 @@
     </head>
     
     <body>
+        <head>
+        <meta name="viewport" content="width=320; user-scalable=no" />
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        <title>Camera</title>
+        <script src="/jquery/jquery.js"></script>
+        
+        <script>
+        $(document).ready(function(){
+            if (!('url' in window) && ('webkitURL' in window)) {
+                window.URL = window.webkitURL;
+            }
+        
+            $('#camcorder').change(function(e){
+                $('#mov').attr('src', URL.createObjectURL(e.target.files[0]));
+                // iOS Safari에서는 autoplay가 안먹히므로 알림
+                alert('동영상 재생버튼을 누르시오');
+            });
+        });
+        </script>
+        </head>
+        
+        <body>
+            <h1 class="display-4" style="font-family: 'Cafe24Ssurround';color:#db545a;text-align : center;"> 컬렉션 </h1><br><br>
+            <form method="post" action="collection_update" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="file" id="camcorder" name="camcorder" capture="camcorder" accept="image/*" />
+            <br />
+            
+            <video id="mov"></video>
+            <button style="background-image: linear-gradient(to right, #77aad9, #e68387);
+                        border-style: none; height : 40; width:80; margin : -4 0 0 0 ;
+                        color: white;" type="submit" id = 'btn1' class="btn"> 등록하기</button>
+            </form>
+        </body>
 
 <br>
-<h1 class="display-4" style="font-family: 'Cafe24Ssurround';color:#db545a;text-align : center;"> 컬렉션 </h1><br><br>
+
 <div class="test">     
     <div><h3> {{user.nickname}}님의 진척도 <br></h3></div>
 <div class="progress" style="height: 35px;">
@@ -74,31 +106,31 @@
                 </g> <!-- # {{s1.area}} -->
                 <g filter="url(#dropshadow2)"></g>
                 <g filter="url(#dropshadow2)">
-                <image href="{% static 'img/landmark.png' %}" class="{{s1.marker}}" x="384" y="261" onclick="javascript:post_page(1)" style="cursor:pointer"></image>
-                <image href="{% static 'img/landmark.png' %}" class="{{s2.marker}}" x="418" y="322" onclick="javascript:post_page(2)" style="cursor:pointer"></image>
-                <image href="{% static 'img/landmark.png' %}" class="{{s3.marker}}" x="392" y="379" onclick="javascript:post_page(3)" style="cursor:pointer"></image>
-                <image href="{% static 'img/landmark.png' %}" class="{{s4.marker}}" x="490" y="340" onclick="javascript:post_page(4)" style="cursor:pointer"></image>
-                <image href="{% static 'img/landmark.png' %}" class="{{s5.marker}}" x="562" y="349" onclick="javascript:post_page(5)" style="cursor:pointer"></image>
-                <image href="{% static 'img/landmark.png' %}" class="{{s6.marker}}" x="513" y="278" onclick="javascript:post_page(6)" style="cursor:pointer"></image>
-                <image href="{% static 'img/landmark.png' %}" class="{{s7.marker}}" x="574" y="254" onclick="javascript:post_page(7)" style="cursor:pointer"></image>
-                <image href="{% static 'img/landmark.png' %}" class="{{s8.marker}}" x="451" y="242" onclick="javascript:post_page(8)" style="cursor:pointer"></image>
-                <image href="{% static 'img/landmark.png' %}" class="{{s9.marker}}" x="445" y="165" onclick="javascript:post_page(9)" style="cursor:pointer"></image>
-                <image href="{% static 'img/landmark.png' %}" class="{{s10.marker}}"x="479" y="109" onclick="javascript:post_page(10)" style="cursor:pointer"></image>
-                <image href="{% static 'img/landmark.png' %}" class="{{s11.marker}}"x="545" y="137" onclick="javascript:post_page(11)" style="cursor:pointer"></image>
-                <image href="{% static 'img/landmark.png' %}" class="{{s12.marker}}"x="308" y="202" onclick="javascript:post_page(12)" style="cursor:pointer"></image>
-                <image href="{% static 'img/landmark.png' %}" class="{{s13.marker}}"x="327" y="286" onclick="javascript:post_page(13)" style="cursor:pointer"></image>
-                <image href="{% static 'img/landmark.png' %}" class="{{s14.marker}}"x="278" y="323" onclick="javascript:post_page(14)" style="cursor:pointer"></image>
-                <image href="{% static 'img/landmark.png' %}" class="{{s15.marker}}"x="194" y="405" onclick="javascript:post_page(15)" style="cursor:pointer"></image>
-                <image href="{% static 'img/landmark.png' %}" class="{{s16.marker}}"x="141" y="318" onclick="javascript:post_page(16)" style="cursor:pointer"></image>
-                <image href="{% static 'img/landmark.png' %}" class="{{s17.marker}}"x="184" y="454" onclick="javascript:post_page(17)" style="cursor:pointer"></image>
-                <image href="{% static 'img/landmark.png' %}" class="{{s18.marker}}"x="264" y="521" onclick="javascript:post_page(18)" style="cursor:pointer"></image>
-                <image href="{% static 'img/landmark.png' %}" class="{{s19.marker}}"x="280" y="397" onclick="javascript:post_page(19)" style="cursor:pointer"></image>
-                <image href="{% static 'img/landmark.png' %}" class="{{s20.marker}}"x="346" y="445" onclick="javascript:post_page(20)" style="cursor:pointer"></image>
-                <image href="{% static 'img/landmark.png' %}" class="{{s21.marker}}"x="338" y="513" onclick="javascript:post_page(21)" style="cursor:pointer"></image>
-                <image href="{% static 'img/landmark.png' %}" class="{{s22.marker}}"x="466" y="498" onclick="javascript:post_page(22)" style="cursor:pointer"></image>
-                <image href="{% static 'img/landmark.png' %}" class="{{s23.marker}}"x="518" y="448" onclick="javascript:post_page(23)" style="cursor:pointer"></image>
-                <image href="{% static 'img/landmark.png' %}" class="{{s24.marker}}"x="609" y="432" onclick="javascript:post_page(24)" style="cursor:pointer"></image>
-                <image href="{% static 'img/landmark.png' %}" class="{{s25.marker}}"x="660" y="343" onclick="javascript:post_page(25)" style="cursor:pointer"></image>
+                <image href="{% static '/collection/images/landmark.png' %}" class="{{s1.marker}}" x="384" y="261" onclick="javascript:post_page(1)" style="cursor:pointer"></image>
+                <image href="{% static '/collection/images/landmark.png' %}" class="{{s2.marker}}" x="418" y="322" onclick="javascript:post_page(2)" style="cursor:pointer"></image>
+                <image href="{% static '/collection/images/landmark.png' %}" class="{{s3.marker}}" x="392" y="379" onclick="javascript:post_page(3)" style="cursor:pointer"></image>
+                <image href="{% static '/collection/images/landmark.png' %}" class="{{s4.marker}}" x="490" y="340" onclick="javascript:post_page(4)" style="cursor:pointer"></image>
+                <image href="{% static '/collection/images/landmark.png' %}" class="{{s5.marker}}" x="562" y="349" onclick="javascript:post_page(5)" style="cursor:pointer"></image>
+                <image href="{% static '/collection/images/landmark.png' %}" class="{{s6.marker}}" x="513" y="278" onclick="javascript:post_page(6)" style="cursor:pointer"></image>
+                <image href="{% static '/collection/images/landmark.png' %}" class="{{s7.marker}}" x="574" y="254" onclick="javascript:post_page(7)" style="cursor:pointer"></image>
+                <image href="{% static '/collection/images/landmark.png' %}" class="{{s8.marker}}" x="451" y="242" onclick="javascript:post_page(8)" style="cursor:pointer"></image>
+                <image href="{% static '/collection/images/landmark.png' %}" class="{{s9.marker}}" x="445" y="165" onclick="javascript:post_page(9)" style="cursor:pointer"></image>
+                <image href="{% static '/collection/images/landmark.png' %}" class="{{s10.marker}}"x="479" y="109" onclick="javascript:post_page(10)" style="cursor:pointer"></image>
+                <image href="{% static '/collection/images/landmark.png' %}" class="{{s11.marker}}"x="545" y="137" onclick="javascript:post_page(11)" style="cursor:pointer"></image>
+                <image href="{% static '/collection/images/landmark.png' %}" class="{{s12.marker}}"x="308" y="202" onclick="javascript:post_page(12)" style="cursor:pointer"></image>
+                <image href="{% static '/collection/images/landmark.png' %}" class="{{s13.marker}}"x="327" y="286" onclick="javascript:post_page(13)" style="cursor:pointer"></image>
+                <image href="{% static '/collection/images/landmark.png' %}" class="{{s14.marker}}"x="278" y="323" onclick="javascript:post_page(14)" style="cursor:pointer"></image>
+                <image href="{% static '/collection/images/landmark.png' %}" class="{{s15.marker}}"x="194" y="405" onclick="javascript:post_page(15)" style="cursor:pointer"></image>
+                <image href="{% static '/collection/images/landmark.png' %}" class="{{s16.marker}}"x="141" y="318" onclick="javascript:post_page(16)" style="cursor:pointer"></image>
+                <image href="{% static '/collection/images/landmark.png' %}" class="{{s17.marker}}"x="184" y="454" onclick="javascript:post_page(17)" style="cursor:pointer"></image>
+                <image href="{% static '/collection/images/landmark.png' %}" class="{{s18.marker}}"x="264" y="521" onclick="javascript:post_page(18)" style="cursor:pointer"></image>
+                <image href="{% static '/collection/images/landmark.png' %}" class="{{s19.marker}}"x="280" y="397" onclick="javascript:post_page(19)" style="cursor:pointer"></image>
+                <image href="{% static '/collection/images/landmark.png' %}" class="{{s20.marker}}"x="346" y="445" onclick="javascript:post_page(20)" style="cursor:pointer"></image>
+                <image href="{% static '/collection/images/landmark.png' %}" class="{{s21.marker}}"x="338" y="513" onclick="javascript:post_page(21)" style="cursor:pointer"></image>
+                <image href="{% static '/collection/images/landmark.png' %}" class="{{s22.marker}}"x="466" y="498" onclick="javascript:post_page(22)" style="cursor:pointer"></image>
+                <image href="{% static '/collection/images/landmark.png' %}" class="{{s23.marker}}"x="518" y="448" onclick="javascript:post_page(23)" style="cursor:pointer"></image>
+                <image href="{% static '/collection/images/landmark.png' %}" class="{{s24.marker}}"x="609" y="432" onclick="javascript:post_page(24)" style="cursor:pointer"></image>
+                <image href="{% static '/collection/images/landmark.png' %}" class="{{s25.marker}}"x="660" y="343" onclick="javascript:post_page(25)" style="cursor:pointer"></image>
 
                 <text id="LCD11110" class="TEXT" x="399" y="277">종로구</text>       
                 <text id="LCD11140" class="TEXT" x="433" y="338">중구</text>

@@ -20,7 +20,8 @@ urlpatterns = [
 
 
     # allauth 
-    path("email-confirmation-done/", TemplateView.as_view(template_name="main/email-confirmation-done.html"),
+    path("email-confirmation-done/", 
+    TemplateView.as_view(template_name="main/email-confirmation-done.html"),
                                 name="account_email_confirmation_done"),
     path('password/change/', CustomPasswordChangeView.as_view(), name="account_change_password"),
     path('', include('allauth.urls')),
