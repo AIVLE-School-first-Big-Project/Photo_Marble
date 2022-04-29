@@ -11,21 +11,35 @@ from django.utils import timezone
 from datetime import datetime
 from django.http import HttpResponse,JsonResponse
 import json
-from django.core import serializers
+from django.core import *
 from django.core.paginator import *
+from django.core import serializers
 
-# Pagnation
-def gallery_list(request):
+def gallery(request):
+    l_id = request.POST.get('landmark')
+    c_id = request.POST.get('category')
     galleries = Gallery.objects.all()
+    landmarks = Landmark.objects.all()
+
+    # Pagination
     paginator = Paginator(galleries, 4)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    context = {'page_obj':page_obj}
-    return render(request, "../templates/gallery/gallery_copy.html" , context)
+    
+    if request.method == 'POST':
+        # 사진 필터링
+        if (l_id is None and c_id is None)  or (l_id == '0' and c_id == '0'):
+            galleries = Gallery.objects.all()
+        elif l_id == '0' and c_id is not None:
+            galleries = Gallery.objects.filter(category_id=c_id)
+        elif l_id is not None and c_id == '0':
+            galleries = Gallery.objects.filter(landmark_id=l_id)
+        else:
+            galleries = Gallery.objects.filter(landmark_id = l_id, category_id = c_id)
+        
+    content = {'page_obj':page_obj, "landmarks" : landmarks, }
 
-
-
-# Pagination
+    return render(request, "../templates/gallery/gallery.html" , context= content)
 
 def load_more(request):
     offset = int(request.POST['offset'])
@@ -39,33 +53,6 @@ def load_more(request):
         'totalResult':totalData,
     })
 
-
-def gallery(request):
-    l_id = request.POST.get('landmark')
-    c_id = request.POST.get('category')
-    print(c_id)
-    galleries = Gallery.objects.all()
-    landmarks = Landmark.objects.all()
-
-    # Pagination
-    paginator = Paginator(galleries, 4)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    
-    if request.method == 'POST':
-    
-        if (l_id is None and c_id is None)  or (l_id == '0' and c_id == '0'):
-            galleries = Gallery.objects.all()
-        elif l_id == '0' and c_id is not None:
-            galleries = Gallery.objects.filter(category_id=c_id)
-        elif l_id is not None and c_id == '0':
-            galleries = Gallery.objects.filter(landmark_id=l_id)
-        else:
-            galleries = Gallery.objects.filter(landmark_id = l_id, category_id = c_id)
-        
-    content = {'page_obj':page_obj, "landmarks" : landmarks, }
-
-    return render(request, "../templates/gallery/gallery.html" , context= content)
 
 def upload(request):
     if request.method == 'POST':

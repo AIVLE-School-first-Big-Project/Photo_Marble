@@ -115,7 +115,7 @@
         <br> 
         <input type="file" name="attachment[]"  multiple="multiple">  {% endcomment %}
           <br>
-          <div class="item">
+          <div class="item"> 
           {% csrf_token %}
           <div class="modal_image_upload" style="display: inline-block;">           
           <br> 
@@ -211,7 +211,7 @@ label[for="file-input"] {
   font-size: 1em;
   color: #000;
   opacity: .9;
-  font-weight: bold;
+  font-weight: bold;  
 }
 
 input[type="file"] {
@@ -225,8 +225,7 @@ input[type="file"]::-webkit-file-upload-button {
   font-size: 1em;
   transition: all .4s;
   cursor: pointer;
-  border-radius: 5px;
-  "background-image: linear-gradient(to right, #77aad9, #e68387);
+  border-radius: 5px;  
 }
 input[type="file"]::-ms-browse {
   border: none;
