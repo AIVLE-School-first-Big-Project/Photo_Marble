@@ -7,13 +7,13 @@ from main.models import Gallery, Like, Comment, User, Landmark
 from django.utils.timezone import now
 from rest_framework.views import APIView
 from django.utils import timezone
-# from .forms import CommentForm
 from django.utils import timezone
 from datetime import datetime
 from django.http import HttpResponse,JsonResponse
 import json
 from django.core import *
 from django.core.paginator import *
+from django.core import serializers
 
 def gallery(request):
     l_id = request.POST.get('landmark')
@@ -37,7 +37,8 @@ def gallery(request):
         else:
             galleries = Gallery.objects.filter(landmark_id = l_id, category_id = c_id)
         
-    content = {'page_obj':page_obj, "landmarks" : landmarks, 'datas':galleries}
+    content = {'page_obj':page_obj, "landmarks" : landmarks, }
+
     return render(request, "../templates/gallery/gallery.html" , context= content)
 
 def load_more(request):
@@ -63,7 +64,7 @@ def upload(request):
         time = timezone.now()
         s3_url = "https://photomarble.s3.ap-northeast-2.amazonaws.com/gallery/"+ str(img)
         Gallery.objects.create(s3_url = s3_url, updated_at=time,category_id=category, landmark_id=landmark,user_id=user_id,photo_url=img)
-    return redirect('http://127.0.0.1:8000/gallery/')
+    return redirect('gallery')
 
 
 def detail(request, id):
@@ -72,8 +73,7 @@ def detail(request, id):
     upload_user = galleries.user_id
     profile_photo=User.objects.get(id=upload_user).profile_s3_url
     uploader= User.objects.get(id=upload_user).nickname
-    #likes = Gallery.like_users.filter(gallery_id = id)
-    print(galleries.like_users.count())
+    likes = Like.objects.filter(gallery_id = id)
 
     if request.method == 'POST':
         comment = Comment()
