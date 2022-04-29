@@ -12,7 +12,7 @@ from django.utils import timezone
 from datetime import datetime
 from django.http import HttpResponse,JsonResponse
 import json
-from django.core import serializers
+from django.core import *
 from django.core.paginator import *
 
 def gallery(request):
@@ -39,8 +39,6 @@ def gallery(request):
         
     content = {'page_obj':page_obj, "landmarks" : landmarks, 'datas':galleries}
     return render(request, "../templates/gallery/gallery.html" , context= content)
-
-# Pagination
 
 def load_more(request):
     offset = int(request.POST['offset'])
@@ -92,7 +90,7 @@ def detail(request, id):
         return redirect('detail2',id=id)
 
     comments = Comment.objects.filter(gallery_id=id)
-        
+  
     content = {"data" : galleries, "len_likes": galleries.like_users.count(), "likes": likes,"uploader":uploader,"profile_photo":profile_photo,"comments":comments, "my_id": user_id}
     return render(request, '../templates/gallery/detail.html', context=content)
 

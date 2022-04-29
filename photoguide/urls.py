@@ -3,5 +3,6 @@ from . import views
 urlpatterns = [
        path('', views.photoguide, name='photoguide'),
        path('photoguide_update', views.photoguide_update, name='photoguide_update'),
-
+       path('photoguide_result', views.photoguide_result, name='photoguide_result'),
+       path('photoguide_result_copy', views.photoguide_result_copy, name='photoguide_result_copy'),
 ]

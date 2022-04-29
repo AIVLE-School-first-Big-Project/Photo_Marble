@@ -62,28 +62,17 @@
         border-style: none; height : 40; margin : -4 0 0 0 ;
         color: white;" type="submit" id = 'btn1' class="btn"> 검색</button>
             {% csrf_token %}
-        </form>
+        
         <button id="add_feed" style="background-image: linear-gradient(to right, #77aad9, #e68387);
         border-style: none; height : 40; margin : -4 0 0 0 ;
         color: white;" class="btn"> 사진추가</button>
-        
+
     </div>   
 
 <br>
 <br>
 <br>
-   <div class="gallery">
-      {% if datas %}  
-          {% for data in datas%}
-              <div class="gallery-item">
-                  <a href= "{% url 'detail2' data.gallery_id %}"  aria-label="Genuine Gemini" class="grid-item-link">
-                  <img class="gallery-image" src="{{ data.s3_url }}">
-                  </a>
-              </div>
-          {% endfor %}
-      {% endif %}
-   </div> 
-   
+
    <div class="gallery">
       {% if datas %}
           {% for data in page_obj %}
@@ -96,9 +85,10 @@
       {% endif %}
   </div>
   <button id="loadmoreBtn">Load More</button>
-
 </div>
+
 </section>
+<button id="loadmoreBtn">Load More</button>
 
 </body>
 <div id="modal_add_feed" class="modal_overlay">
@@ -124,9 +114,12 @@
         <label for="file">사진을 등록해주세요</label>
         
       </div>
+      <div class="item"  style="text-align:center;">
+        <img id="tempImage" style="width:300px;height:300px;" src="../../static/photoguide/images/photo-placeholder.png"></a>
+    </div>
       <div class="item" id="filebox">
      
-        <input type="file" class="file" name="file"  accept="image/png, image/jpeg" required>
+        <input type="file" class="file" name="file"  onchange="imageView(this)" accept="image/png, image/jpeg" required>
         
       </div>
 
@@ -175,6 +168,20 @@
       modal.style.display = "none";
       document.body.style.overflowY = "visible";
   });
+
+  function imageView(input) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+            
+                        reader.onload = function(e) {
+                            $('#tempImage').attr('src', e.target.result)
+                             .width(300)
+                             .height(300);
+                        }
+            
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
 </script>
 
 <!-- Pagination -->
@@ -268,7 +275,7 @@ select {
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   width: 600px;
-  height: 410px;
+  height: 700px;
   position: relative;
   padding: 10px;
 }
@@ -293,7 +300,7 @@ select {
   width:580px;
   height: 350px;
   display: grid;
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-rows: repeat 1fr 5fr 1fr 1fr 1fr 1fr;
 }
 
 
@@ -367,5 +374,48 @@ body {
 }
 
 </style>
+
+<!-- Pagination -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function(){
+    $("#loadmoreBtn").on('click', function(){
+      var _currentResult = $(".gallery-item").length;
+      // run Ajax
+      $.ajax({
+        url:"{% url 'load_more' %}",
+        type:'post',
+        data:{
+          'offset':_currentResult,
+          'csrfmiddlewaretoken':"{{csrf_token}}",
+        },
+        dataType:'json',
+        beforeSend:function(){
+          $("#loadmoreBtn").addClass('disabled').text('Loading...');
+        },
+        success:function(res){
+          var _html='';
+          var json_data=$.parseJSON(res.posts);
+          $.each(json_data, function(index, data){
+            _html+='<div class="gallery-item">\
+                      <a href= "detail/'+data.fields.id+'/" aria-label="Genuine Gemini" class="grid-item-link">\
+                      <img class="gallery-image" src="'+data.fields.s3_url+'">\
+                      </a>\
+                    </div>';
+
+          });
+          $(".gallery").append(_html);
+          var _countTotal=$(".gallery-item").length;
+          if(_countTotal==res.totalResult){
+            $("#loadmoreBtn").remove();
+          }else{
+            $("#loadmoreBtn").removeClass('disabled').text('Load more');
+          }          
+        }
+      });
+    });
+  });
+</script>
+<!-- Pagination -->
 {% endblock %}
 

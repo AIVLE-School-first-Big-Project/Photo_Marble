@@ -85,10 +85,10 @@
                   {% if request.user in data.like_users.all %}
                   <!-- 로그인 한 유저가 좋아요를 누른 유저일때  -->
                   <img id="heart" style="weight:25px;height:25px;" src="/../../static/gallery/images/heart_2.png">
-                  {%else%}
+                  {% else %}
                   <!-- 로그인 한 유저가 좋아요를 누른 유저가 아닐 때  -->
                   <img id="heart" style="weight:25px;height:25px;" src="/../../static/gallery/images/heart_1.png">
-                  {%endif%}
+                  {% endif %}
                 </button>
               </div>
               <div style = "margin: 7px;">
@@ -144,7 +144,7 @@
           <form method="POST">
             {% csrf_token %}
             <input name="comment_textbox" type="text" style="width:85%;" placeholder="댓글 달기">
-            <input id = 'btn1' class="btn" type="submit" style="width:auto font-family:'yg-jalnan';" value="등록">
+            <input id = 'btn1' class="btn" type="submit" style="width:auto; font-family:'yg-jalnan';" value="등록">
           </form>
   
         </div>
@@ -166,7 +166,7 @@
           integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
           crossorigin="anonymous">
   </script>
-  {% endblock %}
+
   
   <style>  
   @font-face {
@@ -183,3 +183,5 @@
   font-style: normal;
   }
   </style>
+
+{% endblock %}

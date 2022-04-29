@@ -1,46 +1,48 @@
 from re import A
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.urls import reverse
 from main.models import User, Collection, Landmark, Locations, Gallery
 
 from django.db.models import Count
-
+from config.settings import MAIN_URL
 # Create your views here.
 
 
 def collection_mypage(request):
     # progress bar
+    print("request.user.is_authenticated : ",request.user.is_authenticated)
+    if request.user.is_authenticated==True:
+        ui = request.session['id']
+        visited_landmark = Collection.objects.filter(user_id= ui)
+        collection_cnt = len(visited_landmark)
+        total = len(Landmark.objects.all())
+        progress = int((collection_cnt/total)*100)
+        
+        # map
+        area_id=[]
+        for i in visited_landmark:
+            l_d=i.landmark_id
+            land=Landmark.objects.get(landmark_id= l_d)
+            area_name=land.area
+            land=Locations.objects.get(name= area_name)
+            area_id.append('s'+str(land.location_id))
+
     
-    ui = request.session['id']
-    visited_landmark = Collection.objects.filter(user_id= ui)
-    collection_cnt = len(visited_landmark)
-    total = len(Landmark.objects.all())
-    progress = int((collection_cnt/total)*100)
+        data_list=[]
+        for i in range(1,26):
+            data_dict={}
+            dict_key = 's'+str(i)
+            if dict_key in area_id:
 
-    # map
-    area_id=[]
-    for i in visited_landmark:
-        l_d=i.landmark_id
-        land=Landmark.objects.get(landmark_id= l_d)
-        area_name=land.area
-        land=Locations.objects.get(name= area_name)
-        area_id.append('s'+str(land.location_id))
-
- 
-    data_list=[]
-    for i in range(1,26):
-        data_dict={}
-        dict_key = 's'+str(i)
-        if dict_key in area_id:
-
-            data_dict['area']='area_true'
-            data_dict['marker']='marker'
-            data_list.append(data_dict)
-        else:
-
-            data_dict['area']='area_false'
-            data_dict['marker']='empty'
-            data_list.append(data_dict)
+                data_dict['area']='area_true'
+                data_dict['marker']='marker'
+                data_list.append(data_dict)
+            else:
+        
+                data_dict['area']='area_false'
+                data_dict['marker']='empty'
+                data_list.append(data_dict)
+              
     # svg 태그 안에서 foor loop가 불가능해 우선은 하드코딩 (25개 개별로 전달) 추후에 수정 예정 ....
     # import json
     # a_list=json.dumps(area_list)
@@ -64,6 +66,7 @@ def collection_mypage(request):
         test_dict["datas"] = my_galleries
     
     return render(request, '../templates/collection/collection_mypage.html', context=test_dict)
+
 
 from django.db.models import Q
 from django.views.decorators.csrf import csrf_exempt

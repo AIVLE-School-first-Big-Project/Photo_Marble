@@ -9,7 +9,6 @@ urlpatterns = [
     path('detail/<int:id>/', views.detail, name="detail2"),
     path('detail/comment/delete/<int:g_id>/<int:c_id>',views.comment_delete, name='comment_delete'),
     path('detail/gallery/delete/<int:g_id>',views.gallery_delete, name='gallery_delete'),
-    
     # Pagination
     path('load_more/', views.load_more, name="load_more"),
 ]
