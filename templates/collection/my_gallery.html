@@ -23,20 +23,82 @@
 
 </div>
 
-<div class="gallery">
+
         {% if datas %}
-            {% for data in datas%}
-                <div class="gallery-item">
-                {% comment %} <div class="gallery-item" id="p" data-item-id="611591d28b3917669f76f8eb" data-controller="ProductListImageLoader" data-controllers-bound="ProductListImageLoader" style="transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1); transition-duration: 0.8s; transition-delay: 0.136364s;"> {% endcomment %}
-                        {% comment %} <div class="grid-image-wrapper">  {% endcomment %}
-                            <a href= "http://127.0.0.1:8000/detail/{{ data.gallery_id }}"  aria-label="Genuine Gemini" class="grid-item-link">
-                            <img class="gallery-image" src= "{{ data.photo_url }}">
-                            </a>
-                        {% comment %} </div> {% endcomment %}
+            {% for landmark in landmarks %}
+            <section class="carousel">
+                <div class="carousel__container">
+                    <div class="landmark_name">
+                        <span style="font-weight: bolder;"> {{ landmark.name}} </span>
+                    </div>
+                    <div class="carousel-line">
+                        {% for data in datas%}
+  
+                            {% if data.landmark_id == landmark.landmark_id%}
+                                    <a href= "{% url 'detail2' data.gallery_id %}"  aria-label="Genuine Gemini" class="carousel-item__img">
+                                        <img class="carousel-item__img" src= "{{ data.s3_url }}">
+                                    </a>
+                            {% endif %}
+
+                        {% endfor %}
+                    </div>
                 </div>
+            </section>
             {% endfor %}
         {% endif %}
-</div>
+    
 
+<style>
 
+    .carousel {
+        width: 100%;
+        padding: 30px;
+        position: relative;
+        box-sizing: border-box;
+        overflow-y:hidden;
+        overflow-x:auto;
+     }
+     .carousel__container {
+        white-space: nowrap;
+        margin: 70px 0px;
+        padding-bottom: 10px;
+     }
+     .carousel-line{
+        display:block;
+     }
+     .carousel__container:hover .carousel-item {
+        opacity: 0.1;
+     }
+     .carousel__container:hover .carousel-item:hover {
+        transform: scale(1.5);
+        opacity: 1;
+     }
+     .carousel-item__img {
+        width: 200px;
+        height: 250px;
+        object-fit: cover;
+        transition: transform 400ms ease-out;
+     }
+
+     .carousel-item__img:hover {
+        transform: scale(1.15);
+     }
+
+     .carousel::-webkit-scrollbar {    
+         height: 5px;
+     }
+     
+     .carousel::-webkit-scrollbar-track {
+         -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1); 
+         border-radius: 10px;      
+     }
+     .carousel::-webkit-scrollbar-track-piece {
+         max-width: 100px;
+     }
+     .carousel::-webkit-scrollbar-thumb {
+         border-radius: 10px;
+         -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+         background-color: gray;      
+     }
+</style>
 {% endblock %}

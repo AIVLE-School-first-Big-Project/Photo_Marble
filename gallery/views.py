@@ -18,7 +18,6 @@ from django.core.paginator import *
 def gallery(request):
     l_id = request.POST.get('landmark')
     c_id = request.POST.get('category')
-    print(c_id)
     galleries = Gallery.objects.all()
     landmarks = Landmark.objects.all()
 
@@ -37,11 +36,9 @@ def gallery(request):
             galleries = Gallery.objects.filter(landmark_id=l_id)
         else:
             galleries = Gallery.objects.filter(landmark_id = l_id, category_id = c_id)
-    
-    content = {"datas" : galleries, "landmarks" : landmarks}
-    
+        
+    content = {'page_obj':page_obj, "landmarks" : landmarks, 'datas':galleries}
     return render(request, "../templates/gallery/gallery.html" , context= content)
-
 
 def load_more(request):
     offset = int(request.POST['offset'])

@@ -24,6 +24,7 @@ def photoguide_update(request):
 
     # fe=FeatureExtractor()
 
+
     # img = Image.open(img.file)
 
     # query = fe.extract(img)
