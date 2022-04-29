@@ -12,16 +12,22 @@ from django.utils import timezone
 from datetime import datetime
 from django.http import HttpResponse,JsonResponse
 import json
+from django.core import serializers
+from django.core.paginator import *
+
 def gallery(request):
     l_id = request.POST.get('landmark')
     c_id = request.POST.get('category')
-    print(c_id)
     galleries = Gallery.objects.all()
-
     landmarks = Landmark.objects.all()
+
+    # Pagination
+    paginator = Paginator(galleries, 4)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     
     if request.method == 'POST':
-    
+        # 사진 필터링
         if (l_id is None and c_id is None)  or (l_id == '0' and c_id == '0'):
             galleries = Gallery.objects.all()
         elif l_id == '0' and c_id is not None:
@@ -31,9 +37,23 @@ def gallery(request):
         else:
             galleries = Gallery.objects.filter(landmark_id = l_id, category_id = c_id)
         
-    content = {"datas" : galleries, "landmarks" : landmarks}
-
+    content = {'page_obj':page_obj, "landmarks" : landmarks, 'datas':galleries}
     return render(request, "../templates/gallery/gallery.html" , context= content)
+
+# Pagination
+
+def load_more(request):
+    offset = int(request.POST['offset'])
+    limit = 4
+    posts = Gallery.objects.all()[offset:offset + limit]
+    totalData = Gallery.objects.count()
+    data={}
+    posts_json = serializers.serialize('json', posts)
+    return JsonResponse(data={
+        'posts':posts_json,
+        'totalResult':totalData,
+    })
+
 
 def upload(request):
     if request.method == 'POST':

@@ -33,9 +33,8 @@
                 <img class="profile_img" src="{{ profile_photo }}">
               </div>
               <span class="feed_name_txt"> {{ uploader }} </span>
-              {% if data.user.user_id == my_id %}
+              {% if data.user_id == my_id %}
                   <button class="gallery_delete" onclick="button_event()" ><img src="{% static 'gallery/images/gallery_delete.png' %}"height ="30px" width="30px" /></button >
-
               {% endif %}
             </div>
 

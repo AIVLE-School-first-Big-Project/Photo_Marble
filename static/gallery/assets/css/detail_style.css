@@ -84,7 +84,7 @@
     background-color: transparent;
     background-repeat: no-repeat;
     border:none;
-    float: right;
+    margin-left: auto;
     object-fit: cover;
     transition: transform 400ms ease-out;
 }

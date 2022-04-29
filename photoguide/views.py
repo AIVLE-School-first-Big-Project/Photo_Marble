@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.urls import reverse
 from main.models import User, Collection, Landmark, Locations, Gallery
-from .DLmodel.similarity_code import FeatureExtractor
+# from .DLmodel.similarity_code import FeatureExtractor
 
 import numpy as np
 import pandas as pd
@@ -22,16 +22,19 @@ def photoguide_update(request):
 
 
 
-    fe=FeatureExtractor()
+    # fe=FeatureExtractor()
 
-    img = Image.open(img.file)
+    # img = Image.open(img.file)
 
-    query = fe.extract(img)
+    # query = fe.extract(img)
 
-    dists = np.linalg.norm(features - query, axis=1)
-    ids = np.argsort(dists)
-    top_url_link = [img_paths[id] for id in ids[:10]]
-    print(top_url_link)
+    # dists = np.linalg.norm(features - query, axis=1)
+    # ids = np.argsort(dists)
+    # top_url_link = [img_paths[id] for id in ids[:10]]
+    # print(top_url_link)
+
+    # 임시
+    top_url_link = None
 
 
 

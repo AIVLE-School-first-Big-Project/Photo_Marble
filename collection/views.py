@@ -49,6 +49,19 @@ def collection_mypage(request):
         test_dict['s{}'.format(i+1)]= data_list[i]
     
     test_dict['progress'] = progress
+
+    if request.method == "POST":
+        loc_id = request.POST.get('loc_id')
+        loc=Locations.objects.get(location_id = loc_id)
+        loc_name=loc.name
+        lands_area=Landmark.objects.filter(area = loc_name)
+        land_list=[]
+        print(loc_id)
+        for land in lands_area:
+            land_list.append(land.landmark_id)
+        my_galleries = Gallery.objects.filter(user=ui, landmark_id__in=land_list)
+        print(my_galleries)
+        test_dict["datas"] = my_galleries
     
     return render(request, '../templates/collection/collection_mypage.html', context=test_dict)
 
@@ -64,22 +77,19 @@ def my_gallery(request,loc_id):
     for land in lands_area:
         land_list.append(land.landmark_id)
     my_galleries = Gallery.objects.filter(user=ui, landmark_id__in=land_list)
-    content = {"datas" : my_galleries}
+    
+    visited_lands = []
+
+    for my_g in my_galleries:
+        visited_lands.append(my_g.landmark_id)
+
+    landset = list(set(visited_lands))
+
+    lands_area = Landmark.objects.filter(area=loc_name, landmark_id__in=landset)
+    
+    content = {"datas" : my_galleries, "landmarks":lands_area}
+    
     return render(request, "../templates/collection/my_gallery.html" , context= content)
-
-
-# def collection_ranking(request):
-#     total = len(Landmark.objects.all())
-#     rank = Collection.objects.values('user_id').annotate(dcount=Count('user_id'))
-#     user_rank=[]
-#     for i in rank:
-#         tmp = [list(i.values())[0], list(i.values())[1]]
-#         tmp_user = User.objects.get(id=list(i.values())[0]).username
-#         user_rank.append([tmp_user,int((tmp[1]/total)*100)])
-
-#     user_rank.sort(key=lambda x:x[1])
-
-#     return render(request, '../templates/collection/collection_ranking.html',{'rank':user_rank})
 
 def collection_ranking(request):
     
