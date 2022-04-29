@@ -63,10 +63,11 @@
         color: white;" type="submit" id = 'btn1' class="btn"> 검색</button>
         {% comment %} <span id="add_feed" > 사진추가</span> {% endcomment %}
             {% csrf_token %}
-        </form>
+        
         <button id="add_feed" style="background-image: linear-gradient(to right, #77aad9, #e68387);
         border-style: none; height : 40; margin : -4 0 0 0 ;
         color: white;" class="btn"> 사진추가</button>
+         </form>
         {% comment %} <form enctype="multipart/form-data" method="post" action="{% url 'select' %}">
             {% csrf_token %}
             <input type="file" name="file">
@@ -77,19 +78,26 @@
 <br>
 <br>
 <br>
+
+  
+
+
    <div class="gallery">
       {% if datas %}  
-          {% for data in datas%}
-              <div class="gallery-item">
-                  <a href= "{% url 'detail2' data.gallery_id %}"  aria-label="Genuine Gemini" class="grid-item-link">
-                  <img class="gallery-image" src="{{ data.s3_url }}">
-                  </a>
-              </div>
-          {% endfor %}
+      {% for data in page_obj %}
+      <div class="gallery-item">
+          <a href= "{% url 'detail2' data.gallery_id %}"  aria-label="Genuine Gemini" class="grid-item-link">
+              <img class="gallery-image" src="{{ data.s3_url }}">{{data.s3_url}}
+          </a>
+      </div>
+  {% endfor %}
       {% endif %}
    </div> 
+   
 </div>
+
 </section>
+<button id="loadmoreBtn">Load More</button>
 
 </body>
 <div id="modal_add_feed" class="modal_overlay">
@@ -315,5 +323,48 @@ body {
 }
 
 </style>
+
+<!-- Pagination -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function(){
+    $("#loadmoreBtn").on('click', function(){
+      var _currentResult = $(".gallery-item").length;
+      // run Ajax
+      $.ajax({
+        url:"{% url 'load_more' %}",
+        type:'post',
+        data:{
+          'offset':_currentResult,
+          'csrfmiddlewaretoken':"{{csrf_token}}",
+        },
+        dataType:'json',
+        beforeSend:function(){
+          $("#loadmoreBtn").addClass('disabled').text('Loading...');
+        },
+        success:function(res){
+          var _html='';
+          var json_data=$.parseJSON(res.posts);
+          $.each(json_data, function(index, data){
+            _html+='<div class="gallery-item">\
+                      <a href= "detail/'+data.fields.id+'/" aria-label="Genuine Gemini" class="grid-item-link">\
+                      <img class="gallery-image" src="'+data.fields.s3_url+'">\
+                      </a>\
+                    </div>';
+
+          });
+          $(".gallery").append(_html);
+          var _countTotal=$(".gallery-item").length;
+          if(_countTotal==res.totalResult){
+            $("#loadmoreBtn").remove();
+          }else{
+            $("#loadmoreBtn").removeClass('disabled').text('Load more');
+          }          
+        }
+      });
+    });
+  });
+</script>
+<!-- Pagination -->
 {% endblock %}
 

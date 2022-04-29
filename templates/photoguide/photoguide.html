@@ -6,7 +6,7 @@
 <html style="font-size: 16px;">
   
     <link rel="stylesheet" href="{% static 'main/assets/css/nicepage.css' %}" media="screen">
-<link rel="stylesheet" href="{% static 'main/assets/css/mypage.css' %}" media="screen">
+    <link rel="stylesheet" href="{% static 'main/assets/css/mypage.css' %}" media="screen">
     <script class="u-script" type="text/javascript" src="{% static 'main/assets/js/jquery.js' %}" defer=""></script>
     <script class="u-script" type="text/javascript" src="{% static 'main/assets/js/nicepage.js' %}" defer=""></script>
     <meta name="generator" content="Nicepage 4.9.5, nicepage.com">
@@ -16,22 +16,8 @@
     <meta name="theme-color" content="#478ac9">
     <meta property="og:title" content="mypage">
     <meta property="og:type" content="website">
-    <style>
-        @font-face {
-          font-family: 'Cafe24Ssurround';
-          src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
-          font-weight: normal;
-          font-style: normal;
-      }
-      @font-face{
-        font-family: 'yg-jalnan';
-        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
-        font-weight: normal;
-        font-style: normal;
-      }
-      
-      </style>  
-  
+
+    
     <body class="u-body u-xl-mode">
       <section class="u-clearfix u-white u-section-1" id="sec-81db">
         <div class="u-absolute-hcenter u-container-style u-expanded u-gradient u-group u-shape-rectangle u-group-1">
@@ -50,7 +36,7 @@
                     <label for="file">사진을 등록해주세요</label>
                     
                     </div>
-                    <div style="width:420px; height:420px;">
+                    <div style="width:420px; height:420px;margin:40px 120px;">
                         <img id="tempImage" src="../../static/photoguide/images/photo-placeholder.png"></a>
                     </div>
                     <div class="item" id="filebox">
@@ -58,11 +44,11 @@
                     <input type="file" class="file" name="file" onchange="imageView(this)"  accept="image/png, image/jpeg" required>
                     
                     </div>
-                    <br><br>
+                   
                     <div class="item" >
                         <button style="background-image: linear-gradient(to right, #77aad9, #e68387);
-                        border-style: none; height : 40; width:80; margin : -4 0 0 0 ;
-                        color: white;" type="submit" id = 'btn1' class="btn"> 등록하기</button>
+                        border-style: none;  width:80;margin: -18 3; font-family: 'Cafe24Ssurround';
+                        color: white; float:right;" type="submit" id = 'btn1' class="btn"> 등록하기</button>
                     </div>
                     
                   </div>
@@ -90,15 +76,14 @@
             </div>
           </div>
         </div>
-      </section>
-      
+      </section> 
       
     
 
   
     <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-05fd"><div class="u-clearfix u-sheet u-sheet-1">
         <p class="u-small-text u-text u-text-variant u-text-1">
-          <span style="font-size: 1rem;">KT AIVLE SCHOOL AI 수도권 4반</span>
+          <span style="font-family: 'yg-jalnan';font-size: 1.3rem; color : #db545a;">KT AIVLE SCHOOL AI 수도권 4반</span>
           <br>
         </p>
       </div></footer>
@@ -115,22 +100,20 @@
               </span>
           </div>
       </div>
-    
-      <form method="post" action="profile_upload" enctype="multipart/form-data">
+    <form method="post" action="profile_upload" enctype="multipart/form-data">
       
-        {% csrf_token %}
-        <div class="modal_image_upload">
-    
-          <div class="item" id="filebox">
-            <br>
-            <input type="file" class="file" name="file"  accept="image/png, image/jpeg" required>
-            
-          </div>
-    
-    
-          <div class="item" >
+        {% comment %} {% csrf_token %}
+        <div class="modal_image_upload">           
+        <br> 
+        <input type="file" name="attachment[]"  multiple="multiple">  {% endcomment %}
+          <br>
+          <div class="item"> 
+          {% csrf_token %}
+          <div class="modal_image_upload" style="display: inline-block;">           
+          <br> 
+          <input type="file" name="file"  multiple="multiple"> 
             <button style="background-image: linear-gradient(to right, #77aad9, #e68387);
-            border-style: none; height : 40; width:80; margin : -4 0 0 0 ;
+            border-style: none; display: inline-block;
             color: white;" type="submit" id = 'btn1' class="btn"> 등록하기</button>
           </div>
         
@@ -138,7 +121,6 @@
     </form>
       </div>
     </div>
-
     
 
 <script>
@@ -157,6 +139,7 @@
       document.body.style.overflowY = "visible";
   });
 </script>
+
 <style>
   .box1 {
     float:left; width:200px; height:100px; background-color:#234234;}
@@ -214,5 +197,58 @@
   grid-template-rows: repeat(2, 1fr);
 }
 
-   </style>
+  @font-face {
+    font-family: 'Cafe24Ssurround';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face{
+  font-family: 'yg-jalnan';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}    
+  
+label
+{
+  font-family: 'Cafe24Ssurround';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  position: absolute; 
+  left: 50%; 
+  top: 5%; 
+  transform: translate(-50%, -20%);
+  font-size:23px;
+}
+input[type="file"] {
+  font-family: 'yg-jalnan';
+  cursor: pointer !Important;
+  float:left;
+  margin: -20 30 20 120px;
+}
+input[type="file"]::-webkit-file-upload-button {
+  border: none;
+  padding: 5px 12px;
+  background-image: linear-gradient(to right, #77aad9, #e68387);
+  color: #fff;
+  font-size: 1em;
+  transition: all .4s;
+  cursor: pointer;
+  border-radius: 5px;  
+  
+}
+input[type="file"]::-ms-browse {        
+  border: none;
+  padding: 5px 12px;
+  background: #9e2baf;
+  color: #fff;
+  font-size: 1em;
+  transition: all .4s;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+</style>  
   {% endblock %} 
