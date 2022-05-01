@@ -34,7 +34,8 @@ def mypage(request):
             'user' : user_db
         })
     else:
-        return redirect(MAIN_URL)
+        messages.add_message(request, messages.INFO, '접근 권한이 없습니다')
+        return render(request,'../templates/main/mypage.html')
 
 def login(request):
     # 포스트 
