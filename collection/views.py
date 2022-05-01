@@ -4,9 +4,9 @@ from django.urls import reverse
 from main.models import User, Collection, Landmark, Locations, Gallery
 
 from django.db.models import Count
-from config.settings import MAIN_URL
-# Create your views here.
 
+from django.contrib import messages
+# Create your views here.
 
 def collection_mypage(request):
     # progress bar
@@ -38,34 +38,45 @@ def collection_mypage(request):
                 data_dict['marker']='marker'
                 data_list.append(data_dict)
             else:
-        
+
                 data_dict['area']='area_false'
                 data_dict['marker']='empty'
                 data_list.append(data_dict)
-              
-    # svg 태그 안에서 foor loop가 불가능해 우선은 하드코딩 (25개 개별로 전달) 추후에 수정 예정 ....
-    # import json
-    # a_list=json.dumps(area_list)
-    test_dict={}
-    for i in range(0, 25):
-        test_dict['s{}'.format(i+1)]= data_list[i]
-    
-    test_dict['progress'] = progress
+        # svg 태그 안에서 foor loop가 불가능해 우선은 하드코딩 (25개 개별로 전달) 추후에 수정 예정 ....
+        # import json
+        # a_list=json.dumps(area_list)
+        test_dict={}
+        # model = yolov5.load('best.pt')
+        # img = 'data/seock.jpg'
+        # results = model(img)
+        # results.save(save_dir='results/')
+        # test_dict["result"] = results
 
-    if request.method == "POST":
-        loc_id = request.POST.get('loc_id')
-        loc=Locations.objects.get(location_id = loc_id)
-        loc_name=loc.name
-        lands_area=Landmark.objects.filter(area = loc_name)
-        land_list=[]
-        print(loc_id)
-        for land in lands_area:
-            land_list.append(land.landmark_id)
-        my_galleries = Gallery.objects.filter(user=ui, landmark_id__in=land_list)
-        print(my_galleries)
-        test_dict["datas"] = my_galleries
-    
-    return render(request, '../templates/collection/collection_mypage.html', context=test_dict)
+        for i in range(0, 25):
+            test_dict['s{}'.format(i+1)]= data_list[i]
+        
+        test_dict['progress'] = progress
+        
+        # if request.method == "POST":
+        #     loc_id = request.POST.get('loc_id')
+        #     loc=Locations.objects.get(location_id = loc_id)
+        #     loc_name=loc.name
+        #     lands_area=Landmark.objects.filter(area = loc_name)
+        #     land_list=[]
+        #     print(loc_id)
+        #     for land in lands_area:
+        #         land_list.append(land.landmark_id)
+        #     my_galleries = Gallery.objects.filter(user=ui, landmark_id__in=land_list)
+        #     print(my_galleries)
+        #     test_dict["datas"] = my_galleries
+
+        return render(request, '../templates/collection/collection_mypage.html', context=test_dict)
+    else:
+        messages.add_message(request, messages.INFO, '접근 권한이 없습니다')
+        return render(request,'../templates/collection/collection_mypage.html')
+
+
+
 
 
 from django.db.models import Q
