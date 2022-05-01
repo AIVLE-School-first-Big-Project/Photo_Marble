@@ -44,7 +44,7 @@
             <div class="gallery">
                 {% for data in page_obj %}
                     <div class="gallery-item">
-                        <a href= "{% url 'detail2' data.gallery_id %}"  aria-label="Genuine Gemini" class="grid-item-link">
+                        <a href= "{% url 'detail2' data.gallery_id %}" aria-label="Genuine Gemini" class="grid-item-link">
                             <img class="gallery-image" src="{{ data.s3_url }}">
                         </a>
                     </div>
