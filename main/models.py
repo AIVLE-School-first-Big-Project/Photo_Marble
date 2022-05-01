@@ -47,6 +47,9 @@ class Gallery(models.Model):
     user = models.ForeignKey('User',db_column='user_id', on_delete=models.CASCADE)
     landmark = models.ForeignKey('Landmark',  db_column='landmark_id', default='', on_delete=models.CASCADE)
     like_users = models.ManyToManyField(User, related_name='like_articles')
+    latitude = models.DecimalField(max_digits=18, decimal_places=10, null=True)
+    longitude = models.DecimalField(max_digits=18, decimal_places=10, null=True)
+    created_at = models.DateTimeField(null=True)
     class Meta:
         db_table = 'Gallery'
 
