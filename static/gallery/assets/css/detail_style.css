@@ -22,6 +22,7 @@
 
 .comment_textbox{
     vertical-align: middle;
+    width:85%;
 }
 
 
@@ -185,4 +186,10 @@
 
 .comment_textbox {
     font-weight: 300;
+}
+
+#updated{
+    font-size: 18px;
+    color: grey;
+    margin-bottom: 5px;
 }

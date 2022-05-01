@@ -20,7 +20,7 @@ from PIL.ExifTags import TAGS
 def gallery(request):
     l_id = request.POST.get('landmark')
     c_id = request.POST.get('category')
-    galleries = Gallery.objects.all()
+    galleries = Gallery.objects.all().order_by('-updated_at')
     landmarks = Landmark.objects.all()
 
     # Pagination

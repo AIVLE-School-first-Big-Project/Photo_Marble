@@ -50,6 +50,23 @@ class Gallery(models.Model):
     latitude = models.DecimalField(max_digits=18, decimal_places=10, null=True)
     longitude = models.DecimalField(max_digits=18, decimal_places=10, null=True)
     created_at = models.DateTimeField(null=True)
+
+    @property
+    def created_string(self):
+        time = datetime.now() - self.updated_at
+
+        if time < timedelta(minutes=1):
+            return '방금 전'
+        elif time < timedelta(hours=1):
+            return str(int(time.seconds / 60)) + '분 전'
+        elif time < timedelta(days=1):
+            return str(int(time.seconds / 3600)) + '시간 전'
+        elif time < timedelta(days=7):
+            time = datetime.now().date() - self.updated_at.date()
+            return str(time.days) + '일 전'
+        else:
+            return False
+
     class Meta:
         db_table = 'Gallery'
 
@@ -73,23 +90,6 @@ class Category(models.Model):
 
 
 # 댓글 작성일 표시 형식 변경
-
-class Free(models.Model):
-    @property
-    def created_string(self):
-        time = datetime.now() - self.updated_at
-
-        if time < timedelta(minutes=1):
-            return '방금 전'
-        elif time < timedelta(hours=1):
-            return str(int(time.seconds / 60)) + '분 전'
-        elif time < timedelta(days=1):
-            return str(int(time.seconds / 3600)) + '시간 전'
-        elif time < timedelta(days=7):
-            time = datetime.now().date() - self.updated_at.date()
-            return str(time.days) + '일 전'
-        else:
-            return False
 
 class Comment(models.Model):
     # 댓글 작성이 표시 형식 변경
