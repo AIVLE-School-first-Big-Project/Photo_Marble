@@ -3,53 +3,53 @@
 {% block content %}
 <html>
     <head>
-      
-        <link rel="stylesheet" href="{% static 'css/gallery_style.css' %}"/>
+        <link rel="stylesheet" href="{% static 'gallery/assets/css/gallery_style.css' %}"/>
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,900" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-      </script>
-        
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-      </script>
-        
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-      </script>
-        
-        {% comment %} <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> {% endcomment %}
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     </head>
     
 <body style="text-align: center;">
 
-<style>
-  @font-face {
-    font-family: 'Cafe24Ssurround';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face{
-  font-family: 'yg-jalnan';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-</style>      
-
-    <section class="u-align-center u-clearfix u-white u-section-1" id="carousel_871a">
-      <div class="u-expanded-width u-gradient u-shape u-shape-rectangle u-shape-1">      
-        <br>
-    <h1 class="display-4" style="font-family: 'Cafe24Ssurround';color:#db545a;text-align : center;"> 갤러리 </h1><br>
-    <div id = select style="margin:auto;text-align:center;">
-      <form method="post" action="{% url 'gallery' %}">
-        {% csrf_token %}
-        <select class="form-select" name="landmark" id="landmark">
-                <option value=0>전체</option>
-                {% for landmark in landmarks%}
-                    <option value="{{landmark.landmark_id}}"> {{landmark.name}} </option>
+    <section class="u-align-center u-clearfix u-white u-section-1 post-wrapper" id="carousel_871a">
+        <div class="u-expanded-width u-gradient u-shape u-shape-rectangle u-shape-1"><br><br><br>
+            <h1 class="display-4" style="font-family: 'Cafe24Ssurround';color:#db545a;text-align : center;"> 갤러리 </h1><br>
+            <div id = select style="margin:auto;text-align:center;">
+                <form method="post" action="{% url 'gallery' %}">
+                    {% csrf_token %}
+                        <select class="form-select" name="landmark" id="landmark"style="font-family: 'Cafe24Ssurround';">
+                            <option value=0>전체</option>
+                                {% for landmark in landmarks%}
+                                    <option value="{{landmark.landmark_id}}"> {{landmark.name}} </option>
+                                {% endfor %}
+                        </select>
+                        <select class="form-select" name="category" id="category" style="display:inline-block;font-family: 'Cafe24Ssurround';">
+                            <option value=0>전체</option>
+                            <option value=1>인물</option>
+                            <option value=2>풍경</option>
+                            <option value=3>음식</option>
+                          </select>
+                    <button style="background-image: linear-gradient(to right, #77aad9, #e68387); border-style: none; height : 40; margin : -4 0 -5 0 ; color: white;font-family: 'Cafe24Ssurround';" 
+                    type="submit" id = 'btn1' class="btn"> 검색</button>
+                        {% csrf_token %}    
+                      </form>
+                <button onclick="goTop()" id="add_feed" style="background-image: linear-gradient(to right, #77aad9, #e68387); border-style: none; height : 40; margin : -4 20 0 0 ; color: white;font-family: 'Cafe24Ssurround';float:right" 
+                class="btn"> 사진 추가</button>
+                      
+              
+            </div><br><br><br>
+            <div class="gallery">
+                {% for data in page_obj %}
+                    <div class="gallery-item">
+                        <a href= "{% url 'detail2' data.gallery_id %}" aria-label="Genuine Gemini" class="grid-item-link">
+                            <img class="gallery-image" src="{{ data.s3_url }}">
+                        </a>
+                    </div>
                 {% endfor %}
+
             </select>
             
         <select class="form-select" name="category" id="category" style="display:inline-block;">
@@ -61,33 +61,32 @@
             <button style="background-image: linear-gradient(to right, #77aad9, #e68387);
         border-style: none; height : 40; margin : -4 0 0 0 ;
         color: white;" type="submit" id = 'btn1' class="btn"> 검색</button>
+      
             {% csrf_token %}
-        
-        <button id="add_feed" style="background-image: linear-gradient(to right, #77aad9, #e68387);
+        </form>
+        <button onclick="goTop()" id="add_feed" style="background-image: linear-gradient(to right, #77aad9, #e68387);
         border-style: none; height : 40; margin : -4 0 0 0 ;
         color: white;" class="btn"> 사진추가</button>
-
+    
     </div>   
 
 <br>
 <br>
 <br>
-
    <div class="gallery">
-      {% if datas %}
-          {% for data in page_obj %}
+      {% if datas %}  
+          {% for data in datas%}
               <div class="gallery-item">
                   <a href= "{% url 'detail2' data.gallery_id %}"  aria-label="Genuine Gemini" class="grid-item-link">
-                      <img class="gallery-image" src="{{ data.s3_url }}">
+                  <img class="gallery-image" src="{{ data.s3_url }}">
                   </a>
               </div>
           {% endfor %}
       {% endif %}
-  </div>
-  <button id="loadmoreBtn">Load More</button>
+   </div> 
 </div>
-
 </section>
+
 <button id="loadmoreBtn">Load More</button>
 
 </body>
@@ -160,28 +159,12 @@
         document.body.style.overflowY = "hidden";
     });
 
-  
-  // 모달 닫기 코드
-  const buttonCloseModal = document.getElementById("close_modal");
-  buttonCloseModal.addEventListener("click", e => {
-      modal.style.display = "none";
-      document.body.style.overflowY = "visible";
-  });
 
-  function imageView(input) {
-                    if (input.files && input.files[0]) {
-                        var reader = new FileReader();
-            
-                        reader.onload = function(e) {
-                            $('#tempImage').attr('src', e.target.result)
-                             .width(300)
-                             .height(300);
-                        }
-            
-                        reader.readAsDataURL(input.files[0]);
-                    }
-                }
-</script>
+            </div><br>
+            <button id="loadmoreBtn" style="background-image: linear-gradient(to right, #77aad9, #e68387); border-style: none; height : 40; width:80; margin : -4 20 0 0 ; color: white;font-family: 'Cafe24Ssurround';">더보기</button>
+        </div>
+    </section>
+
 
 <!-- Pagination -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -204,7 +187,9 @@
         success:function(res){
           var _html='';
           var json_data=$.parseJSON(res.posts);
+          // console.log(json_data)
           $.each(json_data, function(index, data){
+            // console.log(data.fields)
             _html+='<div class="gallery-item">\
                       <a href= "detail/'+data.pk+'/" aria-label="Genuine Gemini" class="grid-item-link">\
                       <img class="gallery-image" src="'+data.fields.s3_url+'">\
@@ -217,7 +202,7 @@
           if(_countTotal==res.totalResult){
             $("#loadmoreBtn").remove();
           }else{
-            $("#loadmoreBtn").removeClass('disabled').text('Load more');
+            $("#loadmoreBtn").removeClass('disabled').text('더보기');
           }          
         }
       });
@@ -225,196 +210,107 @@
   });
 </script>
 <!-- Pagination -->
+</body>
 
-<style>
-select {
-  /* Reset Select */
-  appearance: none;
-  outline: 0;    
-  box-shadow: none;
-  /* Personalize */
-  flex: 1;
-  padding: 0 1em;
-  color: #232323;
-  background-color: #FFFFFF;
-  background-image: none;
-  cursor: pointer;
-  border-radius: 7px;     
-}
-@font-face {
-  font-family: 'Cafe24Ssurround';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
+<div id="modal_add_feed" class="modal_overlay">
+    <div class="modal_window">
+        <div class="modal_title">
+            <div class="modal_title_side"></div>
+            <div> 새 게시물 </div>
+            <div class="modal_title_side">
+                <span id="close_modal" class="material-icons-outlined">close</span>
+            </div>
+        </div>
+        <form method="post" action="upload" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="modal_image_upload">
+                <div class="item" id="label_input"><br>
+                    <label for="file">사진을 등록해주세요</label>
+                </div>
+                <div class="item" id="filebox">
+                    <input type="file" id="file" class="file" name="file" onchange="imageView(this)" accept="image/png, image/jpeg" required>
+                </div>
+                <div class="item" id="landmark_input">
+                    <select class="form-select" name="landmark" id="landmark">
+                        {% for landmark in landmarks%}
+                            <option value="{{landmark.landmark_id}}"> {{landmark.name}} </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="item" id="category_input">
+                    <select class="form-select" name="category" id="category" style="display:inline-block;">
+                        <option value=0>전체</option>
+                        <option value=1>인물</option>
+                        <option value=2>풍경</option>
+                        <option value=3>음식</option>
+                    </select>
+                </div>
+                <div class="item" >
+                    <button style="background-image: linear-gradient(to right, #77aad9, #e68387); border-style: none; height : 40; width:80; margin : -4 0 0 0 ; color: white;" 
+                    type="submit" id = 'btn1' class="btn"> 등록하기</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 
-
-
-
-@import url(https://fonts.googleapis.com/css?family=Montserrat:500);
-.modal_overlay {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(1.5px);
-  -webkit-backdrop-filter: blur(1.5px);
-}
-
-.modal_window {
-  background: white;
-  backdrop-filter: blur(13.5px);
-  -webkit-backdrop-filter: blur(13.5px);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  width: 600px;
-  height: 700px;
-  position: relative;
-  padding: 10px;
-}
-
-.modal_title{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  font-weight: bold;
-  font-size: 20px;
-}
-
-.modal_title_side{
-  flex: 0 0 40px;
-  text-align: center;
-}
-
-.modal_image_upload{
-
-  text-align: center;
-  transition: all .15s ease-in-out;
-  width:580px;
-  height: 350px;
-  display: grid;
-  grid-template-rows: repeat 1fr 5fr 1fr 1fr 1fr 1fr;
-}
-
-
-*::before,
-*::after {
-   box-sizing: border-box;
-}
-
-body {
-   min-height: 100vh;
-   background-color: #FFFFFF;
-}
-
-.container {
-   max-width: 100rem;
-   margin: 0 auto;
-   padding: 0 2rem 2rem;
-}
-
-.heading {
-   font-family: "Montserrat", Arial, sans-serif;
-   font-size: 4rem;
-   font-weight: 500;
-   line-height: 1.5;
-   text-align: center;
-   padding: 3.5rem 0;
-   color: #1a1a1a;
-}
-
-.heading span {
-   display: block;
-}
-
-.gallery {
-   display: grid;
-   grid-template-columns: repeat(4, 1fr);
-   flex-wrap: wrap;
-   /* Compensate for excess margin on outer gallery flex items */
-   margin: 1rem 1rem;
-   width: 320px;
-   height: 320px;
-   object-fit: cover;
-}
-
-.gallery-item {
-   /* Minimum width of 24rem and grow to fit available space
-   flex: 1 0 24rem;
-   Margin value should be half of grid-gap value as margins on flex items don't collapse
-   margin: 1rem;
-   box-shadow: 0.3rem 0.4rem 0.4rem rgba(0, 0, 0, 0.4);
-   overflow: hidden; */
-   width: 320px;
-   height: 320px;
-   object-fit: cover;
-   flex: 1 0 24rem;
-   margin: 1rem;
-   
-   box-shadow: 0.3rem 0.4rem 0.4rem rgba(0, 0, 0, 0.4);
-}
-
-.gallery-image {
-   display: block;
-   width: 100%;
-   height: 100%;
-   object-fit: cover;
-   transition: transform 400ms ease-out;
-}
-
-.gallery-image:hover {
-   transform: scale(1.15);
-}
-
-</style>
-
-<!-- Pagination -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-  $(document).ready(function(){
-    $("#loadmoreBtn").on('click', function(){
-      var _currentResult = $(".gallery-item").length;
-      // run Ajax
-      $.ajax({
-        url:"{% url 'load_more' %}",
-        type:'post',
-        data:{
-          'offset':_currentResult,
-          'csrfmiddlewaretoken':"{{csrf_token}}",
-        },
-        dataType:'json',
-        beforeSend:function(){
-          $("#loadmoreBtn").addClass('disabled').text('Loading...');
-        },
-        success:function(res){
-          var _html='';
-          var json_data=$.parseJSON(res.posts);
-          $.each(json_data, function(index, data){
-            _html+='<div class="gallery-item">\
-                      <a href= "detail/'+data.fields.id+'/" aria-label="Genuine Gemini" class="grid-item-link">\
-                      <img class="gallery-image" src="'+data.fields.s3_url+'">\
-                      </a>\
-                    </div>';
+  function goTop(){
+	document.body.scrollTop = 0;
+}
 
-          });
-          $(".gallery").append(_html);
-          var _countTotal=$(".gallery-item").length;
-          if(_countTotal==res.totalResult){
-            $("#loadmoreBtn").remove();
-          }else{
-            $("#loadmoreBtn").removeClass('disabled').text('Load more');
-          }          
-        }
-      });
+  const modal = document.getElementById("modal_add_feed");
+    const buttonAddFeed = document.getElementById("add_feed");
+    console.log(buttonAddFeed)
+    console.log("###")
+    buttonAddFeed.addEventListener("click", e => {
+        
+        modal.style.display = "flex";
+        document.body.style.overflowY = "hidden";
     });
+
+  
+  // 모달 닫기 코드
+  const buttonCloseModal = document.getElementById("close_modal");
+  buttonCloseModal.addEventListener("click", e => {
+      modal.style.display = "none";
+      document.body.style.overflowY = "visible";
   });
+
+  function imageView(input) {
+
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function(e) {
+              $('#tempImage').attr('src', e.target.result)
+                .width(300)
+                .height(300);
+          }
+
+          reader.readAsDataURL(input.files[0]);
+      }
+  }
+
+      /* Secure Coding */
+      fileName = input.files[0].name
+      if(!fileName.endsWith(".png") && !fileName.endsWith(".jpg") && !fileName.endsWith(".jpeg") && !fileName.endsWith(".PNG") && !fileName.endsWith(".JPG") && !fileName.endsWith(".JPEG")) {         
+          document.getElementById("file").value = "";
+          out.wright("업로드할 수 없는 확장자입니다.")
+      } else {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#tempImage').attr('src', e.target.result)
+                     .width(300)
+                     .height(300);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    }
+
 </script>
-<!-- Pagination -->
+
 {% endblock %}
 

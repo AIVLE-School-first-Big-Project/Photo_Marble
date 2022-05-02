@@ -1,23 +1,21 @@
 {% extends "base.html" %}
-
 {% load static %}
 {% block content %}
+
 <!DOCTYPE html>
 <html style="font-size: 16px;">
-  
-    <link rel="stylesheet" href="{% static 'main/assets/css/nicepage.css' %}" media="screen">
-    <link rel="stylesheet" href="{% static 'main/assets/css/mypage.css' %}" media="screen">
+    <head>
+    <link rel="stylesheet" href="{% static 'photoguide/assets/css/nicepage.css' %}" media="screen">
+    <link rel="stylesheet" href="{% static 'photoguide/assets/css/photoguide.css' %}" media="screen">
     <script class="u-script" type="text/javascript" src="{% static 'main/assets/js/jquery.js' %}" defer=""></script>
     <script class="u-script" type="text/javascript" src="{% static 'main/assets/js/nicepage.js' %}" defer=""></script>
     <meta name="generator" content="Nicepage 4.9.5, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
-    
-  
     <meta name="theme-color" content="#478ac9">
     <meta property="og:title" content="mypage">
     <meta property="og:type" content="website">
-
-    
+    </head>
+  
     <body class="u-body u-xl-mode">
       <section class="u-clearfix u-white u-section-1" id="sec-81db">
         <div class="u-absolute-hcenter u-container-style u-expanded u-gradient u-group u-shape-rectangle u-group-1">
@@ -26,9 +24,8 @@
         
         <div class="u-clearfix u-layout-wrap u-layout-wrap-1">
             <h1 class="display-4" style="font-family: 'Cafe24Ssurround';color:#db545a;text-align: center;"> 포토가이드 </h1>
-          <div style="box-shadow: 5px 5px 5px #bababa;text-align: center;" class="u-gutter-0 u-layout">
-    
-            <div style="height:600px;text-align: center;display: grid;" class="cell-temp-clone u-align-left u-container-style u-layout-cell u-size-9 u-white u-layout-cell-8">
+          <div style="box-shadow: 5px 5px 5px #bababa;text-align: center;" class="">
+            <div style="text-align: center;display: grid;" class="cell-temp-clone u-align-left u-container-style u-layout-cell u-size-9 u-white u-layout-cell-8">
                 <form method="post" action="photoguide_update" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div style="" id="label_input">
@@ -36,13 +33,12 @@
                     <label for="file">사진을 등록해주세요</label>
                     
                     </div>
-                    <div style="width:420px; height:420px;margin:40px 120px;">
-
+                    <div class="upload_div">
                         <img id="tempImage" src="../../static/photoguide/images/photo-placeholder.png"></a>
                     </div>
                     <div class="item" id="filebox">
                     
-                    <input type="file" class="file" name="file" onchange="imageView(this)"  accept="image/png, image/jpeg" required>
+                    <input type="file" id="file" class="file" name="file" onchange="imageView(this)" accept="image/png, image/jpeg" required>
                     
                     </div>
                    
@@ -51,80 +47,47 @@
                         border-style: none;  width:80;margin: -18 3; font-family: 'Cafe24Ssurround';
                         color: white; float:right;" type="submit" id = 'btn1' class="btn"> 등록하기</button>
                     </div>
-                    
-                  </div>
-                </form>
-
+                </div>
             </div>
-            <script>
-                function imageView(input) {
-                    if (input.files && input.files[0]) {
-                        var reader = new FileReader();
-            
-                        reader.onload = function(e) {
-                            $('#tempImage').attr('src', e.target.result)
-                             .width(400)
-                             .height(400);
-                        }
-            
-                        reader.readAsDataURL(input.files[0]);
-                    }
-                }
-            </script>
+        </section>
 
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </section> 
       
     
 
   
-    <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-05fd"><div class="u-clearfix u-sheet u-sheet-1">
-        <p class="u-small-text u-text u-text-variant u-text-1">
-          <span style="font-family: 'yg-jalnan';font-size: 1.3rem; color : #db545a;">KT AIVLE SCHOOL AI 수도권 4반</span>
-          <br>
-        </p>
-      </div></footer>
-
-    </body>
-    <div id="modal_add_feed" class="modal_overlay">
-      <div class="modal_window">
-        <div class="modal_title">
-          <div class="modal_title_side"></div>
-          <div> 프로필 사진 수정하기 </div>
-          <div class="modal_title_side">
-              <span id="close_modal" class="material-icons-outlined">
-                  close
-              </span>
-          </div>
-      </div>
-    <form method="post" action="profile_upload" enctype="multipart/form-data">
-      
-        {% comment %} {% csrf_token %}
-        <div class="modal_image_upload">           
-        <br> 
-        <input type="file" name="attachment[]"  multiple="multiple">  {% endcomment %}
-          <br>
-          <div class="item"> 
-          {% csrf_token %}
-          <div class="modal_image_upload" style="display: inline-block;">           
-          <br> 
-          <input type="file" name="file"  multiple="multiple"> 
-            <button style="background-image: linear-gradient(to right, #77aad9, #e68387);
-            border-style: none; display: inline-block;
-            color: white;" type="submit" id = 'btn1' class="btn"> 등록하기</button>
-          </div>
-        
-      </div>
-    </form>
-      </div>
-    </div>
-    
+    <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-05fd">
+        <div class="u-clearfix u-sheet u-sheet-1">
+            <p class="u-small-text u-text u-text-variant u-text-1">
+                <span style="font-size: 1rem;">KT AIVLE SCHOOL AI 수도권 4반</span><br>
+            </p>
+        </div>
+    </footer>
+</body>
 
 <script>
+  function imageView(input) {
+      
+        /* Secure Coding */
+        fileName = input.files[0].name
+        if(!fileName.endsWith(".png") && !fileName.endsWith(".jpg") && !fileName.endsWith(".jpeg") && !fileName.endsWith(".PNG") && !fileName.endsWith(".JPG") && !fileName.endsWith(".JPEG")) {         
+        document.getElementById("file").value = "";
+        out.wright("업로드할 수 없는 확장자입니다.")
+        } else {
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                $('#tempImage').attr('src', e.target.result)
+                 .width('80%')
+                 .height('80%');
+                }
+    
+            reader.readAsDataURL(input.files[0]);
+            }
+        }
+    }
+
   const modal = document.getElementById("modal_add_feed");
     const buttonAddFeed = document.getElementById("add_feed");
     buttonAddFeed.addEventListener("click", e => {
@@ -132,124 +95,7 @@
         document.body.style.overflowY = "hidden";
     });
 
-  
-  // 모달 닫기 코드
-  const buttonCloseModal = document.getElementById("close_modal");
-  buttonCloseModal.addEventListener("click", e => {
-      modal.style.display = "none";
-      document.body.style.overflowY = "visible";
-  });
 </script>
 
-<style>
-  .box1 {
-    float:left; width:200px; height:100px; background-color:#234234;}
-   .box2 {
-    display:inline-block; width:200px; height:100px; background-color:#666666; margin-left:10px;}  
-  
-@import url(https://fonts.googleapis.com/css?family=Montserrat:500);
-.modal_overlay {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(1.5px);
-  -webkit-backdrop-filter: blur(1.5px);
-}
 
-.modal_window {
-  background: white;
-  backdrop-filter: blur(13.5px);
-  -webkit-backdrop-filter: blur(13.5px);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  width: 600px;
-  height: 200px;
-  position: relative;
-  padding: 10px;
-}
-
-.modal_title{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  font-weight: bold;
-  font-size: 20px;
-}
-
-.modal_title_side{
-  flex: 0 0 40px;
-  text-align: center;
-}
-
-.modal_image_upload{
-
-  text-align: center;
-  transition: all .15s ease-in-out;
-  width:580px;
-  height: 200px;
-  display: grid;
-  grid-template-rows: repeat(2, 1fr);
-}
-
-  @font-face {
-    font-family: 'Cafe24Ssurround';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face{
-  font-family: 'yg-jalnan';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}    
-  
-label
-{
-  font-family: 'Cafe24Ssurround';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  position: absolute; 
-  left: 50%; 
-  top: 5%; 
-  transform: translate(-50%, -20%);
-  font-size:23px;
-}
-input[type="file"] {
-  font-family: 'yg-jalnan';
-  cursor: pointer !Important;
-  float:left;
-  margin: -20 30 20 120px;
-}
-input[type="file"]::-webkit-file-upload-button {
-  border: none;
-  padding: 5px 12px;
-  background-image: linear-gradient(to right, #77aad9, #e68387);
-  color: #fff;
-  font-size: 1em;
-  transition: all .4s;
-  cursor: pointer;
-  border-radius: 5px;  
-  
-}
-input[type="file"]::-ms-browse {        
-  border: none;
-  padding: 5px 12px;
-  background: #9e2baf;
-  color: #fff;
-  font-size: 1em;
-  transition: all .4s;
-  cursor: pointer;
-  border-radius: 20px;
-}
-
-</style>  
   {% endblock %} 
