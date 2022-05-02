@@ -24,6 +24,7 @@ def photoguide_update(request):
 
     fe=FeatureExtractor()
 
+
     img = Image.open(img.file)
 
     query = fe.extract(img)
@@ -33,10 +34,11 @@ def photoguide_update(request):
     top_url_link = [img_paths[id] for id in ids[:10]]
     print(top_url_link)
 
-
-
     # print(img)
     return render(request, '../templates/photoguide/photoguide_result.html',{'imgs':top_url_link})
 
 def photoguide_result(request):
     return render(request, '../templates/photoguide/photoguide_result.html')
+
+def photoguide_result_copy(request):
+    return render(request, '../templates/photoguide/photoguide_result_copy.html')

@@ -155,6 +155,14 @@ USE_L10N = True
 
 USE_TZ = False
 
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-info',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
@@ -184,7 +192,7 @@ EMAIL_HOST_USER = 'syg3793@gmail.com'
 EMAIL_HOST_PASSWORD ='canu6858!@'
 EMAIL_USE_TLS =True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
+MAIN_URL = 'http://127.0.0.1:8000/'
 STATIC_URL = '/static/'
 
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
