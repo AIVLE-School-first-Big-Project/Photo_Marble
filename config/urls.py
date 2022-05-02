@@ -27,9 +27,9 @@ urlpatterns = [
     path('password/change/', CustomPasswordChangeView.as_view(), name="account_change_password"),
     path('', include('allauth.urls')),
 
-    ###test
-    path('accounts/',include('allauth.urls')),
-    path('', TemplateView.as_view(template_name='index.html'))
+    # ###test
+    # path('accounts/',include('allauth.urls')),
+    # path('', TemplateView.as_view(template_name='index.html'))
 
     
 ]
