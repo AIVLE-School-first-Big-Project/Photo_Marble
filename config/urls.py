@@ -1,3 +1,4 @@
+from re import template
 from django.contrib import admin
 from django.urls import path, include
 
@@ -25,6 +26,10 @@ urlpatterns = [
                                 name="account_email_confirmation_done"),
     path('password/change/', CustomPasswordChangeView.as_view(), name="account_change_password"),
     path('', include('allauth.urls')),
+
+    ###test
+    path('accounts/',include('allauth.urls')),
+    path('', TemplateView.as_view(template_name='index.html'))
 
     
 ]
