@@ -24,9 +24,8 @@
         
         <div class="u-clearfix u-layout-wrap u-layout-wrap-1">
             <h1 class="display-4" style="font-family: 'Cafe24Ssurround';color:#db545a;text-align: center;"> 포토가이드 </h1>
-          <div style="box-shadow: 5px 5px 5px #bababa;text-align: center;" class="u-gutter-0 u-layout">
-    
-            <div style="height:600px;text-align: center;display: grid;" class="cell-temp-clone u-align-left u-container-style u-layout-cell u-size-9 u-white u-layout-cell-8">
+          <div style="box-shadow: 5px 5px 5px #bababa;text-align: center;" class="">
+            <div style="text-align: center;display: grid;" class="cell-temp-clone u-align-left u-container-style u-layout-cell u-size-9 u-white u-layout-cell-8">
                 <form method="post" action="photoguide_update" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div style="" id="label_input">
@@ -34,8 +33,7 @@
                     <label for="file">사진을 등록해주세요</label>
                     
                     </div>
-                    <div style="width:420px; height:420px;margin:40px 120px;">
-
+                    <div class="upload_div">
                         <img id="tempImage" src="../../static/photoguide/images/photo-placeholder.png"></a>
                     </div>
                     <div class="item" id="filebox">
@@ -81,8 +79,8 @@
 
             reader.onload = function(e) {
                 $('#tempImage').attr('src', e.target.result)
-                 .width(400)
-                 .height(400);
+                 .width('80%')
+                 .height('80%');
                 }
     
             reader.readAsDataURL(input.files[0]);
