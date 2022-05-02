@@ -96,9 +96,7 @@ def delete_result(request):
 class CustomSignupView(SignupView):
     template_name = "main/signup.html" 
     def form_valid(self, form):
-        print(self)
-        print("###########")
-        print(form)
+
         self.user = form.save(self.request)
         print(self.user)
         return redirect("login")
