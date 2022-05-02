@@ -69,9 +69,11 @@
         <div class="progress_state">
             <h4>{{user.nickname}}님의 진척도 <br></h4>
         </div>
-        <div class="progress" style="height: 30px;width: 70%;">
-            <div class="progress-bar" role="progressbar" style="width:{{progress}}%; background: -webkit-linear-gradient(left, #ee7277 0%,#78b2e9 100%);" aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100">
-                {{progress}}%
+        <div style="margin:0 20% 0 0;">
+            <div class="progress" style="height: 30px;">
+                <div class="progress-bar" role="progressbar" style="width:{{progress}}%; background: -webkit-linear-gradient(left, #ee7277 0%,#78b2e9 100%);" aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100">
+                    {{progress}}%
+                </div>
             </div>
         </div>
     </div>
