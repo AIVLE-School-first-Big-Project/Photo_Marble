@@ -408,12 +408,19 @@
   
 }
 
-.upload_div{
+#tempImage{
   width: 80%;
   height: 80%;
 }
 
-#tempImage{
-  width: 50px;
-  height: 50px;
+#file{
+  width: 100%;
+  height: auto;
+  text-align: center;
+  padding-left: 20%;
+  padding-top: 10px;
 }
+#filebox{
+  text-align: center;
+}
+

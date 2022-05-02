@@ -28,21 +28,15 @@
             <div style="text-align: center;display: grid;" class="cell-temp-clone u-align-left u-container-style u-layout-cell u-size-9 u-white u-layout-cell-8">
                 <form method="post" action="photoguide_update" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <div style="" id="label_input">
-                    <br>
-                    <label for="file">사진을 등록해주세요</label>
+                    <div id="label_input">
+                        <br>
+                        <label for="file">사진을 등록해주세요</label>
                     
                     </div>
-                    <div class="upload_div">
-                        <img id="tempImage" src="../../static/photoguide/images/photo-placeholder.png"></a>
-                    </div>
-                    <div class="item" id="filebox">
-                    
-                    <input type="file" id="file" class="file" name="file" onchange="imageView(this)" accept="image/png, image/jpeg" required>
-                    
-                    </div>
+                    <img id="tempImage" src="../../static/photoguide/images/photo-placeholder.png"></a>
+                        <input type="file" id="file" class="file" name="file" onchange="imageView(this)" accept="image/png, image/jpeg" required>
                    
-                    <div class="item" >
+                    <div class="item" id="submitButton">
                         <button style="background-image: linear-gradient(to right, #77aad9, #e68387);
                         border-style: none;  width:80;margin: -18 3; font-family: 'Cafe24Ssurround';
                         color: white; float:right;" type="submit" id = 'btn1' class="btn"> 등록하기</button>
