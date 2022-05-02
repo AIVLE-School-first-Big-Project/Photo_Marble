@@ -36,7 +36,7 @@
                     type="submit" id = 'btn1' class="btn"> 검색</button>
                         {% csrf_token %}    
                       </form>
-                <button id="add_feed" style="background-image: linear-gradient(to right, #77aad9, #e68387); border-style: none; height : 40; margin : -4 20 0 0 ; color: white;font-family: 'Cafe24Ssurround';float:right" 
+                <button onclick="goTop()" id="add_feed" style="background-image: linear-gradient(to right, #77aad9, #e68387); border-style: none; height : 40; margin : -4 20 0 0 ; color: white;font-family: 'Cafe24Ssurround';float:right" 
                 class="btn"> 사진 추가</button>
                       
               
@@ -49,6 +49,7 @@
                         </a>
                     </div>
                 {% endfor %}
+
             </div><br>
             <button id="loadmoreBtn" style="background-image: linear-gradient(to right, #77aad9, #e68387); border-style: none; height : 40; width:80; margin : -4 20 0 0 ; color: white;font-family: 'Cafe24Ssurround';">더보기</button>
         </div>
@@ -143,11 +144,16 @@
 </div>
 
 <script>
+  function goTop(){
+	document.body.scrollTop = 0;
+}
+
   const modal = document.getElementById("modal_add_feed");
     const buttonAddFeed = document.getElementById("add_feed");
     console.log(buttonAddFeed)
     console.log("###")
     buttonAddFeed.addEventListener("click", e => {
+        
         modal.style.display = "flex";
         document.body.style.overflowY = "hidden";
     });
@@ -178,6 +184,7 @@
             }
         }
     }
+
 </script>
 
 {% endblock %}
