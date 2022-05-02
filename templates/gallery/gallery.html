@@ -50,10 +50,48 @@
                     </div>
                 {% endfor %}
 
+            </select>
+            
+        <select class="form-select" name="category" id="category" style="display:inline-block;">
+                <option value=0>전체</option>
+                <option value=1>인물</option>
+                <option value=2>풍경</option>
+                <option value=3>음식</option>
+        </select>
+            <button style="background-image: linear-gradient(to right, #77aad9, #e68387);
+        border-style: none; height : 40; margin : -4 0 0 0 ;
+        color: white;" type="submit" id = 'btn1' class="btn"> 검색</button>
+      
+            {% csrf_token %}
+        </form>
+        <button onclick="goTop()" id="add_feed" style="background-image: linear-gradient(to right, #77aad9, #e68387);
+        border-style: none; height : 40; margin : -4 0 0 0 ;
+        color: white;" class="btn"> 사진추가</button>
+    
+    </div>   
+
+<br>
+<br>
+<br>
+   <div class="gallery">
+      {% if datas %}  
+          {% for data in datas%}
+              <div class="gallery-item">
+                  <a href= "{% url 'detail2' data.gallery_id %}"  aria-label="Genuine Gemini" class="grid-item-link">
+                  <img class="gallery-image" src="{{ data.s3_url }}">
+                  </a>
+              </div>
+          {% endfor %}
+      {% endif %}
+   </div> 
+</div>
+</section>
+
             </div><br>
             <button id="loadmoreBtn" style="background-image: linear-gradient(to right, #77aad9, #e68387); border-style: none; height : 40; width:80; margin : -4 20 0 0 ; color: white;font-family: 'Cafe24Ssurround';">더보기</button>
         </div>
     </section>
+
 
 <!-- Pagination -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -167,6 +205,20 @@
   });
 
   function imageView(input) {
+
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function(e) {
+              $('#tempImage').attr('src', e.target.result)
+                .width(300)
+                .height(300);
+          }
+
+          reader.readAsDataURL(input.files[0]);
+      }
+  }
+
       /* Secure Coding */
       fileName = input.files[0].name
       if(!fileName.endsWith(".png") && !fileName.endsWith(".jpg") && !fileName.endsWith(".jpeg") && !fileName.endsWith(".PNG") && !fileName.endsWith(".JPG") && !fileName.endsWith(".JPEG")) {         
