@@ -104,7 +104,7 @@
     <div class="modal_window">
         <div class="modal_title">
             <div class="modal_title_side"></div>
-            <div> 새 게시물 </div>
+            <div style="display:inline-block;font-family: 'Cafe24Ssurround';"> 새 게시물 </div>
             <div class="modal_title_side">
                 <span id="close_modal" class="material-icons-outlined">close</span>
             </div>
@@ -113,20 +113,20 @@
             {% csrf_token %}
             <div class="modal_image_upload">
                 <div class="item" id="label_input"><br>
-                    <label for="file">사진을 등록해주세요</label>
+                    <label for="file" style="font-family: 'yg-jalnan';">사진을 등록해주세요</label>
                 </div>
-                <div class="item" id="filebox">
+                <div class="item" id="filebox"style="font-family: 'Cafe24Ssurround';margin:0 9 1 200;">
                     <input type="file" id="file" class="file" name="file" onchange="imageView(this)" accept="image/png, image/jpeg" required>
                 </div>
                 <div class="item" id="landmark_input">
-                    <select class="form-select" name="landmark" id="landmark">
+                    <select class="form-select" name="landmark" id="landmark"style="font-family: 'Cafe24Ssurround';">
                         {% for landmark in landmarks%}
                             <option value="{{landmark.landmark_id}}"> {{landmark.name}} </option>
                         {% endfor %}
                     </select>
                 </div>
                 <div class="item" id="category_input">
-                    <select class="form-select" name="category" id="category" style="display:inline-block;">
+                    <select class="form-select" name="category" id="category" style="display:inline-block;font-family: 'Cafe24Ssurround';">
                         <option value=0>전체</option>
                         <option value=1>인물</option>
                         <option value=2>풍경</option>
@@ -134,7 +134,7 @@
                     </select>
                 </div>
                 <div class="item" >
-                    <button style="background-image: linear-gradient(to right, #77aad9, #e68387); border-style: none; height : 40; width:80; margin : -4 0 0 0 ; color: white;" 
+                    <button style="background-image: linear-gradient(to right, #77aad9, #e68387); border-style: none; height : 40; width:80; margin : -4 0 0 0 ; color: white;font-family: 'Cafe24Ssurround';" 
                     type="submit" id = 'btn1' class="btn"> 등록하기</button>
                 </div>
             </div>
@@ -181,4 +181,47 @@
 </script>
 
 {% endblock %}
+<style>
+    .responsive {
 
+        box-sizing: border-box;
+    
+        -webkit-box-sizing: border-box;
+    
+        -moz-box-sizing: border-box;
+    
+    } 
+    
+    *******/
+    
+    .responsive {
+        padding: 0 6px;
+        float: left;
+        width: 25%;  // 기본값으로 4개씩으로 설정
+    }
+    
+    // 사용자 해상도가 700px 이하 일때는 2개씩 나열하자
+    
+    @media only screen and (max-width: 700px) {
+        .responsive {
+            width: 25%; // 2개씩
+            margin: 6px 0;
+        }
+    }
+    
+    // 사용자 해상도가 500px 이하 일때는 1개씩 나열하자
+    
+    @media only screen and (max-width: 500px) {
+        .responsive {
+            width: 10%; // 1개씩
+        }
+    }
+    
+    .clearfix:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+    
+    
+</style>
