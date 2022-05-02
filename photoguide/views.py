@@ -2,10 +2,11 @@ from django.shortcuts import render
 from django.urls import reverse
 from main.models import User, Collection, Landmark, Locations, Gallery
 # from .DLmodel.similarity_code import FeatureExtractor
-
+import requests
 import numpy as np
 import pandas as pd
 from PIL import Image
+import time
 
 
 # Create your views here.
@@ -19,9 +20,7 @@ def photoguide_update(request):
     features = np.load('./photoguide/DLmodel/similartiy_features.npy')
     img_paths = pd.read_csv("./photoguide/DLmodel/img_paths.csv", index_col=0)
     img_paths = list(img_paths['0'])
-
-
-
+    
     # fe=FeatureExtractor()
 
 
@@ -38,6 +37,7 @@ def photoguide_update(request):
     return render(request, '../templates/photoguide/photoguide_result.html',{'imgs':top_url_link})
 
 def photoguide_result(request):
+    
     return render(request, '../templates/photoguide/photoguide_result.html')
 
 def photoguide_result_copy(request):
