@@ -36,7 +36,7 @@
                     type="submit" id = 'btn1' class="btn"> 검색</button>
                         {% csrf_token %}    
                       </form>
-                <button id="add_feed" style="background-image: linear-gradient(to right, #77aad9, #e68387); border-style: none; height : 40; margin : -4 20 0 0 ; color: white;font-family: 'Cafe24Ssurround';float:right" 
+                <button onclick="goTop()" id="add_feed" style="background-image: linear-gradient(to right, #77aad9, #e68387); border-style: none; height : 40; margin : -4 20 0 0 ; color: white;font-family: 'Cafe24Ssurround';float:right" 
                 class="btn"> 사진 추가</button>
                       
               
@@ -49,7 +49,7 @@
                         </a>
                     </div>
                 {% endfor %}
-<<<<<<< HEAD
+
             </select>
             
         <select class="form-select" name="category" id="category" style="display:inline-block;">
@@ -86,12 +86,12 @@
    </div> 
 </div>
 </section>
-=======
+
             </div><br>
             <button id="loadmoreBtn" style="background-image: linear-gradient(to right, #77aad9, #e68387); border-style: none; height : 40; width:80; margin : -4 20 0 0 ; color: white;font-family: 'Cafe24Ssurround';">더보기</button>
         </div>
     </section>
->>>>>>> ed7c7930843db8269087eb95bc1d792f387cab0e
+
 
 <!-- Pagination -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -205,7 +205,7 @@
   });
 
   function imageView(input) {
-<<<<<<< HEAD
+
       if (input.files && input.files[0]) {
           var reader = new FileReader();
 
@@ -218,7 +218,7 @@
           reader.readAsDataURL(input.files[0]);
       }
   }
-=======
+
       /* Secure Coding */
       fileName = input.files[0].name
       if(!fileName.endsWith(".png") && !fileName.endsWith(".jpg") && !fileName.endsWith(".jpeg") && !fileName.endsWith(".PNG") && !fileName.endsWith(".JPG") && !fileName.endsWith(".JPEG")) {         
@@ -236,7 +236,7 @@
             }
         }
     }
->>>>>>> ed7c7930843db8269087eb95bc1d792f387cab0e
+
 </script>
 
 {% endblock %}
