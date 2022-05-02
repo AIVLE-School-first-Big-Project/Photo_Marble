@@ -2,6 +2,21 @@
 
 {% load static %}
 {% block content %}
+{% if messages %}
+    <br><br><br>
+    {% for message in messages %}
+    <div class="alert {{ message.tags }} alert-auto-dismissible alert-dismissible notification-container text-center" role="alert">
+        <button type="button" class="close"  aria-label="Close">
+            <div id = 're'>
+            <a href="http://127.0.0.1:8000/">X</a>
+            <div id = 're'>
+        </button>
+        {{ message }}
+    </div>
+
+{% endfor %}
+
+{%else%}
 <!DOCTYPE html>
 <html style="font-size: 16px;">
   
@@ -260,4 +275,5 @@ a
     font-style: normal;
 }
    </style>
+   {% endif%}
   {% endblock %} 

@@ -155,6 +155,14 @@ USE_L10N = True
 
 USE_TZ = False
 
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-info',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
@@ -176,7 +184,7 @@ ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = "account_email_confirmat
 ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = "account_email_confirmation_done"
 
 ACCOUNT_SESSION_REMEMBER = True # 브라우저를 닫아도 세션기록 유지(로그인이 안풀림)
-SESSION_COOKIE_AGE = 3600 # 쿠키를 한시간 저장(세션)
+SESSION_COOKIE_AGE = 5 # 쿠키를 한시간 저장(세션)
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
