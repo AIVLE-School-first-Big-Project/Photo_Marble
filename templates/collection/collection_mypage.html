@@ -1,6 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
 {% load static %}
+
+{% if messages %}
+    <br><br><br>
+    {% for message in messages %}
+    <div class="alert {{ message.tags }} alert-auto-dismissible alert-dismissible notification-container text-center" role="alert">
+        <button type="button" class="close"  aria-label="Close">
+            <div id = 're'>
+            <a href="http://127.0.0.1:8000/">X</a>
+            <div id = 're'>
+        </button>
+        {{ message }}
+    </div>
+
+{% endfor %}
+{%else%}
+
 <html>
     <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
@@ -158,11 +174,9 @@
                 <text id="LCD11710" class="TEXT" x="624" y="448">송파구</text>
                 <text id="LCD11740" class="TEXT" x="675" y="358">강동구</text>
                 </g>
-        </svg>
-    </form>
-      </div>
+            </svg>  
     </body>
-</html>
+    </html>
 
 <script>
     function post_page(loc_id){
@@ -174,8 +188,19 @@
 }
 </script>
 
-{% endblock %}
+<style>
+    @font-face {
+  font-family: 'Cafe24Ssurround';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 
+
+</style>
+
+{%endif%}
+{% endblock %}
 
 
 

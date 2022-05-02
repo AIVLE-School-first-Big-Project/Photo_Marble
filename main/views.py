@@ -9,6 +9,8 @@ from django.contrib import messages
 from allauth.account.views import PasswordChangeView,SignupView,LogoutView
 from django.contrib.auth.hashers import check_password
 from django.utils.timezone import now
+from config.settings import MAIN_URL
+
 # Create your views here.
 
 def index(request):
@@ -23,14 +25,17 @@ class CustomPasswordChangeView(PasswordChangeView):
         return reverse("index")
 
 def mypage(request):
-
-    user_db = User.objects.get(id= request.session['id'])
-    print(user_db)
-    profile_photo = user_db.profile_photo
-    print(profile_photo)
-    return render(request, '../templates/main/mypage.html', context={
-        'user' : user_db
-    })
+    if request.user.is_authenticated==True:
+        user_db = User.objects.get(id= request.session['id'])
+        print(user_db)
+        profile_photo = user_db.profile_photo
+        print(profile_photo)
+        return render(request, '../templates/main/mypage.html', context={
+            'user' : user_db
+        })
+    else:
+        messages.add_message(request, messages.INFO, '접근 권한이 없습니다')
+        return render(request,'../templates/main/mypage.html')
 
 def login(request):
     # 포스트 
