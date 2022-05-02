@@ -206,7 +206,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 ) 
 
-# 이걸 추가해야 django네 메세지 나오게 함
+# 이걸 추가해야 django에 메세지 나오게 함
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 # s3 연결
