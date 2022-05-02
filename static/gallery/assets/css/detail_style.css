@@ -22,6 +22,7 @@
 
 .comment_textbox{
     vertical-align: middle;
+    width:85%;
 }
 
 
@@ -84,7 +85,7 @@
     background-color: transparent;
     background-repeat: no-repeat;
     border:none;
-    float: right;
+    margin-left: auto;
     object-fit: cover;
     transition: transform 400ms ease-out;
 }
@@ -185,4 +186,10 @@
 
 .comment_textbox {
     font-weight: 300;
+}
+
+#updated{
+    font-size: 18px;
+    color: grey;
+    margin-bottom: 5px;
 }
