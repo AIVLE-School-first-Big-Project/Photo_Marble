@@ -61,17 +61,13 @@
             <button style="background-image: linear-gradient(to right, #77aad9, #e68387);
         border-style: none; height : 40; margin : -4 0 0 0 ;
         color: white;" type="submit" id = 'btn1' class="btn"> 검색</button>
-        {% comment %} <span id="add_feed" > 사진추가</span> {% endcomment %}
+      
             {% csrf_token %}
         </form>
-        <button id="add_feed" style="background-image: linear-gradient(to right, #77aad9, #e68387);
+        <button onclick="goTop()" id="add_feed" style="background-image: linear-gradient(to right, #77aad9, #e68387);
         border-style: none; height : 40; margin : -4 0 0 0 ;
         color: white;" class="btn"> 사진추가</button>
-        {% comment %} <form enctype="multipart/form-data" method="post" action="{% url 'select' %}">
-            {% csrf_token %}
-            <input type="file" name="file">
-            <input type="submit" value="전송">
-        </form> {% endcomment %}
+    
     </div>   
 
 <br>
@@ -153,11 +149,16 @@
 
 
 <script>
+  function goTop(){
+	document.body.scrollTop = 0;
+}
+
   const modal = document.getElementById("modal_add_feed");
     const buttonAddFeed = document.getElementById("add_feed");
     console.log(buttonAddFeed)
     console.log("###")
     buttonAddFeed.addEventListener("click", e => {
+        
         modal.style.display = "flex";
         document.body.style.overflowY = "hidden";
     });
@@ -171,18 +172,18 @@
   });
 
   function imageView(input) {
-                    if (input.files && input.files[0]) {
-                        var reader = new FileReader();
-            
-                        reader.onload = function(e) {
-                            $('#tempImage').attr('src', e.target.result)
-                             .width(300)
-                             .height(300);
-                        }
-            
-                        reader.readAsDataURL(input.files[0]);
-                    }
-                }
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function(e) {
+              $('#tempImage').attr('src', e.target.result)
+                .width(300)
+                .height(300);
+          }
+
+          reader.readAsDataURL(input.files[0]);
+      }
+  }
 </script>
 
 <style>
