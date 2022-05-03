@@ -1,46 +1,33 @@
-<head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" 
-  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
-  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-</script>
-  
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
-  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-</script>
-  
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" 
-  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-</script>
-</head>
-
-
 {% load i18n %}
 {% load bootstrap4 %}
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
 
-<div class="row justify-content-center h-100" style="background-image: linear-gradient(#fbeced, #adcce9);">
-  <div class="col align-self-center text-center card text-black"style="max-width: 40rem; height: 50rem; border-radius: 20px 20px 20px 20px;"">
-    <div class="card-body"> 
-    <h3 class="card-title">Sign up</h1>
-{% comment %} <h1>{% trans "Sign Up" %}</h1> {% endcomment %}
-
-    <p>이미 계정이 있으신가요? 바로 <a class="user_a_tag" style="color : #db545a;" href="{% url 'login' %}">로그인</a>하세요</p>
-    {% comment %} <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}"> {% endcomment %}
-      <form class="signup" id="signup_form" method="POST" action="{% url 'custom_signup' %}">
-      {% csrf_token %}
-      {% bootstrap_form form %} 
-
-      {% if redirect_field_value %}
-      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-      {% endif %}
-      <button type="submit" id = 'btn1' class="btn">{% trans "Sign Up" %} &raquo;</button>
-      <a href="javascript:history.back()" class="btn" id = 'btn1' name="action" >취소하기</a>
-    </form>
-
-</div>
-</div>
-</div>
+<body>
+    <div class="row justify-content-center h-100">
+        <div class="col align-self-center text-center card text-black" style="max-width: 25rem; margin-bottom:1200px; margin-top:200px;">
+            <div class="card-body"> 
+                <h3 class="card-title">Sign up</h1>
+                <p>이미 계정이 있으신가요? 바로 <a class="user_a_tag" style="color : #db545a;" href="{% url 'login' %}">로그인</a>하세요</p>
+                <form class="signup" id="signup_form" method="POST" action="{% url 'custom_signup' %}">
+                    {% csrf_token %}
+                    {% bootstrap_form form %} 
+                    {% if redirect_field_value %}
+                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                    {% endif %}
+                        <button type="submit" id = 'btn1' class="btn">{% trans "Sign Up" %} &raquo;</button>
+                        <a href="javascript:history.back()" class="btn" id = 'btn1' name="action" >취소하기</a>
+                  </form>      
+            </div>
+        </div>
+    </div>
+</body>
+</html>
 
 
 <style>

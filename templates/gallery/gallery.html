@@ -36,7 +36,7 @@
                     type="submit" id = 'btn1' class="btn"> 검색</button>
                         {% csrf_token %}    
                       </form>
-                <button onclick="goTop()" id="add_feed" style="background-image: linear-gradient(to right, #77aad9, #e68387); border-style: none; height : 40; margin : -4 20 0 0 ; color: white;font-family: 'Cafe24Ssurround';float:right" 
+                <button id="add_feed" style="background-image: linear-gradient(to right, #77aad9, #e68387); border-style: none; height : 40; margin : -4 20 0 0 ; color: white;font-family: 'Cafe24Ssurround';float:right" 
                 class="btn"> 사진 추가</button>
                       
               
@@ -44,127 +44,15 @@
             <div class="gallery">
                 {% for data in page_obj %}
                     <div class="gallery-item">
-                        <a href= "{% url 'detail2' data.gallery_id %}" aria-label="Genuine Gemini" class="grid-item-link">
+                        <a href= "{% url 'detail2' data.gallery_id %}"  aria-label="Genuine Gemini" class="grid-item-link">
                             <img class="gallery-image" src="{{ data.s3_url }}">
                         </a>
                     </div>
                 {% endfor %}
-
-            </select>
-            
-        <select class="form-select" name="category" id="category" style="display:inline-block;">
-                <option value=0>전체</option>
-                <option value=1>인물</option>
-                <option value=2>풍경</option>
-                <option value=3>음식</option>
-        </select>
-            <button style="background-image: linear-gradient(to right, #77aad9, #e68387);
-        border-style: none; height : 40; margin : -4 0 0 0 ;
-        color: white;" type="submit" id = 'btn1' class="btn"> 검색</button>
-      
-            {% csrf_token %}
-        </form>
-        <button onclick="goTop()" id="add_feed" style="background-image: linear-gradient(to right, #77aad9, #e68387);
-        border-style: none; height : 40; margin : -4 0 0 0 ;
-        color: white;" class="btn"> 사진추가</button>
-    
-    </div>   
-
-<br>
-<br>
-<br>
-   <div class="gallery">
-      {% if datas %}  
-          {% for data in datas%}
-              <div class="gallery-item">
-                  <a href= "{% url 'detail2' data.gallery_id %}"  aria-label="Genuine Gemini" class="grid-item-link">
-                  <img class="gallery-image" src="{{ data.s3_url }}">
-                  </a>
-              </div>
-          {% endfor %}
-      {% endif %}
-   </div> 
-</div>
-</section>
-
-<button id="loadmoreBtn">Load More</button>
-
-</body>
-<div id="modal_add_feed" class="modal_overlay">
-  <div class="modal_window">
-    <div class="modal_title">
-      <div class="modal_title_side"></div>
-      <div> 새 게시물 </div>
-      <div class="modal_title_side">
-          <span id="close_modal" class="material-icons-outlined">
-              close
-          </span>
-      </div>
-  </div>
-
-  <form method="post" action="upload" enctype="multipart/form-data">
-  
-    {% csrf_token %}
-    <div class="modal_image_upload">
-    
-
-      <div class="item" id="label_input">
-        <br>
-        <label for="file">사진을 등록해주세요</label>
-        
-      </div>
-      <div class="item"  style="text-align:center;">
-        <img id="tempImage" style="width:300px;height:300px;" src="../../static/photoguide/images/photo-placeholder.png"></a>
-    </div>
-      <div class="item" id="filebox">
-     
-        <input type="file" class="file" name="file"  onchange="imageView(this)" accept="image/png, image/jpeg" required>
-        
-      </div>
-
-      <div class="item" id="landmark_input">
-        <select class="form-select" name="landmark" id="landmark">
-          {% for landmark in landmarks%}
-              <option value="{{landmark.landmark_id}}"> {{landmark.name}} </option>
-          {% endfor %}
-        </select>
-      </div>
-
-      <div class="item" id="category_input">
-        <select class="form-select" name="category" id="category" style="display:inline-block;">
-          <option value=1>인물</option>
-          <option value=2>풍경</option>
-          <option value=3>음식</option>
-        </select>
-      </div>
-      <div class="item" >
-        <button style="background-image: linear-gradient(to right, #77aad9, #e68387);
-        border-style: none; height : 40; width:80; margin : -4 0 0 0 ;
-        color: white;" type="submit" id = 'btn1' class="btn"> 등록하기</button>
-      </div>
-    
-  </div>
-</form>
-  </div>
-</div>
-
-
-<script>
-  const modal = document.getElementById("modal_add_feed");
-    const buttonAddFeed = document.getElementById("add_feed");
-    console.log(buttonAddFeed)
-    console.log("###")
-    buttonAddFeed.addEventListener("click", e => {
-        modal.style.display = "flex";
-        document.body.style.overflowY = "hidden";
-    });
-
-
             </div><br>
             <button id="loadmoreBtn" style="background-image: linear-gradient(to right, #77aad9, #e68387); border-style: none; height : 40; width:80; margin : -10 0 20 0 ; color: white;font-family: 'Cafe24Ssurround';padding:2px 15px">더보기</button>
         </div>
     </section>
-
 
 <!-- Pagination -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -255,16 +143,11 @@
 </div>
 
 <script>
-  function goTop(){
-	document.body.scrollTop = 0;
-}
-
   const modal = document.getElementById("modal_add_feed");
     const buttonAddFeed = document.getElementById("add_feed");
     console.log(buttonAddFeed)
     console.log("###")
     buttonAddFeed.addEventListener("click", e => {
-        
         modal.style.display = "flex";
         document.body.style.overflowY = "hidden";
     });
@@ -278,20 +161,6 @@
   });
 
   function imageView(input) {
-
-      if (input.files && input.files[0]) {
-          var reader = new FileReader();
-
-          reader.onload = function(e) {
-              $('#tempImage').attr('src', e.target.result)
-                .width(300)
-                .height(300);
-          }
-
-          reader.readAsDataURL(input.files[0]);
-      }
-  }
-
       /* Secure Coding */
       fileName = input.files[0].name
       if(!fileName.endsWith(".png") && !fileName.endsWith(".jpg") && !fileName.endsWith(".jpeg") && !fileName.endsWith(".PNG") && !fileName.endsWith(".JPG") && !fileName.endsWith(".JPEG")) {         
@@ -309,7 +178,6 @@
             }
         }
     }
-
 </script>
 
 {% endblock %}

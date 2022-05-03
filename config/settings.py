@@ -35,7 +35,8 @@ SECRET_KEY = get_secret("SECRET_KEY")
 DEBUG = True
 
 ALLOWED_HOSTS = []
-#ALLOWED_HOSTS = ['49.164.234.56']
+# ALLOWED_HOSTS = ['49.164.234.56']
+# ALLOWED_HOSTS = ["172.30.1.59"] # dk 폰
 
 
 # Application definition
@@ -186,7 +187,7 @@ ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = "account_email_confirmat
 ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = "account_email_confirmation_done"
 
 ACCOUNT_SESSION_REMEMBER = True # 브라우저를 닫아도 세션기록 유지(로그인이 안풀림)
-SESSION_COOKIE_AGE =3600 # 쿠키를 한시간 저장(세션)
+SESSION_COOKIE_AGE = 3600 # 쿠키를 한시간 저장(세션)
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
@@ -204,7 +205,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 ) 
 
-# 이걸 추가해야 django네 메세지 나오게 함
+# 이걸 추가해야 django에 메세지 나오게 함
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 # s3 연결
