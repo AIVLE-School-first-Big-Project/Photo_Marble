@@ -34,7 +34,6 @@ SECRET_KEY = get_secret("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-
 ALLOWED_HOSTS = []
 # ALLOWED_HOSTS = ['49.164.234.56']
 # ALLOWED_HOSTS = ["172.30.1.59"] # dk 폰
