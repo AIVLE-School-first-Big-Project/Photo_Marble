@@ -44,8 +44,8 @@
                    
                     <div class="item" >
                         <button style="background-image: linear-gradient(to right, #77aad9, #e68387);
-                        border-style: none;  width:80;margin: -18 3; font-family: 'Cafe24Ssurround';
-                        color: white; float:right;" type="submit" id = 'btn1' class="btn"> 등록하기</button>
+                        border-style: none;  width:80; font-family: 'Cafe24Ssurround';
+                        color: white; position:fixed;" type="submit" id = 'btn1' class="btn"> 등록하기</button>
                     </div>
                 </div>
             </div>
@@ -58,7 +58,7 @@
     <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-05fd">
         <div class="u-clearfix u-sheet u-sheet-1">
             <p class="u-small-text u-text u-text-variant u-text-1">
-                <span style="font-size: 1rem;">KT AIVLE SCHOOL AI 수도권 4반</span><br>
+                <span style="font-family: 'yg-jalnan';font-size: 1.3rem; color : #db545a;">KT AIVLE SCHOOL AI 수도권 4반</span>
             </p>
         </div>
     </footer>
@@ -97,5 +97,60 @@
 
 </script>
 
-
+<style>
+   
+    @font-face {
+        font-family: 'Cafe24Ssurround';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+    @font-face{
+      font-family: 'yg-jalnan';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }    
+      
+    label
+    {
+      font-family: 'Cafe24Ssurround';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+      position: absolute; 
+      left: 50%; 
+      top: 5%; 
+      transform: translate(-50%, -20%);
+      font-size:23px;
+    }
+    input[type="file"] {
+      font-family: 'yg-jalnan';
+      cursor: pointer !Important;
+      float:left;
+      margin: -20 30 20 120px;
+    }
+    input[type="file"]::-webkit-file-upload-button {
+      border: none;
+      padding: 5px 12px;
+      background-image: linear-gradient(to right, #77aad9, #e68387);
+      color: #fff;
+      font-size: 1em;
+      transition: all .4s;
+      cursor: pointer;
+      border-radius: 5px;  
+      
+    }
+    input[type="file"]::-ms-browse {        
+      border: none;
+      padding: 5px 12px;
+      background: #9e2baf;
+      color: #fff;
+      font-size: 1em;
+      transition: all .4s;
+      cursor: pointer;
+      border-radius: 20px;
+    }
+    
+</style>
   {% endblock %} 
