@@ -1,4 +1,3 @@
-
 .OUTLINE {
     fill:#f3f1ed;
     stroke-linejoin:round;
@@ -57,4 +56,11 @@ svg path:hover {
     height:0px;
     width: 0px;
 }
+
+#div_svg{
+    display: flex; 
+    justify-content: center; 
+    padding-top: 50px;
+}
+
 

@@ -34,7 +34,8 @@ def mypage(request):
             'user' : user_db
         })
     else:
-        return redirect(MAIN_URL)
+        messages.add_message(request, messages.INFO, '접근 권한이 없습니다')
+        return render(request,'../templates/main/mypage.html')
 
 def login(request):
     # 포스트 
@@ -96,9 +97,7 @@ def delete_result(request):
 class CustomSignupView(SignupView):
     template_name = "main/signup.html" 
     def form_valid(self, form):
-        print(self)
-        print("###########")
-        print(form)
+
         self.user = form.save(self.request)
         print(self.user)
         return redirect("http://127.0.0.1:8000/login")
