@@ -1,4 +1,4 @@
-  .box1 {
+   .box1 {
     float:left; width:200px; height:100px; background-color:#234234;}
    .box2 {
     display:inline-block; width:200px; height:100px; background-color:#666666; margin-left:10px;}  
@@ -10,109 +10,153 @@
       font-style: normal;
     }    
 
-    h{
+   h1{
         font-family: 'yg-jalnan';
         src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
         font-weight: normal;
         font-style: normal;
     }
 
-    body {
-        margin: 0px;
-        font-family: 'Muli', sans-serif;
+   body {
+      margin: 0px;
+      font-family: 'Muli', sans-serif;
         
-      }
-      .carousel {
-         width: 100%;
-         overflow: scroll;
-         padding: 30px;
-         position: relative;
-         box-sizing: border-box;
-         display: inline-block;
-         overflow-y: hidden;
-         overflow-x: auto;        
-      }
-      .carousel__container {
-         white-space: nowrap;
-         margin: 70px 0px;
-         padding-bottom: 10px; 
-      }
-      .carousel-item {
-         background-color: #caa5f1;
-         width: 200px;
-         height: 250px;
-         border-radius: 20px;
-         overflow: hidden;
-         margin-right: 10px;
-         display: inline-block;
-         cursor: pointer;
-         transition: 450ms all;
-         transform-origin: center left;
-         position: relative;
-      }
-      .carousel-item:hover ~ .carousel-item {
-         transform: translate3d(100px, 0, 0);
-      }
-      .carousel__container:hover .carousel-item {
-         opacity: 0.3;
-      }
-      .carousel__container:hover .carousel-item:hover {
-         transform: scale(1.5);
-         opacity: 1;
-      }
-      .carousel-item__img {
-         width: 200px;
-         height: 250px;
-         object-fit: cover;
-      }
-      .carousel-item__details {
-         background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
-         font-size: 10px;
-         color: white;
-         opacity: 0;
-         transition: 450ms opacity;
-         padding: 10px;
-         position: absolute;
-         top: 0;
-         left: 0;
-         right: 0;
-         bottom: 0;
-         text-align: center;
-         white-space: normal;
-         display: flex;
-         flex-flow: row wrap;
-         flex-direction: column;
-         align-items: center;
-         justify-content: flex-end;
-      }
-      .carousel-item__details:hover {
-         opacity: 1;
-      }
-      .carousel-item__details--title {
-        font-size: 15px;
-      }
-      .carousel-item__details--subtitle {
-        
-      }
-      .carousel-item__details--icons {
-        color: #caa5f1;
-      }
-      .carousel::-webkit-scrollbar {    
-          height: 5px;
-      }
-      
-      .carousel::-webkit-scrollbar-track {
-          -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1); 
-          border-radius: 10px;      
-      }
-      .carousel::-webkit-scrollbar-track-piece {
-          max-width: 100px;
-      }
-      .carousel::-webkit-scrollbar-thumb {
-          border-radius: 10px;
-          -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
-          background-color: gray;      
-      }
+   }  
+
+   #photoguide_box{
+      background-color: #1fe0; 
+      width:100%;
+      height:300px;
+      overflow-x:auto;
+      overflow-y:hidden;
+      display:flex;
+      align-items: center;
+   }
+   
+   #photoguide_box::-webkit-scrollbar {
+      width: 10px;
+   }
+   #photoguide_box::-webkit-scrollbar-thumb {
+     background-color: #2f3542;
+   }
+   #photoguide_box::-webkit-scrollbar-track {
+     background-color: grey;
+   }
+   .photoguide_item{
+      width: 150px;
+      height: 200px;
+      margin-right: 20px;
+      cursor: pointer;
+      position: relative;
+       }
+   .photoguide_item:hover ~ .photoguide_item {
+      transform: translate3d(100px, 0, 0);
+   }
+     
+   #photoguide_box:hover .photoguide_item:hover {
+      /* transform: scale(1.5); */
+   }
+   .photoguide_image {
+      width: 150px;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 200ms ease-out;
+   } 
+   .photoguide_image:hover{
+      transform: scale(1.2);
+   }
+
+   .carousel {
+      width: 100%;
+      overflow: scroll;
+      padding: 30px;
+      position: relative;
+      box-sizing: border-box;
+      display: inline-block;
+      overflow-y: hidden;
+      overflow-x: auto;        
+   }
+   .carousel__container {
+      white-space: nowrap;
+      margin: 70px 0px;
+      padding-bottom: 10px; 
+   }
+   .carousel-item {
+      background-color: #caa5f1;
+      width: 200px;
+      height: 250px;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-right: 10px;
+      display: inline-block;
+      cursor: pointer;
+      transition: 450ms all;
+      transform-origin: center left;
+      position: relative;
+   }
+   .carousel-item:hover ~ .carousel-item {
+      transform: translate3d(100px, 0, 0);
+   }
+   .carousel__container:hover .carousel-item {
+      opacity: 0.3;
+   }
+   .carousel__container:hover .carousel-item:hover {
+      transform: scale(1.5);
+      opacity: 1;
+   }
+   .carousel-item__img {
+      width: 200px;
+      height: 250px;
+      object-fit: cover;
+   }
+   .carousel-item__details {
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
+      font-size: 10px;
+      color: white;
+      opacity: 0;
+      transition: 450ms opacity;
+      padding: 10px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      text-align: center;
+      white-space: normal;
+      display: flex;
+      flex-flow: row wrap;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+   }
+   .carousel-item__details:hover {
+      opacity: 1;
+   }
+   .carousel-item__details--title {
+     font-size: 15px;
+   }
+   .carousel-item__details--subtitle {
+     
+   }
+   .carousel-item__details--icons {
+     color: #caa5f1;
+   }
+   .carousel::-webkit-scrollbar {    
+       height: 5px;
+   }
+   
+   .carousel::-webkit-scrollbar-track {
+       -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1); 
+       border-radius: 10px;      
+   }
+   .carousel::-webkit-scrollbar-track-piece {
+       max-width: 100px;
+   }
+   .carousel::-webkit-scrollbar-thumb {
+       border-radius: 10px;
+       -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+       background-color: gray;      
+   }
   
   body {
     margin: 0px;

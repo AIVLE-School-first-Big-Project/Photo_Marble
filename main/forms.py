@@ -11,8 +11,9 @@ class SignupForm(forms.ModelForm):
     
     def signup(self, request, user):
         user.nickname = self.cleaned_data["nickname"]
-
+        user.is_active = False
         user.save()
+        
 
 class LoginForm(forms.ModelForm):
     class Meta:

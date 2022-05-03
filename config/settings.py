@@ -34,7 +34,7 @@ SECRET_KEY = get_secret("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [] # 본인 장치의 ip adress로 지정
 # ALLOWED_HOSTS = ['49.164.234.56']
 # ALLOWED_HOSTS = ["172.30.1.59"] # dk 폰
 
@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'main',
+    'six',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -84,9 +85,6 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend'
 ]
 SITE_ID = 2
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-
 
 
 MIDDLEWARE = [
@@ -189,12 +187,14 @@ ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = "account_email_confirmation_
 ACCOUNT_SESSION_REMEMBER = True # 브라우저를 닫아도 세션기록 유지(로그인이 안풀림)
 SESSION_COOKIE_AGE = 3600 # 쿠키를 한시간 저장(세션)
 
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
 EMAIL_HOST_USER = 'syg3793@gmail.com'
-EMAIL_HOST_PASSWORD ='canu6858!@'
+EMAIL_HOST_PASSWORD ='kanu6858!@'
 EMAIL_USE_TLS =True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
 MAIN_URL = 'http://127.0.0.1:8000/'
 STATIC_URL = '/static/'
 
