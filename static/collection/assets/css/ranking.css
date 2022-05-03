@@ -1,10 +1,9 @@
 .medal{
   width: 70px;
   height: 70px;
-  position:absolute;
   top: 10%;
   left:50%;
-  
+  padding-top: 5px;
 }
 .userinfo{
   color:#ffffff;

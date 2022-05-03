@@ -56,7 +56,6 @@ def login(request):
         email = request.POST['email']
         password = request.POST['password']
         print(email,password)
-        print("###############")
         # 로그인
         user = auth.authenticate(request, email=email, password=password)
         print(user)
@@ -66,7 +65,7 @@ def login(request):
             auth.login(request, user)
             request.session['id'] = user.id
             print( request.session['id'])
-            return redirect('http://127.0.0.1:8000/')
+            return redirect('main')
         # 실패
         else:
             messages.warning(request, "로그인을 실패했습니다.")
@@ -163,7 +162,7 @@ class CustomSPasswordChangeView(PasswordChangeView):
     template_name = "main/password_change.html"
 
 def get_redirect_url(self):
-    return redirect("http://127.0.0.1:8000/login")
+    return redirect("login")
 
 
 def profile_upload(request):
@@ -174,4 +173,4 @@ def profile_upload(request):
         user.profile_photo = img
         user.profile_s3_url =  "https://photomarble.s3.ap-northeast-2.amazonaws.com/profile/"+ str(img)
         user.save()
-    return redirect('http://127.0.0.1:8000/mypage/')
+    return redirect('mypage')

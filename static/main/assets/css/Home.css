@@ -260,7 +260,7 @@ body{
   }
 }
 
-<style>    
+
 @font-face{
   font-family: 'yg-jalnan';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
@@ -351,8 +351,7 @@ body {
     max-width: 100%;
     box-shadow: none;
     background-color: #FFFFFF;
-
-    height: 60px!important;
+    height: 70px!important;
     overflow: hidden;
 }
 .main {
@@ -400,14 +399,14 @@ body {
   padding: 20px;
   cursor: pointer;
   border-bottom: 1px solid rgba(255, 255, 255, 0.10);
-  font-size: 23px;   
-  font-family: 'yg-jalnan';"     
+  font-size: 40px;   
+  font-family: 'yg-jalnan';     
 }
 .sidebarMenuInner li span{
   display: block;
   font-size: 14px;
   color: rgba(255, 255, 255, 0.50);
-  font-family: 'yg-jalnan';"   
+  font-family: 'yg-jalnan';   
 }
 .sidebarMenuInner li a{
   color: #db545a;
@@ -439,12 +438,12 @@ input[type=checkbox] {
     width: 22px;
 }
 .spinner {
-    transition: all 0.3s;
-    box-sizing: border-box;
-    position: absolute;
-    height: 3px;
-    width: 100%;
-    background-color: #db545a;
+  transition: all 0.3s;
+  box-sizing: border-box;
+  position: absolute;
+  height: 10px;
+  width: 300%;
+  background-color: #db545a;
 }
 .horizontal {
     transition: all 0.3s;
@@ -466,7 +465,6 @@ input[type=checkbox] {
     float: left;
     margin-top: 3px;
 }
-
 .user_contents {
   background: transparent;
   display: flex;
@@ -546,13 +544,13 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .horizontal {
 }
 input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-1 {
     transition: all 0.3s;
-    box-sizing: border-box;
-    transform: rotate(135deg);
+    box-sizing: border-box;    
     margin-top: 8px;
 }
 input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
     transition: all 0.3s;
-    box-sizing: border-box;
-    transform: rotate(-135deg);
+    box-sizing: border-box;    
     margin-top: -9px;
 }
+
+
