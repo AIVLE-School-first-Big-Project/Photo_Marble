@@ -1,8 +1,9 @@
+
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
 <head>
-  <link rel="stylesheet" href="{% static 'main/assets/css/Home.css' %}"/>
+  <link rel="stylesheet" href="{% static 'main/assets/css/Home.css'%}"/>
 </head>
 
   <body class="u-body u-xl-mode">
@@ -86,9 +87,7 @@
 </html>
 
 <style>
-  .main_test{
-    min-height:1400px;
-  }
+ 
   @font-face {
     font-family: 'Cafe24Ssurround';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
@@ -102,18 +101,29 @@
   font-style: normal;
 }
 
+.sidebarMenuInner li{
+  list-style: none;
+  color: #db545a;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 20px;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+  font-size: 35px;   
+  font-family: 'yg-jalnan'; 
+}
 </style>
 
 <script src="main/assets/js/jquery.min.js"></script>
-			<script src="main/assets/js/jquery.scrolly.min.js"></script>
-			<script src="main/assets/js/jquery.scrollex.min.js"></script>
-			<script src="main/assets/js/browser.min.js"></script>
-			<script src="main/assets/js/breakpoints.min.js"></script>
-			<script src="main/assets/js/util.js"></script>
-			<script src="main/assets/js/main.js"></script>
-			<script>
-				function not_login(){
-				  alert("로그인 후 사용하실 수 있습니다.");
-				}
-			  </script>
+         <script src="main/assets/js/jquery.scrolly.min.js"></script>
+         <script src="main/assets/js/jquery.scrollex.min.js"></script>
+         <script src="main/assets/js/browser.min.js"></script>
+         <script src="main/assets/js/breakpoints.min.js"></script>
+         <script src="main/assets/js/util.js"></script>
+         <script src="main/assets/js/main.js"></script>
+         <script>
+            function not_login(){
+              alert("로그인 후 사용하실 수 있습니다.");
+            }
+           </script>
 {% endblock %}

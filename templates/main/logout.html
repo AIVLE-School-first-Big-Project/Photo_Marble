@@ -18,14 +18,14 @@
 {% load i18n %}
 
 {% load bootstrap4 %}
-<div class="row justify-content-center h-100">
-  <div class="col align-self-center text-center card text-black" style="max-width: 25rem;">
+<div class="row justify-content-center h-100"style="background-image: linear-gradient(#fbeced, #adcce9);">>
+  <div class="col align-self-center text-center card text-black" style="max-width: 25rem;height: 25rem; border-radius: 20px 20px 20px 20px;">
     <div class="card-body"> 
       <p style= "font-family: 'yg-jalnan';" ><h3 class="card-title" >log out</h1>
-      <form method="post" action="{% url 'account_logout' %}">
+      <form method="post" action="{% url 'account_logout' %}"><br><br><br>
         {% csrf_token %}
         
-        <p style= "font-family: 'yg-jalnan';" >정말로 로그아웃 하시겠습니까?</p>
+        <p style= "font-family: 'yg-jalnan'; font-size:25px;" >정말로 로그아웃 하시겠습니까?</p>
         <button class="btn" id = 'btn1' name="action">로그아웃</button>
         <form>
           <input type="button" value="돌아가기" class="btn" id = 'btn1' onclick="history.back()">
@@ -48,4 +48,3 @@
           
         }
       </style>
-
