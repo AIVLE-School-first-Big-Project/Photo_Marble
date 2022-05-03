@@ -42,19 +42,29 @@
       
       <div class="u-clearfix u-layout-wrap u-layout-wrap-1">
           <h1 class="display-4" style="font-family: 'Cafe24Ssurround';color:#db545a;text-align : center;"> 포토가이드 </h1>
-        <div style="box-shadow: 5px 5px 5px #bababa;" class="u-gutter-0 u-layout">
-  
-          <div id="photoguide_box" style="height:600px;" class="cell-temp-clone u-align-left u-container-style u-layout-cell u-size-9 u-white u-layout-cell-8">
-              {% for img in imgs%} 
-                <div class="photoguide_item">  
-                  <img class = "photoguide_image" src='{{ img }}'>
-                </div>
-                <div><br></div>
-              {% endfor %} 
+          <div style="margin-top: 50;">
+            <h1 class="display-4" style="font-family:'Cafe24Ssurround';color:#db545a;text-align : center;"> 인물 </h1>
           </div>
-            </div>
+          <div id="photoguide_box" class="cell-temp-clone u-align-left u-container-style u-layout-cell u-size-9 u-white u-layout-cell-8">
+            {% for img in imgs%} 
+              <div class="photoguide_item">  
+                <img class = "photoguide_image" src='{{ img }}'>
+              </div>
+              <div><br></div>
+            {% endfor %} 
           </div>
-        </div>
+          
+          <div style="margin-top: 50;">
+            <h1 class="display-4" style="font-family:'Cafe24Ssurround';color:#db545a;text-align : center;"> 풍경 </h1>
+          </div>
+          <div id="photoguide_box" class="cell-temp-clone u-align-left u-container-style u-layout-cell u-size-9 u-white u-layout-cell-8">
+            {% for img in imgs%} 
+              <div class="photoguide_item">  
+                <img class = "photoguide_image" src='{{ img }}'>
+              </div>
+              <div><br></div>
+            {% endfor %} 
+          </div>
       </div>
     </section>
 
