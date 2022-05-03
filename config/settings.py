@@ -35,6 +35,8 @@ SECRET_KEY = get_secret("SECRET_KEY")
 DEBUG = True
 
 ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['49.164.234.56']
+# ALLOWED_HOSTS = ["172.30.1.59"] # dk 폰
 
 
 # Application definition
@@ -51,6 +53,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
     'bootstrap4',
     'gallery',
     'photoguide',
@@ -80,7 +83,7 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend'
 ]
-SITE_ID = 1
+SITE_ID = 2
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
@@ -202,7 +205,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 ) 
 
-# 이걸 추가해야 django네 메세지 나오게 함
+# 이걸 추가해야 django에 메세지 나오게 함
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 # s3 연결
@@ -220,3 +223,15 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}

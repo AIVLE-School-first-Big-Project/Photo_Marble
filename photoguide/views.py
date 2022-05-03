@@ -15,15 +15,11 @@ def photoguide(request):
 
 def photoguide_update(request):
     img = request.FILES['file']
-    
-
     features = np.load('./photoguide/DLmodel/similartiy_features.npy')
 
     # ---------------------------------------------api를 통한 모델 예측값 가져오기----------------------
     uploads = {'image' : request.FILES['file']}
-
     response = requests.post('http://127.0.0.1:8080/predict/', files = uploads)
-    
     result = response.json()
     query = np.array(result["pred"])
     #----------------------------------------------------------------------------------------------------

@@ -1,9 +1,13 @@
 from re import A
-from django.shortcuts import render,redirect
+from django import conf
+from django.shortcuts import render
 from django.urls import reverse
+from regex import B
 from main.models import User, Collection, Landmark, Locations, Gallery
-
+import os
 from django.db.models import Count
+from PIL import Image
+import yolov5
 
 from django.contrib import messages
 # Create your views here.
@@ -133,3 +137,28 @@ def collection_ranking(request):
         rank_list.append(None)
     return render(request, '../templates/collection/collection_ranking.html',
                     {'first':rank_list[0], 'second':rank_list[1],'third':rank_list[2],'top4_7':rank_list[3:]})
+
+
+
+
+def collection_update(request):
+    img = request.FILES['camcorder']
+    # print("conf : ", run(conf_thres=0.5))
+    # print(img)
+    # print(plots.Annotator.box_label)
+    img = Image.open(img.file)
+    # img = img.resize((640,640))
+    path = os.path.join(os.getcwd(),'collection','best.pt')
+
+    model = yolov5.load(path)
+    results = model(img,size=640)
+    print(results)
+    results.show()
+
+    # save results
+
+    # results.save(save_dir='./')
+
+    # print(img)
+    return render(request, '../templates/collection/collection_update.html')
+ #python detect.py --weight 128_200_best.pt --conf 0.2 --source image.jpg 
