@@ -19,7 +19,7 @@ def photoguide_update(request):
 
     # ---------------------------------------------api를 통한 모델 예측값 가져오기----------------------
     uploads = {'image' : request.FILES['file']}
-    response = requests.post('http://127.0.0.1:8080/predict/', files = uploads)
+    response = requests.post('http://49.164.234.56:8080/predict/', files = uploads)
     result = response.json()
     query = np.array(result["pred"])
     #----------------------------------------------------------------------------------------------------
