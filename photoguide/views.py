@@ -30,9 +30,7 @@ def photoguide_update(request):
     dists = np.linalg.norm(features - query, axis=1)
     ids = np.argsort(dists)
     top_url_link = [img_paths[id] for id in ids[:10]]
-    # print(top_url_link)
-
-    # print(img)
+    
     return render(request, '../templates/photoguide/photoguide_result.html',{'imgs':top_url_link})
 
 def photoguide_result(request):
