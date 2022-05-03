@@ -11,6 +11,18 @@ from django.contrib.auth.hashers import check_password
 from django.utils.timezone import now
 from config.settings import MAIN_URL
 
+#활성화함수위해
+from django.contrib.sites.shortcuts import get_current_site
+from django.template.loader import render_to_string
+from django.utils.http import urlsafe_base64_encode,urlsafe_base64_decode
+from django.core.mail import EmailMessage
+from django.utils.encoding import force_bytes,force_str
+from .tokens import member_activation_token
+
+#messages 출력하기위해
+from django.contrib import messages
+from tkinter import Button, messagebox
+
 # Create your views here.
 
 def index(request):
@@ -44,7 +56,6 @@ def login(request):
         email = request.POST['email']
         password = request.POST['password']
         print(email,password)
-        print("###############")
         # 로그인
         user = auth.authenticate(request, email=email, password=password)
         print(user)
@@ -54,7 +65,7 @@ def login(request):
             auth.login(request, user)
             request.session['id'] = user.id
             print( request.session['id'])
-            return redirect('http://127.0.0.1:8000/')
+            return redirect('main')
         # 실패
         else:
             messages.warning(request, "로그인을 실패했습니다.")
@@ -94,15 +105,54 @@ def delete_result(request):
 
 
     return render(request, '../templates/main/delete_result.html')
+
 class CustomSignupView(SignupView):
     template_name = "main/signup.html" 
     def form_valid(self, form):
 
         self.user = form.save(self.request)
-        print(self.user)
-        return redirect("http://127.0.0.1:8000/login")
-        # return redirect('login/')
+        current_site = get_current_site(self.request) 
+        message = render_to_string('main/activation_email.html', {
+            'user': self.user,
+            'domain': current_site.domain,
+            'uid': urlsafe_base64_encode(force_bytes(self.user.pk)),
+            'token': member_activation_token.make_token(self.user),
+        })
+        mail_title = "계정 본인확인 이메일"
+        mail_to = self.request.POST["email"]
+        email = EmailMessage(mail_title, message, to=[mail_to])
+        email.send()
+        return render(self.request,"main/signup2.html")
+        # else:
+        #     return render(self.request,"member/signup3.html")  
+    
+    # return render('http://127.0.0.1:8000/login')
 
+# 회원가입기능
+# 이메일에 @ & . 없으면 안내해준다.
+from django.core.exceptions import ValidationError
+
+def validate_email(email):
+    if not '@' in email or not '.' in email:
+        raise ValidationError(("Invalid Email"), code = 'invalid')
+    
+# 이메일 활성화(비활성화) #
+
+def activate(request, uid64, token, backend='django.contrib.auth.backends.ModelBackend', *args, **kwargs, ):
+    try:
+        uid = force_str(urlsafe_base64_decode(uid64))
+        user = User.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+    if user is not None and member_activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+        auth.login(request, user, backend)
+        return redirect("/login")
+    else:
+        return render(request, 'main/login.html', {'error' : '계정 활성화 오류'})
+
+    return 
 
 
 class CustomSLogoutView(LogoutView):
@@ -112,7 +162,7 @@ class CustomSPasswordChangeView(PasswordChangeView):
     template_name = "main/password_change.html"
 
 def get_redirect_url(self):
-    return redirect("http://127.0.0.1:8000/login")
+    return redirect("login")
 
 
 def profile_upload(request):
@@ -123,4 +173,4 @@ def profile_upload(request):
         user.profile_photo = img
         user.profile_s3_url =  "https://photomarble.s3.ap-northeast-2.amazonaws.com/profile/"+ str(img)
         user.save()
-    return redirect('http://127.0.0.1:8000/mypage/')
+    return redirect('mypage')
