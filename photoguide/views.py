@@ -30,12 +30,12 @@ def photoguide_update(request):
     # query = fe.extract(img)
 
     # 필요한 부분
-    # dists = np.linalg.norm(features - query, axis=1)
-    # ids = np.argsort(dists)
-    # top_url_link = [img_paths[id] for id in ids[:10]]
+    dists = np.linalg.norm(features - query, axis=1)
+    ids = np.argsort(dists)
+    top_url_link = [img_paths[id] for id in ids[:10]]
 
     # 쿠다 끄기
-    top_url_link=None
+    # top_url_link=None
     # print(top_url_link)
 
     # print(img)
