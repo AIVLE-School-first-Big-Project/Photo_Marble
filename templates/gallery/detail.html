@@ -54,6 +54,11 @@
                             {% endif %}
                         </div>
                     </div>
+                    {% if data.created_string == False %}
+                        <div class="updated" style="font-size: 18px;color: grey;margin-bottom: 5px;">{{ data.updated_at|date:'m월 d일' }}</div>
+                    {% else %}
+                        <div class="updated" style="font-size: 18px;color: grey;margin-bottom: 5px;">{{ data.created_string }}</div>
+                    {% endif %}
                 </div>
                 <!-- 게시글 -->
                 <div class="feed_content">
