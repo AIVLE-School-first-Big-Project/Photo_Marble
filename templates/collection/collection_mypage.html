@@ -31,40 +31,12 @@
     <meta name="viewport" content="width=320; user-scalable=no" />
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <title>Camera</title>
-    <script src="/jquery/jquery.js"></script>
     
-    <script>
-    $(document).ready(function(){
-        if (!('url' in window) && ('webkitURL' in window)) {
-            window.URL = window.webkitURL;
-        }
-    
-        $('#camcorder').change(function(e){
-            $('#mov').attr('src', URL.createObjectURL(e.target.files[0]));
-            // iOS Safari에서는 autoplay가 안먹히므로 알림
-            alert('동영상 재생버튼을 누르시오');
-        });
-    });
-    </script>
     </head>
-    
-    <br><br><br>
-    <h1 class="display-4" style="font-family: 'Cafe24Ssurround';color:#db545a;text-align : center;">
-        컬렉션
-    </h1><br><br>
-    <form method="post" action="collection_update" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="file" id="camcorder" name="camcorder" capture="camcorder" accept="image/*"/>
-        <video id="mov"></video>
-        <button style="background-image: linear-gradient(to right, #77aad9, #e68387);
-                    border-style: none; height : 40; width:80; margin : -4 0 0 0 ;
-                    color: white;" type="submit" id = 'btn1' class="btn"> 등록하기
-        </button>
-    </form>
-</body>
 
-<br>
+
 <body>
+    <br><br><br>
     <div class="test">
         <div class="progress_state">
             <h4>{{user.nickname}}님의 진척도 <br></h4>
@@ -76,6 +48,7 @@
                 </div>
             </div>
         </div><br><br>
+        <div style="margin:0 15% 0 0;">
             <svg style='background:#ffffff;overflow:visible' xmlns="http://www.w3.org/2000/svg" viewBox="50 0 700 800">
                 <defs>
                     <filter id="dropshadow">
@@ -175,8 +148,20 @@
                 <text id="LCD11710" class="TEXT" x="624" y="448">송파구</text>
                 <text id="LCD11740" class="TEXT" x="675" y="358">강동구</text>
                 </g>
-            </svg>  
-    </body>
+            </svg> 
+        </div>
+
+            <form method="post" action="collection_update" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="file" id="camcorder" name="camcorder" capture="camcorder" accept="image/*"/>
+                <video id="mov"></video>
+                <button style="background-image: linear-gradient(to right, #77aad9, #e68387);
+                            border-style: none; height : 40; width:80; margin : -4 0 0 0 ;
+                            color: white;" type="submit" id = 'btn1' class="btn"> 등록하기
+                </button>
+            </form>
+    
+
     <div id="modal_add_feed" class="modal_overlay">
         <div class="modal_window">
           <div class="modal_title">
@@ -197,7 +182,7 @@
         color: white;" class="btn"> 마이갤러리 이동</button>
         </div>
       </div>
-  
+    </body>
     </html>
 
 <script>
@@ -262,6 +247,22 @@
         document.body.style.overflowY = "visible";
     });
 </script>
+
+<!-- dk : ?? 수민이한테 물어봐야함 -->
+<script src="/jquery/jquery.js"></script>
+    <script>
+    $(document).ready(function(){
+        if (!('url' in window) && ('webkitURL' in window)) {
+            window.URL = window.webkitURL;
+        }
+    
+        $('#camcorder').change(function(e){
+            $('#mov').attr('src', URL.createObjectURL(e.target.files[0]));
+            // iOS Safari에서는 autoplay가 안먹히므로 알림
+            alert('동영상 재생버튼을 누르시오');
+        });
+    });
+    </script>
 
 <style>
     @font-face {
