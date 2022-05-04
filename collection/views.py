@@ -6,6 +6,7 @@ from regex import B
 from main.models import User, Collection, Landmark, Locations, Gallery
 import os
 from django.db.models import Count
+from django.http import HttpResponse,JsonResponse
 from PIL import Image
 import yolov5
 from yolov5 import detect
@@ -40,6 +41,25 @@ def collection_mypage(request):
     else:
         messages.add_message(request, messages.INFO, '접근 권한이 없습니다')
         return render(request,'../templates/collection/collection_mypage.html')
+
+
+def map_modal(request):
+    
+    area = Locations.objects.get(location_id=request.POST['location_id'][1:])
+
+    landmarks  = Landmark.objects.filter(area=area.name)
+    land_id_lilst = [l.landmark_id for l in landmarks]
+    collection =  Collection.objects.filter(landmark_id__in=land_id_lilst,user_id=request.session['id'])
+    coll_id_lilst = [l.landmark_id for l in collection]
+    user_collection=  Landmark.objects.filter(landmark_id__in=coll_id_lilst)
+    result  = [ i.name for i in user_collection]
+    print(user_collection)
+    #collection_db = Collection.objects.filter(user_id=request.session['id'], landmark_id=label)
+    return JsonResponse(data={
+        'landmarks':list(user_collection.values()),
+ 
+    })
+
 
 
 from django.db.models import Q
