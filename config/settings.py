@@ -191,11 +191,11 @@ SESSION_COOKIE_AGE = 3600 # 쿠키를 한시간 저장(세션)
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
 EMAIL_HOST_USER = 'syg3793@gmail.com'
-EMAIL_HOST_PASSWORD ='kanu6858!@'
+EMAIL_HOST_PASSWORD ='Love7602!@'
 EMAIL_USE_TLS =True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-MAIN_URL = 'http://127.0.0.1:8000/'
+MAIN_URL = 'http://49.164.234.56:8000/'
 STATIC_URL = '/static/'
 
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')

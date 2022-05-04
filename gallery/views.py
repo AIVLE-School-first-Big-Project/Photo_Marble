@@ -33,7 +33,7 @@ def gallery(request):
             galleries = Gallery.objects.filter(landmark_id = l_id, category_id = c_id).order_by('-updated_at')
     
     # Pagination
-    paginator = Paginator(galleries, 4)
+    paginator = Paginator(galleries, 50)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
         
