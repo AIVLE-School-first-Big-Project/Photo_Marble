@@ -4,7 +4,7 @@ from django.urls import reverse
 from main.models import User, Collection, Landmark, Locations, Gallery
 
 from django.db.models import Count
-
+from django.http import HttpResponse,JsonResponse
 from django.contrib import messages
 # Create your views here.
 
@@ -76,6 +76,22 @@ def collection_mypage(request):
         return render(request,'../templates/collection/collection_mypage.html')
 
 
+def map_modal(request):
+    
+    area = Locations.objects.get(location_id=request.POST['location_id'][1:])
+
+    landmarks  = Landmark.objects.filter(area=area.name)
+    land_id_lilst = [l.landmark_id for l in landmarks]
+    collection =  Collection.objects.filter(landmark_id__in=land_id_lilst,user_id=request.session['id'])
+    coll_id_lilst = [l.landmark_id for l in collection]
+    user_collection=  Landmark.objects.filter(landmark_id__in=coll_id_lilst)
+    result  = [ i.name for i in user_collection]
+    print(user_collection)
+    #collection_db = Collection.objects.filter(user_id=request.session['id'], landmark_id=label)
+    return JsonResponse(data={
+        'landmarks':list(user_collection.values()),
+ 
+    })
 
 
 
@@ -133,3 +149,4 @@ def collection_ranking(request):
         rank_list.append(None)
     return render(request, '../templates/collection/collection_ranking.html',
                     {'first':rank_list[0], 'second':rank_list[1],'third':rank_list[2],'top4_7':rank_list[3:]})
+
