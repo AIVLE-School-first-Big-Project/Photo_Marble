@@ -165,35 +165,18 @@ def collection_update(request):
     colletion_idx = len(Collection.objects.all())+1 #나중에 컬렉션 id따서 +1 하는 방향으로(get)
     landmark_id = label
     time = timezone.now()
-    try:
-         # Collection 모델 업데이트
-        Collection.objects.create(
-            collection_id=colletion_idx , 
-            is_visited=1, 
-            date=time , 
-            updated_at=time, 
-            user_id=user_id, 
-            landmark_id=landmark_id,
-            s3_url=s3_url)
-
-        # landmark == label
-        # user_id == request.session['id']
-        print("################## label : ",label)
-        
-        # collection_db = Collection.objects.get(s3_url=s3_url)
-
-        
-        # s3_url = collection_db.s3_url
-
-
-        return render(request, '../templates/collection/collection_update.html',context={"s3_url":s3_url})
-       
-
-    except :
-        print("이미 인증한 랜드마크입니다.")
-
-        return render(request, '../templates/collection/collection_update.html')
-
+    # Collection 모델 업데이트
+    Collection.objects.create(
+        collection_id=colletion_idx , 
+        is_visited=1, 
+        date=time , 
+        updated_at=time, 
+        user_id=user_id, 
+        landmark_id=landmark_id,
+        s3_url=s3_url)
+    
+    return render(request, '../templates/collection/collection_update.html',context={"s3_url":s3_url})
+    
         
     
 def map(visited_landmark,progress):
