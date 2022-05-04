@@ -8,21 +8,21 @@
 .main_body {
     display: flex;
     justify-content: center;
-    padding-top: 50px;
+    padding-top: 0px;
     background-color: #FAFAFA;
 }
 
 .feed_box {
+   
     background-color: white;
     width: 480px;
-    margin: 10px;
+    margin: 80px;
     min-height: auto;
     padding-bottom: 10px;
 }
 
 .comment_textbox{
     vertical-align: middle;
-    width:85%;
 }
 
 
@@ -186,10 +186,4 @@
 
 .comment_textbox {
     font-weight: 300;
-}
-
-#updated{
-    font-size: 18px;
-    color: grey;
-    margin-bottom: 5px;
 }

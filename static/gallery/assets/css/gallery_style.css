@@ -88,7 +88,7 @@ Remove or comment-out the code block below to see how the browser will fall-back
 
    .gallery,
    .gallery-item {
-      margin: 0;
+      margin: 15 20 ;
    }
 }
 @import url('https://fonts.googleapis.com/css?family=Varela+Round');
@@ -158,12 +158,12 @@ body {
   padding: 20px;
   cursor: pointer;
   border-bottom: 1px solid rgba(255, 255, 255, 0.10);
-  font-size: 23px;   
-  font-family: 'yg-jalnan';     
+  font-size: 35px;   
+  font-family: 'yg-jalnan'; 
 }
 .sidebarMenuInner li span{
   display: block;
-  font-size: 14px;
+  font-size: 35px;
   color: rgba(255, 255, 255, 0.50);
   font-family: 'yg-jalnan';   
 }

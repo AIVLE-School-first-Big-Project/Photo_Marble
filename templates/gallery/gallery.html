@@ -3,9 +3,10 @@
 {% block content %}
 <html>
     <head>
-        <link rel="stylesheet" href="{% static 'gallery/assets/css/gallery_style.css' %}"/>
+        <link rel="stylesheet" href="{% static 'gallery/assets/css/gallery_style.css' %}"?after/>
+        <link rel="stylesheet" href="{% static 'photoguide/assets/css/nicepage.css' %}" media="screen">
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,900" rel="stylesheet">
-        <link rel="stylesheet" href="{% static 'main/assets/css/Home.css' %}" media="screen"/>
+        <link rel="stylesheet" href="{% static 'main/assets/css/Home.css' %}" media="screen"/> 
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -53,6 +54,8 @@
             <button id="loadmoreBtn" style="background-image: linear-gradient(to right, #77aad9, #e68387); border-style: none; height : 40; width:80; margin : -10 0 20 0 ; color: white;font-family: 'Cafe24Ssurround';padding:2px 15px">더보기</button>
         </div>
     </section>
+
+
 
 <!-- Pagination -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -181,3 +184,26 @@
 </script>
 
 {% endblock %}
+<style>
+    .sidebarMenuInner li{
+        list-style: none;
+        color: #db545a;
+        text-transform: uppercase;
+        font-weight: bold;
+        padding: 20px;
+        cursor: pointer;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+        font-size: 20px;   
+        font-family: 'yg-jalnan'; 
+      }
+
+      .sidebarMenuInner li a{
+        color: #db545a;
+        text-transform: uppercase;
+        font-weight: bold;
+        cursor: pointer;
+        text-decoration: none;
+        font-family: 'yg-jalnan';
+        font-size:20px;
+      } 
+</style>
