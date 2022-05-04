@@ -326,7 +326,7 @@ body{
 @media(max-width: 990px){
   .card{
     margin: 10px;
-    position=absolute;
+    position:absolute;
     z-index:20;
   }
 } 
@@ -552,5 +552,20 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
     transition: all 0.3s;
     box-sizing: border-box;    
     margin-top: -9px;
+}
+
+#top_nav{
+  color: #db545a;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: 'yg-jalnan';
+  font-size: 30px;
+  text-align:right;
+  vertical-align: center;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
