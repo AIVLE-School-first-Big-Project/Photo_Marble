@@ -5,7 +5,7 @@
 
 .u-section-1 .u-group-1 {
   background-image: linear-gradient(#fbeced, #adcce9);
-  min-height: 930px;
+  min-height: 1200px;
 }
 
 .u-section-1 .u-container-layout-1 {
@@ -408,12 +408,20 @@
   
 }
 
-.upload_div{
+#tempImage{
   width: 80%;
   height: 80%;
 }
 
-#tempImage{
-  width: 50px;
-  height: 50px;
+#file{
+  width: 100%;
+  height: auto;
+  text-align: center;
+  margin-top:15px;
+  padding-left: 5%;
+  padding-top: 10px;
 }
+#filebox{
+  text-align: center;
+}
+

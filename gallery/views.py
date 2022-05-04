@@ -14,32 +14,30 @@ import json
 from django.core import *
 from django.core.paginator import *
 from django.core import serializers
-from PIL import Image
-from PIL.ExifTags import TAGS
 
 def gallery(request):
     l_id = request.POST.get('landmark')
     c_id = request.POST.get('category')
     galleries = Gallery.objects.all().order_by('-updated_at')
     landmarks = Landmark.objects.all()
-
-    # Pagination
-    paginator = Paginator(galleries, 4)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
     
     if request.method == 'POST':
         # 사진 필터링
         if (l_id is None and c_id is None)  or (l_id == '0' and c_id == '0'):
-            galleries = Gallery.objects.all()
+            galleries = Gallery.objects.all().order_by('-updated_at')
         elif l_id == '0' and c_id is not None:
-            galleries = Gallery.objects.filter(category_id=c_id)
+            galleries = Gallery.objects.filter(category_id=c_id).order_by('-updated_at')
         elif l_id is not None and c_id == '0':
-            galleries = Gallery.objects.filter(landmark_id=l_id)
+            galleries = Gallery.objects.filter(landmark_id=l_id).order_by('-updated_at')
         else:
-            galleries = Gallery.objects.filter(landmark_id = l_id, category_id = c_id)
+            galleries = Gallery.objects.filter(landmark_id = l_id, category_id = c_id).order_by('-updated_at')
+    
+    # Pagination
+    paginator = Paginator(galleries, 50)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
         
-    content = {'page_obj':page_obj, "landmarks" : landmarks, }
+    content = {'page_obj':page_obj, "landmarks" : landmarks, 'galleries':galleries}
 
     return render(request, "../templates/gallery/gallery.html" , context= content)
 
@@ -55,6 +53,7 @@ def load_more(request):
         'totalResult':totalData,
     })
 
+
 def upload(request):
     if request.method == 'POST':
         user_id = request.session['id']
@@ -64,43 +63,7 @@ def upload(request):
         landmark=request.POST.get('landmark')
         time = timezone.now()
         s3_url = "https://photomarble.s3.ap-northeast-2.amazonaws.com/gallery/"+ str(img)
-
-        # 사진 메타데이터 (시간, 위치) 저장
-        temp_img = Image.open(img)
-        img_info = temp_img._getexif()
-        taglabel = {}
-
-        for tag, value in img_info.items():
-            decoded = TAGS.get(tag, tag)
-            taglabel[decoded] = value
-
-        exifGPS = taglabel['GPSInfo']
-        latData, lonData = exifGPS[2], exifGPS[4]
-
-        # 도, 분, 초 
-        latDeg, latMin, latSec = latData[0], latData[1], latData[2]
-        lonDeg, lonMin, lonSec = lonData[0], lonData[1], lonData[2]
-
-        # 위도 계산
-        latitude = (latDeg + (latMin + latSec / 60.0) / 60.0)
-        # 북위, 남위인지를 판단, 남위일 경우 -로 변경
-        if exifGPS[1] == 'S':
-            Lat = Lat * -1
-
-        # 경도 계산
-        longitude = (lonDeg + (lonMin + lonSec / 60.0) / 60.0)
-        # 동경, 서경인지를 판단, 서경일 경우 -로 변경
-        if exifGPS[3] == 'W':
-            Lon = Lon * -1
-
-        # 사진이 생성된 날짜 (created_at)
-        taglabel['DateTimeOriginal']
-        tmp_date = taglabel['DateTimeOriginal'][:10].replace(':', '-')
-        tmp_time = taglabel['DateTimeOriginal'][10:]
-        created_at = tmp_date + tmp_time
-        # 사진 메타데이터 (시간, 위치) 저장
-
-        Gallery.objects.create(s3_url=s3_url, updated_at=time,category_id=category, landmark_id=landmark,user_id=user_id,photo_url=img, latitude=latitude, longitude=longitude, created_at = created_at)
+        Gallery.objects.create(s3_url = s3_url, updated_at=time,category_id=category, landmark_id=landmark,user_id=user_id,photo_url=img)
     return redirect('gallery')
 
 

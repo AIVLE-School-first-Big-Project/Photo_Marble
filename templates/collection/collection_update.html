@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+{% if messages %}
+    <br><br><br>
+    {% for message in messages %}
+    <div class="alert {{ message.tags }} alert-auto-dismissible alert-dismissible notification-container text-center" role="alert">
+        <button type="button" class="close"  aria-label="Close">
+            <div id = 're'>
+            <a href="http://127.0.0.1:8000/">X</a>
+            <div id = 're'>
+        </button>
+        {{ message }}
+    </div>
+
+{% endfor %}
+{% else%}
+
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+        <link rel="stylesheet" href="{% static 'collection/assets/css/map_style.css' %}"/>
+        <link rel="stylesheet" href="{% static 'collection/assets/css/collection.css' %}"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    </head>
+    
+<body>
+    <head>
+    <meta name="viewport" content="width=320; user-scalable=no" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>Camera</title>
+    <script src="/jquery/jquery.js"></script>
+    
+    <script>
+    $(document).ready(function(){
+        if (!('url' in window) && ('webkitURL' in window)) {
+            window.URL = window.webkitURL;
+        }
+    
+        $('#camcorder').change(function(e){
+            $('#mov').attr('src', URL.createObjectURL(e.target.files[0]));
+            // iOS Safari에서는 autoplay가 안먹히므로 알림
+            alert('동영상 재생버튼을 누르시오');
+        });
+    });
+    </script>
+    </head>
+    
+    <br><br><br>
+    <h1 class="display-4" style="font-family: 'Cafe24Ssurround';color:#db545a;text-align : center;">
+        컬렉션 업로드
+    </h1><br><br>
+    <center>
+        
+    <img src = {{s3_url}} />
+    </center>
+</body>
+
+
+</html>
+
+<script>
+    function post_page(loc_id){
+        var f = document.createElement('form');
+        f.setAttribute('method', 'post');
+        f.setAttribute('action', 'http://127.0.0.1:8000/collection/mygallery/'.concat(loc_id).concat('/'));
+        document.head.appendChild(f);
+        f.submit();
+}
+</script>
+
+<style>
+    @font-face {
+  font-family: 'Cafe24Ssurround';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+</style>
+
+{%endif%}
+{% endblock %}
+
+
+

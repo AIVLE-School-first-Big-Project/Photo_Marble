@@ -1,31 +1,30 @@
-
 {% extends "base.html" %}
 {% block content %}
 {% load static %}
 <!doctype html>
 <html lang="en">
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{% static 'gallery/assets/css/detail_style.css' %}"/>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-    <!-- 요기에 구글 머티리얼 아이콘 -->
-    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'gallery/assets/css/detail_style.css' %}"/>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <!-- 요기에 구글 머티리얼 아이콘 -->
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
 </head>
 <body>
-    <div class="main_body">
+    <div class="main_body"style="background-image: linear-gradient(#fbeced, #adcce9);">
         <div class="left_body">
-            <div class="border feed_box">
+            <div class="feed_box">
                 <div class="feed_name">
                     <div class="profile_box">
                         <img class="profile_img" src="{{ profile_photo }}">
                     </div>
                     <span class="feed_name_txt"> {{ uploader }} </span>
                     {% if data.user_id == my_id %}
-                        <button class="gallery_delete" onclick="button_event()">
+                        <button class="gallery_delete" onclick="button_event()" >
                             <img src="{% static 'gallery/images/gallery_delete.png' %}" height ="30px" width="30px" />
                         </button >
                     {% endif %}
@@ -35,29 +34,26 @@
                     <div>
                         <div>
                             <button style="background-color:white; border:none;" id="{{data.gallery_id}}" onclick="post_like(this.id)"> 
-                                {% if request.user in data.like_users.all %}
-                                    <!-- 로그인 한 유저가 좋아요를 누른 유저일때  -->
-                                    <img id="heart" style="weight:25px;height:25px;" src="/../../static/gallery/images/heart_2.png">
-                                {% else %}
-                                    <!-- 로그인 한 유저가 좋아요를 누른 유저가 아닐 때  -->
-                                    <img id="heart" style="weight:25px;height:25px;" src="/../../static/gallery/images/heart_1.png">
-                                {% endif %}
+                            {% if request.user in data.like_users.all %}
+                                <!-- 로그인 한 유저가 좋아요를 누른 유저일때  -->
+                                <img id="heart" style="weight:25px;height:25px;" src="/../../static/gallery/images/heart_2.png">
+                            {% else %}
+                                <!-- 로그인 한 유저가 좋아요를 누른 유저가 아닐 때  -->
+                                <img id="heart" style="weight:25px;height:25px;" src="/../../static/gallery/images/heart_1.png">
+                            {% endif %}
                             </button>
                         </div>
                         <div style = "margin: 7px;">
                             <!-- style="font-family: 'yg-jalnan';" -->
                             {% if data.like_count %}
-                                <span style="font-family: 'yg-jalnan';" id="like_count">{{data.like_count}}</span>명이 좋아합니다.
+                                <span style="font-family: 'yg-jalnan';" id="like_count">{{data.like_count}}</span>
+                                <span style="font-family: 'yg-jalnan';">명이 좋아합니다.</span>
                             {% else %}
-                                <span style="font-family: 'yg-jalnan';" id="like_count">{{len_likes}}</span>명이 좋아합니다.
+                                <span style="font-family: 'yg-jalnan';" id="like_count">{{len_likes}}</span>
+                                <span style="font-family: 'yg-jalnan';">명이 좋아합니다.</span>
                             {% endif %}
                         </div>
                     </div>
-                    {% if data.created_string == False %}
-                        <div id="updated">{{ data.updated_at|date:'m월 d일' }}</div>
-                    {% else %}
-                        <div id="updated">{{ data.created_string }}</div>
-                    {% endif %}
                 </div>
                 <!-- 게시글 -->
                 <div class="feed_content">
@@ -69,13 +65,13 @@
                         {% for comment in comments%}
                             {% if comment.user.id == my_id %}
                                 <div>
-                                    <span class="feed_txt"><b>{{ comment.user.nickname}}</b>{{ comment.content }}<b></span> <b><b>
+                                    <span class="feed_txt"> <b> {{ comment.user.nickname}}<span> </b> {{ comment.content }} <b> </span> <b><b>
                                     <a href="{% url 'comment_delete' data.gallery_id comment.comment_id %}"> <img class="delete" src="{% static 'gallery/images/delete.png' %}" width=20px height=20px;> </a>
-                                        {% if comment.created_string == False %}
-                                            <span class="timestamp">{{ comment.updated_at|date:'m월 d일' }}</span>
-                                        {% else %}
-                                            <span class="timestamp">{{ comment.created_string }}</span>
-                                        {% endif %}
+                                    {% if comment.created_string == False %}
+                                        <span class="timestamp">{{ comment.updated_at|date:'m월 d일' }}</span>
+                                    {% else %}
+                                        <span class="timestamp">{{ comment.created_string }}</span>
+                                    {% endif %}
                                 </div>    
                             {% else %}
                                 <div>
@@ -89,14 +85,12 @@
                             {% endif %}
                         {% endfor %}
                     {% endif %}
-
                     <!-- 댓글 작성 -->
                     <form method="POST">
                         {% csrf_token %}
-                        <input class="comment_textbox" name="comment_textbox" type="text" placeholder="댓글 달기">
+                        <input name="comment_textbox" type="text" style="width:80%;" placeholder="댓글 달기">
                         <input id = 'btn1' class="btn" type="submit" style="width:auto; font-family:'yg-jalnan';" value="등록">
                     </form>
-
                 </div>
             </div>
         </div>
@@ -127,16 +121,16 @@
               {
                   $('#heart').attr("src", "/../../static/gallery/images/heart_1.png")
               }
-             
+            
           }
       })
     }
     function button_event(){
-        if (confirm("정말 삭제하시겠습니까??") == true){    //확인
-            location.href="{% url 'gallery_delete' data.gallery_id %}";
-        } else {   //취소
-            return;
-          }
+      if (confirm("정말 삭제하시겠습니까??") == true){    //확인
+        location.href="{% url 'gallery_delete' data.gallery_id %}";
+      }else{   //취소
+          return;
+      }
     }
 </script>
 
@@ -164,6 +158,88 @@ src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF
 font-weight: normal;
 font-style: normal;
 }
-</style>
+input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-1 {
+    transition: all 0.3s;
+    box-sizing: border-box;    
+    margin-top: 8px;
+}
+input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
+    transition: all 0.3s;
+    box-sizing: border-box;    
+    margin-top: -9px;
+}
+.spinner {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  position: absolute;
+  height: 5px;
+  width: 200%;
+  background-color: #db545a;
+}
+.horizontal {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  position: relative;
+  float: left;  
+}
+.diagonal.part-1 {
+  position: relative;
+  transition: all 0.3s;
+  box-sizing: border-box;
+  float: left;
+}
+.diagonal.part-2 {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  position: relative;
+  float: left;
+  margin-top: 3px;
+}
+
+#sidebarMenu {
+    height: 100%;
+    position: absolute;
+    left: 0;
+    width: 250px;
+    height: 800px;
+    transform: translateX(-250px);
+    transition: transform 250ms ease-in-out;
+    background-color: #FFFFFF;
+    z-index:30;
+}
+.sidebarMenuInner li{
+  list-style: none;
+  color: #db545a;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+  font-size: 20px;   
+  font-family: 'yg-jalnan';     
+}
+.sidebarMenuInner li a{
+  color: #db545a;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: 'yg-jalnan';
+  font-size: 20px; 
+} 
+.feed_box {
+  background-color: white;
+  width: 400px;
+  margin: 105px;
+  min-height: auto;
+  padding-bottom: 10px;
+}
+span{
+  font-family: 'yg-jalnan';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+  </style>
 
 {% endblock %}
