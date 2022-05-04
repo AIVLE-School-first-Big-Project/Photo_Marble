@@ -24,10 +24,10 @@ def gallery(request):
     landmarks = Landmark.objects.all()
 
     # Pagination
-    paginator = Paginator(galleries, 4)
+    paginator = Paginator(galleries, 100)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    
+
     if request.method == 'POST':
         # 사진 필터링
         if (l_id is None and c_id is None)  or (l_id == '0' and c_id == '0'):
