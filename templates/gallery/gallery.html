@@ -3,17 +3,17 @@
 {% block content %}
 <html>
     <head>
-        <link rel="stylesheet" href="{% static 'gallery/assets/css/gallery_style.css' %}"?after/>
+        <link rel="stylesheet" href="{% static 'gallery/assets/css/gallery_style.css' %}">
         <link rel="stylesheet" href="{% static 'photoguide/assets/css/nicepage.css' %}" media="screen">
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,900" rel="stylesheet">
-        <link rel="stylesheet" href="{% static 'main/assets/css/Home.css' %}" media="screen"/> 
+        
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     </head>
     
-<body style="text-align: center;">
+<body>
 
     <section class="u-align-center u-clearfix u-white u-section-1 post-wrapper" id="carousel_871a">
         <div class="u-expanded-width u-gradient u-shape u-shape-rectangle u-shape-1"><br><br><br>
@@ -184,26 +184,88 @@
 </script>
 
 {% endblock %}
-<style>
+{% comment %} <style>
+    input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-1 {
+        transition: all 0.3s;
+        box-sizing: border-box;    
+        margin-top: 8px;
+    }
+    input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
+        transition: all 0.3s;
+        box-sizing: border-box;    
+        margin-top: -9px;
+    }
+    .spinner {
+      transition: all 0.3s;
+      box-sizing: border-box;
+      position: absolute;
+      height: 5px;
+      width: 200%;
+      background-color: #db545a;
+    }
+    .horizontal {
+      transition: all 0.3s;
+      box-sizing: border-box;
+      position: relative;
+      float: left;  
+    }
+    .diagonal.part-1 {
+      position: relative;
+      transition: all 0.3s;
+      box-sizing: border-box;
+      float: left;
+    }
+    .diagonal.part-2 {
+      transition: all 0.3s;
+      box-sizing: border-box;
+      position: relative;
+      float: left;
+      margin-top: 3px;
+    }
+    
+    #sidebarMenu {
+        height: 100%;
+        position: absolute;
+        left: 0;
+        width: 50%;
+        height: 1200%;
+        transform: translateX(-250px);
+        transition: transform 250ms ease-in-out;
+        background-color: #FFFFFF;
+        z-index:30;
+    }
     .sidebarMenuInner li{
-        list-style: none;
-        color: #db545a;
-        text-transform: uppercase;
-        font-weight: bold;
-        padding: 20px;
-        cursor: pointer;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.10);
-        font-size: 20px;   
-        font-family: 'yg-jalnan'; 
-      }
-
-      .sidebarMenuInner li a{
-        color: #db545a;
-        text-transform: uppercase;
-        font-weight: bold;
-        cursor: pointer;
-        text-decoration: none;
-        font-family: 'yg-jalnan';
-        font-size:20px;
-      } 
+      list-style: none;
+      color: #db545a;
+      text-transform: uppercase;
+      font-weight: bold;
+      padding: 10px;
+      cursor: pointer;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+      font-size: 20px;   
+      font-family: 'yg-jalnan';     
+    }
+    .sidebarMenuInner li a{
+      color: #db545a;
+      text-transform: uppercase;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      font-family: 'yg-jalnan';
+      font-size: 20px; 
+    } 
+    .feed_box {
+      background-color: white;
+      width: 400px;
+      margin: 105px;
+      min-height: auto;
+      padding-bottom: 10px;
+    }
+    span{
+      font-family: 'yg-jalnan';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
 </style>
+ {% endcomment %}

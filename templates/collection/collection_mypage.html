@@ -19,6 +19,7 @@
 
 <html>
     <head>
+
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
         <link rel="stylesheet" href="{% static 'collection/assets/css/map_style.css' %}"/>
         <link rel="stylesheet" href="{% static 'collection/assets/css/collection.css' %}"/>
@@ -49,25 +50,25 @@
     </head>
     
     <br><br><br>
+    <div class="row justify-content-center h-100"style="background-image: linear-gradient(#fbeced, #adcce9);"> 
     <h1 class="display-4" style="font-family: 'Cafe24Ssurround';color:#db545a;text-align : center;">
         컬렉션
-    </h1><br><br>
+    </h1>
     <form method="post" action="collection_update" enctype="multipart/form-data">
         {% csrf_token %}
-        <input type="file" id="camcorder" name="camcorder" capture="camcorder" accept="image/*"/>
-        <video id="mov"></video>
-        <button style="background-image: linear-gradient(to right, #77aad9, #e68387);
+        {% comment %} <input type="file" id="camcorder" name="camcorder" capture="camcorder" accept="image/*"/>
+        <video id="mov"></video> {% endcomment %}
+        {% comment %} <button style="background-image: linear-gradient(to right, #77aad9, #e68387);
                     border-style: none; height : 40; width:80; margin : -4 0 0 0 ;
                     color: white;" type="submit" id = 'btn1' class="btn"> 등록하기
-        </button>
+        </button> {% endcomment %}
     </form>
-</body>
 
-<br>
+
 <body>
     <div class="test">
         <div class="progress_state">
-            <h4>{{user.nickname}}님의 진척도 <br></h4>
+            <h4 style="font-family: 'Cafe24Ssurround';">{{user.nickname}}님의 진척도 <br></h4>
         </div>
         <div style="margin:0 20% 0 0;">
             <div class="progress" style="height: 30px;">
@@ -200,7 +201,7 @@
   font-weight: normal;
   font-style: normal;
 }
-</style>
+</style> 
 
 {%endif%}
 {% endblock %}
