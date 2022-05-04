@@ -58,9 +58,9 @@
    }
    .photoguide_image {
       width: 150px;
-      height: 200px;
+      height: 100%;
       object-fit: cover;
-      transition: transform 200ms ease-out;
+      transition: transform 400ms ease-out;
    } 
    .photoguide_image:hover{
       transform: scale(1.2);

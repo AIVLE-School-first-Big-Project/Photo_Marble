@@ -20,24 +20,24 @@ def gallery(request):
     c_id = request.POST.get('category')
     galleries = Gallery.objects.all().order_by('-updated_at')
     landmarks = Landmark.objects.all()
-
-    # Pagination
-    paginator = Paginator(galleries, 4)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
     
     if request.method == 'POST':
         # 사진 필터링
         if (l_id is None and c_id is None)  or (l_id == '0' and c_id == '0'):
-            galleries = Gallery.objects.all()
+            galleries = Gallery.objects.all().order_by('-updated_at')
         elif l_id == '0' and c_id is not None:
-            galleries = Gallery.objects.filter(category_id=c_id)
+            galleries = Gallery.objects.filter(category_id=c_id).order_by('-updated_at')
         elif l_id is not None and c_id == '0':
-            galleries = Gallery.objects.filter(landmark_id=l_id)
+            galleries = Gallery.objects.filter(landmark_id=l_id).order_by('-updated_at')
         else:
-            galleries = Gallery.objects.filter(landmark_id = l_id, category_id = c_id)
+            galleries = Gallery.objects.filter(landmark_id = l_id, category_id = c_id).order_by('-updated_at')
+    
+    # Pagination
+    paginator = Paginator(galleries, 50)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
         
-    content = {'page_obj':page_obj, "landmarks" : landmarks, }
+    content = {'page_obj':page_obj, "landmarks" : landmarks, 'galleries':galleries}
 
     return render(request, "../templates/gallery/gallery.html" , context= content)
 

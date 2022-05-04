@@ -16,35 +16,35 @@
 <meta property="og:type" content="website">
 </head>
   
-    <body class="u-body u-xl-mode">
-        <section class="u-clearfix u-white u-section-1" id="sec-81db">
-            <div class="u-absolute-hcenter u-container-style u-expanded u-gradient u-group u-shape-rectangle u-group-1">
-                <div class="u-container-layout u-container-layout-1">
+<body class="u-body u-xl-mode">
+    <section class="u-clearfix u-white u-section-1" id="sec-81db">
+        <div class="u-absolute-hcenter u-container-style u-expanded u-gradient u-group u-shape-rectangle u-group-1">
+            <div class="u-container-layout u-container-layout-1">
+            </div>
+        </div>
+        <div class="u-clearfix u-layout-wrap u-layout-wrap-1">
+            <h1 class="display-4" style="font-family: 'Cafe24Ssurround';color:#db545a;text-align: center;"> 포토가이드 </h1>
+            <div style="box-shadow: 5px 5px 5px #bababa;text-align: center;" class="">
+                <div style="text-align: center;display: grid; height:80%;" class="cell-temp-clone u-align-left u-container-style u-layout-cell u-size-9 u-white u-layout-cell-8">
+                    <form method="post" action="photoguide_update" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div id="label_input"><br>
+                            <span></span>
+                        </div>
+                        <img id="tempImage" src="../../static/photoguide/images/photo-placeholder.png"></a>
+                        <div id="input_layout">
+                            <input type="file" id="file" class="file" name="file" onchange="imageView(this)" accept="image/png, image/jpeg" required>
+                        </div>
+                        <div class="item" id="submitButton">
+                            <button style="background-image: linear-gradient(to right, #77aad9, #e68387);
+                            border-style: none;  width:80; font-family: 'Cafe24Ssurround';
+                            color: white; float:right; width:120px; margin-right: 10%;" type="submit" class="btn">유사 사진 찾기</button>
+                        </div>
+                    </form>
                 </div>
             </div>
-            <div class="u-clearfix u-layout-wrap u-layout-wrap-1">
-                <h1 class="display-4" style="font-family: 'Cafe24Ssurround';color:#db545a;text-align: center;"> 포토가이드 </h1>
-                <div style="box-shadow: 5px 5px 5px #bababa;text-align: center;" class="">
-                    <div style="text-align: center;display: grid; height:80%;" class="cell-temp-clone u-align-left u-container-style u-layout-cell u-size-9 u-white u-layout-cell-8">
-                        <form method="post" action="photoguide_update" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            <div id="label_input"><br>
-                                <span></span>
-                            </div>
-                            <img id="tempImage" src="../../static/photoguide/images/photo-placeholder.png"></a>
-                            <div id="input_layout">
-                                <input type="file" id="file" class="file" name="file" onchange="imageView(this)" accept="image/png, image/jpeg" required>
-                            </div>
-                            <div class="item" id="submitButton">
-                                <button style="background-image: linear-gradient(to right, #77aad9, #e68387);
-                                border-style: none;  width:80; font-family: 'Cafe24Ssurround';
-                                color: white; float:right; width:120px; margin-right: 10%;" type="submit" class="btn">유사 사진 찾기</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
+        </div>
+    </section>
 </body>
 
 <script>
@@ -80,60 +80,62 @@
 
 </script>
 
-{% comment %} <style>
+<!-- 5.4 14:47 dk : 경주 포토가이드 페이지 폰에서 볼 때, 사이드 메뉴가 너무 크게 보이는 이슈 -->
+{% comment %} 
+<style>
    
-    @font-face {
-        font-family: 'Cafe24Ssurround';
-        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
-        font-weight: normal;
-        font-style: normal;
-    }
-    @font-face{
-      font-family: 'yg-jalnan';
-      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
-      font-weight: normal;
-      font-style: normal;
-    }    
-      
-    label
-    {
-      font-family: 'Cafe24Ssurround';
-      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
-      font-weight: normal;
-      font-style: normal;
-      position: absolute; 
-      left: 50%; 
-      top: 5%; 
-      transform: translate(-50%, -20%);
-      font-size:23px;
-    }
-    input[type="file"] {
-      font-family: 'yg-jalnan';
-      cursor: pointer !Important;
-      float:left;
-      margin: -20 30 20 120px;
-    }
-    input[type="file"]::-webkit-file-upload-button {
-      border: none;
-      padding: 5px 12px;
-      background-image: linear-gradient(to right, #77aad9, #e68387);
-      color: #fff;
-      font-size: 1em;
-      transition: all .4s;
-      cursor: pointer;
-      border-radius: 5px;  
-      
-    }
-    input[type="file"]::-ms-browse {        
-      border: none;
-      padding: 5px 12px;
-      background: #9e2baf;
-      color: #fff;
-      font-size: 1em;
-      transition: all .4s;
-      cursor: pointer;
-      border-radius: 20px;
-    }
-    
+@font-face {
+    font-family: 'Cafe24Ssurround';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face{
+  font-family: 'yg-jalnan';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}    
+  
+label
+{
+  font-family: 'Cafe24Ssurround';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  position: absolute; 
+  left: 50%; 
+  top: 5%; 
+  transform: translate(-50%, -20%);
+  font-size:23px;
+}
+input[type="file"] {
+  font-family: 'yg-jalnan';
+  cursor: pointer !Important;
+  float:left;
+  margin: -20 30 20 120px;
+}
+input[type="file"]::-webkit-file-upload-button {
+  border: none;
+  padding: 5px 12px;
+  background-image: linear-gradient(to right, #77aad9, #e68387);
+  color: #fff;
+  font-size: 1em;
+  transition: all .4s;
+  cursor: pointer;
+  border-radius: 5px;  
+  
+}
+input[type="file"]::-ms-browse {        
+  border: none;
+  padding: 5px 12px;
+  background: #9e2baf;
+  color: #fff;
+  font-size: 1em;
+  transition: all .4s;
+  cursor: pointer;
+  border-radius: 20px;
+}
 </style> {% endcomment %}
-  {% endblock %} 
+
+{% endblock %} 

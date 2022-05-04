@@ -15,10 +15,11 @@
 .feed_box {
    
     background-color: white;
-    width: 480px;
-    margin: 80px;
+    width: 480%;
+    margin: 80%;
+    padding-top:80%;
     min-height: auto;
-    padding-bottom: 10px;
+    padding-bottom: 80%;
 }
 
 .comment_textbox{
