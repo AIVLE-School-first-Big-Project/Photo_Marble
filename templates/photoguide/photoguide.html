@@ -16,6 +16,7 @@
 <meta property="og:type" content="website">
 </head>
   
+
 <body class="u-body u-xl-mode">
     <section class="u-clearfix u-white u-section-1" id="sec-81db">
         <div class="u-absolute-hcenter u-container-style u-expanded u-gradient u-group u-shape-rectangle u-group-1">
@@ -26,7 +27,7 @@
             <h1 class="display-4" style="font-family: 'Cafe24Ssurround';color:#db545a;text-align: center;"> 포토가이드 </h1>
             <div style="box-shadow: 5px 5px 5px #bababa;text-align: center;" class="">
                 <div style="text-align: center;display: grid; height:80%;" class="cell-temp-clone u-align-left u-container-style u-layout-cell u-size-9 u-white u-layout-cell-8">
-                    <form method="post" action="photoguide_update" enctype="multipart/form-data">
+                    <form method="post" action="photoguide_update/{{loc_id}}" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div id="label_input"><br>
                             <span></span>
