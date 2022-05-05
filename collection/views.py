@@ -112,9 +112,9 @@ def collection_update(request):
     time = timezone.now()
     
     #이미지 회전하기 90도 --> 핸드폰으로 찍으면 왼쪽으로 90회전 해서 나옴
-    # deg_image = img.transpose(Image.ROTATE_270)
-    # img = deg_image.save(path+'/collection/data/images/test.jpg')
-    img = img.save(path+'/collection/data/images/test.jpg')
+    deg_image = img.transpose(Image.ROTATE_270)
+    img = deg_image.save(path+'/collection/data/images/test.jpg')
+
     
     # yolo 실행
     conf=0.4
@@ -143,8 +143,8 @@ def collection_update(request):
         shutil.rmtree(del_path)
 
         return render(request, '../templates/collection/collection_fail.html',
-                                context={"s3_url":fail_s3_url,
-                                "reason_fail":"인식하지 못했습니다. 다시 촬영해주세요"})
+                                context={"s3_url":fail_s3_url, 
+                                "reason_fail":"인식하지 못했습니다.\n다시 촬영해주세요"})
         
     # 추론 txt파일 읽기 및 라벨 confidence값 불러오기
     f = open(path + "/collection/detect/result/labels/" + directoy_list[0], 'r')
@@ -164,7 +164,7 @@ def collection_update(request):
     collection_info = Collection.objects.filter(user_id=user_id)
     
     # 랜드마크 건설할 기준 confidence
-    landmark_conf =0.3 
+    landmark_conf =0.9
 
     # 추론 성공한 이미지 s3 객체 이름
     img_name =str(str(user_id) +"_"+str(img_name)[0:5]+str(img_name)[-5:])
@@ -198,7 +198,7 @@ def collection_update(request):
             Collection_s3 = Collection.objects.get(user_id=user_id,landmark_id=landmark_id)
             return render(request, '../templates/collection/collection_fail.html',
                                 context={"s3_url":Collection_s3.s3_url,
-                                "reason_fail":"기준 점수를 넘지 못했습니다. 다시 촬영해주세요"})
+                                "reason_fail":"기준 점수를 넘지 못했습니다.\n 다시 촬영해주세요"})
 
     else: # 해당 유저의 첫 업로드 X
 
@@ -237,7 +237,7 @@ def collection_update(request):
                 Collection_s3 = Collection.objects.get(user_id=user_id,landmark_id=landmark_id)
                 return render(request, '../templates/collection/collection_fail.html',
                                 context={"s3_url": Collection_s3.s3_url,
-                                "reason_fail": "기준 점수를 넘지 못했습니다. 다시 촬영해주세요"})
+                                "reason_fail": "기준 점수를 넘지 못했습니다.\n 다시 촬영해주세요"})
 
 
 def map_modal(request):
