@@ -4,7 +4,7 @@ from allauth.account.views import PasswordChangeView,SignupView
 from main.models import User
 from . import forms
 from django.contrib import auth
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from allauth.account.views import PasswordChangeView,SignupView,LogoutView
 from django.contrib.auth.hashers import check_password

@@ -8,6 +8,19 @@ import os
 from django.db.models import Count
 from PIL import Image
 import yolov5
+from yolov5 import detect 
+from django.utils.timezone import now
+from django.utils import timezone
+from django.contrib import messages
+
+import requests
+# Create your views here.
+
+
+# S3 이미지 업로드
+import boto3
+from config.settings import AWS_ACCESS_KEY_ID,AWS_SECRET_ACCESS_KEY,ALLOWED_HOSTS
+import shutil
 
 from django.contrib import messages
 # Create your views here.
@@ -142,23 +155,44 @@ def collection_ranking(request):
 
 
 def collection_update(request):
+
+    ui = request.session['id']
+    visited_landmark = Collection.objects.filter(user_id= ui)
+    collection_cnt = len(visited_landmark)
+    total = len(Landmark.objects.all())
+    progress = int((collection_cnt/total)*100)
     img = request.FILES['camcorder']
-    # print("conf : ", run(conf_thres=0.5))
-    # print(img)
-    # print(plots.Annotator.box_label)
-    img = Image.open(img.file)
-    # img = img.resize((640,640))
-    path = os.path.join(os.getcwd(),'collection','best.pt')
+    img_name = str(img)
+    time = timezone.now()
+    # api 호출
+    files = {'camcorder' : img,}
+    datas = {
+            'time' : time,
+            "AWS_ACCESS_KEY_ID" : AWS_ACCESS_KEY_ID,
+            "AWS_SECRET_ACCESS_KEY" : AWS_SECRET_ACCESS_KEY,
+            "ALLOWED_HOSTS" : ALLOWED_HOSTS,
+            'img_name' : img_name,
+    }
+    response = requests.post('http://127.0.0.1:8080/api/collection/predict/', files= files, data=datas)
+    result = response.json()
+    label = result["label"]
+    s3_url = result["s3_url"]
 
-    model = yolov5.load(path)
-    results = model(img,size=640)
-    print(results)
-    results.show()
+    # DB에 landmark ID, S3 URL 저장 
+    user_id = request.session['id']
+    landmark_id = label
+    time = timezone.now()
 
-    # save results
+    # Collection 모델 업데이트
+    Collection.objects.create( 
+        is_visited=1, 
+        date=time , 
+        updated_at=time, 
+        user_id=user_id, 
+        landmark_id=landmark_id,
+        s3_url=s3_url,
+    )
 
-    # results.save(save_dir='./')
+    return render(request, '../templates/collection/collection_update.html',context={"s3_url":s3_url})
 
-    # print(img)
-    return render(request, '../templates/collection/collection_update.html')
  #python detect.py --weight 128_200_best.pt --conf 0.2 --source image.jpg 
