@@ -17,7 +17,8 @@ def photoguide2(request,loc_id):
     return render(request, '../templates/photoguide/photoguide.html',{'loc_id':loc_id})
 
 def photoguide_update(request,loc_id):
-    print(loc_id) 
+    print(loc_id)
+
     img = request.FILES['file']
     persons_features = np.load('./photoguide/DLmodel/similar_persons_feature.npy')
     back_features = np.load('./photoguide/DLmodel/similar_ground_feature.npy')
@@ -28,26 +29,36 @@ def photoguide_update(request,loc_id):
     result = response.json()
     query = np.array(result["pred"])
     #----------------------------------------------------------------------------------------------------
-
+    ## persons
+    person_list=[]
     persons_paths = pd.read_csv("./photoguide/DLmodel/persons_paths.csv", index_col=0)
-    persons_paths = list(persons_paths['0'])
+    # persons_paths = list(persons_paths['link'])
     
     dists = np.linalg.norm(persons_features - query, axis=1)
     ids = np.argsort(dists)
-    persons_url_link = [persons_paths[id] for id in ids[:10]]
+    for id in ids:
+        df_row=persons_paths.loc[id]
+        if df_row['name']==loc_id:
+            person_list.append(df_row['link'])
 
+    print(person_list)
+
+    ### background
+    background_list =[]
     background_paths = pd.read_csv("./photoguide/DLmodel/background_paths.csv", index_col=0)
-    background_paths = list(background_paths['0'])
+    # background_paths = list(background_paths['link'])
     
     dists = np.linalg.norm(back_features - query, axis=1)
     ids = np.argsort(dists)
-    background_url_link = [background_paths[id] for id in ids[:10]]
-    
-    print(persons_url_link)
-    print(background_url_link)
+    for id in ids:
+        df_row=background_paths.loc[id]
+        if df_row['name']==loc_id:
+            background_list.append(df_row['link'])
+
+
     return render(request, '../templates/photoguide/photoguide_result.html',{
-                                                                            'persons_imgs':persons_url_link,
-                                                                            'back_imgs':background_url_link})
+                                                                            'persons_imgs':person_list,
+                                                                            'back_imgs':background_list})
 
 def photoguide_result(request):
     
