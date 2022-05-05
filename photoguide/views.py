@@ -13,7 +13,11 @@ import time
 def photoguide(request):
     return render(request, '../templates/photoguide/photoguide.html')
 
-def photoguide_update(request):
+def photoguide2(request,loc_id):
+    return render(request, '../templates/photoguide/photoguide.html',{'loc_id':loc_id})
+
+def photoguide_update(request,loc_id):
+    print(loc_id) 
     img = request.FILES['file']
     persons_features = np.load('./photoguide/DLmodel/similar_persons_feature.npy')
     back_features = np.load('./photoguide/DLmodel/similar_ground_feature.npy')
