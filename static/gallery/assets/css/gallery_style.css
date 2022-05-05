@@ -1,3 +1,4 @@
+
 @import url(https://fonts.googleapis.com/css?family=Montserrat:500);
 
 @font-face {
@@ -132,7 +133,7 @@ body {
     font-weight: bold;
     letter-spacing: 1.25px;
 }
-
+/* 
 #sidebarMenu {
     height: 100%;
     position: absolute;
@@ -310,7 +311,7 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
     transition: all 0.3s;
     box-sizing: border-box;    
     margin-top: -9px;
-}
+} */
 
 
 /* =========================================== */
