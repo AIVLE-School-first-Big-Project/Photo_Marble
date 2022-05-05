@@ -1,6 +1,6 @@
 from re import A
 from django import conf
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.urls import reverse
 from regex import B
 from main.models import User, Collection, Landmark, Locations, Gallery
@@ -23,9 +23,9 @@ import shutil
 
 
 def collection_mypage(request):
-    print("#############ALLOWED_HOSTS############## : ",ALLOWED_HOSTS)
+  
     # progress bar
-    print("request.user.is_authenticated : ",request.user.is_authenticated)
+    
     if request.user.is_authenticated==True:
         ui = request.session['id']
         visited_landmark = Collection.objects.filter(user_id= ui)
@@ -278,6 +278,41 @@ def map(visited_landmark,progress):
 
 
 
+<<<<<<< HEAD
+def my_gallery_tmp(request):
+    ui = request.session['id']
+    loc_id = 1
+    loc=Locations.objects.get(location_id = loc_id)
+    loc_name=loc.name
+    lands_area=Landmark.objects.filter(area = loc_name)
+    land_list=[]
+    for land in lands_area:
+        land_list.append(land.landmark_id)
+    my_galleries = Gallery.objects.filter(user=ui, landmark_id__in=land_list)
+    
+    visited_lands = []
+
+    for my_g in my_galleries:
+        visited_lands.append(my_g.landmark_id)
+
+    landset = list(set(visited_lands))
+
+    lands_area = Landmark.objects.filter(area=loc_name, landmark_id__in=landset)
+    
+    content = {"datas" : my_galleries, "landmarks":lands_area}
+    
+    return render(request, "../templates/collection/my_gallery.html" , context= content)
+
+def collection_modal(request):
+    if request.method == 'POST':
+  
+        loc_id = request.POST.get('location_list')
+
+        if request.POST.get('my_gallery') is not None:
+            return redirect('my_gallery2',loc_id)
+        else:
+            return redirect('photoguide2',loc_id)
+=======
 
 
 def save_s3(data, img_name):
@@ -302,3 +337,4 @@ def img_resize(path):
     image = Image.open(path + "/collection/detect/result/"+'test.jpg')
     resize_image = image.resize((256,256))
     resize_image.save(path + "/collection/detect/result/"+'test.jpg')
+>>>>>>> 4c7506dfafde7568579d8253e01b6685a7182588
