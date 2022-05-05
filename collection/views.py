@@ -1,6 +1,6 @@
 from re import A
 from django import conf
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.urls import reverse
 from regex import B
 from main.models import User, Collection, Landmark, Locations, Gallery
@@ -12,6 +12,7 @@ from yolov5 import detect
 from django.utils.timezone import now
 from django.utils import timezone
 from django.contrib import messages
+from django.http import JsonResponse
 # Create your views here.
 
 
@@ -23,9 +24,9 @@ import shutil
 
 
 def collection_mypage(request):
-    print("#############ALLOWED_HOSTS############## : ",ALLOWED_HOSTS)
+  
     # progress bar
-    print("request.user.is_authenticated : ",request.user.is_authenticated)
+    
     if request.user.is_authenticated==True:
         ui = request.session['id']
         visited_landmark = Collection.objects.filter(user_id= ui)
@@ -239,7 +240,22 @@ def collection_update(request):
                                 "reason_fail": "기준 점수를 넘지 못했습니다. 다시 촬영해주세요"})
 
 
+def map_modal(request):
+    
+    area = Locations.objects.get(location_id=request.POST['location_id'][1:])
 
+    landmarks  = Landmark.objects.filter(area=area.name)
+    land_id_lilst = [l.landmark_id for l in landmarks]
+    collection =  Collection.objects.filter(landmark_id__in=land_id_lilst,user_id=request.session['id'])
+    coll_id_lilst = [l.landmark_id for l in collection]
+    user_collection=  Landmark.objects.filter(landmark_id__in=coll_id_lilst)
+    result  = [ i.name for i in user_collection]
+    print(user_collection)
+    #collection_db = Collection.objects.filter(user_id=request.session['id'], landmark_id=label)
+    return JsonResponse(data={
+        'landmarks':list(user_collection.values()),
+ 
+    })
 
 
 ############# ordinary functunction #####################
@@ -279,6 +295,39 @@ def map(visited_landmark,progress):
 
 
 
+def my_gallery_tmp(request):
+    ui = request.session['id']
+    loc_id = 1
+    loc=Locations.objects.get(location_id = loc_id)
+    loc_name=loc.name
+    lands_area=Landmark.objects.filter(area = loc_name)
+    land_list=[]
+    for land in lands_area:
+        land_list.append(land.landmark_id)
+    my_galleries = Gallery.objects.filter(user=ui, landmark_id__in=land_list)
+    
+    visited_lands = []
+
+    for my_g in my_galleries:
+        visited_lands.append(my_g.landmark_id)
+
+    landset = list(set(visited_lands))
+
+    lands_area = Landmark.objects.filter(area=loc_name, landmark_id__in=landset)
+    
+    content = {"datas" : my_galleries, "landmarks":lands_area}
+    
+    return render(request, "../templates/collection/my_gallery.html" , context= content)
+
+def collection_modal(request):
+    if request.method == 'POST':
+  
+        loc_id = request.POST.get('location_list')
+
+        if request.POST.get('my_gallery') is not None:
+            return redirect('my_gallery2',loc_id)
+        else:
+            return redirect('photoguide2',loc_id)
 
 
 def save_s3(data, img_name):
