@@ -148,7 +148,10 @@
             <div class="recog_btn">
             <form method="post" action="collection_update" enctype="multipart/form-data">
                 {% csrf_token %}
-                <input type="file" id="camcorder" name="camcorder" capture="camcorder" accept="image/*" style="border-style: none;   text-align:center; color: white;font-family: 'Cafe24Ssurround';margin: -15% -% 20% 2%;" >
+                <input type="file" id="camcorder" name="camcorder" capture="camcorder" accept="image/*" style="background-image: linear-gradient(to right, #77aad9, #e68387);
+                border-style: none; width:80;  text-align:center; margin:
+                color: white;font-family: 'Cafe24Ssurround';" >
+                <!-- <video id="mov"></video> -->
                 <button style="background-image: linear-gradient(to right, #77aad9, #e68387);
                             border-style: none; height : 30; width:80; margin: 10% 20% 0% 0%;text-align:center;padding: inherit;
                             color: white;font-family: 'Cafe24Ssurround';" type="submit" id = 'btn1' class="btn"> 등록하기
@@ -179,7 +182,7 @@
         </div>
     </div>
 </div>
-</div>
+    </div>
 </body>
 
 </html>
