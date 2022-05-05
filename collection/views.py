@@ -278,7 +278,6 @@ def map(visited_landmark,progress):
 
 
 
-<<<<<<< HEAD
 def my_gallery_tmp(request):
     ui = request.session['id']
     loc_id = 1
@@ -312,7 +311,6 @@ def collection_modal(request):
             return redirect('my_gallery2',loc_id)
         else:
             return redirect('photoguide2',loc_id)
-=======
 
 
 def save_s3(data, img_name):
@@ -337,4 +335,20 @@ def img_resize(path):
     image = Image.open(path + "/collection/detect/result/"+'test.jpg')
     resize_image = image.resize((256,256))
     resize_image.save(path + "/collection/detect/result/"+'test.jpg')
->>>>>>> 4c7506dfafde7568579d8253e01b6685a7182588
+
+def map_modal(request):
+    
+    area = Locations.objects.get(location_id=request.POST['location_id'][1:])
+
+    landmarks  = Landmark.objects.filter(area=area.name)
+    land_id_lilst = [l.landmark_id for l in landmarks]
+    collection =  Collection.objects.filter(landmark_id__in=land_id_lilst,user_id=request.session['id'])
+    coll_id_lilst = [l.landmark_id for l in collection]
+    user_collection=  Landmark.objects.filter(landmark_id__in=coll_id_lilst)
+    result  = [ i.name for i in user_collection]
+    print(user_collection)
+    #collection_db = Collection.objects.filter(user_id=request.session['id'], landmark_id=label)
+    return JsonResponse(data={
+        'landmarks':list(user_collection.values()),
+ 
+    })
