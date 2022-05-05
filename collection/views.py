@@ -112,8 +112,9 @@ def collection_update(request):
     time = timezone.now()
     
     #이미지 회전하기 90도 --> 핸드폰으로 찍으면 왼쪽으로 90회전 해서 나옴
-    deg_image = img.transpose(Image.ROTATE_270)
-    img = deg_image.save(path+'/collection/data/images/test.jpg')
+    # deg_image = img.transpose(Image.ROTATE_270)
+    # img = deg_image.save(path+'/collection/data/images/test.jpg')
+    img = img.save(path+'/collection/data/images/test.jpg')
     
     # yolo 실행
     conf=0.4
