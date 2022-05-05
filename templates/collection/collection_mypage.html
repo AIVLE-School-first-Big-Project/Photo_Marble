@@ -44,7 +44,7 @@
                 </div>
             </div>
             <div style="margin:0 10% 0 0;">
-                <svg style='overflow:visible' xmlns="http://www.w3.org/2000/svg" viewBox="100 0 700 800">
+                <svg style='overflow:visible' xmlns="http://www.w3.org/2000/svg" viewBox="100 0 700 700">
                     <defs>
                         <filter id="dropshadow">
                             <feGaussianBlur in="SourceAlpha" stdDeviation="7" />
@@ -149,11 +149,10 @@
             <form method="post" action="collection_update" enctype="multipart/form-data">
                 {% csrf_token %}
                 <input type="file" id="camcorder" name="camcorder" capture="camcorder" accept="image/*" style="background-image: linear-gradient(to right, #77aad9, #e68387);
-                border-style: none; width:80;  text-align:center; margin:
-                color: white;font-family: 'Cafe24Ssurround';" >
+                border-style: none; width:80;  text-align:center; color: white;font-family: 'Cafe24Ssurround';" >
                 <video id="mov"></video>
                 <button style="background-image: linear-gradient(to right, #77aad9, #e68387);
-                            border-style: none; height : 40; width:80; margin: -120 -1 -0 0; text-align:center;
+                            border-style: none; height : 40; width:80; margin: -55% 20% 20% 60%;text-align:center;
                             color: white;font-family: 'Cafe24Ssurround';" type="submit" id = 'btn1' class="btn"> 등록하기
                 </button>
             </form>
@@ -320,6 +319,3 @@
 
 {%endif%}
 {% endblock %}
-
-
-

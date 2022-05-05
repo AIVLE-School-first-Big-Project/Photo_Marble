@@ -12,6 +12,7 @@ from yolov5 import detect
 from django.utils.timezone import now
 from django.utils import timezone
 from django.contrib import messages
+from django.http import JsonResponse
 # Create your views here.
 
 
@@ -238,7 +239,22 @@ def collection_update(request):
                                 "reason_fail": "기준 점수를 넘지 못했습니다. 다시 촬영해주세요"})
 
 
+def map_modal(request):
+    
+    area = Locations.objects.get(location_id=request.POST['location_id'][1:])
 
+    landmarks  = Landmark.objects.filter(area=area.name)
+    land_id_lilst = [l.landmark_id for l in landmarks]
+    collection =  Collection.objects.filter(landmark_id__in=land_id_lilst,user_id=request.session['id'])
+    coll_id_lilst = [l.landmark_id for l in collection]
+    user_collection=  Landmark.objects.filter(landmark_id__in=coll_id_lilst)
+    result  = [ i.name for i in user_collection]
+    print(user_collection)
+    #collection_db = Collection.objects.filter(user_id=request.session['id'], landmark_id=label)
+    return JsonResponse(data={
+        'landmarks':list(user_collection.values()),
+ 
+    })
 
 
 ############# ordinary functunction #####################
