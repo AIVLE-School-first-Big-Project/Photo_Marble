@@ -113,8 +113,9 @@ def collection_update(request):
     time = timezone.now()
     
     #이미지 회전하기 90도 --> 핸드폰으로 찍으면 왼쪽으로 90회전 해서 나옴
-    deg_image = img.transpose(Image.ROTATE_270)
-    img = deg_image.save(path+'/collection/data/images/test.jpg')
+    # deg_image = img.transpose(Image.ROTATE_270)
+    # img = deg_image.save(path+'/collection/data/images/test.jpg')
+    img = img.save(path+'/collection/data/images/test.jpg')
     
     # yolo 실행
     conf=0.4
@@ -240,7 +241,22 @@ def collection_update(request):
                                 "reason_fail": "기준 점수를 넘지 못했습니다. 다시 촬영해주세요"})
 
 
+def map_modal(request):
+    
+    area = Locations.objects.get(location_id=request.POST['location_id'][1:])
 
+    landmarks  = Landmark.objects.filter(area=area.name)
+    land_id_lilst = [l.landmark_id for l in landmarks]
+    collection =  Collection.objects.filter(landmark_id__in=land_id_lilst,user_id=request.session['id'])
+    coll_id_lilst = [l.landmark_id for l in collection]
+    user_collection=  Landmark.objects.filter(landmark_id__in=coll_id_lilst)
+    result  = [ i.name for i in user_collection]
+    print(user_collection)
+    #collection_db = Collection.objects.filter(user_id=request.session['id'], landmark_id=label)
+    return JsonResponse(data={
+        'landmarks':list(user_collection.values()),
+ 
+    })
 
 
 ############# ordinary functunction #####################
