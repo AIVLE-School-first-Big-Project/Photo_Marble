@@ -31,31 +31,21 @@
     <meta name="viewport" content="width=320; user-scalable=no" />
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <title>Camera</title>
-    <script src="/jquery/jquery.js"></script>
     
-    <script>
-    $(document).ready(function(){
-        if (!('url' in window) && ('webkitURL' in window)) {
-            window.URL = window.webkitURL;
-        }
-    
-        $('#camcorder').change(function(e){
-            $('#mov').attr('src', URL.createObjectURL(e.target.files[0]));
-            // iOS Safari에서는 autoplay가 안먹히므로 알림
-            alert('동영상 재생버튼을 누르시오');
-        });
-    });
-    </script>
     </head>
     
     <br><br><br>
     <h1 class="display-4" style="font-family: 'Cafe24Ssurround';color:#db545a;text-align : center;">
-        컬렉션 업로드
+        컬렉션 인식 성공
     </h1><br><br>
-    <center>
-        
+    <center>   
     <img src = {{s3_url}} />
     </center>
+
+    <button  OnClick="location.href = {% url 'collection' %}" name = "my_gallery" id="my_gallery" style="background-image: linear-gradient(to right, #77aad9, #e68387);
+    border-style: none; height : 40; margin : -4 0 0 0 ;
+    color: white;" class="btn"> 컬렉션 이동</button>
+
 </body>
 
 
@@ -82,6 +72,5 @@
 
 {%endif%}
 {% endblock %}
-
 
 
