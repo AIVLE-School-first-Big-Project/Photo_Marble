@@ -3,6 +3,87 @@
     position:relative;
     left: 10%;
 }
+input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-1 {
+    transition: all 0.3s;
+    box-sizing: border-box;    
+    margin-top: 8px;
+}
+input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
+    transition: all 0.3s;
+    box-sizing: border-box;    
+    margin-top: -9px;
+}
+.spinner {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  position: absolute;
+  height: 5px;
+  width: 200%;
+  background-color: #db545a;
+}
+.horizontal {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  position: relative;
+  float: left;  
+}
+.diagonal.part-1 {
+  position: relative;
+  transition: all 0.3s;
+  box-sizing: border-box;
+  float: left;
+}
+.diagonal.part-2 {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  position: relative;
+  float: left;
+  margin-top: 3px;
+}
 
+#sidebarMenu {
+    height: 100%;
+    position: absolute;
+    left: 0;
+    
+    height: 800px;
+    transform: translateX(-250px);
+    transition: transform 250ms ease-in-out;
+    background-color: #FFFFFF;
+    z-index:30;
+}
+.sidebarMenuInner li{
+  list-style: none;
+  color: #db545a;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+  font-size: 20px;   
+  font-family: 'yg-jalnan';     
+}
+.sidebarMenuInner li a{
+  color: #db545a;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: 'yg-jalnan';
+  font-size: 20px; 
+} 
+.feed_box {
+  background-color: white;
+  width: 400px;
+  margin: 105px;
+  min-height: auto;
+  padding-bottom: 10px;
+}
+span{
+  font-family: 'yg-jalnan';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 
 
