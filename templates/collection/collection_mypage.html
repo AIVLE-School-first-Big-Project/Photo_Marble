@@ -159,25 +159,16 @@
             </div>
  
         </div>
-        <div id="modal_add_feed" class="modal_overlay">
-            <div class="modal_window">
-                <div class="modal_title">
-                    <div class="modal_title_side"></div>
-                    <div> 랜드마크 선택하기</div>
-                    <div class="modal_title_side">
-                        <span id="close_modal" class="material-icons-outlined">
-                            X
-                        </span>
-                    </div>
-                </div>
-                <select id = "location_list" class="form-select" name="category" style="display:inline-block;"></select>
-                <button style="background-image: linear-gradient(to right, #77aad9, #e68387);
-                border-style: none; height : 40; margin : -4 0 0 0 ;
-                color: white;" class="btn"> 포토가이드 이동</button>
-                <button style="background-image: linear-gradient(to right, #77aad9, #e68387);
-                border-style: none; height : 40; margin : -4 0 0 0 ;
-                color: white;" class="btn"> 마이갤러리 이동</button>
-            </div>
+            <form method="post" action = "{% url 'collection_modal' %}">
+            {% csrf_token %}
+            <select id = "location_list" class="form-select" name="location_list" style="display:inline-block;"></select>
+            <button name = "photoguide" id="photoguide" onclick="photoguide()" style="background-image: linear-gradient(to right, #77aad9, #e68387);
+            border-style: none; height : 40; margin : -4 0 0 0 ;
+            color: white;" class="btn"> 포토가이드 이동</button>
+            <button name = "my_gallery" id="my_gallery" onclick="my_gallery()" style="background-image: linear-gradient(to right, #77aad9, #e68387);
+            border-style: none; height : 40; margin : -4 0 0 0 ;
+            color: white;" class="btn"> 마이갤러리 이동</button>
+            </form>
         </div>
     </div>
 </body>
