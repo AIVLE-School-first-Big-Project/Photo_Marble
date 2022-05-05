@@ -29,7 +29,7 @@
                 <h1 class="display-4" style="font-family:'Cafe24Ssurround';color:#db545a;text-align : center;"> 인물 </h1>
             </div>
             <div id="photoguide_box" class="cell-temp-clone u-align-left u-container-style u-layout-cell u-size-9 u-white u-layout-cell-8">
-                {% for img in imgs%} 
+                {% for img in persons_imgs%} 
                     <div class="photoguide_item">  
                         <img class = "photoguide_image" src='{{ img }}'>
                     </div>
@@ -40,7 +40,7 @@
                 <h1 class="display-4" style="font-family:'Cafe24Ssurround';color:#db545a;text-align : center;"> 풍경 </h1>
             </div>
             <div id="photoguide_box" class="cell-temp-clone u-align-left u-container-style u-layout-cell u-size-9 u-white u-layout-cell-8">
-                {% for img in imgs%} 
+                {% for img in back_imgs%} 
                     <div class="photoguide_item">  
                         <img class = "photoguide_image" src='{{ img }}'>
                     </div>

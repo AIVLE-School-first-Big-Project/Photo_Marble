@@ -12,7 +12,8 @@ from yolov5 import detect
 from django.utils.timezone import now
 from django.utils import timezone
 from django.contrib import messages
-from django.http import JsonResponse
+from django.http import HttpResponse,JsonResponse
+
 # Create your views here.
 
 
@@ -112,8 +113,9 @@ def collection_update(request):
     time = timezone.now()
     
     #이미지 회전하기 90도 --> 핸드폰으로 찍으면 왼쪽으로 90회전 해서 나옴
-    deg_image = img.transpose(Image.ROTATE_270)
-    img = deg_image.save(path+'/collection/data/images/test.jpg')
+    # deg_image = img.transpose(Image.ROTATE_270)
+    # img = deg_image.save(path+'/collection/data/images/test.jpg')
+    img = img.save(path+'/collection/data/images/test.jpg')
     
     # yolo 실행
     conf=0.4
@@ -158,7 +160,7 @@ def collection_update(request):
 
     # DB에 저장할 변수 지정 및 환경 설정 
     user_id = request.session['id']
-    colletion_idx = len(Collection.objects.all())+1 #나중에 컬렉션 id따서 +1 하는 방향으로(get)
+    # colletion_idx = len(Collection.objects.all())+1 #나중에 컬렉션 id따서 +1 하는 방향으로(get)
     landmark_id = label
     collection_info = Collection.objects.filter(user_id=user_id)
     
@@ -177,7 +179,7 @@ def collection_update(request):
             s3_url = save_s3(data=data, img_name=img_name)
             
             Collection.objects.create(
-                collection_id=colletion_idx , is_visited='1',
+                 is_visited='1',
                 date=time , updated_at=time, user_id=user_id, 
                 landmark_id=landmark_id,s3_url=s3_url)
             data.close()
@@ -220,7 +222,7 @@ def collection_update(request):
                 s3_url = save_s3(data=data, img_name=img_name)
 
                 Collection.objects.create(
-                    collection_id=colletion_idx, is_visited='1', 
+                     is_visited='1', 
                     date=time , updated_at=time, user_id=user_id, 
                     landmark_id=landmark_id,s3_url=s3_url)
 
@@ -230,7 +232,7 @@ def collection_update(request):
                 del_path = path + "/collection/detect/result/"
                 shutil.rmtree(del_path)
 
-                return render(request, '../templates/collection/collection_update.html',context={"s3_url":s3_url})
+                return render(request, '../templates/collection/collection_update.html',{'s3_url':s3_url})
 
             else:
                 Collection_s3 = Collection.objects.get(user_id=user_id,landmark_id=landmark_id)
