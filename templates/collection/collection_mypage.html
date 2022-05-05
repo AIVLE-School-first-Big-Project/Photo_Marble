@@ -31,20 +31,20 @@
 
 <body>
     <br><br><br>
-    <div>
+    <div class="row justify-content-center h-100"style="background-image: linear-gradient(#fbeced, #adcce9);"> 
         <div class="test">
             <div class="progress_state">
-                <h4>{{user.nickname}}님의 진척도 <br></h4>
+                <br><h4 style="font-family: 'Cafe24Ssurround';">{{user.nickname}}님의 진척도 <br></h4>
             </div>
             <div style="margin:0 20% 0 0;">
                 <div class="progress" style="height: 30px;">
-                    <div class="progress-bar" role="progressbar" style="width:{{progress}}%; background: -webkit-linear-gradient(left, #ee7277 0%,#78b2e9 100%);" aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar" role="progressbar" style="width:{{progress}}%; background:-webkit-linear-gradient(left, #78b2e9 0%,#CCD1FF 100%);" aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100">
                         {{progress}}%
                     </div>
                 </div>
-            </div><br><br>
-            <div style="margin:0 15% 0 0;">
-                <svg style='background:#ffffff;overflow:visible' xmlns="http://www.w3.org/2000/svg" viewBox="50 0 700 800">
+            </div>
+            <div style="margin:0 10% 0 0;">
+                <svg style='overflow:visible' xmlns="http://www.w3.org/2000/svg" viewBox="100 0 700 800">
                     <defs>
                         <filter id="dropshadow">
                             <feGaussianBlur in="SourceAlpha" stdDeviation="7" />
@@ -145,15 +145,19 @@
                     </g>
                 </svg> 
             </div>
+            <div class="recog_btn">
             <form method="post" action="collection_update" enctype="multipart/form-data">
                 {% csrf_token %}
-                <input type="file" id="camcorder" name="camcorder" capture="camcorder" accept="image/*"/>
+                <input type="file" id="camcorder" name="camcorder" capture="camcorder" accept="image/*" style="background-image: linear-gradient(to right, #77aad9, #e68387);
+                border-style: none; width:80;  text-align:center; margin:
+                color: white;font-family: 'Cafe24Ssurround';" >
                 <video id="mov"></video>
                 <button style="background-image: linear-gradient(to right, #77aad9, #e68387);
-                            border-style: none; height : 40; width:80; margin : -4 0 0 0 ;
-                            color: white;" type="submit" id = 'btn1' class="btn"> 등록하기
+                            border-style: none; height : 40; width:80; margin: -120 -1 -0 0; text-align:center;
+                            color: white;font-family: 'Cafe24Ssurround';" type="submit" id = 'btn1' class="btn"> 등록하기
                 </button>
             </form>
+            </div>
  
         </div>
         <div id="modal_add_feed" class="modal_overlay">
@@ -178,10 +182,7 @@
         </div>
     </div>
 </body>
-<button style="background-image: linear-gradient(to right, #77aad9, #e68387);
-                    border-style: none; height : 40; width:80; margin : -40  20 20% ; text-align:center;
-                    color: white;font-family: 'Cafe24Ssurround';" type="submit" id = 'btn1' class="btn"> 등록하기
-        </button>
+
 </html>
 
 <script>
@@ -304,6 +305,14 @@
   justify-content: space-between;
   font-weight: bold;
   font-size: 20px;
+}
+.progress {
+    display: flex;
+    height: 1rem;
+    overflow: hidden;
+    font-size: .75rem;
+    background-color: #ffffff;
+    border-radius: 0.25rem;
 }
 
 
