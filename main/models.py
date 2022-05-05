@@ -32,7 +32,8 @@ class Collection(models.Model):
     updated_at = models.DateTimeField()
     user = models.ForeignKey('User', db_column='user_id', on_delete=models.CASCADE)
     landmark = models.ForeignKey('Landmark', db_column='landmark_id', on_delete=models.CASCADE)
-
+    s3_url = models.CharField(max_length=400,null=True)
+    
     class Meta:
         # managed = False
         db_table = 'Collections'

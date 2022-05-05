@@ -6,6 +6,7 @@ from regex import B
 from main.models import User, Collection, Landmark, Locations, Gallery
 import os
 from django.db.models import Count
+from django.http import HttpResponse,JsonResponse
 from PIL import Image
 import yolov5
 from yolov5 import detect
@@ -40,6 +41,25 @@ def collection_mypage(request):
     else:
         messages.add_message(request, messages.INFO, '접근 권한이 없습니다')
         return render(request,'../templates/collection/collection_mypage.html')
+
+
+def map_modal(request):
+    
+    area = Locations.objects.get(location_id=request.POST['location_id'][1:])
+
+    landmarks  = Landmark.objects.filter(area=area.name)
+    land_id_lilst = [l.landmark_id for l in landmarks]
+    collection =  Collection.objects.filter(landmark_id__in=land_id_lilst,user_id=request.session['id'])
+    coll_id_lilst = [l.landmark_id for l in collection]
+    user_collection=  Landmark.objects.filter(landmark_id__in=coll_id_lilst)
+    result  = [ i.name for i in user_collection]
+    print(user_collection)
+    #collection_db = Collection.objects.filter(user_id=request.session['id'], landmark_id=label)
+    return JsonResponse(data={
+        'landmarks':list(user_collection.values()),
+ 
+    })
+
 
 
 from django.db.models import Q
@@ -165,35 +185,18 @@ def collection_update(request):
     colletion_idx = len(Collection.objects.all())+1 #나중에 컬렉션 id따서 +1 하는 방향으로(get)
     landmark_id = label
     time = timezone.now()
-    try:
-         # Collection 모델 업데이트
-        Collection.objects.create(
-            collection_id=colletion_idx , 
-            is_visited=1, 
-            date=time , 
-            updated_at=time, 
-            user_id=user_id, 
-            landmark_id=landmark_id,
-            s3_url=s3_url)
-
-        # landmark == label
-        # user_id == request.session['id']
-        print("################## label : ",label)
-        
-        # collection_db = Collection.objects.get(s3_url=s3_url)
-
-        
-        # s3_url = collection_db.s3_url
-
-
-        return render(request, '../templates/collection/collection_update.html',context={"s3_url":s3_url})
-       
-
-    except :
-        print("이미 인증한 랜드마크입니다.")
-
-        return render(request, '../templates/collection/collection_update.html')
-
+    # Collection 모델 업데이트
+    Collection.objects.create(
+        collection_id=colletion_idx , 
+        is_visited=1, 
+        date=time , 
+        updated_at=time, 
+        user_id=user_id, 
+        landmark_id=landmark_id,
+        s3_url=s3_url)
+    
+    return render(request, '../templates/collection/collection_update.html',context={"s3_url":s3_url})
+    
         
     
 def map(visited_landmark,progress):
