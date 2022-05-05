@@ -148,11 +148,11 @@ def activate(request, uid64, token, backend='django.contrib.auth.backends.ModelB
         user.is_active = True
         user.save()
         auth.login(request, user, backend)
-        return redirect("/login")
+        return redirect("signup3")
     else:
-        return render(request, 'main/login.html', {'error' : '계정 활성화 오류'})
+        return render(request, '../templates/main/login.html', {'error' : '계정 활성화 오류'})
 
-    return 
+    return  
 
 
 class CustomSLogoutView(LogoutView):
@@ -174,3 +174,6 @@ def profile_upload(request):
         user.profile_s3_url =  "https://photomarble.s3.ap-northeast-2.amazonaws.com/profile/"+ str(img)
         user.save()
     return redirect('mypage')
+
+def signup3(request):
+    return render(request, "../templates/main/signup3.html")

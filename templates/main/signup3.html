@@ -4,7 +4,7 @@
 <html lang="en">
    <head>
        
-        <title>포토마불 이메일 인증</title>
+        <title>포토마불 이메일 인증 완료</title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" 
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -26,41 +26,50 @@
 <body>
     <div class="row justify-content-center h-100" style="background-image: linear-gradient(#fbeced, #adcce9);">
         <div class="col align-self-center text-center card text-black" style="max-width: 29rem; border-radius: 20px 20px 20px 20px;">
-        
-            <div class="account-login" >
-               <div class="card-body">
+            <div class="card-body">
+            <div class="account-login">
+                
                 <form method="post" class="login-form" action="{% url 'login' %}">
-                <!-- <h1  style="font-family: 'yg-jalnan'; color: #adcce9;"><center>포토마불</h1> -->
-               <img src= "{% static 'main/images/pink_icon.png' %}"style="width:280px; height:280px;">
+                <!-- <h1 margin-top: "30px" style="font-family: 'yg-jalnan'; background: linear-gradient(to right top, #fbeced, #adcce9);
+                color: transparent;">포토마불</h1> -->
+                <img src= "{% static 'main/images/pink_icon.png' %}"style="width:280px; height:280px;">
+
                 <br> <br>
                 <div
 
-                <h1><font size = '5.5' style="font-family: 'yg-jalnan'; color: #adcce9;"><center>안녕하세요 포토마불입니다!<br>이메일 인증을 완료해주세요!</center></h1> <br>
+                <h1><font size = '5.5' style="font-family: 'yg-jalnan'; color: #adcce9;"><center>포토마불에 오신 것을 환영합니다!<br>바로가기를 눌러 로그인해주세요!</center></h1> <br>
                     
                 <!-- <div class="form-group">
                 </div>
                 </div>
                 <div class="form-group">
                     -->
+                </div>
+                <div>
+                    <h2><p> <center> <font size = '5'>  <a href="/login/">포토마불 바로가기 </a></p></h2>
+                </div>
+    
+                </div>
+
 
                     
                 </div>
 
                 <style>
-                  .main_test{
-                    min-height:1400px;
+                    .main_test{
+                      min-height:1400px;
+                    }
+                    @font-face {
+                      font-family: 'Cafe24Ssurround';
+                      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+                      font-weight: normal;
+                      font-style: normal;
                   }
-                  @font-face {
-                    font-family: 'Cafe24Ssurround';
-                    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+                  @font-face{
+                    font-family: 'yg-jalnan';
+                    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
                     font-weight: normal;
                     font-style: normal;
-                }
-                @font-face{
-                  font-family: 'yg-jalnan';
-                  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
-                  font-weight: normal;
-                  font-style: normal;
-                }
-                
-                </style>
+                  }
+                  
+                  </style>
