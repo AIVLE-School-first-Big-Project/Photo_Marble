@@ -15,7 +15,8 @@ def photoguide(request):
 
 def photoguide_update(request):
     img = request.FILES['file']
-    features = np.load('./photoguide/DLmodel/similartiy_features.npy')
+    persons_features = np.load('./photoguide/DLmodel/similar_persons_feature.npy')
+    back_features = np.load('./photoguide/DLmodel/similar_ground_feature.npy')
 
     # ---------------------------------------------api를 통한 모델 예측값 가져오기----------------------
     uploads = {'image' : request.FILES['file']}
@@ -24,14 +25,25 @@ def photoguide_update(request):
     query = np.array(result["pred"])
     #----------------------------------------------------------------------------------------------------
 
-    img_paths = pd.read_csv("./photoguide/DLmodel/img_paths.csv", index_col=0)
-    img_paths = list(img_paths['0'])
+    persons_paths = pd.read_csv("./photoguide/DLmodel/persons_paths.csv", index_col=0)
+    persons_paths = list(persons_paths['0'])
     
-    dists = np.linalg.norm(features - query, axis=1)
+    dists = np.linalg.norm(persons_features - query, axis=1)
     ids = np.argsort(dists)
-    top_url_link = [img_paths[id] for id in ids[:10]]
+    persons_url_link = [persons_paths[id] for id in ids[:10]]
+
+    background_paths = pd.read_csv("./photoguide/DLmodel/background_paths.csv", index_col=0)
+    background_paths = list(background_paths['0'])
     
-    return render(request, '../templates/photoguide/photoguide_result.html',{'imgs':top_url_link})
+    dists = np.linalg.norm(back_features - query, axis=1)
+    ids = np.argsort(dists)
+    background_url_link = [background_paths[id] for id in ids[:10]]
+    
+    print(persons_url_link)
+    print(background_url_link)
+    return render(request, '../templates/photoguide/photoguide_result.html',{
+                                                                            'persons_imgs':persons_url_link,
+                                                                            'back_imgs':background_url_link})
 
 def photoguide_result(request):
     
