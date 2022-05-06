@@ -338,9 +338,9 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
     backdrop-filter: blur(13.5px);
     -webkit-backdrop-filter: blur(13.5px);
     border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    width: 600px;
-    height: 410px;
+    border: 1px solid rgba(197, 197, 197, 0.432);
+    width: 80%;
+    height: 50%;
     position: relative;
     padding: 10px;
   }
@@ -350,7 +350,8 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
     flex-direction: row;
     justify-content: space-between;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 55px;
+    padding-left: 13%;
   }
   
   .modal_title_side{
@@ -362,9 +363,84 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
   
     text-align: center;
     transition: all .15s ease-in-out;
-    width:580px;
-    height: 350px;
+    height: 80%;
     display: grid;
     grid-template-rows: repeat(5, 1fr);
   }
-/* scroll css */
+
+
+.img_date{
+  font-size:50px;
+  margin-top:60px;
+  margin-bottom: 40px;
+  
+}
+
+.my_gallery_layout{
+  width:100%;
+}
+
+.my_gallery_section{
+  padding-left:30px;
+  padding-right:30px;
+  overflow-y: auto;
+}
+
+.photo_grid_container{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-bottom: 40px;
+  height:auto;
+  text-align: left;
+  grid-gap: 1.16%;
+}
+
+.photo_grid_items{
+  background-size: cover;
+  width: 100%;
+  height:400px;
+  object-fit: cover;
+  transition: transform 400ms ease-out;
+}
+
+.photo_grid_items:hover {
+  transform: scale(1.1);
+}
+
+#tempImage{
+  width: 70%;
+  height: 100%;
+  margin-top: 5%;
+}
+
+#filebox{
+  font-family: 'Cafe24Ssurround';
+  font-size:25px;
+  margin-top:10%;
+  margin-left:10%;
+}
+
+
+#landmark_input{
+  margin-top:5%;
+  display:inline-block;
+  font-family:'Cafe24Ssurround';
+}
+
+
+#category_input{
+  margin:5%;
+  display:inline-block;
+  font-family:'Cafe24Ssurround';
+}
+
+.form-selcet{
+  font-size:200px;
+}
+
+#title{
+  font-family: 'Cafe24Ssurround';
+  color:#db545a;
+  text-align : center;
+  font-size:70px;
+}
