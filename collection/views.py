@@ -49,26 +49,26 @@ from django.views.decorators.csrf import csrf_exempt
 @csrf_exempt
 def my_gallery(request,loc_id):
     ui = request.session['id']
-    loc=Locations.objects.get(location_id = loc_id)
-    loc_name=loc.name
-    lands_area=Landmark.objects.filter(area = loc_name)
-    land_list=[]
-    for land in lands_area:
-        land_list.append(land.landmark_id)
-    my_galleries = Gallery.objects.filter(user=ui, landmark_id__in=land_list)
-    
-    visited_lands = []
+    landmark=Landmark.objects.get(landmark_id = loc_id)
+    gallery = Gallery.objects.filter(landmark_id = loc_id, user_id = ui).order_by('-created_at')
+    date_set=[]
+    for data in gallery:
+        date_set.append(data.created_at.date())
 
-    for my_g in my_galleries:
-        visited_lands.append(my_g.landmark_id)
+    date_set = sorted(list(set(date_set)))
+    print(date_set)
 
-    landset = list(set(visited_lands))
-
-    lands_area = Landmark.objects.filter(area=loc_name, landmark_id__in=landset)
+    result_dict={}
+    for date in date_set:
+        tmp_list = []
+        for i in gallery:
+            if i.created_at.date() == date:
+                tmp_list.append(i)
+        result_dict[date] = tmp_list
     
-    content = {"datas" : my_galleries, "landmarks":lands_area}
+    content = {"datas" : gallery, "landmarks":landmark,'date_set':date_set,'result_dict':result_dict}
     
-    return render(request, "../templates/collection/my_gallery.html" , context= content)
+    return render(request, "../templates/collection/my_gallery.html", content )
 
 
 def collection_ranking(request):
