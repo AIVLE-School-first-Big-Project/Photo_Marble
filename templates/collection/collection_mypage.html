@@ -137,7 +137,7 @@
                 style="border-style: none;text-align:center; color: white;font-family: 'Cafe24Ssurround';" >
                 <div>
                     <button style="background-image: linear-gradient(to right, #77aad9, #e68387);
-                                   border-style: none; height : 35; width:80; text-align:center; margin:2% -0% 20% 2%;
+                                   border-style: none; height : 35; width:80; text-align:center; margin:2% 0% 20% 57%;
                                    color: white;font-family: 'Cafe24Ssurround';" type="submit" id = 'btn1' class="btn"> 등록하기
                     </button>
                 </div>
@@ -149,7 +149,7 @@
             <div class="modal_window" style="text-align:center;">
                 <div class="modal_title">
                     <div class="modal_title_side"></div>
-                    <div> 랜드마크 선택하기</div>
+                    <div style="font-family: 'Cafe24Ssurround';"> 랜드마크 선택하기</div>
                     <div class="modal_title_side">
                         <span id="close_modal" class="material-icons-outlined">
                             X
@@ -158,13 +158,13 @@
                 </div>
             <form method="post" action = "{% url 'collection_modal' %}">
             {% csrf_token %}
-            <select id = "location_list" class="form-select" name="location_list" style="display:inline-block; width:80%; margin-top:30px;"></select>
+            <select id = "location_list" class="form-select" name="location_list" style="display:inline-block; width:80%; margin-top:30px;font-family: 'Cafe24Ssurround';"></select>
             <div id="select_direction">
                 <button name = "photoguide" style="background-image: linear-gradient(to right, #77aad9, #e68387);
-                border-style: none; height : 40; margin : -4 0 0 0 ;
+                border-style: none; height : 40; margin : -4 0 0 0 ;font-family: 'Cafe24Ssurround';
                 color: white;" class="btn"> 포토가이드</button>
                 <button name = "my_gallery" style="background-image: linear-gradient(to right, #77aad9, #e68387);
-                border-style: none; height : 40; margin : -4 0 0 0 ;
+                border-style: none; height : 40; margin : -4 0 0 0 ;font-family: 'Cafe24Ssurround';
                 color: white;" class="btn"> 마이갤러리</button>
             </div>
             </form>
@@ -310,7 +310,11 @@
     background-color: #ffffff;
     border-radius: 0.25rem;
 }
-
+a {
+    color: #0d6efd;
+    text-decoration: underline;
+    font-size: 15px;
+}
 
 </style>
 
