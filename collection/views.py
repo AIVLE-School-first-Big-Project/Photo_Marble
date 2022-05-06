@@ -179,7 +179,7 @@ def collection_update(request):
             s3_url = save_s3(data=data, img_name=img_name)
             
             Collection.objects.create(
-                 is_visited='1',
+                is_visited='1',
                 date=time , updated_at=time, user_id=user_id, 
                 landmark_id=landmark_id,s3_url=s3_url)
             data.close()
@@ -192,13 +192,17 @@ def collection_update(request):
 
         else:
             
+            # s3에 업로드 할 이미지
+            data = open(path + "/collection/detect/result/"+'test.jpg' , 'rb')
+            s3_url = save_s3_fail(data=data, img_name=img_name)
+            data.close()
             # 해당 결과 파일 삭제
             del_path = path + "/collection/detect/result/"
             shutil.rmtree(del_path)
            
-            Collection_s3 = Collection.objects.get(user_id=user_id,landmark_id=landmark_id)
+            # Collection_s3 = Collection.objects.get(user_id=user_id,landmark_id=landmark_id)
             return render(request, '../templates/collection/collection_fail.html',
-                                context={"s3_url":Collection_s3.s3_url,
+                                context={"s3_url": s3_url,
                                 "reason_fail":"기준 점수를 넘지 못했습니다.\n다시 촬영해주세요"})
 
     else: # 해당 유저의 첫 업로드 X
@@ -222,7 +226,7 @@ def collection_update(request):
                 s3_url = save_s3(data=data, img_name=img_name)
 
                 Collection.objects.create(
-                     is_visited='1', 
+                    is_visited='1', 
                     date=time , updated_at=time, user_id=user_id, 
                     landmark_id=landmark_id,s3_url=s3_url)
 
@@ -235,9 +239,17 @@ def collection_update(request):
                 return render(request, '../templates/collection/collection_update.html',context={"s3_url":s3_url})
 
             else:
-                Collection_s3 = Collection.objects.get(user_id=user_id,landmark_id=landmark_id)
+                # s3에 업로드 할 이미지
+                data = open(path + "/collection/detect/result/"+'test.jpg' , 'rb')
+                s3_url = save_s3_fail(data=data, img_name=img_name+"_under")
+
+                # 해당 결과 파일 삭제
+                del_path = path + "/collection/detect/result/"
+                shutil.rmtree(del_path)
+
+                # Collection_s3 = Collection.objects.get(user_id=user_id,landmark_id=landmark_id)
                 return render(request, '../templates/collection/collection_fail.html',
-                                context={"s3_url": Collection_s3.s3_url,
+                                context={"s3_url": s3_url,
                                 "reason_fail": "기준 점수를 넘지 못했습니다.\n다시 촬영해주세요"})
 
 
