@@ -24,29 +24,35 @@
 </div>
 
 
-        {% if datas %}
-            {% for landmark in landmarks %}
-            <section class="carousel">
-                <div class="carousel__container">
-                    <div class="landmark_name">
-                        <span style="font-weight: bolder;"> {{ landmark.name}} </span>
-                    </div>
-                    <div class="carousel-line">
-                        {% for data in datas%}
-  
-                            {% if data.landmark_id == landmark.landmark_id%}
-                                    <a href= "{% url 'detail2' data.gallery_id %}"  aria-label="Genuine Gemini" class="carousel-item__img">
-                                        <img class="carousel-item__img" src= "{{ data.s3_url }}">
-                                    </a>
-                            {% endif %}
 
-                        {% endfor %}
-                    </div>
+<div>
+    {% if datas %}
+        <span>{{ gallery.created_at }}</span>
+        <section class="carousel">
+            <div class="carousel__container">
+                <div class="landmark_name">
+                    <span style="font-weight: bolder;"> {{ landmark.name }} </span>
                 </div>
-            </section>
-            {% endfor %}
-        {% endif %}
-    
+                <div class="carousel-line">
+                {% for date in date_set %}
+                <p>{{date}}</p>
+          
+                    {% for key,value in result_dict.items %}
+                        {% if key == date %}
+                            {% for data in value %}
+
+                                <a href= "{% url 'detail2' data.gallery_id %}"  aria-label="Genuine Gemini" class="carousel-item__img">
+                                    <img class="carousel-item__img" src= "{{ data.s3_url }}">
+                                </a>
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}       
+                {% endfor %} 
+                </div>
+            </div>
+        </section>
+    {% endif %}
+</div>
 
 <style>
 
