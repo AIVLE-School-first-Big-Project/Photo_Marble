@@ -15,7 +15,7 @@
   <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
 </head>
 <body>
-    <div class="main_body"style="background-image: linear-gradient(#fbeced, #adcce9);">
+    <div class="main_body">
         <div class="left_body">
             <div class="feed_box">
                 <div class="feed_name">
@@ -55,9 +55,9 @@
                         </div>
                     </div>
                     {% if data.created_string == False %}
-                        <div class="updated" style="font-size: 18px;color: grey;margin-bottom: 5px;">{{ data.updated_at|date:'m월 d일' }}</div>
+                        <div class="updated">{{ data.updated_at|date:'m월 d일' }}</div>
                     {% else %}
-                        <div class="updated" style="font-size: 18px;color: grey;margin-bottom: 5px;">{{ data.created_string }}</div>
+                        <div class="updated">{{ data.created_string }}</div>
                     {% endif %}
                 </div>
                 <!-- 게시글 -->
@@ -70,7 +70,7 @@
                         {% for comment in comments%}
                             {% if comment.user.id == my_id %}
                                 <div>
-                                    <span class="feed_txt"> <b> {{ comment.user.nickname}}<span> </b> {{ comment.content }} <b> </span> <b><b>
+                                    <span class="feed_txt"> <b> {{ comment.user.nickname}}</span> <span> </b> {{ comment.content }} <b> </span> <b><b>
                                     <a href="{% url 'comment_delete' data.gallery_id comment.comment_id %}"> <img class="delete" src="{% static 'gallery/images/delete.png' %}" width=20px height=20px;> </a>
                                     {% if comment.created_string == False %}
                                         <span class="timestamp">{{ comment.updated_at|date:'m월 d일' }}</span>
@@ -232,20 +232,25 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
   font-family: 'yg-jalnan';
   font-size: 20px; 
 } 
-.feed_box {
-  background-color: white;
-  width: 400px;
-  margin: 105px;
-  min-height: auto;
-  padding-bottom: 10px;
-  margin: -60% -50% 0% -1%;
 
+body {
+    padding:10%;
+    margin: 0;
+    font-family: var(--bs-body-font-family);
+    font-size: var(--bs-body-font-size);
+    font-weight: var(--bs-body-font-weight);
+    line-height: var(--bs-body-line-height);
+    color: var(--bs-body-color);
+    text-align: var(--bs-body-text-align);
+    background-color: var(--bs-body-bg);
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    background-image: linear-gradient(#fbeced, #adcce9);
 }
-span{
-  font-family: 'yg-jalnan';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
+a {
+    color: #0d6efd;
+    text-decoration: underline;
+    font-size: 15px;
 }
   </style>
 

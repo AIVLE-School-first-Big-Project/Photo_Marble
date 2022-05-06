@@ -41,14 +41,14 @@
                     <li>   
                         {% if user.is_authenticated %}
                             <a href= "{% url 'main'%}"><li>Home</li></a>
-                            <a href= "{% url 'photoguide' %}"><li>Photo Guide</li></a>
+                            
                             <a href= "{% url 'gallery'%}"><li>Gallery</li></a>
                             <a href= "{% url 'collection'%}"><li>Collection</li></a>
                             <a href= "{% url 'ranking'%}"><li>Ranking</li></a>
                             <a href= "{% url 'mypage'%}"><li>My Page</li></a>
                         {% else %}
                             <a href= "{% url 'main'%}"><li>Home</li></a>
-                            <a onclick="not_login();"><li>Photo Guide</li></a>
+                            
                             <a onclick="not_login();"><li>Gallery</li></a>
                             <a onclick="not_login();"><li>Collection</li></a>
                             <a onclick="not_login();"><li>Ranking</li></a>

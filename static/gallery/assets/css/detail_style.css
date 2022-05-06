@@ -9,18 +9,19 @@
     display: flex;
     justify-content: center;
     padding-top: 0px;
-    background-color: #FAFAFA;
+    
 }
 
 .feed_box {
    
     background-color: white;
-    width: 480%;
-    margin: 80%;
-    padding-top:80%;
+    width: 400px;  
     min-height: auto;
-    padding-bottom: 80%;
+    padding-bottom: 10px;
+    margin: 12% 0% 0% 1%;
+  
 }
+
 
 .comment_textbox{
     vertical-align: middle;
@@ -50,6 +51,7 @@
 
 .feed_txt{
     font-size: 16px;
+    font-family: 'yg-jalnan';
 }
 
 .comment_content{
@@ -80,6 +82,7 @@
     font-size: 14px;
     padding: 0px 10px;
     font-weight: bold;
+    font-family: 'yg-jalnan';
 }
 
 .gallery_delete{
@@ -193,4 +196,6 @@
     font-size: 18px;
     color: grey;
     margin-bottom:5px;
+    margin: 0% 2% 0% 0%;
+    font-family: 'yg-jalnan';
 }

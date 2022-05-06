@@ -17,16 +17,16 @@
 </head>
   
 
-<body class="u-body u-xl-mode">
+<body class="u-body">
     <section class="u-clearfix u-white u-section-1" id="sec-81db">
         <div class="u-absolute-hcenter u-container-style u-expanded u-gradient u-group u-shape-rectangle u-group-1">
             <div class="u-container-layout u-container-layout-1">
             </div>
         </div>
-        <div class="u-clearfix u-layout-wrap u-layout-wrap-1">
-            <h1 class="display-4" style="font-family: 'Cafe24Ssurround';color:#db545a;text-align: center;"> 포토가이드 </h1>
-            <div style="box-shadow: 5px 5px 5px #bababa;text-align: center;" class="">
-                <div style="text-align: center;display: grid; height:80%;" class="cell-temp-clone u-align-left u-container-style u-layout-cell u-size-9 u-white u-layout-cell-8">
+        <div>
+            <br><h1 class="display-4" style="font-family: 'Cafe24Ssurround';color:#db545a;text-align: center;margin: 10% 0% 0% 0%;"> 포토가이드 </h1>
+            
+                <div style="text-align: center;display: grid; height:3000px;">
                     <form method="post" action="photoguide_update/{{loc_id}}" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div id="label_input"><br>
@@ -34,12 +34,12 @@
                         </div>
                         <img id="tempImage" src="../../static/photoguide/images/photo-placeholder.png"></a>
                         <div id="input_layout">
-                            <input type="file" id="file" class="file" name="file" onchange="imageView(this)" accept="image/png, image/jpeg" required>
+                            <input type="file" id="file" class="file" name="file" onchange="imageView(this)" style="border-style: none;text-align:center; color: white;font-family: 'Cafe24Ssurround';font-size:40px; margin: 5% -10% -10% 0%;" accept="image/png, image/jpeg" required>
                         </div>
                         <div class="item" id="submitButton">
                             <button style="background-image: linear-gradient(to right, #77aad9, #e68387);
-                            border-style: none;  width:80; font-family: 'Cafe24Ssurround';
-                            color: white; float:right; width:120px; margin-right: 10%;" type="submit" class="btn">유사 사진 찾기</button>
+                            border-style: none;  font-family: 'Cafe24Ssurround';font-size:40px;
+                            color: white;  width:280px; margin:20% 0% 0% 50%;" type="submit" class="btn">유사 사진 찾기</button>
                         </div>
                     </form>
                 </div>
