@@ -40,7 +40,6 @@ def collection_mypage(request):
         
         return render(request, '../templates/collection/collection_mypage.html', test_dict)
     else:
-        messages.add_message(request, messages.INFO, '접근 권한이 없습니다')
         return render(request,'../templates/collection/collection_mypage.html')
 
 
