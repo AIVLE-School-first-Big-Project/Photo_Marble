@@ -145,7 +145,7 @@ def collection_update(request):
 
         return render(request, '../templates/collection/collection_fail.html',
                                 context={"s3_url":fail_s3_url,
-                                "reason_fail":"인식하지 못했습니다. 다시 촬영해주세요"})
+                                "reason_fail":"인식하지 못했습니다.\n다시 촬영해주세요"})
         
     # 추론 txt파일 읽기 및 라벨 confidence값 불러오기
     f = open(path + "/collection/detect/result/labels/" + directoy_list[0], 'r')
