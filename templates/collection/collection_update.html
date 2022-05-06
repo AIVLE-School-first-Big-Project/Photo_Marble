@@ -35,16 +35,16 @@
     </head>
     
     <br><br><br>
+    <div class="row justify-content-center h-100"style="background-image: linear-gradient(#fbeced, #adcce9);"> 
     <h1 class="display-4" style="font-family: 'Cafe24Ssurround';color:#db545a;text-align : center;">
-        컬렉션 인식 성공
+        랜드마크 인식 성공
     </h1><br><br>
     <center>   
     <img src = {{s3_url}} />
     </center>
 
-    <button  OnClick="location.href = {% url 'collection' %}" name = "my_gallery" id="my_gallery" style="background-image: linear-gradient(to right, #77aad9, #e68387);
-    border-style: none; height : 40; margin : -4 0 0 0 ;
-    color: white;" class="btn"> 컬렉션 이동</button>
+    <button style="background-image: linear-gradient(to right, #77aad9, #e68387);border-style: none; text-align:center; color: white;font-family: 'Cafe24Ssurround';position:fixed;bottom:0;" onclick="history.back()">뒤로가기</button>
+
 
 </body>
 
@@ -67,6 +67,11 @@
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
   font-weight: normal;
   font-style: normal;
+}
+a {
+    color: #0d6efd;
+    text-decoration: underline;
+    font-size: 15px;
 }
 </style>
 

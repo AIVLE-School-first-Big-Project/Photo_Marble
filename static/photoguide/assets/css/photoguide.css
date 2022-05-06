@@ -409,17 +409,16 @@
 }
 
 #tempImage{
-  width: 80%;
-  height: 20%;
-  margin:10%;
+  width: 90%;
+  height: 30%;
+  margin: 10% 5% 5% 5%;
 }
 
 #file{
   width: 100%;
   height: auto;
   text-align: center;
-  margin-top:15px;
-  padding-left: 5%;
+  margin-top:15px;  
   padding-top: 10px;
 }
 #filebox{
