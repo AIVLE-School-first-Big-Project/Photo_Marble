@@ -2,6 +2,7 @@
     position:absolute;
     position:relative;
     left: 10%;
+    padding-top:5%
 }
 input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-1 {
     transition: all 0.3s;

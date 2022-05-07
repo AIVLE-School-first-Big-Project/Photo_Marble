@@ -100,7 +100,6 @@ def collection_ranking(request):
 
 
 def collection_update(request):
-
     # 카메라로 찍은 이미지 경로 설정
     path = os.getcwd()  # C:\Users\User\Desktop\potomable\git적용\Photo_Marble
 
@@ -164,7 +163,8 @@ def collection_update(request):
     # 추론 성공한 이미지 s3 객체 이름
     img_name = str(str(user_id) + "_" + str(img_name)[0:5] + str(img_name)[-5:])
     if len(collection_info) == 0:  # 해당 유저의 첫 업로드
-        if round(float(confidence), 2) >= landmark_conf:  # 기준 confidence 값 넘으면 S3, DB에 이미지 저장 및 랜드마크 달성
+        # 기준 confidence 값 넘으면 S3, DB에 이미지 저장 및 랜드마크 달성
+        if round(float(confidence), 2) >= landmark_conf:
             # s3에 업로드 할 이미지
             data = open(path + "/collection/detect/result/" + 'test.jpg', 'rb')
             s3_url = save_s3(data, img_name)
@@ -204,19 +204,22 @@ def collection_update(request):
                     "reason_fail": "기준 점수를 넘지 못했습니다.\n다시 촬영해주세요"})
 
     else:  # 해당 유저의 첫 업로드 X
+        # 이미 달성한 랜드마크를 촬영할 경우
+        if len(Collection.objects.filter(user_id=user_id, landmark_id=landmark_id)) != 0:
 
-        if len(Collection.objects.filter(user_id=user_id, landmark_id=landmark_id)) != 0:  # 이미 달성한 랜드마크를 촬영할 경우
+            data = open(path + "/collection/detect/result/" + 'test.jpg', 'rb')
+            s3_url = save_s3_fail(data=data, img_name=img_name)
+            data.close()
 
             # 해당 결과 파일 삭제
             del_path = path + "/collection/detect/result/"
             shutil.rmtree(del_path)
 
-            Collection_s3 = Collection.objects.get(user_id=user_id, landmark_id=landmark_id)
             return render(
                 request,
                 '../templates/collection/collection_fail.html',
                 context={
-                    "s3_url": Collection_s3.s3_url,
+                    "s3_url": s3_url,
                     "reason_fail": "이미 달성한 랜드마크입니다 \a"})
 
         else:
@@ -334,7 +337,6 @@ def my_gallery_tmp(request):
 
 
 def collection_modal(request):
-
     if request.method == 'POST':
         loc_id = request.POST.get('location_list')
         if request.POST.get('my_gallery') is not None:
