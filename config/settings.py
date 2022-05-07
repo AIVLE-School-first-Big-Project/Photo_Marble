@@ -214,7 +214,7 @@ AWS_SECRET_ACCESS_KEY = get_secret("ACCESS_SECRET_KEY") # .csv 파일에 있는 
 AWS_REGION = 'ap-northeast-2'
 
 ###S3 Storages
-AWS_STORAGE_BUCKET_NAME = 'photomarble' # 설정한 버킷 이름
+AWS_STORAGE_BUCKET_NAME = 'photomarble-s3-dk' # 설정한 버킷 이름
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (AWS_STORAGE_BUCKET_NAME,AWS_REGION)
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
