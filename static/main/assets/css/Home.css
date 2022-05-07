@@ -402,15 +402,16 @@ body {
   cursor: pointer;
   border-bottom: 1px solid rgba(255, 255, 255, 0.10);
   font-size: 38px;   
-  font-family: 'yg-jalnan'; 
-  text-decoration: none;    
+  font-family: 'yg-jalnan';
+  text-decoration: none;     
 }
 .sidebarMenuInner li span{
   display: block;
   font-size: 14px;
   color: rgba(255, 255, 255, 0.50);
-  font-family: 'yg-jalnan';   
-  text-decoration: none;
+  font-family: 'yg-jalnan';  
+  text-decoration: none; 
+  font-size: 38px; 
 }
 .sidebarMenuInner li a{
   color: #db545a;
@@ -419,6 +420,8 @@ body {
   cursor: pointer;
   text-decoration: none;
   font-family: 'yg-jalnan';
+  text-decoration:none;
+  font-size: 38px; 
 } 
 input[type="checkbox"]:checked ~ #sidebarMenu {
     transform: translateX(0);
@@ -568,5 +571,5 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
   padding-right: 10px;
   padding-top: 15px;
   padding-bottom: 10px;
+  text-decoration-line: none;
 }
-
