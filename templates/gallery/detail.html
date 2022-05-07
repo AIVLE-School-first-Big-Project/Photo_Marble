@@ -6,7 +6,7 @@
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="{% static 'gallery/assets/css/detail_style.css' %}"/>
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -17,7 +17,6 @@
 <body>
     <div class="main_body">
         <div class="left_body">
-        <div style="height:400px; ">
             <div class="feed_box">
                 <div class="feed_name">
                     <div class="profile_box">
@@ -26,7 +25,7 @@
                     <span class="feed_name_txt"> {{ uploader }} </span>
                     {% if data.user_id == my_id %}
                         <button class="gallery_delete" onclick="button_event()" >
-                            <img src="{% static 'gallery/images/gallery_delete.png' %}" style="height:50px; width:50px;" />
+                            <img src="{% static 'gallery/images/gallery_delete.png' %}" height ="30px" width="30px" />
                         </button >
                     {% endif %}
                 </div>
@@ -37,21 +36,21 @@
                             <button style="background-color:white; border:none;" id="{{data.gallery_id}}" onclick="post_like(this.id)"> 
                             {% if request.user in data.like_users.all %}
                                 <!-- 로그인 한 유저가 좋아요를 누른 유저일때  -->
-                                <img id="heart" style="height:80px;" src="/../../static/gallery/images/heart_2.png">
+                                <img id="heart" style="width:25px;height:25px;" src="/../../static/gallery/images/heart_2.png">
                             {% else %}
                                 <!-- 로그인 한 유저가 좋아요를 누른 유저가 아닐 때  -->
-                                <img id="heart" style="height:80px;" src="/../../static/gallery/images/heart_1.png">
+                                <img id="heart" style="width:25px;height:25px;" src="/../../static/gallery/images/heart_1.png">
                             {% endif %}
                             </button>
                         </div>
                         <div style = "margin: 7px;">
                             <!-- style="font-family: 'yg-jalnan';" -->
                             {% if data.like_count %}
-                                <span style="font-size: 35px;"id="like_count">{{data.like_count}}</span>
-                                <span >명이 좋아합니다.</span>
+                                <span style="font-family: 'yg-jalnan';" id="like_count">{{data.like_count}}</span>
+                                <span style="font-family: 'yg-jalnan';">명이 좋아합니다.</span>
                             {% else %}
-                                <span style="font-size: 35px;" id="like_count">{{len_likes}}</span>
-                                <span >명이 좋아합니다.</span>
+                                <span style="font-family: 'yg-jalnan';" id="like_count">{{len_likes}}</span>
+                                <span style="font-family: 'yg-jalnan';">명이 좋아합니다.</span>
                             {% endif %}
                         </div>
                     </div>
@@ -61,9 +60,9 @@
                         <div class="updated">{{ data.created_string }}</div>
                     {% endif %}
                 </div>
-
+ 
                 <div class="feed_reply">
-                    <!-- 다른 사용자의 댓글 기능 -->
+    
                     {% if comments %}
                         {% for comment in comments%}
                             {% if comment.user.id == my_id %}
@@ -92,13 +91,12 @@
                     <form method="POST">
                         {% csrf_token %}
                         <input name="comment_textbox" type="text" style="vertical-align:middle; width:80%;" placeholder="댓글 달기">
-                        <input id = 'btn1' class="btn" type="submit" value="등록">
+                        <input id = 'btn1' class="btn" type="submit" style="width:auto; font-family:'yg-jalnan';" value="등록">
                     </form>
                 </div>
             </div>
         </div>
     </div>
- </div>   
 </body>
 </html>
 
@@ -162,9 +160,78 @@ src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF
 font-weight: normal;
 font-style: normal;
 }
+input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-1 {
+    transition: all 0.3s;
+    box-sizing: border-box;    
+    margin-top: 8px;
+}
+input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
+    transition: all 0.3s;
+    box-sizing: border-box;    
+    margin-top: -9px;
+}
+.spinner {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  position: absolute;
+  height: 5px;
+  width: 200%;
+  background-color: #db545a;
+}
+.horizontal {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  position: relative;
+  float: left;  
+}
+.diagonal.part-1 {
+  position: relative;
+  transition: all 0.3s;
+  box-sizing: border-box;
+  float: left;
+}
+.diagonal.part-2 {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  position: relative;
+  float: left;
+  margin-top: 3px;
+}
+
+#sidebarMenu {
+    height: 100%;
+    position: absolute;
+    left: 0;
+    width: 250px;
+    height: 800px;
+    transform: translateX(-250px);
+    transition: transform 250ms ease-in-out;
+    background-color: #FFFFFF;
+    z-index:30;
+}
+.sidebarMenuInner li{
+  list-style: none;
+  color: #db545a;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+  font-size: 20px;   
+  font-family: 'yg-jalnan';     
+}
+.sidebarMenuInner li a{
+  color: #db545a;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: 'yg-jalnan';
+  font-size: 20px; 
+} 
 
 body {
-    
+    padding:10%;
     margin: 0;
     font-family: var(--bs-body-font-family);
     font-size: var(--bs-body-font-size);
@@ -176,14 +243,26 @@ body {
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: transparent;
     background-image: linear-gradient(#fbeced, #adcce9);
-
 }
 a {
     color: #0d6efd;
     text-decoration: underline;
-    font-size: 30px;
-    text-decoration: none;
+    font-size: 15px;
 }
+#top_nav{
+    color: #db545a;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: 'yg-jalnan';
+    font-size: 30px;
+    text-align:right;
+    vertical-align: center;
+    padding-right: 10px;
+    padding-top: 25px;
+    padding-bottom: 10px;
+  }
   
   </style>
 
