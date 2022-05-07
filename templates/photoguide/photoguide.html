@@ -24,14 +24,14 @@
             </div>
         </div>
         <div>
-            <br><h1 class="display-4" style="font-family: 'Cafe24Ssurround';color:#db545a;text-align: center;margin: 10% 0% 0% 0%;"> 포토가이드 </h1>
+            <br><h3 class="display-4" style="font-family: 'Cafe24Ssurround';color:#db545a;text-align: center;margin: 10% 0% 0% 0%;"> 포토가이드 </h3>
             
                 <div style="text-align: center;display: grid; height:3000px;">
                     <form method="post" action="photoguide_update/{{loc_id}}" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div id="label_input"><br>
                             <span></span>
-                        </div>
+                        </div>                        
                         <img id="tempImage" src="../../static/photoguide/images/photo-placeholder.png"></a>
                         <div id="input_layout">
                             <input type="file" id="file" class="file" name="file" onchange="imageView(this)" style="border-style: none;text-align:center; color: white;font-family: 'Cafe24Ssurround';font-size:40px; margin: 5% -10% -10% 0%;" accept="image/png, image/jpeg" required>
@@ -39,7 +39,7 @@
                         <div class="item" id="submitButton">
                             <button style="background-image: linear-gradient(to right, #77aad9, #e68387);
                             border-style: none;  font-family: 'Cafe24Ssurround';font-size:40px;
-                            color: white;  width:280px; margin:20% 0% 0% 50%;" type="submit" class="btn">유사 사진 찾기</button>
+                            color: white;  width:320px; margin:20% 0% 0% 60%;" type="submit" class="btn">유사한 사진 찾기</button>
                         </div>
                     </form>
                 </div>

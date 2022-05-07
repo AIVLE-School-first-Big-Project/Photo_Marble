@@ -23,7 +23,7 @@ body{
 .u-section-1 .u-list-1 {
   grid-template-rows: auto auto auto;
   width: 1140px;
-  margin: 112px auto 60px;
+  margin: 30% 0% 0% 13%;
 }
 
 .u-section-1 .u-repeater-1 {
@@ -203,6 +203,7 @@ body{
 
   .u-section-1 .u-list-1 {
     width: 720px;
+    margin: 20% 0% 0% 13%;
   }
 
   .u-section-1 .u-repeater-1 {
@@ -399,7 +400,7 @@ body {
   padding: 20px;
   cursor: pointer;
   border-bottom: 1px solid rgba(255, 255, 255, 0.10);
-  font-size: 40px;   
+  font-size: 38px;   
   font-family: 'yg-jalnan';     
 }
 .sidebarMenuInner li span{
@@ -562,7 +563,7 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
   text-align:right;
   vertical-align: center;
   padding-right: 10px;
-  padding-top: 25px;
+  padding-top: 15px;
   padding-bottom: 10px;
 }
 

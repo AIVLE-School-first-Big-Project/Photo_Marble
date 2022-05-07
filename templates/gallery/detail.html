@@ -93,7 +93,7 @@
                     <!-- 댓글 작성 -->
                     <form method="POST">
                         {% csrf_token %}
-                        <input name="comment_textbox" type="text" style="width:80%;" placeholder="댓글 달기">
+                        <input name="comment_textbox" type="text" style="vertical-align:middle; width:80%;" placeholder="댓글 달기">
                         <input id = 'btn1' class="btn" type="submit" style="width:auto; font-family:'yg-jalnan';" value="등록">
                     </form>
                 </div>
@@ -252,6 +252,21 @@ a {
     text-decoration: underline;
     font-size: 15px;
 }
+#top_nav{
+    color: #db545a;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: 'yg-jalnan';
+    font-size: 30px;
+    text-align:right;
+    vertical-align: center;
+    padding-right: 10px;
+    padding-top: 25px;
+    padding-bottom: 10px;
+  }
+  
   </style>
 
 {% endblock %}

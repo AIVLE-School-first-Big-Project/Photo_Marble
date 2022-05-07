@@ -40,7 +40,6 @@ def collection_mypage(request):
         
         return render(request, '../templates/collection/collection_mypage.html', test_dict)
     else:
-        messages.add_message(request, messages.INFO, '접근 권한이 없습니다')
         return render(request,'../templates/collection/collection_mypage.html')
 
 
@@ -145,7 +144,7 @@ def collection_update(request):
 
         return render(request, '../templates/collection/collection_fail.html',
                                 context={"s3_url":fail_s3_url,
-                                "reason_fail":"인식하지 못했습니다. 다시 촬영해주세요"})
+                                "reason_fail":"     인식하지 못했습니다.\n      다시 촬영해주세요."})
         
     # 추론 txt파일 읽기 및 라벨 confidence값 불러오기
     f = open(path + "/collection/detect/result/labels/" + directoy_list[0], 'r')
@@ -216,7 +215,7 @@ def collection_update(request):
             Collection_s3 = Collection.objects.get(user_id=user_id,landmark_id=landmark_id)
             return render(request, '../templates/collection/collection_fail.html',
                                 context={"s3_url":Collection_s3.s3_url,
-                                "reason_fail":"이미 달성한 랜드마크입니다."})
+                                "reason_fail":"이미 달성한 랜드마크입니다 \a"})
 
         else:
             if round(float(confidence),2) >= landmark_conf: # 기준 confidence 값 넘으면 S3, DB에 이미지 저장 및 랜드마크 달성

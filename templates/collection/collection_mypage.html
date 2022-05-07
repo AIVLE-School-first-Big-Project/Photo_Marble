@@ -2,21 +2,6 @@
 {% block content %}
 {% load static %}
 
-{% if messages %}
-    <br><br><br>
-    <!-- {% for message in messages %} -->
-    {% comment %} <div class="alert {{ message.tags }} alert-auto-dismissible alert-dismissible notification-container text-center" role="alert">
-        <button type="button" class="close"  aria-label="Close">
-            <div id = 're'>
-            <a href="http://127.0.0.1:8000/">X</a>
-            <div id = 're'>
-        </button>
-        {{ message }}
-    </div> {% endcomment %}
-<!-- 
-{% endfor %} -->
-{% else%}
-
 <html>
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
@@ -177,7 +162,7 @@
             <div id="select_direction">
                 <button name = "photoguide" style="background-image: linear-gradient(to right, #77aad9, #e68387);
                 border-style: none; height : 40; margin : -4 0 0 0 ;font-family: 'Cafe24Ssurround';
-                color: white;" class="btn"> 포토가이드</button>
+                color: white;" class="btn"> 유사한 사진 찾기</button>
                 <button name = "my_gallery" style="background-image: linear-gradient(to right, #77aad9, #e68387);
                 border-style: none; height : 40; margin : -4 0 0 0 ;font-family: 'Cafe24Ssurround';
                 color: white;" class="btn"> 마이갤러리</button>
@@ -330,8 +315,21 @@ a {
     text-decoration: underline;
     font-size: 15px;
 }
-
+#top_nav{
+    color: #db545a;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: 'yg-jalnan';
+    font-size: 30px;
+    text-align:right;
+    vertical-align: center;
+    padding-right: 10px;
+    padding-top: 25px;
+    padding-bottom: 10px;
+  }
+  
 </style>
 
-{%endif%}
 {% endblock %}
