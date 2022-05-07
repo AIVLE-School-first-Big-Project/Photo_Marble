@@ -26,7 +26,7 @@
                     <span class="feed_name_txt"> {{ uploader }} </span>
                     {% if data.user_id == my_id %}
                         <button class="gallery_delete" onclick="button_event()" >
-                            <img src="{% static 'gallery/images/gallery_delete.png' %}" style="height:50px; width:50px;" />
+                            <img src="{% static 'gallery/images/gallery_delete.png' %}" style="height:100px; width:100px;" />
                         </button >
                     {% endif %}
                 </div>
@@ -47,11 +47,11 @@
                         <div style = "margin: 7px;">
                             <!-- style="font-family: 'yg-jalnan';" -->
                             {% if data.like_count %}
-                                <span style="font-size: 35px;"id="like_count">{{data.like_count}}</span>
-                                <span >명이 좋아합니다.</span>
+                                <span style="font-family: 'yg-jalnan'; font-size:2.5rem;" id="like_count">{{data.like_count}}</span>
+                                <span style="font-family: 'yg-jalnan'; font-size:2.5rem;">명이 좋아합니다.</span>
                             {% else %}
-                                <span style="font-size: 35px;" id="like_count">{{len_likes}}</span>
-                                <span >명이 좋아합니다.</span>
+                                <span style="font-family: 'yg-jalnan';font-size:2.5rem;" id="like_count">{{len_likes}}</span>
+                                <span style="font-family: 'yg-jalnan';font-size:2.5rem;">명이 좋아합니다.</span>
                             {% endif %}
                         </div>
                     </div>
@@ -61,14 +61,15 @@
                         <div class="updated">{{ data.created_string }}</div>
                     {% endif %}
                 </div>
-
+                
                 <div class="feed_reply">
-                    <!-- 다른 사용자의 댓글 기능 -->
+                    <hr>
                     {% if comments %}
                         {% for comment in comments%}
                             {% if comment.user.id == my_id %}
-                                <div>
-                                    <span class="feed_txt"> <b> {{ comment.user.nickname}}</span> <span> </b> {{ comment.content }}  </span> 
+                                {% comment %} <div>
+                                    <span class="comment_user">  {{ comment.user.nickname}}  </span>
+                                    <span class="comment_content">  {{ comment.content }}</span> 
                                     <a href="{% url 'comment_delete' data.gallery_id comment.comment_id %}"> <img class="delete" src="{% static 'gallery/images/delete.png' %}" width=20px height=20px;> </a>
                                     {% if comment.created_string == False %}
                                         <span class="timestamp">{{ comment.updated_at|date:'m월 d일' }}</span>
@@ -76,23 +77,48 @@
                                         <span class="timestamp">{{ comment.created_string }}</span>
                                     {% endif %}
                                 </div>    
-                            {% else %}
+                                {% else %}
                                 <div>
-                                    <span class="feed_txt"> <b> {{ comment.user.nickname}} </b> {{ comment.content }}</span>
+                                    <span class="comment_user"> {{ comment.user.nickname}} </span>
+                                    <span class="comment_content">  {{ comment.content }}</span>
                                     {% if comment.created_string == False %}
                                         <span class="timestamp">{{ comment.updated_at|date:'m월 d일' }}</span>
                                     {% else %}
                                         <span class="timestamp">{{ comment.created_string }}</span>
                                     {% endif %}
-                                </div> 
+                                </div> {% endcomment %}
+
+                                <div>
+                                    <span class="comment_user"> {{ comment.user.nickname}}</span> <span class="comment_content">  {{ comment.content }}  </span> 
+                                    <a href="{% url 'comment_delete' data.gallery_id comment.comment_id %}"> <img class="delete" style="width: 2.5rem;height: 2.5rem;margin: 15 15 15 15;" src="{% static 'gallery/images/delete.png' %}"> </a>
+                                    {% if comment.created_string == False %}
+                                        <span class="timestamp" style="font-size:1.5rem;">{{ comment.updated_at|date:'m월 d일' }}</span>
+                                    {% else %}
+                                        <span class="timestamp" style="font-size:1.5rem;">{{ comment.created_string }}</span>
+                                    {% endif %}
+                                </div>    
+                            {% else %}
+                                <div>
+                                    <span class="comment_user"> {{ comment.user.nickname}}</span> <span class="comment_content"> {{ comment.content }}</span>
+                                    {% if comment.created_string == False %}
+                                        <span class="timestamp" style="font-size:1.5rem;">{{ comment.updated_at|date:'m월 d일' }}</span>
+                                    {% else %}
+                                        <span class="timestamp" style="font-size:1.5rem;">{{ comment.created_string }}</span>
+                                    {% endif %}
+                                </div>
                             {% endif %}
                         {% endfor %}
-                    {% endif %}
+                    {% endif %} 
+
+                    
                     <!-- 댓글 작성 -->
+                    <hr>
                     <form method="POST">
                         {% csrf_token %}
-                        <input name="comment_textbox" type="text" style="vertical-align:middle; width:80%;" placeholder="댓글 달기">
-                        <input id = 'btn1' class="btn" type="submit" value="등록">
+                        <div>
+                            <input name="comment_textbox" class="comment_textbox" type="text" style="vertical-align:middle; width:80%;" placeholder="댓글 달기">
+                            <input id = 'btn1' class="btn" type="submit" value="등록">
+                        </div>
                     </form>
                 </div>
             </div>
@@ -149,42 +175,41 @@
 </script>
 
 <style>  
-@font-face {
-  font-family: 'Cafe24Ssurround';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  margin: 5px;
-}
-@font-face{
-font-family: 'yg-jalnan';
-src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
-font-weight: normal;
-font-style: normal;
-}
-
-body {
+    @font-face {
+      font-family: 'Cafe24Ssurround';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+      margin: 5px;
+    }
+    @font-face{
+    font-family: 'yg-jalnan';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    }
     
-    margin: 0;
-    font-family: var(--bs-body-font-family);
-    font-size: var(--bs-body-font-size);
-    font-weight: var(--bs-body-font-weight);
-    line-height: var(--bs-body-line-height);
-    color: var(--bs-body-color);
-    text-align: var(--bs-body-text-align);
-    background-color: var(--bs-body-bg);
-    -webkit-text-size-adjust: 100%;
-    -webkit-tap-highlight-color: transparent;
-    background-image: linear-gradient(#fbeced, #adcce9);
-
-}
-a {
-    color: #0d6efd;
-    text-decoration: underline;
-    font-size: 30px;
-    text-decoration: none;
-}
-  
-  </style>
-
+    body {
+        
+        margin: 0;
+        font-family: var(--bs-body-font-family);
+        font-size: var(--bs-body-font-size);
+        font-weight: var(--bs-body-font-weight);
+        line-height: var(--bs-body-line-height);
+        color: var(--bs-body-color);
+        text-align: var(--bs-body-text-align);
+        background-color: var(--bs-body-bg);
+        -webkit-text-size-adjust: 100%;
+        -webkit-tap-highlight-color: transparent;
+        background-image: linear-gradient(#fbeced, #adcce9);
+    
+    }
+    a {
+        color: #0d6efd;
+        text-decoration: underline;
+        font-size: 30px;
+        text-decoration: none;
+    }
+      
+      </style>
 {% endblock %}
