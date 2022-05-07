@@ -15,28 +15,15 @@
             <div class="u-list u-list-1">
                 <div class="u-repeater u-repeater-1">
                     {% if user.is_authenticated %}
-                        <a href="{% url 'photoguide' %}" class="link">
+                        <a href="{% url 'gallery' %}" class="link">
                     {% else %}
                         <a onclick="not_login();" >
                     {% endif %}
                             <div class="u-align-center u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white u-list-item-1">
                                 <div class="u-container-layout u-similar-container u-container-layout-1">              
-                                    <img class="u-image u-image-default u-preserve-proportions u-image-1" alt="" data-image-width="800" data-image-height="800" src="{% static 'main/images/camera.png' %}">
-                                    <h3 class="u-text u-text-default u-text-grey-70 u-text-2">PHOTO GUIDE</h3>
-                                    <p class="u-text u-text-body-color u-text-3">포토 가이드 설명</p>
-                                </div>
-                            </div>
-                        </a>
-                    {% if user.is_authenticated %}
-                        <a href="{% url 'gallery' %}" class="link">
-                    {% else %}
-                        <a onclick="not_login();" >
-                    {% endif %}
-                            <div class="u-align-center u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white u-list-item-2">
-                                <div class="u-container-layout u-similar-container u-container-layout-2">
-                                    <img class="u-image u-image-default u-preserve-proportions u-image-2" alt="" data-image-width="512" data-image-height="512" src="{% static 'main/images/gallery.png' %}">
-                                    <h3 class="u-text u-text-default u-text-grey-70 u-text-4">GALLERY</h3>
-                                    <p class="u-text u-text-body-color u-text-5">갤러리 설명</p>
+                                    <img class="u-image u-image-default u-preserve-proportions u-image-1" alt="" data-image-width="800" data-image-height="800" src="{% static 'main/images/gallery.png' %}">
+                                    <h3 class="u-text u-text-default u-text-grey-70 u-text-2">GALLERY</h3>
+                                    <p class="u-text u-text-body-color u-text-3">갤러리 설명</p>
                                 </div>
                             </div>
                         </a>
@@ -45,11 +32,11 @@
                     {% else %}
                         <a onclick="not_login();" >
                     {% endif %}
-                            <div class="u-align-center u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white u-list-item-3">
-                                <div class="u-container-layout u-similar-container u-container-layout-3">
-                                    <img class="u-image u-image-default u-preserve-proportions u-image-3" alt="" data-image-width="512" data-image-height="512" src="{% static 'main/images/place.png' %}">
-                                    <h3 class="u-text u-text-default u-text-grey-70 u-text-6">COLLECTION</h3>
-                                    <p class="u-text u-text-body-color u-text-7">콜렉션 설명</p>
+                            <div class="u-align-center u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white u-list-item-2">
+                                <div class="u-container-layout u-similar-container u-container-layout-2">
+                                    <img class="u-image u-image-default u-preserve-proportions u-image-2" alt="" data-image-width="512" data-image-height="512" src="{% static 'main/images/place.png' %}">
+                                    <h3 class="u-text u-text-default u-text-grey-70 u-text-4">COLLECTION</h3>
+                                    <p class="u-text u-text-body-color u-text-5">콜렉션 설명</p>
                                 </div>
                             </div>
                         </a>
@@ -58,11 +45,24 @@
                     {% else %}
                         <a onclick="not_login();" >
                     {% endif %}
+                            <div class="u-align-center u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white u-list-item-3">
+                                <div class="u-container-layout u-similar-container u-container-layout-3">
+                                    <img class="u-image u-image-default u-preserve-proportions u-image-3" alt="" data-image-width="512" data-image-height="512" src="{% static 'main/images/ranking2.png' %}">
+                                    <h3 class="u-text u-text-default u-text-grey-70 u-text-6">RANKING</h3>
+                                    <p class="u-text u-text-body-color u-text-7">랭킹 설명</p>
+                                </div>
+                            </div>
+                        </a>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'aboutus' %}" class="link">
+                    {% else %}
+                        <a onclick="not_login();" >
+                    {% endif %}
                             <div class="u-align-center u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white u-list-item-4">
                                 <div class="u-container-layout u-similar-container u-container-layout-4">
-                                    <img class="u-image u-image-default u-preserve-proportions u-image-4" alt="" data-image-width="512" data-image-height="512" src="{% static 'main/images/ranking2.png' %}">
-                                    <h3 class="u-text u-text-default u-text-grey-70 u-text-8">RANKING</h3>
-                                    <p class="u-text u-text-body-color u-text-9">랭킹 설명</p>
+                                    <img class="u-image u-image-default u-preserve-proportions u-image-4" alt="" data-image-width="512" data-image-height="512" src="{% static 'main/images/info.png' %}">
+                                    <h3 class="u-text u-text-default u-text-grey-70 u-text-8">ABOUT US</h3>
+                                    <p class="u-text u-text-body-color u-text-9">ABOUT US</p>
                                 </div>
                             </div>
                         </a>
@@ -106,6 +106,9 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.10);
   font-size: 35px;   
   font-family: 'yg-jalnan'; 
+}
+.u-section-1 {
+    min-height: 93%;
 }
 </style>
 

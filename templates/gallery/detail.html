@@ -6,7 +6,7 @@
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
   <link rel="stylesheet" href="{% static 'gallery/assets/css/detail_style.css' %}"/>
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -15,8 +15,9 @@
   <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
 </head>
 <body>
-    <div class="main_body"style="background-image: linear-gradient(#fbeced, #adcce9);">
+    <div class="main_body">
         <div class="left_body">
+        <div style="height:400px; ">
             <div class="feed_box">
                 <div class="feed_name">
                     <div class="profile_box">
@@ -25,7 +26,7 @@
                     <span class="feed_name_txt"> {{ uploader }} </span>
                     {% if data.user_id == my_id %}
                         <button class="gallery_delete" onclick="button_event()" >
-                            <img src="{% static 'gallery/images/gallery_delete.png' %}" height ="30px" width="30px" />
+                            <img src="{% static 'gallery/images/gallery_delete.png' %}" style="height:50px; width:50px;" />
                         </button >
                     {% endif %}
                 </div>
@@ -36,33 +37,33 @@
                             <button style="background-color:white; border:none;" id="{{data.gallery_id}}" onclick="post_like(this.id)"> 
                             {% if request.user in data.like_users.all %}
                                 <!-- 로그인 한 유저가 좋아요를 누른 유저일때  -->
-                                <img id="heart" style="weight:25px;height:25px;" src="/../../static/gallery/images/heart_2.png">
+                                <img id="heart" style="height:80px;" src="/../../static/gallery/images/heart_2.png">
                             {% else %}
                                 <!-- 로그인 한 유저가 좋아요를 누른 유저가 아닐 때  -->
-                                <img id="heart" style="weight:25px;height:25px;" src="/../../static/gallery/images/heart_1.png">
+                                <img id="heart" style="height:80px;" src="/../../static/gallery/images/heart_1.png">
                             {% endif %}
                             </button>
                         </div>
                         <div style = "margin: 7px;">
                             <!-- style="font-family: 'yg-jalnan';" -->
                             {% if data.like_count %}
-                                <span style="font-family: 'yg-jalnan';" id="like_count">{{data.like_count}}</span>
-                                <span style="font-family: 'yg-jalnan';">명이 좋아합니다.</span>
+                                <span style="font-size: 35px;"id="like_count">{{data.like_count}}</span>
+                                <span >명이 좋아합니다.</span>
                             {% else %}
-                                <span style="font-family: 'yg-jalnan';" id="like_count">{{len_likes}}</span>
-                                <span style="font-family: 'yg-jalnan';">명이 좋아합니다.</span>
+                                <span style="font-size: 35px;" id="like_count">{{len_likes}}</span>
+                                <span >명이 좋아합니다.</span>
                             {% endif %}
                         </div>
                     </div>
                     {% if data.created_string == False %}
-                        <div class="updated" style="font-size: 18px;color: grey;margin-bottom: 5px;">{{ data.updated_at|date:'m월 d일' }}</div>
+                        <div class="updated">{{ data.updated_at|date:'m월 d일' }}</div>
                     {% else %}
-                        <div class="updated" style="font-size: 18px;color: grey;margin-bottom: 5px;">{{ data.created_string }}</div>
+                        <div class="updated">{{ data.created_string }}</div>
                     {% endif %}
                 </div>
                 <!-- 게시글 -->
                 <div class="feed_content">
-                    <p class="feed_txt"> <b> {{ data.userId }} </b> </p>
+                    <p class="feed_txt"> <b style=> {{ data.userId }} </b> </p>
                 </div>
                 <div class="feed_reply">
                     <!-- 다른 사용자의 댓글 기능 -->
@@ -70,8 +71,8 @@
                         {% for comment in comments%}
                             {% if comment.user.id == my_id %}
                                 <div>
-                                    <span class="feed_txt"> <b> {{ comment.user.nickname}}<span> </b> {{ comment.content }} <b> </span> <b><b>
-                                    <a href="{% url 'comment_delete' data.gallery_id comment.comment_id %}"> <img class="delete" src="{% static 'gallery/images/delete.png' %}" width=20px height=20px;> </a>
+                                    <span class="feed_txt"> <b style="font-family: 'Cafe24Ssurround';"> {{ comment.user.nickname}}</span> <span> </b> {{ comment.content }} <b> </span> <b><b>
+                                    <a href="{% url 'comment_delete' data.gallery_id comment.comment_id %}"> <img class="delete" src="{% static 'gallery/images/delete.png' %}" width=60px height=60px;> </a>
                                     {% if comment.created_string == False %}
                                         <span class="timestamp">{{ comment.updated_at|date:'m월 d일' }}</span>
                                     {% else %}
@@ -93,13 +94,14 @@
                     <!-- 댓글 작성 -->
                     <form method="POST">
                         {% csrf_token %}
-                        <input name="comment_textbox" type="text" style="width:80%;" placeholder="댓글 달기">
-                        <input id = 'btn1' class="btn" type="submit" style="width:auto; font-family:'yg-jalnan';" value="등록">
+                        <input name="comment_textbox" type="text" style="vertical-align:middle; width:80%;" placeholder="댓글 달기">
+                        <input id = 'btn1' class="btn" type="submit" value="등록">
                     </form>
                 </div>
             </div>
         </div>
     </div>
+ </div>   
 </body>
 </html>
 
@@ -163,90 +165,29 @@ src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF
 font-weight: normal;
 font-style: normal;
 }
-input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-1 {
-    transition: all 0.3s;
-    box-sizing: border-box;    
-    margin-top: 8px;
-}
-input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
-    transition: all 0.3s;
-    box-sizing: border-box;    
-    margin-top: -9px;
-}
-.spinner {
-  transition: all 0.3s;
-  box-sizing: border-box;
-  position: absolute;
-  height: 5px;
-  width: 200%;
-  background-color: #db545a;
-}
-.horizontal {
-  transition: all 0.3s;
-  box-sizing: border-box;
-  position: relative;
-  float: left;  
-}
-.diagonal.part-1 {
-  position: relative;
-  transition: all 0.3s;
-  box-sizing: border-box;
-  float: left;
-}
-.diagonal.part-2 {
-  transition: all 0.3s;
-  box-sizing: border-box;
-  position: relative;
-  float: left;
-  margin-top: 3px;
-}
 
-#sidebarMenu {
-    height: 100%;
-    position: absolute;
-    left: 0;
-    width: 250px;
-    height: 800px;
-    transform: translateX(-250px);
-    transition: transform 250ms ease-in-out;
-    background-color: #FFFFFF;
-    z-index:30;
-}
-.sidebarMenuInner li{
-  list-style: none;
-  color: #db545a;
-  text-transform: uppercase;
-  font-weight: bold;
-  padding: 10px;
-  cursor: pointer;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
-  font-size: 20px;   
-  font-family: 'yg-jalnan';     
-}
-.sidebarMenuInner li a{
-  color: #db545a;
-  text-transform: uppercase;
-  font-weight: bold;
-  cursor: pointer;
-  text-decoration: none;
-  font-family: 'yg-jalnan';
-  font-size: 20px; 
-} 
-.feed_box {
-  background-color: white;
-  width: 400px;
-  margin: 105px;
-  min-height: auto;
-  padding-bottom: 10px;
-  margin: -60% -50% 0% -1%;
+body {
+    
+    margin: 0;
+    font-family: var(--bs-body-font-family);
+    font-size: var(--bs-body-font-size);
+    font-weight: var(--bs-body-font-weight);
+    line-height: var(--bs-body-line-height);
+    color: var(--bs-body-color);
+    text-align: var(--bs-body-text-align);
+    background-color: var(--bs-body-bg);
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    background-image: linear-gradient(#fbeced, #adcce9);
 
 }
-span{
-  font-family: 'yg-jalnan';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
+a {
+    color: #0d6efd;
+    text-decoration: underline;
+    font-size: 30px;
+    text-decoration: none;
 }
+  
   </style>
 
 {% endblock %}

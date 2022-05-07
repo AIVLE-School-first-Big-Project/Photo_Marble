@@ -1,0 +1,15 @@
+[flake8]
+exclude = 
+    utils.py, 
+    migrations,
+    Dlmodel
+
+
+
+ignore = 
+    F403, 
+    F405, 
+    E126
+
+
+max-line-length = 200

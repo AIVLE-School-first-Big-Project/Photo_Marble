@@ -409,19 +409,26 @@
 }
 
 #tempImage{
-  width: 80%;
-  height: 80%;
+  width: 90%;
+  height: 30%;
+  margin: 10% 5% 5% 5%;
 }
 
 #file{
   width: 100%;
   height: auto;
   text-align: center;
-  margin-top:15px;
-  padding-left: 5%;
+  margin-top:15px;  
   padding-top: 10px;
 }
 #filebox{
   text-align: center;
 }
 
+#title{
+  font-family: 'Cafe24Ssurround';
+  color:#db545a;
+  text-align : center;
+  font-size:70px;
+  margin: 10% 0% 0% 0%;
+}

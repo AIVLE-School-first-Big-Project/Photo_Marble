@@ -2,20 +2,7 @@
 {% block content %}
 {% load static %}
 
-{% if messages %}
-    <br><br><br>
-    {% for message in messages %}
-    <div class="alert {{ message.tags }} alert-auto-dismissible alert-dismissible notification-container text-center" role="alert">
-        <button type="button" class="close"  aria-label="Close">
-            <div id = 're'>
-            <a href="http://127.0.0.1:8000/">X</a>
-            <div id = 're'>
-        </button>
-        {{ message }}
-    </div>
 
-{% endfor %}
-{% else%}
 
 <html>
     <head>
@@ -36,18 +23,17 @@
     
     <br><br><br>
     <div class="row justify-content-center h-100"style="background-image: linear-gradient(#fbeced, #adcce9);"> 
-    <h1 class="display-4" style="font-family: 'Cafe24Ssurround';color:#db545a;text-align : center;">
-        랜드마크 인식 실패
-    </h1><br><br>
+    <h1 class="display-4" style="font-family:'Cafe24Ssurround';color:#db545a;text-align : center;">
+        랜드마크 달성 실패
+    </h1>
     <center>
         
-        <img src = {{s3_url}} />
-        </center>
+        <img style="margin:-20% 0% 0% 0%;"src = {{s3_url}} />
+    </center>
 
-    </h1><br><br>
-    <h3 style="font-family: 'Cafe24Ssurround';margin:0% -10% 10% 20%;white-space: pre;">{{reason_fail|linebreaksbr}}</h3>
-    <button style="background-image: linear-gradient(to right, #77aad9, #e68387);border-style: none; text-align:center; color: white;font-family: 'Cafe24Ssurround';position:fixed;bottom:0;" onclick="history.back()">뒤로가기</button>
-
+    
+    <h3 style="font-family: 'Cafe24Ssurround';margin:-15% -10% 10% 20%;white-space: pre;font-size:18.5px;">{{reason_fail|linebreaksbr}}</h3>
+        <button style="background-image: linear-gradient(to right, #77aad9, #e68387);border-style: none; text-align:center; color: white;font-family: 'Cafe24Ssurround';position:fixed;bottom:0;" onclick="history.back()">뒤로가기</button>
 </body>
 
 
@@ -70,9 +56,14 @@
   font-weight: normal;
   font-style: normal;
 }
+a {
+    color: #0d6efd;
+    text-decoration: underline;
+    font-size: 15px;
+}
 </style>
 
-{%endif%}
+
 {% endblock %}
 
 

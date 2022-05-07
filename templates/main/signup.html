@@ -11,27 +11,48 @@
 <div class="row justify-content-center h-100" style="background-image: linear-gradient(#fbeced, #adcce9);">
   <div class="col align-self-center text-center card text-black"style="max-width: 40rem; height: 50rem; border-radius: 20px 20px 20px 20px;">
     <div class="card-body"> 
-    <h3 class="card-title" style="font-size:60px;">Sign up</h1><br>
+    <h3 class="card-title" style="font-size:50px;">Sign up</h1><br>
 {% comment %} <h1>{% trans "Sign Up" %}</h1> {% endcomment %}
 
-    <p style="font-size:30px;font-family: 'yg-jalnan';">이미 계정이 있으신가요? 바로 <a class="user_a_tag" style="color : #db545a;font-family: 'yg-jalnan';font-size:30px;" href="{% url 'login' %}">로그인</a>하세요</p><br>
+    <p style="font-size:25px;font-family: 'yg-jalnan';">이미 계정이 있으신가요? 바로 <a class="user_a_tag" style="color : #db545a;font-family: 'yg-jalnan';font-size:30px;" href="{% url 'login' %}">로그인</a>하세요</p><br>
     {% comment %} <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}"> {% endcomment %}
-      <form class="signup" id="signup_form" method="POST" action="{% url 'custom_signup' %}"style="font-family: 'yg-jalnan';font-size:30px;">
+      <form class="signup" id="signup_form" method="POST" action="{% url 'custom_signup' %}"style="font-family: 'yg-jalnan';font-size:22px;text-align:left;">
       {% csrf_token %}
       {% bootstrap_form form %} 
   
       {% if redirect_field_value %}
       <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
       {% endif %}
-      <br>
-      <button type="submit" id = 'btn1' class="btn">{% trans "Sign Up" %} &raquo;</button>
-      <a href="javascript:history.back()" class="btn" id = 'btn1' name="action" >취소하기</a>
+            <span>사진 수집 및 이용 동의 (필수) </span>
+                <input type="checkbox" id = "chk" name="chk"> <br>
+
+  
+        <textarea name="" id="" style="width:100%;font-size:20px;color: gray;"> 사진 수집 및 이용 목적 
+- 사용자가 랜드마크 수집, 유사 사진 추천을 위해 업로드한 사진은 랜드마크 인식, 유사도 추천 이외의 목적으로 이용하지 않습니다. 
+- 사용자가 갤러리에 업로드한 사진의 위치, 시간 정보는 수집되며, 추후 유사 사진 추천 서비스에 이용될 수 있습니다.
+        </textarea><br><br>
+
+      <button type="submit" style="margin:auto;
+      display:block;" id = 'btn1' class="btn">{% trans "Sign Up" %} &raquo;</button>
+     
     </form>
 
 </div>
 </div>
 </div>
+<script>
+  $(".btn").attr("disabled", true);
+    $("#chk").on('click',function(){
+        var chk = $('input:checkbox[id="chk"]').is(":checked");
+        if(chk==true){
+            $(".btn").removeAttr('disabled');
 
+        }else{
+            $(".btn").attr("disabled", true);
+ 
+        }
+    });
+</script>
 
 <style>
   #btn1{

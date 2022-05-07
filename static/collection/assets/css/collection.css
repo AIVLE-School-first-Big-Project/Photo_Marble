@@ -2,6 +2,7 @@
     position:absolute;
     position:relative;
     left: 10%;
+    padding-top:5%
 }
 input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-1 {
     transition: all 0.3s;
@@ -17,8 +18,8 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
   transition: all 0.3s;
   box-sizing: border-box;
   position: absolute;
-  height: 5px;
-  width: 200%;
+  height: 10px;
+  width: 300%;
   background-color: #db545a;
 }
 .horizontal {
@@ -41,17 +42,6 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
   margin-top: 3px;
 }
 
-#sidebarMenu {
-    height: 100%;
-    position: absolute;
-    left: 0;
-    
-    height: 800px;
-    transform: translateX(-250px);
-    transition: transform 250ms ease-in-out;
-    background-color: #FFFFFF;
-    z-index:30;
-}
 .sidebarMenuInner li{
   list-style: none;
   color: #db545a;
@@ -71,6 +61,7 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
   text-decoration: none;
   font-family: 'yg-jalnan';
   font-size: 20px; 
+  text-decoration:none;
 } 
 .feed_box {
   background-color: white;
@@ -85,5 +76,11 @@ span{
   font-weight: normal;
   font-style: normal;
 }
-
+u-table th, .u-table td
+ {
+  padding: 10px;
+  font-weight: inherit;
+  position: inherit;
+  width: 10%;
+}
 

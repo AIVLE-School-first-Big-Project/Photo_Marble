@@ -1,5 +1,6 @@
-from django.urls import path, include
+from django.urls import path
 from . import views
+
 urlpatterns = [
 
     path('', views.collection_mypage, name='collection'),
@@ -9,5 +10,4 @@ urlpatterns = [
     path('collection_modal/', views.collection_modal, name='collection_modal'),
     path('mygallery/<int:loc_id>/', views.my_gallery, name="my_gallery2"),
     path('collection_update', views.collection_update, name='collection_update'),
-
 ]

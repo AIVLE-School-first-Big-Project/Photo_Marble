@@ -23,7 +23,7 @@ body{
 .u-section-1 .u-list-1 {
   grid-template-rows: auto auto auto;
   width: 1140px;
-  margin: 112px auto 60px;
+  margin: 30% 0% 0% 13%;
 }
 
 .u-section-1 .u-repeater-1 {
@@ -203,6 +203,7 @@ body{
 
   .u-section-1 .u-list-1 {
     width: 720px;
+    margin: 20% 0% 0% 13%;
   }
 
   .u-section-1 .u-repeater-1 {
@@ -378,9 +379,9 @@ body {
     height: 100%;
     position: absolute;
     left: 0;
-    width: 250px;
+    width: 290px;
     height: 800px;
-    transform: translateX(-250px);
+    transform: translateX(-290px);
     transition: transform 250ms ease-in-out;
     background-color: #FFFFFF;
     z-index:30;
@@ -390,6 +391,7 @@ body {
     margin:0;
     padding:0;
     border-top: 1px solid rgba(255, 255, 255, 0.10);
+    text-decoration: none;
 }
 .sidebarMenuInner li{
   list-style: none;
@@ -399,14 +401,17 @@ body {
   padding: 20px;
   cursor: pointer;
   border-bottom: 1px solid rgba(255, 255, 255, 0.10);
-  font-size: 40px;   
-  font-family: 'yg-jalnan';     
+  font-size: 38px;   
+  font-family: 'yg-jalnan';
+  text-decoration: none;     
 }
 .sidebarMenuInner li span{
   display: block;
   font-size: 14px;
   color: rgba(255, 255, 255, 0.50);
-  font-family: 'yg-jalnan';   
+  font-family: 'yg-jalnan';  
+  text-decoration: none; 
+  font-size: 38px; 
 }
 .sidebarMenuInner li a{
   color: #db545a;
@@ -415,6 +420,8 @@ body {
   cursor: pointer;
   text-decoration: none;
   font-family: 'yg-jalnan';
+  text-decoration:none;
+  font-size: 38px; 
 } 
 input[type="checkbox"]:checked ~ #sidebarMenu {
     transform: translateX(0);
@@ -562,7 +569,7 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
   text-align:right;
   vertical-align: center;
   padding-right: 10px;
-  padding-top: 10px;
+  padding-top: 15px;
   padding-bottom: 10px;
+  text-decoration-line: none;
 }
-

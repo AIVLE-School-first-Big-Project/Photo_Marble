@@ -17,27 +17,27 @@
 
     <section class="u-align-center u-clearfix u-white u-section-1 post-wrapper" id="carousel_871a">
         <div class="u-expanded-width u-gradient u-shape u-shape-rectangle u-shape-1"><br><br><br>
-            <h1 class="display-4" style="font-family: 'Cafe24Ssurround';color:#db545a;text-align : center;"> 갤러리 </h1><br>
+            <h1 class="display-4" id="title"> 갤러리 </h1><br>
             <div id = select style="margin:auto;text-align:center;">
                 <form method="post" action="{% url 'gallery' %}">
                     {% csrf_token %}
-                        <select class="form-select" name="landmark" id="landmark"style="font-family: 'Cafe24Ssurround';">
+                        <select class="form-select" name="landmark" id="landmark" style="font-family:'Cafe24Ssurround'; width:300px; height: 70px; font-size: 45px; text-align: center;vertical-align:middle;">
                             <option value=0>전체</option>
                                 {% for landmark in landmarks%}
                                     <option value="{{landmark.landmark_id}}"> {{landmark.name}} </option>
                                 {% endfor %}
                         </select>
-                        <select class="form-select" name="category" id="category" style="display:inline-block;font-family: 'Cafe24Ssurround';">
+                        <select class="form-select" name="category" id="category" style="font-family:'Cafe24Ssurround'; width:200px; height: 70px; font-size: 45px; text-align: center;vertical-align:middle;">
                             <option value=0>전체</option>
                             <option value=1>인물</option>
                             <option value=2>풍경</option>
-                            <option value=3>음식</option>
+          
                           </select>
-                    <button style="background-image: linear-gradient(to right, #77aad9, #e68387); border-style: none; height : 40; margin : -4 0 -5 0 ; color: white;font-family: 'Cafe24Ssurround';" 
+                    <button style="background-image: linear-gradient(to right, #77aad9, #e68387); border-style: none; margin : -4 0 -5 0 ; color: white;font-family: 'Cafe24Ssurround'; font-size: 37px; width:100px;height:75px; margin-left:20px;" 
                     type="submit" id = 'btn1' class="btn"> 검색</button>
                         {% csrf_token %}    
                       </form>
-                <button id="add_feed" style="background-image: linear-gradient(to right, #77aad9, #e68387); border-style: none; height : 40; margin : -4 20 0 0 ; color: white;font-family: 'Cafe24Ssurround';float:right" 
+                <button id="add_feed" style="background-image:linear-gradient(to right, #77aad9, #e68387); border-style: none; margin : -4 20 0 0 ; color: white;font-family: 'Cafe24Ssurround';float:right; width:130px;height:65px;font-size: 27px;" 
                 class="btn"> 사진 추가</button>
                       
               
@@ -109,36 +109,37 @@
             <div class="modal_title_side"></div>
             <div style="display:inline-block;font-family: 'Cafe24Ssurround';"> 새 게시물 </div>
             <div class="modal_title_side">
-                <span id="close_modal" class="material-icons-outlined">close</span>
+                <span id="close_modal" class="material-icons-outlined">X</span>
             </div>
         </div>
         <form method="post" action="upload" enctype="multipart/form-data">
             {% csrf_token %}
-            <div class="modal_image_upload">
-                <div class="item" id="label_input"><br>
-                    <label for="file" style="font-family: 'yg-jalnan';">사진을 등록해주세요</label>
+            <div class="modal_image_upload">              
+                <div class="item">
+                    <img id="tempImage" src="../../static/photoguide/images/photo-placeholder.png"></a>
                 </div>
-                <div class="item" id="filebox"style="font-family: 'Cafe24Ssurround';margin:0 9 1 200;">
+                
+                <div class="item" id="filebox">
                     <input type="file" id="file" class="file" name="file" onchange="imageView(this)" accept="image/png, image/jpeg" required>
                 </div>
                 <div class="item" id="landmark_input">
-                    <select class="form-select" name="landmark" id="landmark"style="font-family: 'Cafe24Ssurround';">
+                    <select name="landmark" id="landmark" style="width:300px; height: 70px; font-size: 50px; text-align: center;">
                         {% for landmark in landmarks%}
                             <option value="{{landmark.landmark_id}}"> {{landmark.name}} </option>
                         {% endfor %}
                     </select>
                 </div>
                 <div class="item" id="category_input">
-                    <select class="form-select" name="category" id="category" style="display:inline-block;font-family: 'Cafe24Ssurround';">
+                    <select name="category" id="category" style="width:300px; height: 70px; font-size: 50px; text-align: center;">
                         <option value=0>전체</option>
                         <option value=1>인물</option>
                         <option value=2>풍경</option>
-                        <option value=3>음식</option>
+                
                     </select>
                 </div>
-                <div class="item" >
-                    <button style="background-image: linear-gradient(to right, #77aad9, #e68387); border-style: none; height : 40; width:80; margin : -4 0 0 0 ; color: white;font-family: 'Cafe24Ssurround';" 
-                    type="submit" id = 'btn1' class="btn"> 등록하기</button>
+                <div class="item" style="font-size:50px;">
+                    <button style="background-image: linear-gradient(to right, #77aad9, #e68387); border-style: none; height :70px; width:150px; margin : -4 0 0 0 ; color: white;font-family: 'Cafe24Ssurround';font-size:30px;" 
+                    type="submit" id = 'btn1' onclick = 'insert();' class="btn"> 등록하기</button>
                 </div>
             </div>
         </form>
@@ -146,6 +147,24 @@
 </div>
 
 <script>
+
+  var doubleSubmitFlag = false;
+      function doubleSubmitCheck(){
+          if(doubleSubmitFlag){
+              return doubleSubmitFlag;
+          }else{
+              doubleSubmitFlag = true;
+              return false;
+          }
+      }
+  
+      function insert(){
+          if(doubleSubmitCheck()) return;
+  
+          alert("등록");
+      }
+
+
   const modal = document.getElementById("modal_add_feed");
     const buttonAddFeed = document.getElementById("add_feed");
     console.log(buttonAddFeed)
