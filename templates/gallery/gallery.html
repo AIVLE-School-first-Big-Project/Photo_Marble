@@ -31,7 +31,7 @@
                             <option value=0>전체</option>
                             <option value=1>인물</option>
                             <option value=2>풍경</option>
-                            <option value=3>음식</option>
+          
                           </select>
                     <button style="background-image: linear-gradient(to right, #77aad9, #e68387); border-style: none; height : 40; margin : -4 0 -5 0 ; color: white;font-family: 'Cafe24Ssurround';" 
                     type="submit" id = 'btn1' class="btn"> 검색</button>
@@ -133,12 +133,12 @@
                         <option value=0>전체</option>
                         <option value=1>인물</option>
                         <option value=2>풍경</option>
-                        <option value=3>음식</option>
+                
                     </select>
                 </div>
                 <div class="item" >
                     <button style="background-image: linear-gradient(to right, #77aad9, #e68387); border-style: none; height : 40; width:80; margin : -4 0 0 0 ; color: white;font-family: 'Cafe24Ssurround';" 
-                    type="submit" id = 'btn1' class="btn"> 등록하기</button>
+                    type="submit" onclick = 'insert();' id = 'btn1' class="btn"> 등록하기</button>
                 </div>
             </div>
         </form>
@@ -146,6 +146,24 @@
 </div>
 
 <script>
+
+  var doubleSubmitFlag = false;
+      function doubleSubmitCheck(){
+          if(doubleSubmitFlag){
+              return doubleSubmitFlag;
+          }else{
+              doubleSubmitFlag = true;
+              return false;
+          }
+      }
+  
+      function insert(){
+          if(doubleSubmitCheck()) return;
+  
+          alert("등록");
+      }
+
+
   const modal = document.getElementById("modal_add_feed");
     const buttonAddFeed = document.getElementById("add_feed");
     console.log(buttonAddFeed)

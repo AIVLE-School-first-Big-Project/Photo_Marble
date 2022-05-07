@@ -17,6 +17,7 @@ from django.core import serializers
 from PIL import Image
 from PIL.ExifTags import TAGS
 
+
 def gallery(request):
     l_id = request.POST.get('landmark')
     c_id = request.POST.get('category')
@@ -75,35 +76,42 @@ def upload(request):
             decoded = TAGS.get(tag, tag)
             taglabel[decoded] = value
 
-        
-        exifGPS = taglabel['GPSInfo']
-        latData, lonData = exifGPS[2], exifGPS[4]
 
-        # 도, 분, 초 
-        latDeg, latMin, latSec = latData[0], latData[1], latData[2]
-        lonDeg, lonMin, lonSec = lonData[0], lonData[1], lonData[2]
+        if 'GPSInfo' in taglabel.keys():
+            exifGPS = taglabel['GPSInfo']
+            latData, lonData = exifGPS[2], exifGPS[4]
 
-        # 위도 계산
-        latitude = (latDeg + (latMin + latSec / 60.0) / 60.0)
-        # 북위, 남위인지를 판단, 남위일 경우 -로 변경
-        if exifGPS[1] == 'S':
-            Lat = Lat * -1
+            # 도, 분, 초 
+            latDeg, latMin, latSec = latData[0], latData[1], latData[2]
+            lonDeg, lonMin, lonSec = lonData[0], lonData[1], lonData[2]
 
-        # 경도 계산
-        longitude = (lonDeg + (lonMin + lonSec / 60.0) / 60.0)
-        # 동경, 서경인지를 판단, 서경일 경우 -로 변경
-        if exifGPS[3] == 'W':
-            Lon = Lon * -1
+            # 위도 계산
+            latitude = (latDeg + (latMin + latSec / 60.0) / 60.0)
+            # 북위, 남위인지를 판단, 남위일 경우 -로 변경
+            if exifGPS[1] == 'S':
+                Lat = Lat * -1
 
-        # 사진이 생성된 날짜 (created_at)
-        taglabel['DateTimeOriginal']
-        tmp_date = taglabel['DateTimeOriginal'][:10].replace(':', '-')
-        tmp_time = taglabel['DateTimeOriginal'][10:]
-        created_at = tmp_date + tmp_time
+            # 경도 계산
+            longitude = (lonDeg + (lonMin + lonSec / 60.0) / 60.0)
+            # 동경, 서경인지를 판단, 서경일 경우 -로 변경
+            if exifGPS[3] == 'W':
+                Lon = Lon * -1
+       
+  
+            # 사진이 생성된 날짜 (created_at)
+            taglabel['DateTimeOriginal']
+            tmp_date = taglabel['DateTimeOriginal'][:10].replace(':', '-')
+            tmp_time = taglabel['DateTimeOriginal'][10:]
+            created_at = tmp_date + tmp_time
         # 사진 메타데이터 (시간, 위치) 저장
+        else:
+            latitude = 0
+            longitude = 0
+            created_at = time
 
         Gallery.objects.create(s3_url=s3_url, updated_at=time,category_id=category, landmark_id=landmark,user_id=user_id,photo_url=img, latitude=latitude, longitude=longitude, created_at = created_at)
     return redirect('gallery')
+
 
 
 def detail(request, id):
