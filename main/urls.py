@@ -17,4 +17,5 @@ urlpatterns = [
     path('mypage/profile_upload', views.profile_upload, name="profile_upload"),
     path('activate/<str:uid64>/<str:token>/', views.activate, name='activate'),
     path('signup3/', views.signup3, name='signup3'),
+    path('aboutus/', views.aboutus, name='aboutus'),
 ]
