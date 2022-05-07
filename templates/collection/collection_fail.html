@@ -19,11 +19,13 @@
             랜드마크 인식 실패
         </h1>
     </div>
-    <div class="img_result_div">
-        <!-- <img class="img_result" src = "../../static/photoguide/images/photo-placeholder.png"/> -->
-        <img class="img_result" src = {{s3_url}}/>
+    <div >
+        <center>
+            <img src = {{s3_url}} class="img_result_div"/>
+        </center>
     </div>
-    <div class="text_result_div">
+    <div class="text_result_div" style= margin:10%;>
+
         <h3 style="font-family: 'Cafe24Ssurround';font-size:3.5rem;">{{reason_fail|linebreaksbr}}</h3>
     </div>
     <div class="back_btn_div">
@@ -85,14 +87,7 @@
     padding-right:30px;
     padding-left:30px;
 }
-a {
- 
-    text-decoration: none;
-  }
 
 </style>
 
 {% endblock %}
-
-
-

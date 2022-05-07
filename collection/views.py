@@ -98,6 +98,11 @@ def collection_update(request):
     # 카메라로 찍은 이미지 경로 설정
     path = os.getcwd()  # C:\Users\User\Desktop\potomable\git적용\Photo_Marble
 
+    # 이미지 등록 안 하고 올릴시 새로고침
+    if not request.GET.get("camcorder"):
+        return redirect("http://172.30.1.56:8000/collection/")
+
+
     # 카메라 촬영 이미지 준비
     img = request.FILES['camcorder']
     img_name = img
