@@ -88,4 +88,12 @@ a {
  
   text-decoration: none;
 }
-
+.btn{
+ background-image: linear-gradient(to right, #77aad9, #e68387);
+  border-style: none; 
+  height : 40; 
+  margin : -4 0 0 0 ;
+  font-family: 'Cafe24Ssurround';
+  color: white;
+  font-size:30px;
+}
