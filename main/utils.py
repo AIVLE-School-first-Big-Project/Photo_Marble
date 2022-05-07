@@ -1,20 +1,6 @@
-def upload_image(instance, filename):
-  import os
-  from random import randint
-  from django.utils.timezone import now
-  filename_base, filename_ext = os.path.splitext(filename)
-  print(filename_base, filename_ext)  
-  return '%s' % (
-      #instance.id,
-    #   now().strftime('%Y%m%d')+'_'+str(randint(10000000,99999999))
-    now().strftime('%Y%m%d')+"_"+filename
-  )
-
-
-#=======test====
+# =======test====
 import unicodedata
 from collections import OrderedDict
-
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
@@ -23,7 +9,6 @@ from django.db import models
 from django.db.models import Q
 from django.utils.encoding import force_str
 from django.utils.http import base36_to_int, int_to_base36, urlencode
-
 from allauth.account import app_settings, signals
 from allauth.account.adapter import get_adapter
 from allauth.exceptions import ImmediateHttpResponse
@@ -33,6 +18,11 @@ from allauth.utils import (
     import_callable,
     valid_email_or_none,
 )
+from django.utils.timezone import now
+
+
+def upload_image(filename):
+    return '%s' % (now().strftime('%Y%m%d') + "_" + filename)
 
 
 def _unicode_ci_compare(s1, s2):
