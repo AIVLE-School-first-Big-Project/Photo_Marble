@@ -177,3 +177,6 @@ def profile_upload(request):
 
 def signup3(request):
     return render(request, "../templates/main/signup3.html")
+
+def aboutus(request):
+    return render(request, "../templates/main/aboutus.html")    

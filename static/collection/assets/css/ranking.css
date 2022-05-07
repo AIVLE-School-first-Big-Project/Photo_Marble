@@ -1,6 +1,6 @@
 .medal{
-  width: 70px;
-  height: 70px;
+  width: 110px;
+  height: 110px;
   top: 10%;
   left:50%;
   padding-top: 5px;
@@ -13,8 +13,8 @@
   font-family:'yg-jalnan';
 }
 .profile_box{
-  width: 70px;
-  height: 70px;
+  width: 90px;
+  height: 90px;
   border-radius: 70%;
   overflow: hidden;
   text-align: center; /* 문자들의 가운데 정렬을 해제 */ 
@@ -26,8 +26,8 @@
 }
 .profile{
   width: 100%;
-    height: 100%;
-    object-fit: cover;
+  height: 100%;
+  object-fit: cover;
     
 }
   #screen1{
@@ -46,7 +46,7 @@
  
     position:absolute;
     left:41%;
-    top:32%;
+    top:30%;
   }
   #screen1-2{
     width: 28%;
@@ -70,7 +70,7 @@
  
     position:absolute;
     left:16%;
-    top:46%;
+    top:44%;
   }
   #screen2-2{
     width: 28%;
@@ -95,7 +95,7 @@
 
     position:absolute;
     left:65%;
-    top:54%;
+    top:52%;
   }
   #screen3-2{
     width: 28%;
