@@ -42,27 +42,28 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
   margin-top: 3px;
 }
 
-.sidebarMenuInner li{
+.sidebarMenuInner li {
   list-style: none;
   color: #db545a;
   text-transform: uppercase;
   font-weight: bold;
-  padding: 10px;
+  padding: 20px;
   cursor: pointer;
   border-bottom: 1px solid rgba(255, 255, 255, 0.10);
-  font-size: 20px;   
-  font-family: 'yg-jalnan';     
+  font-size: 35px;
+  font-family: 'yg-jalnan';
+  text-decoration: none;
 }
-.sidebarMenuInner li a{
+.sidebarMenuInner li a {
   color: #db545a;
   text-transform: uppercase;
   font-weight: bold;
   cursor: pointer;
   text-decoration: none;
   font-family: 'yg-jalnan';
-  font-size: 20px; 
-  text-decoration:none;
-} 
+  text-decoration: none;
+  font-size: 38px;
+}
 .feed_box {
   background-color: white;
   width: 400px;
@@ -82,5 +83,9 @@ u-table th, .u-table td
   font-weight: inherit;
   position: inherit;
   width: 10%;
+}
+a {
+ 
+  text-decoration: none;
 }
 

@@ -24,13 +24,13 @@
    }  
 
    #photoguide_box{
-      background-color: #1fe0; 
-      width:100%;
+      width:130%;
       height:300px;
       overflow-x:auto;
       overflow-y:hidden;
       display:flex;
       align-items: center;
+      margin: 0% 0% 10% -15%;
    }
    
    #photoguide_box::-webkit-scrollbar {
@@ -43,7 +43,7 @@
      background-color: grey;
    }
    .photoguide_item{
-      width: 150px;
+      width: 300%;
       height: 200px;
       margin-right: 20px;
       cursor: pointer;
@@ -57,8 +57,7 @@
       /* transform: scale(1.5); */
    }
    .photoguide_image {
-      width: 150px;
-      height: 100%;
+      width: 250%;      
       object-fit: cover;
       transition: transform 400ms ease-out;
    } 
