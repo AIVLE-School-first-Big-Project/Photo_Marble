@@ -127,8 +127,7 @@ DATABASES = {
         'USER': 'admin',
         'PASSWORD': get_secret("PASSWORD"),
         'HOST': get_secret("DATABASE"),
-        'PORT': 3306
-        }
+        'PORT': 3306}
 }
 
 
