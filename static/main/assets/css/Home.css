@@ -391,6 +391,7 @@ body {
     margin:0;
     padding:0;
     border-top: 1px solid rgba(255, 255, 255, 0.10);
+    text-decoration: none;
 }
 .sidebarMenuInner li{
   list-style: none;
@@ -401,13 +402,15 @@ body {
   cursor: pointer;
   border-bottom: 1px solid rgba(255, 255, 255, 0.10);
   font-size: 38px;   
-  font-family: 'yg-jalnan';     
+  font-family: 'yg-jalnan'; 
+  text-decoration: none;    
 }
 .sidebarMenuInner li span{
   display: block;
   font-size: 14px;
   color: rgba(255, 255, 255, 0.50);
   font-family: 'yg-jalnan';   
+  text-decoration: none;
 }
 .sidebarMenuInner li a{
   color: #db545a;
