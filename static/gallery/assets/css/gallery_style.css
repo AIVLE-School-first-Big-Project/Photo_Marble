@@ -69,7 +69,7 @@ body {
 }
 
 .gallery-image:hover {
-   transform: scale(1.15);
+   transform: scale(1.05);
 }
 
 /*
@@ -374,16 +374,20 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
   margin-top:60px;
   margin-bottom: 40px;
   
+  
 }
 
 .my_gallery_layout{
   width:100%;
+  background-image: linear-gradient(#fbeced, #adcce9);
+  
 }
 
 .my_gallery_section{
   padding-left:30px;
   padding-right:30px;
   overflow-y: auto;
+  
 }
 
 .photo_grid_container{
