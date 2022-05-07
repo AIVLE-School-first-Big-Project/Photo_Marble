@@ -12,29 +12,21 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     </head>
     
-<body>
-    <head>
-    <meta name="viewport" content="width=320; user-scalable=no" />
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <title>Camera</title>
-    
-    </head>
-    
-    <br><br><br>
-    <div class="row justify-content-center h-100"style="background-image: linear-gradient(#fbeced, #adcce9);"> 
-    <h1 class="display-4" style="font-family: 'Cafe24Ssurround';color:#db545a;text-align : center;">
-        랜드마크 인식 성공
-    </h1><br><br>
-    <center>   
-    <img src = {{s3_url}} />
-    </center>
-
-    <button style="background-image: linear-gradient(to right, #77aad9, #e68387);border-style: none; text-align:center; color: white;font-family: 'Cafe24Ssurround';position:fixed;bottom:0;" onclick="location.href='collection'">뒤로가기</button>
-
-
+<body>  
+<div style="background-image: linear-gradient(#fbeced, #adcce9); padding-top:10%; height:100%;">
+    <div style="height:0px; margin-bottom:15%;">
+        <h1 class="display-4" style="font-family:'Cafe24Ssurround';color:#db545a;text-align : center; font-size:70px;">
+            랜드마크 인식 성공
+        </h1>
+    </div>
+    <div class="img_result_div">
+        <img class="img_result" src = {{s3_url}} />
+    </div>
+    <div class="text_result_div">
+        <button class="back_btn" onclick="history.back()">뒤로가기</button>
+    </div>
+</div>
 </body>
-
-
 </html>
 
 <script>
@@ -54,11 +46,40 @@
   font-weight: normal;
   font-style: normal;
 }
-a {
-    color: #0d6efd;
-    text-decoration: underline;
-    font-size: 15px;
+
+
+.img_result_div {
+    text-align:center;
+    height:50%;
 }
+
+.img_result {
+    background-size: cover;
+    width: 85%;
+    height:90%;
+    object-fit: cover;
+}
+
+.text_result_div{
+    text-align:center;
+}
+
+.back_btn_div{
+    text-align:center;
+    margin-top:10%;
+}
+
+.back_btn{
+    background-image: linear-gradient(to right, #77aad9, #e68387);
+    border-style: none; 
+    text-align:center; 
+    color: white;
+    font-family: 'Cafe24Ssurround';
+    font-size:45px;
+    padding-right:30px;
+    padding-left:30px;
+}
+
 </style>
 
 {% endblock %}
