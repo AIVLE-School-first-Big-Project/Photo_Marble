@@ -425,3 +425,10 @@
   text-align: center;
 }
 
+#title{
+  font-family: 'Cafe24Ssurround';
+  color:#db545a;
+  text-align : center;
+  font-size:70px;
+  margin: 10% 0% 0% 0%;
+}
