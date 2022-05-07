@@ -19,23 +19,23 @@
 
 {% load bootstrap4 %}
 
-<div class="row justify-content-center h-100">
-    <div class="col align-self-center text-center card text-black" style="max-width: 25rem;">
+<div class="row justify-content-center h-100" style="background-image: linear-gradient(#fbeced, #adcce9);">
+    <div class="col align-self-center text-center card text-black" style="max-width: 40rem; height: 37rem; border-radius: 20px 20px 20px 20px;">
       <div class="card-body"> 
-      <h3 class="card-title">회원탈퇴</h1>
+      <h3 class="card-title" style="font-family: 'Cafe24Ssurround';font-size:60px;">회원탈퇴</h1>
     
 
-    <form method="POST" action="{% url 'delete' %}" class="delete">
+    <form method="POST" action="{% url 'delete' %}" class="delete" style="font-size:40px;margin-top:30px;">
         {% csrf_token %}
         <br>
         <div class="form-group">
-          <label for="password">비밀번호를 입력해주세요</label>
-          <input type="password" name="password" placeholder="비밀번호" class="form-control" id="password">
+          <label for="password" style="padding-bottom:10%;">비밀번호를 입력해주세요</label>
+          <input type="password" name="password" placeholder="비밀번호" class="form-control" id="password" style="font-size:40px;">
         </div>
         <br>
 
 
-        <button type="submit" id = 'btn1' class="btn" name="action">탈퇴하기</button>
+        <button type="submit" id = 'btn1' class="btn" name="action" style="font-family: 'Cafe24Ssurround';font-size:45px;">탈퇴하기</button>
 
     </form>
     <style>
