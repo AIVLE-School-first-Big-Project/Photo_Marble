@@ -207,17 +207,19 @@ def collection_update(request):
         # 이미 달성한 랜드마크를 촬영할 경우
         if len(Collection.objects.filter(user_id=user_id, landmark_id=landmark_id)) != 0:
 
+            data = open(path + "/collection/detect/result/" + 'test.jpg', 'rb')
+            s3_url = save_s3_fail(data=data, img_name=img_name)
+            data.close()
+
             # 해당 결과 파일 삭제
             del_path = path + "/collection/detect/result/"
             shutil.rmtree(del_path)
-
-            Collection_s3 = Collection.objects.get(user_id=user_id, landmark_id=landmark_id)
 
             return render(
                 request,
                 '../templates/collection/collection_fail.html',
                 context={
-                    "s3_url": Collection_s3.s3_url,
+                    "s3_url": s3_url,
                     "reason_fail": "이미 달성한 랜드마크입니다 \a"})
 
         else:
