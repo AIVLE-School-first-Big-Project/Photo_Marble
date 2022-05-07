@@ -60,7 +60,8 @@ def load_more(request):
 def upload(request):
     if request.method == 'POST':
         user_id = request.session['id']
-        gallery_idx = len(Gallery.objects.all())+1
+
+
         img = request.FILES['file']
         category = request.POST.get('category')
         landmark=request.POST.get('landmark')
@@ -75,7 +76,7 @@ def upload(request):
         for tag, value in img_info.items():
             decoded = TAGS.get(tag, tag)
             taglabel[decoded] = value
-
+        print(taglabel)
 
         if 'GPSInfo' in taglabel.keys():
             exifGPS = taglabel['GPSInfo']
@@ -108,7 +109,6 @@ def upload(request):
             latitude = 0
             longitude = 0
             created_at = time
-
         Gallery.objects.create(s3_url=s3_url, updated_at=time,category_id=category, landmark_id=landmark,user_id=user_id,photo_url=img, latitude=latitude, longitude=longitude, created_at = created_at)
     return redirect('gallery')
 
