@@ -4,6 +4,7 @@ from . import views
 urlpatterns = [
 
     path('', views.collection_mypage, name='collection'),
+    path('collection', views.collection_mypage, name='collection2'),
     path('ranking/', views.collection_ranking, name='ranking'),
     path('mygallery/', views.my_gallery_tmp, name='my_gallery'),
     path('map_modal/', views.map_modal, name='map_modal'),
