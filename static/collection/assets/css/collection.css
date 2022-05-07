@@ -41,12 +41,10 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
   margin-top: 3px;
 }
 
-#sidebarMenu {    
+#sidebarMenu {  
     position: absolute;
     left: 0;
-    
-    height: 800px;
-    transform: translateX(-290px);
+    height: 800px;    
     transition: transform 290ms ease-in-out;
     background-color: #FFFFFF;
     z-index:30;

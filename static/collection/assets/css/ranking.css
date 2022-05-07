@@ -9,13 +9,15 @@
   color:#ffffff;
   text-shadow: 2px 1px #888888;
   font-weight: bold;
+  font-size: 35px;
+  font-family:'yg-jalnan';
 }
 .profile_box{
   width: 70px;
   height: 70px;
   border-radius: 70%;
   overflow: hidden;
-  text-align: left; /* 문자들의 가운데 정렬을 해제 */ 
+  text-align: center; /* 문자들의 가운데 정렬을 해제 */ 
 
   margin: 0 auto;
   border:3px solid #ffffff;
@@ -43,15 +45,15 @@
     height: 140px;
  
     position:absolute;
-    left:45%;
-    top:20%;
+    left:41%;
+    top:32%;
   }
   #screen1-2{
-    width: 180px;
-    height: 190px;
+    width: 28%;
+    height: 45%;
     background-color: #ee7277;
     position:absolute;
-    left:45%;
+    left:36%;
     bottom:0%;
   }
   #screen2{
@@ -67,15 +69,15 @@
     height: 140px;
  
     position:absolute;
-    left:30%;
-    top:34%;
+    left:16%;
+    top:46%;
   }
   #screen2-2{
-    width: 180px;
-    height: 130px;
+    width: 28%;
+    height: 30%;
     background-color: #52c7c1;
     position:absolute;
-    left:30%;
+    left:12%;
     bottom:0%;
 
   }
@@ -92,12 +94,12 @@
     height: 140px;
 
     position:absolute;
-    left:60%;
-    top:45%;
+    left:65%;
+    top:54%;
   }
   #screen3-2{
-    width: 180px;
-    height: 80px;
+    width: 28%;
+    height: 23%;
     background-color: #ffd838;
     position:absolute;
     left:60%;
@@ -112,8 +114,8 @@
 
 .u-section-1 .u-group-1 {
   background-image: linear-gradient(#fbeced, #adcce9);
-  min-height: 432px;
-  height: auto;
+  min-height: 50%;
+  
   margin-top: 0;
   margin-bottom: 0;
 }
