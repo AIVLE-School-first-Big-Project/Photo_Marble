@@ -1,74 +1,57 @@
-from re import A
-from django import conf
-from django.shortcuts import render,redirect
-from django.urls import reverse
-from regex import B
+from django.shortcuts import render, redirect
 from main.models import User, Collection, Landmark, Locations, Gallery
 import os
 from django.db.models import Count
 from PIL import Image
-import yolov5
 from yolov5 import detect
-from django.utils.timezone import now
 from django.utils import timezone
-from django.contrib import messages
-from django.http import HttpResponse,JsonResponse
-
-# Create your views here.
-
+from django.http import JsonResponse
 
 # S3 이미지 업로드
 import boto3
-from config.settings import AWS_ACCESS_KEY_ID,AWS_SECRET_ACCESS_KEY,ALLOWED_HOSTS
+from config.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
 import shutil
 
-
+# API
+from django.views.decorators.csrf import csrf_exempt
 
 def collection_mypage(request):
-  
     # progress bar
-    
-    if request.user.is_authenticated==True:
+    if request.user.is_authenticated is True:
         ui = request.session['id']
-        visited_landmark = Collection.objects.filter(user_id= ui)
+        visited_landmark = Collection.objects.filter(user_id=ui)
         collection_cnt = len(visited_landmark)
         total = len(Landmark.objects.all())
         progress = int((collection_cnt/total)*100)
 
-        #map
-        test_dict = map(visited_landmark=visited_landmark,progress=progress)
+        # map
+        test_dict = map(visited_landmark=visited_landmark, progress=progress)
         
         return render(request, '../templates/collection/collection_mypage.html', test_dict)
     else:
-        return render(request,'../templates/collection/collection_mypage.html')
+        return render(request, '../templates/collection/collection_mypage.html')
 
-
-from django.db.models import Q
-from django.views.decorators.csrf import csrf_exempt
 @csrf_exempt
-def my_gallery(request,loc_id):
+def my_gallery(request, loc_id):
     ui = request.session['id']
-    landmark=Landmark.objects.get(landmark_id = loc_id)
-    gallery = Gallery.objects.filter(landmark_id = loc_id, user_id = ui).order_by('-created_at')
-    date_set=[]
+    landmark = Landmark.objects.get(landmark_id=loc_id)
+    gallery = Gallery.objects.filter(landmark_id=loc_id, user_id=ui).order_by('-created_at')
+    date_set = []
     for data in gallery:
         date_set.append(data.created_at.date())
 
     date_set = sorted(list(set(date_set)))
-    print(date_set)
 
-    result_dict={}
+    result_dict = {}
     for date in date_set:
         tmp_list = []
         for i in gallery:
             if i.created_at.date() == date:
                 tmp_list.append(i)
         result_dict[date] = tmp_list
-    
-    content = {"datas" : gallery, "landmarks":landmark,'date_set':date_set,'result_dict':result_dict}
+    content = {"datas" : gallery, "landmarks" : landmark, 'date_set' : date_set, 'result_dict' : result_dict}
     
     return render(request, "../templates/collection/my_gallery.html", content )
-
 
 
 def collection_ranking(request):
@@ -145,7 +128,7 @@ def collection_update(request):
 
         return render(request, '../templates/collection/collection_fail.html',
                                 context={"s3_url":fail_s3_url,
-                                "reason_fail":"인식하지 못했습니다. 다시 촬영해주세요"})
+                                "reason_fail":"     인식하지 못했습니다.\n      다시 촬영해주세요."})
         
     # 추론 txt파일 읽기 및 라벨 confidence값 불러오기
     f = open(path + "/collection/detect/result/labels/" + directoy_list[0], 'r')
@@ -179,7 +162,7 @@ def collection_update(request):
             s3_url = save_s3(data=data, img_name=img_name)
             
             Collection.objects.create(
-                 is_visited='1',
+                is_visited='1',
                 date=time , updated_at=time, user_id=user_id, 
                 landmark_id=landmark_id,s3_url=s3_url)
             data.close()
@@ -192,13 +175,17 @@ def collection_update(request):
 
         else:
             
+            # s3에 업로드 할 이미지
+            data = open(path + "/collection/detect/result/"+'test.jpg' , 'rb')
+            s3_url = save_s3_fail(data=data, img_name=img_name)
+            data.close()
             # 해당 결과 파일 삭제
             del_path = path + "/collection/detect/result/"
             shutil.rmtree(del_path)
            
-            Collection_s3 = Collection.objects.get(user_id=user_id,landmark_id=landmark_id)
+            # Collection_s3 = Collection.objects.get(user_id=user_id,landmark_id=landmark_id)
             return render(request, '../templates/collection/collection_fail.html',
-                                context={"s3_url":Collection_s3.s3_url,
+                                context={"s3_url": s3_url,
                                 "reason_fail":"기준 점수를 넘지 못했습니다.\n다시 촬영해주세요"})
 
     else: # 해당 유저의 첫 업로드 X
@@ -212,7 +199,7 @@ def collection_update(request):
             Collection_s3 = Collection.objects.get(user_id=user_id,landmark_id=landmark_id)
             return render(request, '../templates/collection/collection_fail.html',
                                 context={"s3_url":Collection_s3.s3_url,
-                                "reason_fail":"이미 달성한 랜드마크입니다."})
+                                "reason_fail":"이미 달성한 랜드마크입니다 \a"})
 
         else:
             if round(float(confidence),2) >= landmark_conf: # 기준 confidence 값 넘으면 S3, DB에 이미지 저장 및 랜드마크 달성
@@ -222,7 +209,7 @@ def collection_update(request):
                 s3_url = save_s3(data=data, img_name=img_name)
 
                 Collection.objects.create(
-                     is_visited='1', 
+                    is_visited='1', 
                     date=time , updated_at=time, user_id=user_id, 
                     landmark_id=landmark_id,s3_url=s3_url)
 
@@ -235,9 +222,17 @@ def collection_update(request):
                 return render(request, '../templates/collection/collection_update.html',context={"s3_url":s3_url})
 
             else:
-                Collection_s3 = Collection.objects.get(user_id=user_id,landmark_id=landmark_id)
+                # s3에 업로드 할 이미지
+                data = open(path + "/collection/detect/result/"+'test.jpg' , 'rb')
+                s3_url = save_s3_fail(data=data, img_name=img_name+"_under")
+
+                # 해당 결과 파일 삭제
+                del_path = path + "/collection/detect/result/"
+                shutil.rmtree(del_path)
+
+                # Collection_s3 = Collection.objects.get(user_id=user_id,landmark_id=landmark_id)
                 return render(request, '../templates/collection/collection_fail.html',
-                                context={"s3_url": Collection_s3.s3_url,
+                                context={"s3_url": s3_url,
                                 "reason_fail": "기준 점수를 넘지 못했습니다.\n다시 촬영해주세요"})
 
 
