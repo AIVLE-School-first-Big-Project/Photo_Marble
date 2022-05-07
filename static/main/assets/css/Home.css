@@ -378,9 +378,9 @@ body {
     height: 100%;
     position: absolute;
     left: 0;
-    width: 250px;
+    width: 290px;
     height: 800px;
-    transform: translateX(-250px);
+    transform: translateX(-290px);
     transition: transform 250ms ease-in-out;
     background-color: #FFFFFF;
     z-index:30;
@@ -399,7 +399,7 @@ body {
   padding: 20px;
   cursor: pointer;
   border-bottom: 1px solid rgba(255, 255, 255, 0.10);
-  font-size: 40px;   
+  font-size: 38px;   
   font-family: 'yg-jalnan';     
 }
 .sidebarMenuInner li span{
@@ -562,7 +562,7 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
   text-align:right;
   vertical-align: center;
   padding-right: 10px;
-  padding-top: 10px;
+  padding-top: 25px;
   padding-bottom: 10px;
 }
 
