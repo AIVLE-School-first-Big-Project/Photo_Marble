@@ -64,7 +64,7 @@
             reader.onload = function(e) {
                 $('#tempImage').attr('src', e.target.result)
                  .width('80%')
-                 .height('80%');
+                 .height('auto');
                 }
     
             reader.readAsDataURL(input.files[0]);
