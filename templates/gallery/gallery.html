@@ -14,33 +14,31 @@
     </head>
     
 <body>
-
     <section class="u-align-center u-clearfix u-white u-section-1 post-wrapper" id="carousel_871a">
         <div class="u-expanded-width u-gradient u-shape u-shape-rectangle u-shape-1"><br><br><br>
             <h1 class="display-4" id="title"> 갤러리 </h1><br>
             <div id = select style="margin:auto;text-align:center;">
                 <form method="post" action="{% url 'gallery' %}">
                     {% csrf_token %}
-                        <select class="form-select" name="landmark" id="landmark" style="font-family:'Cafe24Ssurround'; width:300px; height: 70px; font-size: 45px; text-align: center;vertical-align:middle;">
-                            <option value=0>전체</option>
-                                {% for landmark in landmarks%}
-                                    <option value="{{landmark.landmark_id}}"> {{landmark.name}} </option>
-                                {% endfor %}
-                        </select>
-                        <select class="form-select" name="category" id="category" style="font-family:'Cafe24Ssurround'; width:200px; height: 70px; font-size: 45px; text-align: center;vertical-align:middle;">
-                            <option value=0>전체</option>
-                            <option value=1>인물</option>
-                            <option value=2>풍경</option>
-          
-                          </select>
+                    <select class="form-select" name="landmark" id="landmark" style="font-family:'Cafe24Ssurround'; width:33rem; height: 70px; font-size: 45px; text-align: center;vertical-align:middle;">
+                        <option value=0>전체</option>
+                        {% for landmark in landmarks%}
+                            <option value="{{landmark.landmark_id}}"> {{landmark.name}} </option>
+                        {% endfor %}
+                    </select>
+                    <select class="form-select" name="category" id="category" style="font-family:'Cafe24Ssurround'; width:200px; height: 70px; font-size: 45px; text-align: center;vertical-align:middle;">
+                        <option value=0>전체</option>
+                        <option value=1>인물</option>
+                        <option value=2>풍경</option>
+                    </select>
                     <button style="background-image: linear-gradient(to right, #77aad9, #e68387); border-style: none; margin : -4 0 -5 0 ; color: white;font-family: 'Cafe24Ssurround'; font-size: 37px; width:100px;height:75px; margin-left:20px;" 
-                    type="submit" id = 'btn1' class="btn"> 검색</button>
-                        {% csrf_token %}    
-                      </form>
-                <button id="add_feed" style="background-image:linear-gradient(to right, #77aad9, #e68387); border-style: none; margin : -4 20 0 0 ; color: white;font-family: 'Cafe24Ssurround';float:right; width:130px;height:65px;font-size: 27px;" 
-                class="btn"> 사진 추가</button>
-                      
-              
+                    type="submit" id = 'btn1' class="btn"> 검색</button>                
+                    {% csrf_token %}    
+                </form>
+                <div style="margin-top:5rem;">
+                    <button id="add_feed" style="background-image:linear-gradient(to right, #77aad9, #e68387); border-style: none; margin : -4 20 0 0 ; color: white;font-family: 'Cafe24Ssurround';float:right; width:10rem;height:70px;font-size: 30px;" 
+                    class="btn"> 사진 추가</button>
+                </div>                      
             </div><br><br><br>
             <div class="gallery">
                 {% for data in page_obj %}
@@ -123,14 +121,14 @@
                     <input type="file" id="file" class="file" name="file" onchange="imageView(this)" accept="image/png, image/jpeg" required>
                 </div>
                 <div class="item" id="landmark_input">
-                    <select name="landmark" id="landmark" style="width:300px; height: 70px; font-size: 50px; text-align: center;">
+                    <select name="landmark" id="landmark" style="width:33rem; height: 70px; font-size: 50px; text-align: center;">
                         {% for landmark in landmarks%}
                             <option value="{{landmark.landmark_id}}"> {{landmark.name}} </option>
                         {% endfor %}
                     </select>
                 </div>
                 <div class="item" id="category_input">
-                    <select name="category" id="category" style="width:300px; height: 70px; font-size: 50px; text-align: center;">
+                    <select name="category" id="category" style="width:33rem; height: 70px; font-size: 50px; text-align: center;">
                         <option value=0>전체</option>
                         <option value=1>인물</option>
                         <option value=2>풍경</option>

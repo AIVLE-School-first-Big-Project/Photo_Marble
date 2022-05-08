@@ -26,7 +26,7 @@
         <div class="u-layout-row">
           <div class="u-size-30">
             <div class="u-layout-col">
-              <div class="u-container-style u-layout-cell u-size-30 u-white u-layout-cell-1">
+              <div class="u-container-style u-layout-cell u-size-30 u-white u-layout-cell-1" style="min-height:auto;">
                 <div class="u-container-layout u-container-layout-2">
                   <h1 class="u-text u-text-default u-text-palette-2-base u-text-1">
                     <span style="font-weight: 700; font-size:70px;">Profile</span>
@@ -51,13 +51,13 @@
               </div>
               <div class="u-container-style u-layout-cell u-size-9 u-white u-layout-cell-4">
                 <div class="u-container-layout u-container-layout-5">
-                  <p class="u-text u-text-palette-2-base u-text-2" style="font-size:45px;">이름</p>
+                  <p class="u-text u-text-palette-2-base u-text-2" style="font-size:45px;font-family: 'yg-jalnan';">이름</p>
                   <p class="u-text u-text-3" style="font-size:30px;">{{user.nickname}}&nbsp;</p>
                 </div>
               </div>
               <div class="u-container-style u-layout-cell u-size-10 u-white u-layout-cell-5">
                 <div class="u-container-layout u-container-layout-6">
-                  <p class="u-text  u-text-palette-2-base u-text-4" style="font-size:45px;">이메일</p>
+                  <p class="u-text  u-text-palette-2-base u-text-4" style="font-size:45px;font-family: 'yg-jalnan';">이메일</p>
                   <p class="u-text u-text-5" style="font-size:30px;">{{user.email}}&nbsp;</p>
                 </div>
                 
@@ -77,12 +77,12 @@
               <div class="cell-temp-clone u-align-left u-container-style u-layout-cell u-size-9 u-white u-layout-cell-8"
               style="text-align:center;">
                   <a href="{% url 'account_change_password' %}" class="btn" 
-                  style="font-family: 'Cafe24Ssurround'; background-image:linear-gradient(to right, #77aad9, #e68387); 
-                  border-style: none; color: white;font-family: 'Cafe24Ssurround';
+                  style="font-family: 'yg-jalnan'; background-image:linear-gradient(to right, #77aad9, #e68387); 
+                  border-style: none; color: white;
                   float:right; height:65px;font-size: 27px; margin-right:5%;" >비밀번호 변경</a>
                   <a href="{% url 'delete_account' %}" class="btn" 
-                  style="font-family: 'Cafe24Ssurround'; background-image:linear-gradient(to right, #77aad9, #e68387); 
-                  border-style: none; color: white;font-family: 'Cafe24Ssurround';
+                  style="font-family: 'yg-jalnan'; background-image:linear-gradient(to right, #77aad9, #e68387); 
+                  border-style: none; color: white;
                   float:right; height:65px;font-size: 27px;" >탈퇴하기</a>
               </div>
             </div>
@@ -94,37 +94,34 @@
 </body>
 
     <div id="modal_add_feed" class="modal_overlay">
-      <div class="modal_window">
-        <div class="modal_title">
-          <div class="modal_title_side"></div>
-          <div> 프로필 사진 수정하기 </div>
-          <div class="modal_title_side">
-              <span id="close_modal" class="material-icons-outlined">
-                  X
-              </span>
-          </div>
-      </div>
-    
-      <form method="post" action="profile_upload" enctype="multipart/form-data">
-      
-        {% comment %} {% csrf_token %}
-        <div class="modal_image_upload">           
-        <br> 
-        <input type="file" name="attachment[]"  multiple="multiple">  {% endcomment %}
-          <br>
-          <div class="item"> 
-          {% csrf_token %}
-          <div class="modal_image_upload" style="display: inline-block;">           
-          <br> 
-          <input type="file" name="file"  multiple="multiple"> 
-            <button style="background-image: linear-gradient(to right, #77aad9, #e68387);
-            border-style: none; margin : -4 0 0 0 ; display: inline-block;
-            color: white;" type="submit" id = 'btn1' class="btn"> 등록하기</button>
-          </div>
-        
-      </div>
-    </form>
-      </div>
+        <div class="modal_window">
+            <div class="modal_title">
+                <div class="modal_title_side"></div>
+                <div> 프로필 사진 수정하기</div>
+                <div class="modal_title_side">
+                    <span id="close_modal" class="material-icons-outlined">
+                        X
+                    </span>
+                </div>
+            </div>
+            <div>
+            <form method="post" action="profile_upload" enctype="multipart/form-data">
+                <div class="item"> 
+                {% csrf_token %}
+                    <div class="modal_image_upload" style="display: inline-block;">   
+                        <img id="tempImage" src="../../static/photoguide/images/photo-placeholder.png">        
+                        <input type="file" name="file" multiple="multiple" onchange="imageView(this)" accept="image/png, image/jpeg" required style="margin-top:1rem;margin-bottom:1rem; font-size: 2rem; padding: 0 10% 0 10%;font-family: 'yg-jalnan';">
+                        <div>
+                            <button style="background-image: linear-gradient(to right, #77aad9, #e68387);
+                                border-style: none; margin : -4 0 0 0 ; display: inline-block;width: 10rem;height: auto;font-size: 2rem;
+                                color: white;font-family: 'yg-jalnan';" type="submit" id = 'btn1' class="btn"> 등록하기 
+                            </button>
+                        </div>
+                    </div>       
+                </div>
+            </form>
+            </div>
+        </div>
     </div>
 
     
@@ -144,6 +141,25 @@
       modal.style.display = "none";
       document.body.style.overflowY = "visible";
   });
+
+  function imageView(input) {
+      /* Secure Coding */
+      fileName = input.files[0].name
+      if(!fileName.endsWith(".png") && !fileName.endsWith(".jpg") && !fileName.endsWith(".jpeg") && !fileName.endsWith(".PNG") && !fileName.endsWith(".JPG") && !fileName.endsWith(".JPEG")) {         
+          document.getElementById("file").value = "";
+          out.wright("업로드할 수 없는 확장자입니다.")
+      } else {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#tempImage').attr('src', e.target.result)
+                     .width('60%')
+                     .height('auto');
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    }
 </script>
 
 <style>  
@@ -174,8 +190,8 @@
   -webkit-backdrop-filter: blur(13.5px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
-  width: 600px;
-  height: 200px;
+  width: 80%%;
+  height:fit-content;
   position: relative;
   padding: 10px;
 }
@@ -185,7 +201,9 @@
   flex-direction: row;
   justify-content: space-between;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 3rem;
+  margin-bottom:10%;
+  font-family: 'yg-jalnan';
 }
 
 .modal_title_side{
@@ -197,8 +215,7 @@
 
   text-align: center;
   transition: all .15s ease-in-out;
-  width:580px;
-  height: 200px;
+  height: fit-content;
   display: grid;
   grid-template-rows: repeat(2, 1fr);
 }
