@@ -5,7 +5,7 @@
 
 .u-section-1 .u-group-1 {
   background-image: linear-gradient(#fbeced, #adcce9);
-  min-height: 930px;
+  min-height: 110%;
 }
 
 .u-section-1 .u-container-layout-1 {
@@ -13,7 +13,7 @@
 }
 
 .u-section-1 .u-layout-wrap-1 {
-  width: 754px;
+  width: 900px;
   margin: 73px auto 0;
 }
 
@@ -173,10 +173,6 @@
   padding: 9px 22px;
 }
 
-@media (max-width: 1199px) {
-  .u-section-1 .u-group-1 {
-    min-height: 210%;
-  }
 
   .u-section-1 .u-layout-cell-1 {
     min-height: 400px;
