@@ -99,7 +99,7 @@ def collection_update(request):
     path = os.getcwd()  # C:\Users\User\Desktop\potomable\git적용\Photo_Marble
 
     # 이미지 등록 안 하고 올릴시 새로고침
-    if not request.GET.get("camcorder"):
+    if "camcorder" not in request.FILES:
         return redirect("http://172.30.1.56:8000/collection/")
 
 
