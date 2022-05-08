@@ -100,7 +100,7 @@ def collection_update(request):
 
     # 이미지 등록 안 하고 올릴시 새로고침
     if "camcorder" not in request.FILES:
-        return redirect("http://172.30.1.56:8000/collection/")
+        return redirect(".")
 
 
     # 카메라 촬영 이미지 준비
