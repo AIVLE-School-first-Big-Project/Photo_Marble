@@ -1,3 +1,8 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+* { 
+font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+}
 
 #btn1{
     background-image: linear-gradient(to right, #77aad9, #e68387);
@@ -54,7 +59,7 @@
 .comment_user{
     font-size:3rem;
     padding-right: 1.16rem;
-    font-family: 'yg-jalnan';
+    font-family: 'Pretendard';
     vertical-align: middle
 }
 
@@ -88,6 +93,7 @@
 }
 
 .feed_name_txt{
+    font-family: 'yg-jalnan';
     font-size: 4rem;
     padding: 0px 3%;
     /* font-weight: bold; */
