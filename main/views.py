@@ -15,7 +15,7 @@ from django.core.mail import EmailMessage
 from django.utils.encoding import force_bytes, force_str
 from .tokens import member_activation_token
 from django.core.exceptions import ValidationError
-
+from django.urls import reverse, reverse_lazy
 
 def index(request):
     if request.user.is_authenticated is False:
@@ -26,6 +26,7 @@ def index(request):
 
 
 class CustomPasswordChangeView(PasswordChangeView):
+
     def get_success_url(self):
         return reverse("index")
 
@@ -149,7 +150,7 @@ class CustomSLogoutView(LogoutView):
 
 class CustomSPasswordChangeView(PasswordChangeView):
     template_name = "main/password_change.html"
-
+    success_url = reverse_lazy("mypage")
 
 def get_redirect_url(self):
     return redirect("login")

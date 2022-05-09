@@ -102,7 +102,6 @@ def collection_update(request):
     if "camcorder" not in request.FILES:
         return redirect("/collection")
 
-
     # 카메라 촬영 이미지 준비
     img = request.FILES['camcorder']
     img_name = img

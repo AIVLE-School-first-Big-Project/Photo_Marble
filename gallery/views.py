@@ -62,6 +62,8 @@ def upload(request):
         temp_img = Image.open(img)
         img_info = temp_img._getexif()
         taglabel = {}
+        if img_info is None:
+            img_info = {}
 
         for tag, value in img_info.items():
             decoded = TAGS.get(tag, tag)
@@ -78,20 +80,21 @@ def upload(request):
             # 위도 계산
             latitude = (latDeg + (latMin + latSec / 60.0) / 60.0)
             # 북위, 남위인지를 판단, 남위일 경우 -로 변경
-            if exifGPS[1] == 'S':
-                Lat = Lat * -1
+            # if exifGPS[1] == 'S':
+            #     Lat = Lat * -1
 
             # 경도 계산
             longitude = (lonDeg + (lonMin + lonSec / 60.0) / 60.0)
             # 동경, 서경인지를 판단, 서경일 경우 -로 변경
-            if exifGPS[3] == 'W':
-                Lon = Lon * -1
+            # if exifGPS[3] == 'W':
+            #     Lon = Lon * -1
 
             # 사진이 생성된 날짜 (created_at)
             taglabel['DateTimeOriginal']
             tmp_date = taglabel['DateTimeOriginal'][:10].replace(':', '-')
             tmp_time = taglabel['DateTimeOriginal'][10:]
             created_at = tmp_date + tmp_time
+
         # 사진 메타데이터 (시간, 위치) 저장
         else:
             latitude = 0
