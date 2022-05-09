@@ -37,7 +37,7 @@
                 </form>
                 <div style="margin-top:5rem;">
                     <button id="add_feed" style="background-image:linear-gradient(to right, #77aad9, #e68387); border-style: none; margin : -4 20 0 0 ; color: white;font-family: 'Cafe24Ssurround';float:right; width:10rem;height:70px;font-size: 30px;" 
-                    class="btn"> 사진 추가</button>
+                    class="btn" onclick="goTop();"> 사진 추가</button>
                 </div>                      
             </div><br><br><br>
             <div class="gallery">
@@ -172,6 +172,9 @@
         document.body.style.overflowY = "hidden";
     });
 
+function goTop(){
+    document.body.scrollTop = 0;
+}
   
   // 모달 닫기 코드
   const buttonCloseModal = document.getElementById("close_modal");
@@ -191,8 +194,8 @@
                 var reader = new FileReader();
                 reader.onload = function(e) {
                     $('#tempImage').attr('src', e.target.result)
-                     .width(300)
-                     .height(300);
+                     .width('25rem')
+                     .height('25rem');
                 }
                 reader.readAsDataURL(input.files[0]);
             }
