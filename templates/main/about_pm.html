@@ -1,3 +1,4 @@
+{% extends 'base.html' %}
 {% block content %}
 {% load static %}
 <!DOCTYPE html>
@@ -7,6 +8,9 @@
   <link rel="stylesheet" href="{% static 'main/assets/css/about_pm.css' %}">
   <title>포토마불 가이드 </title>
   <link rel="stylesheet" href="./style.css">
+
+  <!-- Animation CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
 </head>
 <body>
@@ -37,28 +41,51 @@
     <div class='progress_inner__bar--set'></div>
     <div class='progress_inner__tabs'>
       <div class='tab tab-0'>
-        <h1>랜드마크 도착</h1>
-        <img src ="{% static 'main/images/step1.png' %}">
-        <p> 랜드마크에 도착해서 사진을 찍어 인증하세요!</p>
+        <h1>랜드마크 방문</h1>
+        <div style="position:relative;">
+          <img style="width:50%;height:auto;" src ="{% static 'main/images/step1_1.jpg' %}">
+          <div style="position:absolute;top:3rem;left:10rem;">
+            <img id="step1_notice" class="notice" src ="{% static 'main/images/sparkles.png' %}">
+          </div>
+        </div>
+        <p style="margin-top:6%;font-size:3rem;margin-bottom:15%;"> 랜드마크에서<br> 사진을 찍어<br> 인증하세요!</p>
+        <p style="font-size:1.5rem;"> 포토마불의 AI 객체인식 모델이<br>사용자가 찍은 사진을 분석하여<br>랜드마크를 인식합니다.</p>
       </div>
       <div class = 'tab tab-1'>
         <h1>랜드마크를 건설하세요!</h1>
-        <img src ="{% static 'main/images/step2.png' %}">
-        <p> 랜드마크를 건설해서 지도를 채워보세요!<p>
+        <div style="position:relative;">
+            <img style="margin-top:0;" src ="{% static 'main/images/step1.png' %}">
+            <p style="margin-top:6%;font-size:2.8rem;margin-bottom:5%;"> 인식이 성공하면<br> 지도에 랜드마크가<br> 건설됩니다!<p>
+              <div style="position:absolute;left: 57%;">
+                  <img style="width:20rem;" src ="{% static 'main/images/step2_1.png' %}">
+              </div>
+              <div style="position:absolute;left: 23rem;top: 18rem;">
+                  <img style="width:12rem;" src ="{% static 'main/images/arrow.png' %}">
+              </div>
+        </div>
       </div>
       <div class='tab tab-2'>
-        <h1>다른 사람의 사진을 구경하세요!</h1>
-        <img src ="{% static 'main/images/step3.png' %}">
-        <p> 다른 사람의 사진을 구경해보세요<p>
+        <h1>잘 나온 사진을 추천받으세요!</h1>
+        <img style="width:50%;" src ="{% static 'main/images/step3_1.png' %}">
+        <p style="margin-top:25%;font-size:2.2rem;margin-bottom:15%;"> 포토마불의 AI 모델이<br>현 위치의 베스트 컷을 <br>추천해드립니다!<p>
       </div>
       <div class='tab tab-3'>
         <h1>멋진 사진을 찍어 자랑해보세요!</h1>
-        <img src ="{% static 'main/images/step4.png' %}">
-        <p> 사진을 찍어 올리고, <p>
+        <img style="width:50%;" src ="{% static 'main/images/step4_1.png' %}">
+        <p style="margin-top:25%;font-size:2.5rem;margin-bottom:5%;"> 사진을 찍어올리고,<br>다른 사용자들과 소통하세요!<p>
       </div>
       <div class='tab tab-4'>
-        <h1>포토마불을 즐겨보세요!</h1>    
-        <img src ="{% static 'main/images/enjoy.png' %}"style="margin: 10% 18%;">  
+        <h1>포토마불을 즐겨보세요!</h1> 
+        <div style="position:relative;">
+          <img src ="{% static 'main/images/enjoy.png' %}"style="margin: 10% 18%;">  
+          <div style="position:absolute;top:3rem;left:10rem;">
+            <img style="width:12rem;height:auto;"class="step5_sparkles" src ="{% static 'main/images/sparkles.png' %}">
+          </div>
+          <div style="position:absolute;right:13rem;top: 23rem;">
+            <img style="width:15rem;height:auto;"class="step5_sparkles" src ="{% static 'main/images/sparkles.png' %}">
+          </div>
+        </div>
+        
       </div>
     </div>
     <div class='progress_inner__status'>

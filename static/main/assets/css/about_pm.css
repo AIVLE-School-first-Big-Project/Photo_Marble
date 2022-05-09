@@ -337,3 +337,14 @@ p{
   font-weight: normal;
   font-style: normal;
 }
+
+
+#step1_notice{
+  width: 15rem;
+}
+
+.notice {
+  display: inline-block; 
+  animation: bounceIn; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 2s; /* don't forget to set a duration! */
+}
