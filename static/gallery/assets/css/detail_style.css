@@ -3,6 +3,18 @@
 * { 
 font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
 }
+@font-face {
+    font-family: 'GangwonEdu_OTFBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face{
+    font-family: 'yg-jalnan';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
 
 #btn1{
     background-image: linear-gradient(to right, #77aad9, #e68387);
@@ -12,6 +24,7 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
     width: 130px;
     font-size: 30px;
     margin-left:2rem;
+    font-family: 'yg-jalnan';
 }
 
 .main_body {
@@ -93,8 +106,8 @@ font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, '
 }
 
 .feed_name_txt{
-    font-family: 'yg-jalnan';
-    font-size: 4rem;
+    font-family: 'GangwonEdu_OTFBoldA';
+    font-size: 3.5rem;
     padding: 0px 3%;
     /* font-weight: bold; */
     
