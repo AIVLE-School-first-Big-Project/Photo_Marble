@@ -184,7 +184,8 @@ body {
 
 .my_gallery_layout{
   width:100%;
-  background-image: linear-gradient(#fbeced, #adcce9);
+  height: 150%;
+  /* background-image: linear-gradient(#fbeced, #adcce9); */
   
 }
 

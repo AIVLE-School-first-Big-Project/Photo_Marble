@@ -15,36 +15,39 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="my_gallery_text_container">      
-        <br><br><br>
-        <h1 class="display-4" id="title"> 나의 갤러리 </h1><br>
+    <div style="background-image: linear-gradient(#fbeced, #adcce9);">
+        <div class="my_gallery_text_container">      
+            <br><br><br>
+            <h1 class="display-4" id="title"> 나의 갤러리 </h1><br>
 
-    </div>
+        </div>
 
-    <div class="my_gallery_layout">
-        {% if datas %}
-            <section class="my_gallery_section">
-                <div>
-                {% for date in date_set %}
-                    <div class="img_date">
-                        <hr>
-                        <span style="font-family: 'Cafe24Ssurround';">{{date}}</span>
+        <div class="my_gallery_layout">
+            {% if datas %}
+                <section class="my_gallery_section">
+                    <div>
+                        <h4 style="font-family: 'Cafe24Ssurround'; color: #adcce9; text-align: left; font-size: 3rem;margin-left: 2rem;">{{landmarks.name}}</h4>
+                    {% for date in date_set %}
+                        <div class="img_date">
+                            <hr>
+                            <span style="font-family: 'Cafe24Ssurround';">{{date}}</span>
+                        </div>
+                        {% for key,value in result_dict.items %}
+                            {% if key == date %}
+                                <div class="photo_grid_container">
+                                    {% for data in value %}
+                                        <a href= "{% url 'detail2' data.gallery_id %}" class="photo_grid_items" aria-label="Genuine Gemini">
+                                            <img class="photo_grid_items" src= "{{ data.s3_url }}">
+                                        </a>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        {% endfor %}       
+                    {% endfor %} 
                     </div>
-                    {% for key,value in result_dict.items %}
-                        {% if key == date %}
-                            <div class="photo_grid_container">
-                                {% for data in value %}
-                                    <a href= "{% url 'detail2' data.gallery_id %}" class="photo_grid_items" aria-label="Genuine Gemini">
-                                        <img class="photo_grid_items" src= "{{ data.s3_url }}">
-                                    </a>
-                                {% endfor %}
-                            </div>
-                        {% endif %}
-                    {% endfor %}       
-                {% endfor %} 
-                </div>
-            </section>
-        {% endif %}
+                </section>
+            {% endif %}
+        </div>
     </div>
 </body>
 </html>
