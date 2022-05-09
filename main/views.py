@@ -173,3 +173,6 @@ def signup3(request):
 
 def aboutus(request):
     return render(request, "../templates/main/aboutus.html")
+
+def about_pm(request):
+    return render(request, "../templates/main/about_pm.html")
