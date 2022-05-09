@@ -98,6 +98,9 @@ def collection_update(request):
     # 카메라로 찍은 이미지 경로 설정
     path = os.getcwd()  # C:\Users\User\Desktop\potomable\git적용\Photo_Marble
 
+    # collection/data/images 디렉토리 생성
+    createFolder(path + '/collection/data/images/')
+
     # 이미지 등록 안 하고 올릴시 새로고침
     if "camcorder" not in request.FILES:
         return redirect("/collection")
@@ -274,6 +277,13 @@ def map_modal(request):
 
 
 # ordinary functunction
+
+def createFolder(directory):
+    try:
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+    except OSError:
+        print ('Error: Creating directory. ' +  directory)
 
 
 def map(visited_landmark, progress):
