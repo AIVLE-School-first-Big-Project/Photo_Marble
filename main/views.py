@@ -76,9 +76,11 @@ def main(request):
     else:
         return render(request, '../templates/main/main.html', {'login': "f"})
 
+
 # 회원 탈퇴
 def delete_account(request):
     return render(request, '../templates/main/delete_account.html')
+
 
 # 마이페이지에서의 회원탈퇴
 def delete(request):
@@ -94,9 +96,11 @@ def delete(request):
 
     return render(request, '../templates/main/delete_result.html', {'result': result})
 
+
 # 탈퇴 완료 후 화면 전환
 def delete_result(request):
     return render(request, '../templates/main/delete_result.html')
+
 
 # 회원가입
 class CustomSignupView(SignupView):
@@ -117,10 +121,9 @@ class CustomSignupView(SignupView):
         email.send()
         return render(self.request, "main/signup2.html")
 
+
 # 회원가입기능
 # 이메일에 @ & . 없으면 안내해준다.
-
-
 def validate_email(email):
     if '@' not in email or '.' not in email:
         raise ValidationError(("Invalid Email"), code='invalid')
@@ -172,6 +175,7 @@ def signup3(request):
 
 def aboutus(request):
     return render(request, "../templates/main/aboutus.html")
+
 
 def about_pm(request):
     return render(request, "../templates/main/about_pm.html")

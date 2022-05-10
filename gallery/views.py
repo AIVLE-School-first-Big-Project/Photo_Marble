@@ -168,6 +168,7 @@ def likes(request):
         gallery = Gallery.objects.get(gallery_id=gallery_id)
         user = request.user
 
+        # 유저가 좋아요를 했다가 취소하기
         if gallery.like_users.filter(id=user.id).exists():
             gallery.like_users.remove(user)
             message = "좋아요 취소"
