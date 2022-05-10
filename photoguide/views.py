@@ -53,7 +53,3 @@ def photoguide_update(request, loc_id):
 
 def photoguide_result(request):
     return render(request, '../templates/photoguide/photoguide_result.html')
-
-
-def photoguide_result_copy(request):
-    return render(request, '../templates/photoguide/photoguide_result_copy.html')
