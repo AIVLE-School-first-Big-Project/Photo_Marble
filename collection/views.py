@@ -98,16 +98,19 @@ def collection_update(request):
     # 카메라로 찍은 이미지 경로 설정
     path = os.getcwd()  # C:\Users\User\Desktop\potomable\git적용\Photo_Marble
 
+    # collection/data/images 디렉토리 생성
+    createFolder(path + '/collection/data/images/')
+
     # 이미지 등록 안 하고 올릴시 새로고침
     if "camcorder" not in request.FILES:
-        return redirect("http://172.30.1.56:8000/collection/")
-
+        return redirect("/collection")
 
     # 카메라 촬영 이미지 준비
     img = request.FILES['camcorder']
     img_name = img
     img = Image.open(img)
     time = timezone.now()
+
     # 이미지 회전하기 90도 --> 핸드폰으로 찍으면 왼쪽으로 90회전 해서 나옴
     deg_image = img.transpose(Image.ROTATE_270)
     img = deg_image.save(path + '/collection/data/images/test.jpg')
@@ -275,6 +278,13 @@ def map_modal(request):
 
 
 # ordinary functunction
+
+def createFolder(directory):
+    try:
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+    except OSError:
+        print('Error: Creating directory. ' + directory)
 
 
 def map(visited_landmark, progress):

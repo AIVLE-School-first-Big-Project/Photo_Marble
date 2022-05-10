@@ -11,15 +11,15 @@
 <div class="row justify-content-center h-100"style="background-image: linear-gradient(#fbeced, #adcce9);">
   <div class="col align-self-center text-center card text-black" style="max-width: 35rem;height: 35rem; border-radius: 20px 20px 20px 20px;">
     <div class="card-body"> 
-        <h3 class="card-title" style="font-size:50px;" >Logout</h1>
+        <h3 class="card-title" style="font-size:50px;margin-top: 1rem;" >Logout</h1>
       <form method="post" action="{% url 'account_logout' %}"><br><br><br>
         {% csrf_token %}
         
         <p style= "font-family: 'yg-jalnan'; font-size:40px;" >로그아웃 하시겠습니까?</p>
         <div style="padding-top:25%;">
-            <button class="btn" id = 'btn1' name="action">로그아웃</button>
+            <button class="btn" id = 'btn1' name="action" style="margin-right:2rem;">로그아웃</button>
             <form>
-                <input type="button" value="돌아가기" class="btn" id = 'btn1' onclick="history.back()">
+                <input type="button" value="돌아가기" class="btn" id = 'btn1' onclick="history.back()" style="margin-left:2rem;">
             </form>
         </div>
      

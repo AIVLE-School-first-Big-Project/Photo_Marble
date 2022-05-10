@@ -22,8 +22,8 @@
                             <div class="u-align-center u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white u-list-item-1">
                                 <div class="u-container-layout u-similar-container u-container-layout-1">              
                                     <img class="u-image u-image-default u-preserve-proportions u-image-1" alt="" data-image-width="800" data-image-height="800" src="{% static 'main/images/gallery.png' %}">
-                                    <h3 class="u-text u-text-default u-text-grey-70 u-text-2">GALLERY</h3>
-                                    <p class="u-text u-text-body-color u-text-3">갤러리 설명</p>
+                                    <h3 class="u-text u-text-default u-text-grey-70 u-text-2" style="font-size:2.5rem;">GALLERY</h3>
+                                    <p class="u-text u-text-body-color u-text-3" style="font-size: 1.3rem;">#갤러리 #피드<br>#커뮤니티</p>
                                 </div>
                             </div>
                         </a>
@@ -35,8 +35,8 @@
                             <div class="u-align-center u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white u-list-item-2">
                                 <div class="u-container-layout u-similar-container u-container-layout-2">
                                     <img class="u-image u-image-default u-preserve-proportions u-image-2" alt="" data-image-width="512" data-image-height="512" src="{% static 'main/images/place.png' %}">
-                                    <h3 class="u-text u-text-default u-text-grey-70 u-text-4">COLLECTION</h3>
-                                    <p class="u-text u-text-body-color u-text-5">콜렉션 설명</p>
+                                    <h3 class="u-text u-text-default u-text-grey-70 u-text-4" style="font-size:2.5rem;">COLLECTION</h3>
+                                    <p class="u-text u-text-body-color u-text-5" style="font-size: 1.3rem;">#랜드마크_촬영 #스탬프_획득<br>#포즈_추천</p>
                                 </div>
                             </div>
                         </a>
@@ -48,21 +48,17 @@
                             <div class="u-align-center u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white u-list-item-3">
                                 <div class="u-container-layout u-similar-container u-container-layout-3">
                                     <img class="u-image u-image-default u-preserve-proportions u-image-3" alt="" data-image-width="512" data-image-height="512" src="{% static 'main/images/ranking2.png' %}">
-                                    <h3 class="u-text u-text-default u-text-grey-70 u-text-6">RANKING</h3>
-                                    <p class="u-text u-text-body-color u-text-7">랭킹 설명</p>
+                                    <h3 class="u-text u-text-default u-text-grey-70 u-text-6"style="font-size:2.5rem;">RANKING</h3>
+                                    <p class="u-text u-text-body-color u-text-7" style="font-size: 1.3rem;">#누가누가 #많이_다녀왔나<br>#랭킹</p>
                                 </div>
                             </div>
                         </a>
-                    {% if user.is_authenticated %}
-                        <a href="{% url 'aboutus' %}" class="link">
-                    {% else %}
-                        <a onclick="not_login();" >
-                    {% endif %}
+                        <a href="{% url 'about_pm' %}" class="link">
                             <div class="u-align-center u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white u-list-item-4">
                                 <div class="u-container-layout u-similar-container u-container-layout-4">
                                     <img class="u-image u-image-default u-preserve-proportions u-image-4" alt="" data-image-width="512" data-image-height="512" src="{% static 'main/images/info.png' %}">
-                                    <h3 class="u-text u-text-default u-text-grey-70 u-text-8">ABOUT US</h3>
-                                    <p class="u-text u-text-body-color u-text-9">ABOUT US</p>
+                                    <h3 class="u-text u-text-default u-text-grey-70 u-text-8"style="font-size:2.1rem;">ABOUT<br>Photo Marble</h3>
+                                    <p class="u-text u-text-body-color u-text-9" style="font-size: 1.3rem;">#포토마불_사용가이드</p>
                                 </div>
                             </div>
                         </a>

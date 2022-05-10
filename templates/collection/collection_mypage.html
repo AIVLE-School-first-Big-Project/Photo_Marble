@@ -135,8 +135,11 @@
                 <div class="recog_btn">
                 <form method="post" action="collection_update" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <input type="file" id="camcorder" name="camcorder" capture="camcorder" accept="image/*" 
-                    style="border-style: none;text-align:center; color: white;font-family: 'Cafe24Ssurround';font-size:40px;" >
+                    <div class = "filebox">
+                    <label for="input_file"> 랜드마크 촬영</label>
+                    <input type="file" id="input_file" name="camcorder" capture="camcorder" accept="image/*">
+                    <input class="upload-name" id = "file_path" value="촬영된 랜드마크가 없습니다.">
+                    </div>
                     <div>
                         <button style="background-image: linear-gradient(to right, #77aad9, #e68387);
                                        border-style: none;text-align:center; margin:2% 0% 20% 57%;
@@ -153,7 +156,7 @@
                     <div class="modal_title_side"></div>
                     <div style="font-family: 'Cafe24Ssurround';font-size:70px;">랜드마크 선택하기</div>
                     <div class="modal_title_side">
-                        <span id="close_modal" class="material-icons-outlined">
+                        <span id="close_modal" class="material-icons-outlined" style="font-size:4rem;">
                             X
                         </span>
                     </div>
@@ -163,10 +166,10 @@
             <select id = "location_list" class="form-select" name="location_list" style="display:inline-block; width:80%;height:20%; margin-top:60px;font-family: 'Cafe24Ssurround';font-size:50px;"></select>
             <div id="select_direction">
                 <button name = "photoguide" style="background-image: linear-gradient(to right, #77aad9, #e68387);
-                border-style: none; height :auto; margin : 10% 0% 0% 0%;;font-family: 'Cafe24Ssurround';
+                border-style: none; height :auto; margin : 10% 5% 0% 0%;;font-family: 'Cafe24Ssurround';
                 color: white; font-size:55px;" class="btn"> 유사한 사진 찾기</button>
                 <button name = "my_gallery" style="background-image: linear-gradient(to right, #77aad9, #e68387);
-                border-style: none; height : 97; margin : 10% 0% 0% 0%; ;font-family: 'Cafe24Ssurround';
+                border-style: none; height : 97; margin : 10% 0% 0% 5%; ;font-family: 'Cafe24Ssurround';
                 color: white; font-size:55px;" class="btn">나의 갤러리</button>
             </div>
             </form>
@@ -185,6 +188,8 @@
         f.setAttribute('action', 'http://49.164.234.56:8000/collection/mygallery/'.concat(loc_id).concat('/'));
         document.head.appendChild(f);
         f.submit();
+
+        
 }
 
     function goTop(id){
@@ -239,6 +244,11 @@
         modal.style.display = "none";
         document.body.style.overflowY = "visible";
     });
+      
+      document.getElementById("input_file").onchange = function () {
+        document.getElementById("file_path").value = this.value;
+    };
+    </script>
 </script>
 
 <!-- dk : ?? 수민이한테 물어봐야함 -->
@@ -255,7 +265,10 @@
             alert('동영상 재생버튼을 누르시오');
         });
     });
-    </script>
+    
+    
+</script>
+
 
 <style>
     @font-face {
@@ -315,6 +328,46 @@
 a {
  
     text-decoration: none;
+  }
+
+
+  .filebox input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+  }
+  
+  .filebox label {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #3399FF;
+    border-style: none;
+    text-align:center; 
+    font-family: 'Cafe24Ssurround';
+    font-size:30px;"
+    vertical-align: middle;
+    background-color: #f5f5f5;
+    cursor: pointer;
+    border: 1px solid #ebebeb;
+    border-radius: 7px;
+
+  }
+
+  .filebox .upload-name {
+    display: inline-block;
+    height: 68px;
+    width: 50%;
+    font-size: 20px; 
+    padding: 0 30px;
+    color: #808080;
+    font-family: 'Cafe24Ssurround';
+    vertical-align: middle;
+    background-color: #f5f5f5;
+    border: 1px solid #ebebeb;
+    border-radius: 5px;
   }
 </style>
 

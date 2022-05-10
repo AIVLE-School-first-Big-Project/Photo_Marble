@@ -269,7 +269,8 @@ body{
   font-style: normal;
 }
 #logout_btn{
-  color:#db545a
+  color:#db545a;
+  font-family: 'yg-jalnan';
 }
 body{
     font-family: 'Nunito', sans-serif;

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from allauth.account.views import PasswordChangeView, SignupView, LogoutView
 from main.models import User
 from . import forms
@@ -26,6 +26,7 @@ def index(request):
 
 
 class CustomPasswordChangeView(PasswordChangeView):
+
     def get_success_url(self):
         return reverse("index")
 
@@ -149,6 +150,7 @@ class CustomSLogoutView(LogoutView):
 
 class CustomSPasswordChangeView(PasswordChangeView):
     template_name = "main/password_change.html"
+    success_url = reverse_lazy("mypage")
 
 
 def get_redirect_url(self):
@@ -172,3 +174,6 @@ def signup3(request):
 
 def aboutus(request):
     return render(request, "../templates/main/aboutus.html")
+
+def about_pm(request):
+    return render(request, "../templates/main/about_pm.html")
