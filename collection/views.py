@@ -110,6 +110,7 @@ def collection_update(request):
     img_name = img
     img = Image.open(img)
     time = timezone.now()
+
     # 이미지 회전하기 90도 --> 핸드폰으로 찍으면 왼쪽으로 90회전 해서 나옴
     deg_image = img.transpose(Image.ROTATE_270)
     img = deg_image.save(path + '/collection/data/images/test.jpg')
@@ -283,7 +284,7 @@ def createFolder(directory):
         if not os.path.exists(directory):
             os.makedirs(directory)
     except OSError:
-        print ('Error: Creating directory. ' +  directory)
+        print('Error: Creating directory. ' + directory)
 
 
 def map(visited_landmark, progress):

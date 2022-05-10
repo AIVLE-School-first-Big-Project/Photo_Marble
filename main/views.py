@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from allauth.account.views import PasswordChangeView, SignupView, LogoutView
 from main.models import User
 from . import forms
@@ -15,7 +15,7 @@ from django.core.mail import EmailMessage
 from django.utils.encoding import force_bytes, force_str
 from .tokens import member_activation_token
 from django.core.exceptions import ValidationError
-from django.urls import reverse, reverse_lazy
+
 
 def index(request):
     if request.user.is_authenticated is False:
@@ -77,10 +77,12 @@ def main(request):
         return render(request, '../templates/main/main.html', {'login': "f"})
 
 
+# 회원 탈퇴
 def delete_account(request):
     return render(request, '../templates/main/delete_account.html')
 
 
+# 마이페이지에서의 회원탈퇴
 def delete(request):
     if request.method == 'POST':
         user = get_object_or_404(User, pk=request.session['id'])
@@ -95,10 +97,12 @@ def delete(request):
     return render(request, '../templates/main/delete_result.html', {'result': result})
 
 
+# 탈퇴 완료 후 화면 전환
 def delete_result(request):
     return render(request, '../templates/main/delete_result.html')
 
 
+# 회원가입
 class CustomSignupView(SignupView):
     template_name = "main/signup.html"
 
@@ -117,18 +121,15 @@ class CustomSignupView(SignupView):
         email.send()
         return render(self.request, "main/signup2.html")
 
+
 # 회원가입기능
 # 이메일에 @ & . 없으면 안내해준다.
-
-
 def validate_email(email):
     if '@' not in email or '.' not in email:
         raise ValidationError(("Invalid Email"), code='invalid')
 
 
 # 이메일 활성화(비활성화) #
-
-
 def activate(request, uid64, token, backend='django.contrib.auth.backends.ModelBackend', *args, **kwargs, ):
     try:
         uid = force_str(urlsafe_base64_decode(uid64))
@@ -152,6 +153,7 @@ class CustomSPasswordChangeView(PasswordChangeView):
     template_name = "main/password_change.html"
     success_url = reverse_lazy("mypage")
 
+
 def get_redirect_url(self):
     return redirect("login")
 
@@ -173,6 +175,7 @@ def signup3(request):
 
 def aboutus(request):
     return render(request, "../templates/main/aboutus.html")
+
 
 def about_pm(request):
     return render(request, "../templates/main/about_pm.html")

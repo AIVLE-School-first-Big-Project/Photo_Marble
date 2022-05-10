@@ -5,14 +5,11 @@ import pandas as pd
 
 
 # Create your views here.
-def photoguide(request):
-    return render(request, '../templates/photoguide/photoguide.html')
-
-
 def photoguide2(request, loc_id):
     return render(request, '../templates/photoguide/photoguide.html', {'loc_id': loc_id})
 
 
+# 포토가이드를 위한 사진 업로드
 def photoguide_update(request, loc_id):
     persons_features = np.load('./photoguide/DLmodel/similar_persons_feature.npy')
     back_features = np.load('./photoguide/DLmodel/similar_ground_feature.npy')
@@ -23,6 +20,8 @@ def photoguide_update(request, loc_id):
     result = response.json()
     query = np.array(result["pred"])
     # ----------------------------------------------------------------------------------------------------
+
+    # 사람과 풍경 나누기
     # persons
     person_list = []
     persons_paths = pd.read_csv("./photoguide/DLmodel/persons_paths.csv", index_col=0)
