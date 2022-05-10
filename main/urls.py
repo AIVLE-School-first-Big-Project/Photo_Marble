@@ -32,7 +32,6 @@ urlpatterns = [
     path('activate/<str:uid64>/<str:token>/', views.activate, name='activate'),
     path('signup3/', views.signup3, name='signup3'),
 
-    # aboutus
-    path('aboutus/', views.aboutus, name='aboutus'),
+    # About PhotoMarble (포토마불 사용가이드)
     path('about_pm/', views.about_pm, name='about_pm'),
 ]

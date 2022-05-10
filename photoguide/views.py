@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 
 
-# Create your views here.
+# 포토가이드 기본페이지
 def photoguide2(request, loc_id):
     return render(request, '../templates/photoguide/photoguide.html', {'loc_id': loc_id})
 
@@ -53,6 +53,6 @@ def photoguide_update(request, loc_id):
                                                                             'persons_imgs': person_list,
                                                                             'back_imgs': background_list})
 
-
+# 유사 추천 결과화면
 def photoguide_result(request):
     return render(request, '../templates/photoguide/photoguide_result.html')

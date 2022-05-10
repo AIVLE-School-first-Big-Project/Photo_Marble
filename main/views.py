@@ -173,9 +173,6 @@ def signup3(request):
     return render(request, "../templates/main/signup3.html")
 
 
-def aboutus(request):
-    return render(request, "../templates/main/aboutus.html")
-
-
+# About PhotoMarble 사용가이드 페이지
 def about_pm(request):
     return render(request, "../templates/main/about_pm.html")

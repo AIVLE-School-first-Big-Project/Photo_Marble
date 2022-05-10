@@ -264,6 +264,7 @@ def collection_update(request):
                 return render(request, '../templates/collection/collection_fail.html', context={"s3_url": s3_url, "reason_fail": "기준 점수를 넘지 못했습니다.\n다시 촬영해주세요"})
 
 
+# 서울시 지도에서 활성화된 지역구를 선택했을 때, 발생하는 모달창
 def map_modal(request):
     area = Locations.objects.get(location_id=request.POST['location_id'][1:])
     landmarks = Landmark.objects.filter(area=area.name)
@@ -277,8 +278,7 @@ def map_modal(request):
             'landmarks': list(user_collection.values())})
 
 
-# ordinary functunction
-
+# Yolo 파일생성
 def createFolder(directory):
     try:
         if not os.path.exists(directory):

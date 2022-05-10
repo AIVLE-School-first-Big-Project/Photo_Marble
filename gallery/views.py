@@ -9,7 +9,8 @@ from django.core import serializers
 from PIL import Image
 from PIL.ExifTags import TAGS
 
-
+# 갤러리 전체보기
+## 랜드마크별 필터링, 페이지네이션
 def gallery(request):
     l_id = request.POST.get('landmark')
     c_id = request.POST.get('category')
@@ -37,6 +38,8 @@ def gallery(request):
     return render(request, "../templates/gallery/gallery.html", context=content)
 
 
+# 페이지네이션
+## [더 보기] 버튼으로 AJAX 통신하여 불러올 수 있도록.
 def load_more(request):
     offset = int(request.POST['offset'])
     limit = 4
@@ -110,7 +113,8 @@ def upload(request):
     return redirect('gallery')
 
 
-# 전체 갤러리 보기
+# 사진 상세페이지 보기
+## 댓글(CRUD), 좋아요(AJAX 통신) 기능
 def detail(request, id):
     user_id = request.session['id']
     galleries = Gallery.objects.get(gallery_id=id)
