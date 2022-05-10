@@ -15,7 +15,7 @@ import shutil
 # API
 from django.views.decorators.csrf import csrf_exempt
 
-
+# 컬렉션 메인 페이지
 def collection_mypage(request):
     # progress bar
     if request.user.is_authenticated is True:
@@ -93,7 +93,7 @@ def collection_ranking(request):
             'top4_7': rank_list[3:]}
             )
 
-
+# 랜드마크 달성을 위한 이미지 인식
 def collection_update(request):
     # 카메라로 찍은 이미지 경로 설정
     path = os.getcwd()  # C:\Users\User\Desktop\potomable\git적용\Photo_Marble
@@ -278,7 +278,7 @@ def map_modal(request):
             'landmarks': list(user_collection.values())})
 
 
-# Yolo 파일생성
+# Yolo 추론할 이미지를 위한 디렉토리 생성
 def createFolder(directory):
     try:
         if not os.path.exists(directory):
@@ -349,7 +349,7 @@ def collection_modal(request):
         else:
             return redirect('photoguide2', loc_id)
 
-
+# 추론 성공시 s3 success폴더 아래 이미지 저장
 def save_s3(data, img_name):
     # save results : S3로 업로드
     s3_url = "https://photomarble.s3.ap-northeast-2.amazonaws.com/yolo/success/" + img_name
@@ -359,7 +359,7 @@ def save_s3(data, img_name):
         Key='yolo/success/' + str(img_name), Body=data, ContentType='jpg')
     return s3_url
 
-
+# 추론 실패시 s3 fail폴더 아래 이미지 저장
 def save_s3_fail(data, img_name):
     # save results : S3로 업로드
     s3_url = "https://photomarble.s3.ap-northeast-2.amazonaws.com/yolo/fail/" + img_name
@@ -370,7 +370,7 @@ def save_s3_fail(data, img_name):
         Key='yolo/fail/' + str(img_name), Body=data, ContentType='jpg')
     return s3_url
 
-
+# 이지지 크기 재 조정
 def img_resize(path):
     image = Image.open(path + "/collection/detect/result/" + 'test.jpg')
     resize_image = image.resize((256, 256))
