@@ -49,6 +49,7 @@ def load_more(request):
     })
 
 
+# 갤러리 업로드
 def upload(request):
     if request.method == 'POST':
         user_id = request.session['id']
@@ -79,15 +80,9 @@ def upload(request):
 
             # 위도 계산
             latitude = (latDeg + (latMin + latSec / 60.0) / 60.0)
-            # 북위, 남위인지를 판단, 남위일 경우 -로 변경
-            # if exifGPS[1] == 'S':
-            #     Lat = Lat * -1
 
             # 경도 계산
             longitude = (lonDeg + (lonMin + lonSec / 60.0) / 60.0)
-            # 동경, 서경인지를 판단, 서경일 경우 -로 변경
-            # if exifGPS[3] == 'W':
-            #     Lon = Lon * -1
 
             # 사진이 생성된 날짜 (created_at)
             taglabel['DateTimeOriginal']
@@ -100,6 +95,7 @@ def upload(request):
             latitude = 0
             longitude = 0
             created_at = time
+
         Gallery.objects.create(
             s3_url=s3_url,
             updated_at=time,
@@ -114,6 +110,7 @@ def upload(request):
     return redirect('gallery')
 
 
+# 전체 갤러리 보기
 def detail(request, id):
     user_id = request.session['id']
     galleries = Gallery.objects.get(gallery_id=id)
@@ -156,6 +153,7 @@ def detail(request, id):
     return render(request, '../templates/gallery/detail.html', context=content)
 
 
+# 댓글 삭제
 def comment_delete(request, g_id, c_id):
     comment = get_object_or_404(Comment, pk=c_id)
     comment.delete()
@@ -163,6 +161,7 @@ def comment_delete(request, g_id, c_id):
     return redirect('detail2', id=g_id)
 
 
+# 좋아요 기능
 def likes(request):
     if request.is_ajax():
         gallery_id = request.GET['gallery_id']
@@ -181,6 +180,7 @@ def likes(request):
         return HttpResponse(json.dumps(context), content_type='application/json')
 
 
+# 갤러리 삭제
 def gallery_delete(request, g_id):
     gallery = get_object_or_404(Gallery, pk=g_id)
     gallery.delete()

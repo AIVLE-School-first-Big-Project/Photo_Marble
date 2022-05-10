@@ -76,11 +76,11 @@ def main(request):
     else:
         return render(request, '../templates/main/main.html', {'login': "f"})
 
-
+# 회원 탈퇴
 def delete_account(request):
     return render(request, '../templates/main/delete_account.html')
 
-
+# 마이페이지에서의 회원탈퇴
 def delete(request):
     if request.method == 'POST':
         user = get_object_or_404(User, pk=request.session['id'])
@@ -94,11 +94,11 @@ def delete(request):
 
     return render(request, '../templates/main/delete_result.html', {'result': result})
 
-
+# 탈퇴 완료 후 화면 전환
 def delete_result(request):
     return render(request, '../templates/main/delete_result.html')
 
-
+# 회원가입
 class CustomSignupView(SignupView):
     template_name = "main/signup.html"
 
@@ -127,8 +127,6 @@ def validate_email(email):
 
 
 # 이메일 활성화(비활성화) #
-
-
 def activate(request, uid64, token, backend='django.contrib.auth.backends.ModelBackend', *args, **kwargs, ):
     try:
         uid = force_str(urlsafe_base64_decode(uid64))
