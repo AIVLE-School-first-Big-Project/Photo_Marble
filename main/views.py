@@ -101,7 +101,7 @@ def delete_result(request):
 
 class CustomSignupView(SignupView):
     template_name = "main/signup.html"
-
+    #이메일 인증을 위한 form 검사
     def form_valid(self, form):
         self.user = form.save(self.request)
         current_site = get_current_site(self.request)

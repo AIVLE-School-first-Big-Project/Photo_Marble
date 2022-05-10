@@ -14,6 +14,7 @@ def photoguide2(request, loc_id):
 
 
 def photoguide_update(request, loc_id):
+    # 사전에 추출한 사람/배경 사진에 대한 벡터 불러오기
     persons_features = np.load('./photoguide/DLmodel/similar_persons_feature.npy')
     back_features = np.load('./photoguide/DLmodel/similar_ground_feature.npy')
 
@@ -23,24 +24,27 @@ def photoguide_update(request, loc_id):
     result = response.json()
     query = np.array(result["pred"])
     # ----------------------------------------------------------------------------------------------------
-    # persons
+    # s3의 링크를 불러오기 위한사람 csv 파일 불러오기
     person_list = []
     persons_paths = pd.read_csv("./photoguide/DLmodel/persons_paths.csv", index_col=0)
-
+    
+    #쿼리와 거리를 계산
     dists = np.linalg.norm(persons_features - query, axis=1)
     ids = np.argsort(dists)
-
+    #계산된 값에 대한 아이디를 기준으로 s3링크와 랜드마크 아이디 저장
     for id in ids:
         df_row = persons_paths.loc[id]
         if df_row['name'] == loc_id:
             person_list.append(df_row['link'])
 
-    # background
+    # s3의 링크를 불러오기 위한 배경 csv 파일 불러오기
     background_list = []
     background_paths = pd.read_csv("./photoguide/DLmodel/background_paths.csv", index_col=0)
+
+    #쿼리와 거리를 계산
     dists = np.linalg.norm(back_features - query, axis=1)
     ids = np.argsort(dists)
-
+    #계산된 값에 대한 아이디를 기준으로 s3링크와 랜드마크 아이디 저장
     for id in ids:
         df_row = background_paths.loc[id]
         if df_row['name'] == loc_id:
