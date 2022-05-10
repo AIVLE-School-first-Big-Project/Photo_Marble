@@ -16,7 +16,6 @@ urlpatterns = [
     # 서울 지역구 활성화시 모달
     path('map_modal/', views.map_modal, name='map_modal'),
     path('collection_modal/', views.collection_modal, name='collection_modal'),
-    
 
     # 객체 인식
     path('collection_update', views.collection_update, name='collection_update'),

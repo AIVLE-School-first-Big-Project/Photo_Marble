@@ -26,11 +26,11 @@ def photoguide_update(request, loc_id):
     # persons
     person_list = []
     persons_paths = pd.read_csv("./photoguide/DLmodel/persons_paths.csv", index_col=0)
-    
-    #쿼리와 거리를 계산
+
+    # 쿼리와 거리를 계산
     dists = np.linalg.norm(persons_features - query, axis=1)
     ids = np.argsort(dists)
-    #계산된 값에 대한 아이디를 기준으로 s3링크와 랜드마크 아이디 저장
+    # 계산된 값에 대한 아이디를 기준으로 s3링크와 랜드마크 아이디 저장
     for id in ids:
         df_row = persons_paths.loc[id]
         if df_row['name'] == loc_id:
@@ -40,10 +40,10 @@ def photoguide_update(request, loc_id):
     background_list = []
     background_paths = pd.read_csv("./photoguide/DLmodel/background_paths.csv", index_col=0)
 
-    #쿼리와 거리를 계산
+    # 쿼리와 거리를 계산
     dists = np.linalg.norm(back_features - query, axis=1)
     ids = np.argsort(dists)
-    #계산된 값에 대한 아이디를 기준으로 s3링크와 랜드마크 아이디 저장
+    # 계산된 값에 대한 아이디를 기준으로 s3링크와 랜드마크 아이디 저장
     for id in ids:
         df_row = background_paths.loc[id]
         if df_row['name'] == loc_id:
@@ -52,6 +52,7 @@ def photoguide_update(request, loc_id):
     return render(request, '../templates/photoguide/photoguide_result.html', {
                                                                             'persons_imgs': person_list,
                                                                             'back_imgs': background_list})
+
 
 # 유사 추천 결과화면
 def photoguide_result(request):

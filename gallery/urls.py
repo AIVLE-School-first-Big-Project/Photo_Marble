@@ -9,7 +9,7 @@ urlpatterns = [
 
     # 사진 상세페이지 좋아요 기능
     path('detail/likes', views.likes, name='likes'),
-    
+
     # 사진 업로드
     path('upload', views.upload, name="upload"),
 

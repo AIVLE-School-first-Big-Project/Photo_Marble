@@ -15,6 +15,7 @@ import shutil
 # API
 from django.views.decorators.csrf import csrf_exempt
 
+
 # 컬렉션 메인 페이지
 def collection_mypage(request):
     # progress bar
@@ -92,6 +93,7 @@ def collection_ranking(request):
             'third': rank_list[2],
             'top4_7': rank_list[3:]}
             )
+
 
 # 랜드마크 달성을 위한 이미지 인식
 def collection_update(request):
@@ -349,6 +351,7 @@ def collection_modal(request):
         else:
             return redirect('photoguide2', loc_id)
 
+
 # 추론 성공시 s3 success폴더 아래 이미지 저장
 def save_s3(data, img_name):
     # save results : S3로 업로드
@@ -358,6 +361,7 @@ def save_s3(data, img_name):
     s3r.Bucket('photomarble').put_object(
         Key='yolo/success/' + str(img_name), Body=data, ContentType='jpg')
     return s3_url
+
 
 # 추론 실패시 s3 fail폴더 아래 이미지 저장
 def save_s3_fail(data, img_name):
@@ -369,6 +373,7 @@ def save_s3_fail(data, img_name):
     s3r.Bucket('photomarble').put_object(
         Key='yolo/fail/' + str(img_name), Body=data, ContentType='jpg')
     return s3_url
+
 
 # 이지지 크기 재 조정
 def img_resize(path):
