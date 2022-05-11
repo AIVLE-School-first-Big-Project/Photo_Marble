@@ -38,6 +38,7 @@
 
 ### 6. :mag_right: 서비스 플로우
 <p align="center">
-![photomable](https://user-images.githubusercontent.com/67406924/167747872-bf5d309a-d49b-4687-89b4-cc10874d335a.png)
+<img src=https://user-images.githubusercontent.com/67406924/167747872-bf5d309a-d49b-4687-89b4-cc10874d335a.png width="600" >
+  
 </p><br>
 
