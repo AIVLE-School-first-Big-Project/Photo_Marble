@@ -28,6 +28,8 @@
 
 ------------------
 ### 4. :game_die: 포토마불 사용가이드
+<img src = "https://user-images.githubusercontent.com/67406924/167748087-c78516d3-472e-4d06-840c-a8567b485f33.png" width="600")
+
 ------------------
 ### 5. :hammer_and_wrench: 아키텍처 
 <p align="center">
@@ -38,7 +40,7 @@
 
 ### 6. :mag_right: 서비스 플로우
 <p align="center">
-<img src=https://user-images.githubusercontent.com/67406924/167747872-bf5d309a-d49b-4687-89b4-cc10874d335a.png width="600" >
+<img src= "https://user-images.githubusercontent.com/67406924/167747872-bf5d309a-d49b-4687-89b4-cc10874d335a.png" width="600" >
   
 </p><br>
 
