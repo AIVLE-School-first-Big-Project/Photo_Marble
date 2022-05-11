@@ -10,7 +10,6 @@ urlpatterns = [
     path('ranking/', views.collection_ranking, name='ranking'),
 
     # 나의 갤러리
-    path('mygallery/', views.my_gallery_tmp, name='my_gallery'),
     path('mygallery/<int:loc_id>/', views.my_gallery, name="my_gallery2"),
 
     # 서울 지역구 활성화시 모달
