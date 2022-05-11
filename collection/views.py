@@ -37,15 +37,19 @@ def collection_mypage(request):
 @csrf_exempt
 def my_gallery(request, loc_id):
     ui = request.session['id']
+    # url로 넘어온 lanmdmark_id로 필터링해서 랜드마크 
     landmark = Landmark.objects.get(landmark_id=loc_id)
+    # 해당 랜드마크에서 업로드한 사진들중에서 현재 로그인한 유저 아이디로 필터링 
     gallery = Gallery.objects.filter(
         landmark_id=loc_id, user_id=ui).order_by('-created_at')
     date_set = []
+   
+    #필터링된 사진들이 업로드 된 날짜를 뽑고 set 해줌 
     for data in gallery:
         date_set.append(data.created_at.date())
-
     date_set = sorted(list(set(date_set)))
-
+    
+    # 날짜를 key, 해당 날짜에 찍힌 사진들을 value 로 가지는 dictionary생성
     result_dict = {}
     for date in date_set:
         tmp_list = []
@@ -318,29 +322,6 @@ def map(visited_landmark, progress):
 
     test_dict['progress'] = progress
     return test_dict
-
-
-def my_gallery_tmp(request):
-    ui = request.session['id']
-    loc_id = 1
-    loc = Locations.objects.get(location_id=loc_id)
-    loc_name = loc.name
-    lands_area = Landmark.objects.filter(area=loc_name)
-    land_list = []
-    for land in lands_area:
-        land_list.append(land.landmark_id)
-    my_galleries = Gallery.objects.filter(user=ui, landmark_id__in=land_list)
-
-    visited_lands = []
-
-    for my_g in my_galleries:
-        visited_lands.append(my_g.landmark_id)
-
-    landset = list(set(visited_lands))
-
-    lands_area = Landmark.objects.filter(area=loc_name, landmark_id__in=landset)
-    content = {"datas": my_galleries, "landmarks": lands_area}
-    return render(request, "../templates/collection/my_gallery.html", context=content)
 
 
 def collection_modal(request):
