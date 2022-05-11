@@ -1,10 +1,8 @@
 # Photo-Marble
 ### 0. : 시연 영상
-<img src = https://user-images.githubusercontent.com/43026485/167750995-3ac0805c-4f8b-4ac1-8c07-eb6cc1875a3c.jpg>
 
-)](https://youtu.be/Ix8J5JBiWg4)
+[![포토마블 시연영상](https://user-images.githubusercontent.com/43026485/167750995-3ac0805c-4f8b-4ac1-8c07-eb6cc1875a3c.jpg)](https://youtu.be/Ix8J5JBiWg4)
 
-)](https://youtu.be/Ix8J5JBiWg4)
 ### 1. :computer: 서비스 소개
 > ✨ 사진으로 완성하는 이색 여행 플랫폼
 
