@@ -28,7 +28,7 @@
 
 ------------------
 ### 4. :game_die: 포토마불 사용가이드
-<img src = "https://user-images.githubusercontent.com/67406924/167748087-c78516d3-472e-4d06-840c-a8567b485f33.png" width="900">
+<img src = "https://user-images.githubusercontent.com/67406924/167748087-c78516d3-472e-4d06-840c-a8567b485f33.png" width="1100">
 
 ------------------
 ### 5. :hammer_and_wrench: 아키텍처 
