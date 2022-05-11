@@ -37,18 +37,20 @@ def collection_mypage(request):
 @csrf_exempt
 def my_gallery(request, loc_id):
     ui = request.session['id']
-    # url로 넘어온 lanmdmark_id로 필터링해서 랜드마크 
+
+    # url로 넘어온 lanmdmark_id로 필터링해서 랜드마크
     landmark = Landmark.objects.get(landmark_id=loc_id)
-    # 해당 랜드마크에서 업로드한 사진들중에서 현재 로그인한 유저 아이디로 필터링 
+
+    # 해당 랜드마크에서 업로드한 사진들중에서 현재 로그인한 유저 아이디로 필터링
     gallery = Gallery.objects.filter(
         landmark_id=loc_id, user_id=ui).order_by('-created_at')
     date_set = []
-   
-    #필터링된 사진들이 업로드 된 날짜를 뽑고 set 해줌 
+
+    # 필터링된 사진들이 업로드 된 날짜를 뽑고 set 해줌
     for data in gallery:
         date_set.append(data.created_at.date())
     date_set = sorted(list(set(date_set)))
-    
+
     # 날짜를 key, 해당 날짜에 찍힌 사진들을 value 로 가지는 dictionary생성
     result_dict = {}
     for date in date_set:

@@ -21,6 +21,7 @@ django-bootstrap4==22.1
 django-storages==1.12.3
 djangorestframework==3.13.1
 fire==0.4.0
+flake8==4.0.1
 flatbuffers==2.0
 fonttools==4.33.3
 gast==0.5.3
