@@ -5,7 +5,11 @@
 *__사진을 클릭하면 시연영상으로 이동합니다.__*
 
 
-[![포토마블 시연영상](https://user-images.githubusercontent.com/67406924/167752944-ce36d7c0-7466-456e-a2a4-f28128b5ea94.png)](https://youtu.be/Ix8J5JBiWg4)
+<p align="center">
+<a href="https://youtu.be/Ix8J5JBiWg4" target="_blank">
+    <img src="https://user-images.githubusercontent.com/67406924/167752944-ce36d7c0-7466-456e-a2a4-f28128b5ea94.png">
+  </a>
+  </p>
 
 
 ### 1. :computer: 서비스 소개
