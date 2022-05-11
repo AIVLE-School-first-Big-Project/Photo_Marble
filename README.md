@@ -1,5 +1,5 @@
 # Photo-Marble
-### 0. ![youtube]<img src = https://user-images.githubusercontent.com/67406924/167752046-948fb25d-c2d1-430e-af75-d6ac8dd54e48.png>: 시연 영상
+### 0. ![youtube]<img src = https://user-images.githubusercontent.com/67406924/167752046-948fb25d-c2d1-430e-af75-d6ac8dd54e48.png width="39" height="34">: 시연 영상
 
 사진을 클릭하면 시연영상으로 이동합니다.
 [![포토마블 시연영상](https://user-images.githubusercontent.com/43026485/167750995-3ac0805c-4f8b-4ac1-8c07-eb6cc1875a3c.jpg width="423"; height="423")](https://youtu.be/Ix8J5JBiWg4)
