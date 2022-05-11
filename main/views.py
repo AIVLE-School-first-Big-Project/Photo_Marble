@@ -77,10 +77,12 @@ def main(request):
         return render(request, '../templates/main/main.html', {'login': "f"})
 
 
+# 회원 탈퇴
 def delete_account(request):
     return render(request, '../templates/main/delete_account.html')
 
 
+# 마이페이지에서의 회원탈퇴
 def delete(request):
     if request.method == 'POST':
         user = get_object_or_404(User, pk=request.session['id'])
@@ -95,13 +97,16 @@ def delete(request):
     return render(request, '../templates/main/delete_result.html', {'result': result})
 
 
+# 탈퇴 완료 후 화면 전환
 def delete_result(request):
     return render(request, '../templates/main/delete_result.html')
 
 
+# 회원가입
 class CustomSignupView(SignupView):
     template_name = "main/signup.html"
-    #이메일 인증을 위한 form 검사
+
+    # 이메일 인증을 위한 form 검사
     def form_valid(self, form):
         self.user = form.save(self.request)
         current_site = get_current_site(self.request)
@@ -117,18 +122,15 @@ class CustomSignupView(SignupView):
         email.send()
         return render(self.request, "main/signup2.html")
 
+
 # 회원가입기능
 # 이메일에 @ & . 없으면 안내해준다.
-
-
 def validate_email(email):
     if '@' not in email or '.' not in email:
         raise ValidationError(("Invalid Email"), code='invalid')
 
 
 # 이메일 활성화(비활성화) #
-
-
 def activate(request, uid64, token, backend='django.contrib.auth.backends.ModelBackend', *args, **kwargs, ):
     try:
         uid = force_str(urlsafe_base64_decode(uid64))
@@ -172,8 +174,6 @@ def signup3(request):
     return render(request, "../templates/main/signup3.html")
 
 
-def aboutus(request):
-    return render(request, "../templates/main/aboutus.html")
-
+# About PhotoMarble 사용가이드 페이지
 def about_pm(request):
     return render(request, "../templates/main/about_pm.html")

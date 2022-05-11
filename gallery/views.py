@@ -10,6 +10,8 @@ from PIL import Image
 from PIL.ExifTags import TAGS
 
 
+# 갤러리 전체보기
+# 랜드마크별 필터링, 페이지네이션
 def gallery(request):
     l_id = request.POST.get('landmark')
     c_id = request.POST.get('category')
@@ -37,6 +39,8 @@ def gallery(request):
     return render(request, "../templates/gallery/gallery.html", context=content)
 
 
+# 페이지네이션
+# [더 보기] 버튼으로 AJAX 통신하여 불러올 수 있도록.
 def load_more(request):
     offset = int(request.POST['offset'])
     limit = 4
@@ -49,6 +53,7 @@ def load_more(request):
     })
 
 
+# 갤러리 업로드
 def upload(request):
     if request.method == 'POST':
         user_id = request.session['id']
@@ -79,15 +84,9 @@ def upload(request):
 
             # 위도 계산
             latitude = (latDeg + (latMin + latSec / 60.0) / 60.0)
-            # 북위, 남위인지를 판단, 남위일 경우 -로 변경
-            # if exifGPS[1] == 'S':
-            #     Lat = Lat * -1
 
             # 경도 계산
             longitude = (lonDeg + (lonMin + lonSec / 60.0) / 60.0)
-            # 동경, 서경인지를 판단, 서경일 경우 -로 변경
-            # if exifGPS[3] == 'W':
-            #     Lon = Lon * -1
 
             # 사진이 생성된 날짜 (created_at)
             taglabel['DateTimeOriginal']
@@ -100,6 +99,7 @@ def upload(request):
             latitude = 0
             longitude = 0
             created_at = time
+
         Gallery.objects.create(
             s3_url=s3_url,
             updated_at=time,
@@ -114,6 +114,8 @@ def upload(request):
     return redirect('gallery')
 
 
+# 사진 상세페이지 보기
+# 댓글(CRUD), 좋아요(AJAX 통신) 기능
 def detail(request, id):
     user_id = request.session['id']
     galleries = Gallery.objects.get(gallery_id=id)
@@ -156,6 +158,7 @@ def detail(request, id):
     return render(request, '../templates/gallery/detail.html', context=content)
 
 
+# 댓글 삭제
 def comment_delete(request, g_id, c_id):
     comment = get_object_or_404(Comment, pk=c_id)
     comment.delete()
@@ -163,12 +166,14 @@ def comment_delete(request, g_id, c_id):
     return redirect('detail2', id=g_id)
 
 
+# 좋아요 기능
 def likes(request):
     if request.is_ajax():
         gallery_id = request.GET['gallery_id']
         gallery = Gallery.objects.get(gallery_id=gallery_id)
         user = request.user
 
+        # 유저가 좋아요를 했다가 취소하기
         if gallery.like_users.filter(id=user.id).exists():
             gallery.like_users.remove(user)
             message = "좋아요 취소"
@@ -181,6 +186,7 @@ def likes(request):
         return HttpResponse(json.dumps(context), content_type='application/json')
 
 
+# 갤러리 삭제
 def gallery_delete(request, g_id):
     gallery = get_object_or_404(Gallery, pk=g_id)
     gallery.delete()

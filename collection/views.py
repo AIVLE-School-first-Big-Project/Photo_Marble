@@ -16,6 +16,7 @@ import shutil
 from django.views.decorators.csrf import csrf_exempt
 
 
+# 컬렉션 메인 페이지
 def collection_mypage(request):
     # progress bar
     if request.user.is_authenticated is True:
@@ -94,6 +95,7 @@ def collection_ranking(request):
             )
 
 
+# 랜드마크 달성을 위한 이미지 인식
 def collection_update(request):
     # 카메라로 찍은 이미지 경로 설정
     path = os.getcwd()  # C:\Users\User\Desktop\potomable\git적용\Photo_Marble
@@ -264,6 +266,7 @@ def collection_update(request):
                 return render(request, '../templates/collection/collection_fail.html', context={"s3_url": s3_url, "reason_fail": "기준 점수를 넘지 못했습니다.\n다시 촬영해주세요"})
 
 
+# 서울시 지도에서 활성화된 지역구를 선택했을 때, 발생하는 모달창
 def map_modal(request):
     area = Locations.objects.get(location_id=request.POST['location_id'][1:])
     landmarks = Landmark.objects.filter(area=area.name)
@@ -277,8 +280,7 @@ def map_modal(request):
             'landmarks': list(user_collection.values())})
 
 
-# ordinary functunction
-
+# Yolo 추론할 이미지를 위한 디렉토리 생성
 def createFolder(directory):
     try:
         if not os.path.exists(directory):
@@ -350,6 +352,7 @@ def collection_modal(request):
             return redirect('photoguide2', loc_id)
 
 
+# 추론 성공시 s3 success폴더 아래 이미지 저장
 def save_s3(data, img_name):
     # save results : S3로 업로드
     s3_url = "https://photomarble.s3.ap-northeast-2.amazonaws.com/yolo/success/" + img_name
@@ -360,6 +363,7 @@ def save_s3(data, img_name):
     return s3_url
 
 
+# 추론 실패시 s3 fail폴더 아래 이미지 저장
 def save_s3_fail(data, img_name):
     # save results : S3로 업로드
     s3_url = "https://photomarble.s3.ap-northeast-2.amazonaws.com/yolo/fail/" + img_name
@@ -371,6 +375,7 @@ def save_s3_fail(data, img_name):
     return s3_url
 
 
+# 이지지 크기 재 조정
 def img_resize(path):
     image = Image.open(path + "/collection/detect/result/" + 'test.jpg')
     resize_image = image.resize((256, 256))
