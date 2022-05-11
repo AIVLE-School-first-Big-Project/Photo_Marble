@@ -1,6 +1,6 @@
 # Photo-Marble
 ### 0. : 시연 영상
-[![Video Label](https://user-images.githubusercontent.com/43026485/167750995-3ac0805c-4f8b-4ac1-8c07-eb6cc1875a3c.jpg
+<img src = https://user-images.githubusercontent.com/43026485/167750995-3ac0805c-4f8b-4ac1-8c07-eb6cc1875a3c.jpg>
 
 )](https://youtu.be/Ix8J5JBiWg4)
 
