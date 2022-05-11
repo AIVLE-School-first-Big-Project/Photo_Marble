@@ -1,7 +1,8 @@
 # Photo-Marble
-### 0. : 시연 영상
+### 0. ![youtube](https://user-images.githubusercontent.com/67406924/167752046-948fb25d-c2d1-430e-af75-d6ac8dd54e48.png width="423"; height="423"): 시연 영상
 
-[![포토마블 시연영상](https://user-images.githubusercontent.com/43026485/167750995-3ac0805c-4f8b-4ac1-8c07-eb6cc1875a3c.jpg)](https://youtu.be/Ix8J5JBiWg4)
+사진을 클릭하면 시연영상으로 이동합니다.
+[![포토마블 시연영상](https://user-images.githubusercontent.com/43026485/167750995-3ac0805c-4f8b-4ac1-8c07-eb6cc1875a3c.jpg )](https://youtu.be/Ix8J5JBiWg4)
 
 ### 1. :computer: 서비스 소개
 > ✨ 사진으로 완성하는 이색 여행 플랫폼
